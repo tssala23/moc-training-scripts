@@ -12,4 +12,4 @@ Some convenient scripts for running gpt-2 training experiments. Note: these are 
 
 * `yaml/debug_pod.yaml` runs a pod that can be ssh'ed into for debugging purposes. In particular, since it mounts the shared volume, it's useful to quickly look at log files and do basic analysis. Convenient to use: `alias debug="oc exec debug-pod -it -- /bin/ash"` (alpine image uses ash).
 
-* Use `oc cp debug-pod:$FOLDER ./$LOCAL_FOLDER` to copy log files/profiles over.
+* Use `oc cp debug-pod:$FOLDER ./$LOCAL_FOLDER` to copy log files/profiles over. See `logs/` for example logs that can be used to generate CSVs.
