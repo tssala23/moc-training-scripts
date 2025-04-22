@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM
+spec:
+  completionMode: Indexed
+  parallelism: ARG_NUM_PODS
+  completions: ARG_NUM_PODS
+  activeDeadlineSeconds: 1800
+  backoffLimit: 4
+  template:
+    metadata:
+      name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM
+    spec:
+      containers:
+        - name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM
+          image: docker.io/saarora/test
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROC", "ARG_GRAD_ACCUM"]
+          ports:
+            - containerPort: 29500
+          volumeMounts:
+            - mountPath: "/workspace/data"
+              name: pv-storage
+          resources:
+            limits:
+              nvidia.com/gpu: ARG_NUM_PROC
+
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-gpt2-train-100gb
+
+      restartPolicy: OnFailure

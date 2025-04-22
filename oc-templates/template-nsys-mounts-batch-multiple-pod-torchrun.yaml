@@ -1,0 +1,70 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+spec:
+  completionMode: Indexed
+  parallelism: ARG_NUM_PODS
+  completions: ARG_NUM_PODS
+  activeDeadlineSeconds: 1800
+  backoffLimit: 4
+  template:
+    metadata:
+      name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+    spec:
+      containers:
+        - name: multipod-torchrun-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+
+          image: docker.io/saarora/nsys-test
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROC", "ARG_GRAD_ACCUM", "ARG_PROFILE", "ARG_MODEL", "ARG_RUNID"]
+          ports:
+            - containerPort: 29500
+          volumeMounts:
+            - mountPath: "/workspace/data"
+              name: pv-storage
+            - mountPath: /sys
+              name: sys
+            - mountPath: /proc
+              name: proc
+            - mountPath: /dev
+              name: dev
+          resources:
+            limits:
+              nvidia.com/gpu: ARG_NUM_PROC
+          securityContext:
+            privileged: true
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-gpt2-train-100gb
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: dev
+          hostPath:
+            path: /dev
+
+securityContext:
+  privileged: true
+volumeMounts:
+  - mountPath: /sys
+    name: sys
+  - mountPath: /proc
+    name: proc
+  - mountPath: /dev
+    name: dev
+volumes:
+  - name: sys
+    hostPath:
+      path: /sys
+  - name: proc
+    hostPath:
+      path: /proc
+  - name: dev
+    hostPath:
+      path: /dev
+
+      restartPolicy: OnFailure

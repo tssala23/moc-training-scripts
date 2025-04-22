@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nodeselect-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+spec:
+  completionMode: Indexed
+  parallelism: ARG_NUM_PODS
+  completions: ARG_NUM_PODS
+  activeDeadlineSeconds: 1800
+  backoffLimit: 4
+  template:
+    metadata:
+      name: nodeselect-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+    spec:
+      nodeName: ARG_NODE
+      containers:
+        - name: nodeselect-podsARG_NUM_PODS-procsARG_NUM_PROC-gradARG_GRAD_ACCUM-profARG_PROFILE-modelARG_MODEL-runARG_RUNID
+          image: docker.io/saarora/nsys-test
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROC", "ARG_GRAD_ACCUM", "ARG_PROFILE", "ARG_MODEL", "ARG_RUNID"]
+          ports:
+            - containerPort: 29500
+          volumeMounts:
+            - mountPath: "/workspace/data"
+              name: pv-storage
+          resources:
+            limits:
+              nvidia.com/gpu: ARG_NUM_PROC
+
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-gpt2-train-100gb
+
+      restartPolicy: OnFailure
