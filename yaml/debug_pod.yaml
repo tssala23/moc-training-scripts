@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+  namespace: default
+spec:
+  containers:
+    - name: debug-pod
+      image: alpine
+      command: ["/bin/sh"]
+      args: ["-c", "sleep infinity"]
+      volumeMounts:
+      - mountPath: "/workspace/data"
+        name: pv-storage
+
+  volumes:
+  - name: pv-storage
+    persistentVolumeClaim:
+      claimName: pvc-gpt2-train-100gb
+
+  restartPolicy: OnFailure
