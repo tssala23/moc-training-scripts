@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#oc get nodes
+
+#oc get nodes  \
+#   --selector='node-role.kubernetes.io/worker' \
+#   -o=jsonpath='{.items[*].metadata.name}'  
+
+oc get nodes \
+   --selector='node-role.kubernetes.io/worker' \
+   -o name | sort -n -t '-' -k 2
