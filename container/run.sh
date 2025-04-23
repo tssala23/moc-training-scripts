@@ -19,10 +19,11 @@ SEQ_LEN=1024
 BS_TOTAL=$(($BS * $SEQ_LEN * $GRAD_ACCUM*$NUM_NODES*$NPROCS))
 
 #log folder
-LOG_LOC=/workspace/data/experiments/logs_profile${PROFILE}_model${MODEL}
-if [ ! -d $LOG_LOC ]
+LOG_LOC=/tmp
+PERM_LOG_LOC=/workspace/data/experiments/logs_profile${PROFILE}_model${MODEL}
+if [ ! -d $PERM_LOG_LOC ]
 then
-	mkdir -p $LOG_LOC
+	mkdir -p $PERM_LOG_LOC
 fi
 
 #log file
@@ -67,6 +68,10 @@ done
 MASTER_ADDR=$(cat /workspace/data/shared_ip_${TAG}_0)
 MASTER_PORT=29500
 
+#collect network stats
+echo "Dumping initial: /proc/net/dev" | tee -a $LOG_LOC/$LOG_FILE
+cat /proc/net/dev >> $LOG_LOC/$LOG_FILE
+
 #profiling and logging on rank 0 node only
 if [ $NODE_RANK -eq 0 ]
 then
@@ -80,7 +85,15 @@ then
 		echo "invalid profile option: $PROFILE"
 	fi
 
-	#rm /workspace/data/shared_ip_*
+	#collect network stats
+        echo "Dumping final: /proc/net/dev" | tee -a $LOG_LOC/$LOG_FILE
+        cat /proc/net/dev >> $LOG_LOC/$LOG_FILE
+
+	#copy log file from container to shared volume
+	echo "Copying $LOG_LOC/$LOG_FILE to $PERM_LOG_LOC/$LOG_FILE" | tee -a $LOG_LOC/$LOG_FILE
+	cp $LOG_LOC/$LOG_FILE $PERM_LOG_LOC/$LOG_FILE
+	
+	#remove files with ips
 	rm /workspace/data/shared_ip_${TAG}_*
 
 else
@@ -88,4 +101,4 @@ else
 
 fi
 
-#sleep 100
+#sleep 1000
