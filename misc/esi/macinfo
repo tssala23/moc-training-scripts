@@ -17,10 +17,15 @@ do
                                         	       )
 		         )								
 	  )' neutronports.json)
-	net=$(jq -r '.[]| select(.["Subnets"].[] == "'$snid'") | .Name' network.json)
-	[[ -a $net.json ]] && {
-	    vlanid=$(jq '.["provider:segmentation_id"]' $net.json)
-	}
+	if [[ -n $snid ]]; then 
+	    net=$(jq -r '.[]| select(.["Subnets"].[] == "'$snid'") | .Name' network.json)
+	    [[ -a $net.json ]] && {
+		vlanid=$(jq '.["provider:segmentation_id"]' $net.json)
+	    }
+	else
+	    net=''
+	    vlanid=''
+	fi
 	echo $name,$addr,$portid,$swinfo,$swid,$nip,$net,$vlanid
     done < <( jq -r '.[] |
     select(.["Node UUID"] == "'$nuuid'") |
