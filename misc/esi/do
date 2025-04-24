@@ -1,0 +1,5 @@
+[[ ! -a node.json ]] && openstack baremetal node list --long -f json > node.json
+[[ ! -a network.json ]] && openstack network list --long -f json > network.json
+jq -r ".[].Name" network.json  | while read n; do [[ ! -a $n.json ]] && openstack network show -f json  $n > $n.json ; done
+[[ ! -a bmports.json ]] && openstack baremetal port list --long -f json > bmports.json
+[[ ! -a neutronports.json ]] && openstack port list -f json --long > neutronports.json

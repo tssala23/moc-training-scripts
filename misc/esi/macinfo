@@ -1,0 +1,24 @@
+#!/bin/bash
+
+jq -r '.[]|(.Name + " " + .UUID)' node.json | while read name nuuid
+do
+    while IFS=',' read addr swinfo portid swid; do
+	echo -n  $name,$addr,$portid,$swinfo,$swid,
+	jq -r '.[] | select(.["MAC Address"] == "'$addr'") | (
+	       .Name + "," + (
+	                      .["Fixed IP Addresses"].[] | ( 
+                                                             .ip_address
+                                                           )
+		             )
+	       )' neutronports.json
+    done < <( jq -r '.[] |
+    select(.["Node UUID"] == "'$nuuid'") |
+    .Address + "," + (
+                      .["Local Link Connection"] | (
+						     .switch_info + "," +
+                                                     .port_id + "," +
+                                                     .switch_id))' \
+		 bmports.json) 
+#    echo $name
+done
+

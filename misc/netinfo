@@ -1,0 +1,24 @@
+#!/bin/bash
+set -u 
+JSON_URLS=(
+    https://raw.githubusercontent.com/CCI-MOC/esi-pilot/refs/heads/main/nodes/bm_inventory_r4pcc02.json
+    https://raw.githubusercontent.com/CCI-MOC/esi-pilot/refs/heads/main/nodes/bm_inventory_r4pcc04.json
+)
+
+function parsejson()
+{
+    local url=$1
+    wget -q $1 -O - | jq -r \
+	   '.nodes[] |
+	      ( .name + " " +
+	        ( .ports[] |
+		  ( .address + " " +
+		    .local_link_connection.switch_info + " " +
+		    .local_link_connection.port_id + " " +
+		    .local_link_connection.switch_id )) )' 
+}
+
+for jurl in ${JSON_URLS[@]}; do
+    parsejson $jurl 
+done
+
