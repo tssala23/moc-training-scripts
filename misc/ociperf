@@ -1,0 +1,42 @@
+#!/bin/bash
+
+iperfbin=src/iperf-3.18/src/iperf3
+iperfport=12345
+datadir=data
+
+ts=$(date +%d-%m-%y-%s)
+datadir=${datadir}/$ts
+mdkir -p $datadir
+
+wrks=( $(./ocwrks) )
+
+for wrk in ${wrks[@]}; do
+  xfce4-terminal -e "./occon $wrk"
+done 
+
+pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+
+for srv in ${pods[@]}; do
+    oc cp $iperfbin $srv:/root/iperf3
+    oc exec $srv -- /root/iperf3
+done
+
+
+for srv in ${pods[@]}; do
+   read foo srvip < <(oc describe  pods mocr4pcc02u15-debug-hvpz2 | grep '^IP:')
+   echo $EPOCHSECONDS: server: $srv >>$datadir/ociperf.log
+   for clt in ${pods[@]}; do
+      [[ $srv == $clt ]] && continue
+      for prot in tcp udp; do
+	  if [[ $prot == udp ]]; then pflg='-u'; else pflg=''; fi
+          srvlog=/tmp/iperf_$prot_srv_$srv_$clt.log
+	  cltlog=/tmp/iperf_$prot_clt_$srv_$clt.log
+      	  echo "$EPOCHSEONDS: START: $srv $clt" >>$datadir/ociperf.log
+      	  oc exec $srv -- /root/iperf3 -s -p ${iperfport} -1 >$srvlog 2>&1
+      	  oc exec $clt -- /root/iperf3 -p $iperfport -P 128 $pflt >$cltlog 2>&1
+	  echo "$EPOCHSEONDS: END: $srv $clt" >>$datadir/ociperf.log
+      	  oc cp $srv:$srvlog $datadir
+      	  oc cp $clt:$cltlog $datadir
+      done  
+   done 
+done
