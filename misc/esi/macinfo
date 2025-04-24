@@ -1,16 +1,27 @@
 #!/bin/bash
 
+jqver=$(jq --version)
+jqver=${jqver##*-}
+
+[[ $jqver != 1.7.1 ]] && echo "WARNING jq version $jqver != 1.7.1 might not work" >/dev/stderr
+
 jq -r '.[]|(.Name + " " + .UUID)' node.json | while read name nuuid
 do
     while IFS=',' read addr swinfo portid swid; do
-	echo -n  $name,$addr,$portid,$swinfo,$swid,
-	jq -r '.[] | select(.["MAC Address"] == "'$addr'") | (
-	       .Name + "," + (
-	                      .["Fixed IP Addresses"].[] | ( 
-                                                             .ip_address
-                                                           )
-		             )
-	       )' neutronports.json
+	IFS=',' read nport nip snid < <(jq -r '.[] | select(.["MAC Address"] == "'$addr'")
+	| (
+	   .Name + "," + (
+	                  .["Fixed IP Addresses"].[] | ( 
+                                	                .ip_address + "," +
+							.subnet_id
+                                        	       )
+		         )								
+	  )' neutronports.json)
+	net=$(jq -r '.[]| select(.["Subnets"].[] == "'$snid'") | .Name' network.json)
+	[[ -a $net.json ]] && {
+	    vlanid=$(jq '.["provider:segmentation_id"]' $net.json)
+	}
+	echo $name,$addr,$portid,$swinfo,$swid,$nip,$net,$vlanid
     done < <( jq -r '.[] |
     select(.["Node UUID"] == "'$nuuid'") |
     .Address + "," + (
