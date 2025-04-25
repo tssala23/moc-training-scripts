@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-set -x
+#set -x
 typeset -r iperfbin=src/iperf-3.18/src/iperf3
 typeset -r iperfport=12345
 typeset -r ocdatadir=/tmp
@@ -13,6 +13,7 @@ typeset -r -A bufsize=( ["tcp"]="128K" ["udp"]="1460" )
 
 
 typeset -a  wrks=() pod=()
+typeset -i -r  rawpods=$#
 #wrks=( $(./ocwrks| grep mocr4pcc02 | head -2) )
 wrks=( $(./ocwrks| grep mocr4pcc02) )
 
@@ -24,7 +25,7 @@ function log()
     echo $EPOCHSECONDS ociperf : $@ | tee -a  $log
 }
 
-if (( $# > 0 )); then
+if (( $rawpods )); then
     pods=( $(oc get pods --no-headers=true | cut -d' ' -f 1) )
 else
     for wrk in ${wrks[@]}; do
@@ -45,8 +46,6 @@ for p in ${pods[@]}; do
     done
 done
 
-exit
-
 for srv in ${pods[@]}; do
     log "oc cp $iperfbin $srv:/root/iperf3"
     ! oc cp $iperfbin $srv:/root/iperf3 && {
@@ -57,11 +56,19 @@ done
 
 for srv in ${pods[@]}; do
     read foo srvip < <(oc describe pods $srv | grep '^IP:')
-    srvnode=${srv%%-*}
+    if (( ! $rawpods )); then
+	srvnode=${srv%%-*}
+    else
+	srvnode=${srv}
+    fi
     log "server: $srv $srvip $srvnode"
    for clt in ${pods[@]}; do
        [[ $srv == $clt ]] && continue
-       cltnode=${clt%%-*}
+       if (( ! $rawpods )); then
+	   cltnode=${clt%%-*}
+       else
+	   cltnode=${clt}
+       fi
       for prot in ${protocols[@]}; do
 	  if [[ $prot == udp ]]; then pflg='-u'; else pflg=''; fi
 	  len=${bufsize[$prot]}
