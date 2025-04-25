@@ -1,0 +1,61 @@
+MODEL    : d12
+BS        : 32
+SEQ LEN   : 1024
+GRAD ACCUM: 6
+BS TOTAL  : 6291456
+LOG FILE: /tmp/stdout_npods8_nprocs4_numiter10_gradaccum6_bs32_seq1024_totalbs6291456_runid8nodes.log
+NODE RANK: 0
+PROFILE  : 0
+TAG      : 8_4_6_0_d12_8nodes
+RUNID    : 8nodes
+Waiting for files...
+Waiting for files...
+Waiting for files...
+Dumping initial: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+  eth0:     626       7    0    0    0     0          0         0      612       8    0    0    0     0       0          0
+W0423 02:12:00.388000 56 torch/distributed/run.py:792] 
+W0423 02:12:00.388000 56 torch/distributed/run.py:792] *****************************************
+W0423 02:12:00.388000 56 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0423 02:12:00.388000 56 torch/distributed/run.py:792] *****************************************
+Running pytorch 2.6.0+cu124
+using device: cuda:0
+total desired batch size: 6291456
+=> calculated gradient accumulation steps: 6
+using device: cuda:3
+using device: cuda:1
+using device: cuda:2
+compiling the model...
+/workspace/data/llm.c/train_gpt2.py:345: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:345: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:345: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:345: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+DataLoader: total number of tokens: 1,661,249,667 across 103 files
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+step    1/10 | train loss 11.009981 | norm 15.3322 | lr 1.00e-04 | (172914.09 ms | 36385 tok/s)
+step    2/10 | train loss 10.142144 | norm 5.7333 | lr 1.00e-04 | (3944.19 ms | 1595119 tok/s)
+step    3/10 | train loss 9.803598 | norm 2.5910 | lr 1.00e-04 | (3922.66 ms | 1603873 tok/s)
+step    4/10 | train loss 9.635464 | norm 2.1008 | lr 1.00e-04 | (3950.02 ms | 1592767 tok/s)
+step    5/10 | train loss 9.553164 | norm 2.0882 | lr 1.00e-04 | (4251.56 ms | 1479798 tok/s)
+step    6/10 | train loss 9.473394 | norm 1.9856 | lr 1.00e-04 | (4002.40 ms | 1571921 tok/s)
+step    7/10 | train loss 9.389329 | norm 1.9344 | lr 1.00e-04 | (3960.70 ms | 1588469 tok/s)
+step    8/10 | train loss 9.299580 | norm 1.9032 | lr 1.00e-04 | (3958.18 ms | 1589484 tok/s)
+step    9/10 | train loss 9.205658 | norm 1.8585 | lr 1.00e-04 | (3931.21 ms | 1600388 tok/s)
+step   10/10 | train loss 9.117747 | norm 1.7805 | lr 1.00e-04 | (3949.17 ms | 1593110 tok/s)
+final 9 iters avg: 3985.565ms
+peak memory consumption: 19594 MiB
+Dumping final: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:  534726    4123    0    0    0     0          0         0   534726    4123    0    0    0     0       0          0
+  eth0: 9703798315  405943    0    0    0     0          0         0 10724083372  403616    0    0    0     0       0          0
+Copying /tmp/stdout_npods8_nprocs4_numiter10_gradaccum6_bs32_seq1024_totalbs6291456_runid8nodes.log to /workspace/data/experiments/logs_profile0_modeld12/stdout_npods8_nprocs4_numiter10_gradaccum6_bs32_seq1024_totalbs6291456_runid8nodes.log

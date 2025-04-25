@@ -1,0 +1,66 @@
+MODEL    : d12
+BS        : 32
+SEQ LEN   : 1024
+GRAD ACCUM: 9
+BS TOTAL  : 4718592
+LOG FILE: /tmp/stdout_npods4_nprocs4_numiter10_gradaccum9_bs32_seq1024_totalbs4718592_runid4nodes.log
+NODE RANK: 0
+PROFILE  : 0
+TAG      : 4_4_9_0_d12_4nodes
+RUNID    : 4nodes
+Waiting for files...
+Waiting for files...
+Waiting for files...
+Waiting for files...
+Dumping initial: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+  eth0:     536       6    0    0    0     0          0         0      578       8    0    0    0     0       0          0
+W0423 17:18:55.947000 62 torch/distributed/run.py:792] 
+W0423 17:18:55.947000 62 torch/distributed/run.py:792] *****************************************
+W0423 17:18:55.947000 62 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0423 17:18:55.947000 62 torch/distributed/run.py:792] *****************************************
+Running pytorch 2.6.0+cu124
+using device: cuda:0
+total desired batch size: 4718592
+=> calculated gradient accumulation steps: 9
+using device: cuda:3
+using device: cuda:1
+using device: cuda:2
+compiling the model...
+/workspace/data/llm.c/train_gpt2.py:346: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:346: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:346: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+/workspace/data/llm.c/train_gpt2.py:346: RuntimeWarning: overflow encountered in scalar add
+  ntok_total += shard_ntok
+LOADING NEW DATA SHARD: /workspace/data/llm.c/dev/data/fineweb10B/fineweb_train_000001.binLOADING NEW DATA SHARD: /workspace/data/llm.c/dev/data/fineweb10B/fineweb_train_000001.bin
+
+DataLoader: total number of tokens: 1,661,249,667 across 103 files
+LOADING NEW DATA SHARD: /workspace/data/llm.c/dev/data/fineweb10B/fineweb_train_000001.bin
+LOADING NEW DATA SHARD: /workspace/data/llm.c/dev/data/fineweb10B/fineweb_train_000001.bin
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+step    1/10 | train loss 11.010198 | norm 15.3780 | lr 1.00e-04 | (174127.60 ms | 27098 tok/s)
+step    2/10 | train loss 10.139420 | norm 5.7379 | lr 1.00e-04 | (3956.12 ms | 1192733 tok/s)
+step    3/10 | train loss 9.800095 | norm 2.5972 | lr 1.00e-04 | (3934.00 ms | 1199438 tok/s)
+step    4/10 | train loss 9.631589 | norm 2.1025 | lr 1.00e-04 | (3945.08 ms | 1196069 tok/s)
+step    5/10 | train loss 9.549200 | norm 2.0954 | lr 1.00e-04 | (3963.89 ms | 1190393 tok/s)
+step    6/10 | train loss 9.469117 | norm 1.9887 | lr 1.00e-04 | (3950.58 ms | 1194405 tok/s)
+step    7/10 | train loss 9.384792 | norm 1.9384 | lr 1.00e-04 | (3948.12 ms | 1195148 tok/s)
+step    8/10 | train loss 9.294774 | norm 1.9078 | lr 1.00e-04 | (3929.13 ms | 1200927 tok/s)
+step    9/10 | train loss 9.200790 | norm 1.8597 | lr 1.00e-04 | (3962.72 ms | 1190746 tok/s)
+step   10/10 | train loss 9.113813 | norm 1.7827 | lr 1.00e-04 | (3963.83 ms | 1190414 tok/s)
+final 9 iters avg: 3950.386ms
+peak memory consumption: 19594 MiB
+Dumping final: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:  420598    3238    0    0    0     0          0         0   420598    3238    0    0    0     0       0          0
+  eth0: 9373112463  344730    0    0    0     0          0         0 10405831734  342810    0    0    0     0       0          0
+Copying /tmp/stdout_npods4_nprocs4_numiter10_gradaccum9_bs32_seq1024_totalbs4718592_runid4nodes.log to /workspace/data/experiments/logs_profile0_modeld12/stdout_npods4_nprocs4_numiter10_gradaccum9_bs32_seq1024_totalbs4718592_runid4nodes.log
