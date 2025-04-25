@@ -1,42 +1,75 @@
 #!/bin/bash
+#set -x
 
 iperfbin=src/iperf-3.18/src/iperf3
 iperfport=12345
-datadir=data
-
+ocdatadir=/tmp
+datadir=ociperf_data
 ts=$(date +%d-%m-%y-%s)
 datadir=${datadir}/$ts
-mdkir -p $datadir
+protocols=( tcp udp )
+#protocols=( tcp )
 
-wrks=( $(./ocwrks) )
+typeset -a  wrks=() pod=()
+#wrks=( $(./ocwrks| grep mocr4pcc02 | head -2) )
+wrks=( $(./ocwrks| grep mocr4pcc02) )
+
+mkdir -p $datadir
+log=$datadir/ociperf.log
+
+function log()
+{
+    echo $EPOCHSECONDS ociperf : $@ | tee -a  $log
+}
 
 for wrk in ${wrks[@]}; do
-  xfce4-terminal -e "./occon $wrk"
+    log "xfce4-terminal -e \"./occon $wrk\""
+    xfce4-terminal -e "./occon $wrk"
 done 
 
-pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
-
-for srv in ${pods[@]}; do
-    oc cp $iperfbin $srv:/root/iperf3
-    oc exec $srv -- /root/iperf3
+while (( ${#wrks[@]} != ${#pods[@]} )); do
+    pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
 done
 
+# wait till pods are ready;
+for p in ${pods[@]}; do
+    while ! oc describe pods $p > $datadir/$p.txt; do
+	log "ERROR: failed to describe $p retry" 
+	sleep 0.1;
+    done
+done
 
 for srv in ${pods[@]}; do
-   read foo srvip < <(oc describe  pods mocr4pcc02u15-debug-hvpz2 | grep '^IP:')
-   echo $EPOCHSECONDS: server: $srv >>$datadir/ociperf.log
+    log "oc cp $iperfbin $srv:/root/iperf3"
+    ! oc cp $iperfbin $srv:/root/iperf3 && {
+	log "ERROR: failed"
+	exit -1
+    }
+done
+
+for srv in ${pods[@]}; do
+    read foo srvip < <(oc describe pods $srv | grep '^IP:')
+    srvnode=${srv%%-*}
+    log "server: $srv $srvip $srvnode"
    for clt in ${pods[@]}; do
-      [[ $srv == $clt ]] && continue
-      for prot in tcp udp; do
+       [[ $srv == $clt ]] && continue
+       cltnode=${clt%%-*}
+      for prot in ${protocols[@]}; do
 	  if [[ $prot == udp ]]; then pflg='-u'; else pflg=''; fi
-          srvlog=/tmp/iperf_$prot_srv_$srv_$clt.log
-	  cltlog=/tmp/iperf_$prot_clt_$srv_$clt.log
-      	  echo "$EPOCHSEONDS: START: $srv $clt" >>$datadir/ociperf.log
-      	  oc exec $srv -- /root/iperf3 -s -p ${iperfport} -1 >$srvlog 2>&1
-      	  oc exec $clt -- /root/iperf3 -p $iperfport -P 128 $pflt >$cltlog 2>&1
-	  echo "$EPOCHSEONDS: END: $srv $clt" >>$datadir/ociperf.log
-      	  oc cp $srv:$srvlog $datadir
-      	  oc cp $clt:$cltlog $datadir
+          srvlog="iperf_${prot}_srv_${srvnode}_${cltnode}.log"
+	  cltlog="iperf_${prot}_clt_${srvnode}_${cltnode}.log"
+	  log "prot:$prot srvlog:$srvlog cltlog:$cltlog"
+      	  log "START: $srv $clt"
+	  log "oc exec $srv -- bash -c \"/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &\""
+      	  oc exec $srv -- bash -c "/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &"
+	  log "oc exec $clt -- bash -c \"/root/iperf3 -c $srvip -p $iperfport -P 128 $pflg >$ocdatadir/$cltlog 2>&1\""
+      	  oc exec $clt -- bash -c "/root/iperf3 -c $srvip -p $iperfport -P 128 $pflg >$ocdatadir/$cltlog 2>&1"
+	  log "$EPOCHSEONDS: END: $srv $clt"
+	  sleep 0.1
+      	  log "oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog"
+	  oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog
+	  log "oc cp $clt:$ocdatadir/$cltlog $datadir/$cltlog"
+      	  oc cp $clt:$ocdatadir/$cltlog $datadir/$cltlog
       done  
    done 
 done

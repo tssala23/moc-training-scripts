@@ -1,0 +1,9 @@
+#!/bin/bash
+
+dir=iperf-3.18
+tarfile=$dir.tar.gz
+wget -q https://downloads.es.net/public/iperf/$tarfile
+tar -zxf $tarfile
+(cd $dir && ./configure --enable-static-bin)
+make -C $dir
+file iperf-3.18/src/iperf3
