@@ -1,0 +1,42 @@
++ N_low=3
++ N_high=5
++ echo Hostname:, torchrun-multipod-1
++ export MASTER_ADDR=torchrun-multipod-0.torchrun-multipod
++ MASTER_ADDR=torchrun-multipod-0.torchrun-multipod
++ export MASTER_PORT=29500
++ MASTER_PORT=29500
+Hostname:, torchrun-multipod-1
+++ hostname
+++ awk -F- '{print $NF}'
++ export NODE_RANK=1
++ NODE_RANK=1
++ torchrun --nnodes=2 --nproc-per-node=4 --node-rank=1 --master-addr=torchrun-multipod-0.torchrun-multipod --master-port=29500 torchrun_test.py 3 5
+W0425 16:00:45.277000 14 torch/distributed/run.py:792] 
+W0425 16:00:45.277000 14 torch/distributed/run.py:792] *****************************************
+W0425 16:00:45.277000 14 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0425 16:00:45.277000 14 torch/distributed/run.py:792] *****************************************
+---------
+3 5
+---------
+3 5
+---------
+3 5
+---------
+3 5
+Rank 4 World size 8
+Rank 6 World size 8
+Rank 5 World size 8
+Rank 7 World size 8
+Rank=6 N=1_000 Nelem=1_000_000 TotalTime=1_545.0098514556885ms TimePerIter=154.50098514556884765625000000000000ms
+Rank=4 N=1_000 Nelem=1_000_000 TotalTime=1_650.5684852600098ms TimePerIter=165.05684852600097656250000000000000ms
+Rank=7 N=1_000 Nelem=1_000_000 TotalTime=1_211.1268043518066ms TimePerIter=121.11268043518066406250000000000000ms
+Rank=5 N=1_000 Nelem=1_000_000 TotalTime=1_236.1059188842773ms TimePerIter=123.61059188842773437500000000000000ms
+Rank=6 N=10_000 Nelem=100_000_000 TotalTime=8_048.517227172852ms TimePerIter=804.85172271728515625000000000000000ms
+Rank=5 N=10_000 Nelem=100_000_000 TotalTime=8_046.555995941162ms TimePerIter=804.65559959411621093750000000000000ms
+Rank=4 N=10_000 Nelem=100_000_000 TotalTime=8_089.414358139038ms TimePerIter=808.94143581390380859375000000000000ms
+Rank=7 N=10_000 Nelem=100_000_000 TotalTime=8_078.194141387939ms TimePerIter=807.81941413879394531250000000000000ms
+Rank=6 N=30_000 Nelem=900_000_000 TotalTime=72_281.91304206848ms TimePerIter=7228.19130420684814453125000000000000ms
+Rank=5 N=30_000 Nelem=900_000_000 TotalTime=72_190.8495426178ms TimePerIter=7219.08495426177978515625000000000000ms
+Rank=7 N=30_000 Nelem=900_000_000 TotalTime=72_199.42855834961ms TimePerIter=7219.94285583496093750000000000000000ms
+Rank=4 N=30_000 Nelem=900_000_000 TotalTime=72_224.46346282959ms TimePerIter=7222.44634628295898437500000000000000ms
++ sleep infinity
