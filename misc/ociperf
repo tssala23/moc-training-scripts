@@ -76,3 +76,10 @@ for srv in ${pods[@]}; do
       done  
    done 
 done
+
+for srv in ${pods[@]}; do
+    log "oc pod delete $srv"
+    oc delete pod  $srv &
+done
+
+wait 
