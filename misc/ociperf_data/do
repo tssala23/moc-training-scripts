@@ -1,14 +1,18 @@
 #!/bin/bash
 dir=${1:-*}
 
-echo path,server,client,protocol,Gbits/s
-ls $dir/iperf_tcp_srv_mocr4pcc02u* | while read file; do
-    res=$(tail -1 $file);res=${res%% Gbits*};
-    clt=${file%%.log}
-    clt=${clt##*_}
-    srv=${file##*srv_}
-    srv=${srv%%_*}
-    echo $file,$srv,$clt,tcp,${res##* };
+for p in tcp udp; do
+    resfile=${dir}_${p}.csv
+    echo path,server,client,protocol,units > $resfile
+    ls $dir/iperf_${p}_srv_mocr4pcc02u* | while read file; do
+	res=$(tail -1 $file| cut -d' ' -f13,14);
+	res=${res// /,}
+	#    res=${res%% Gbits*};
+	clt=${file%%.log}
+	clt=${clt##*_}
+	srv=${file##*srv_}
+	srv=${srv%%_*}
+	echo $file,$srv,$clt,$p,${res};
+    done >> $resfile
 done
-
 
