@@ -26,7 +26,7 @@ function log()
 
 for wrk in ${wrks[@]}; do
     log "xfce4-terminal -e \"./occon $wrk\""
-    xfce4-terminal -e "./occon $wrk"
+    xfce4-terminal -e "./occon --one-container=true $wrk"
 done 
 
 while (( ${#wrks[@]} != ${#pods[@]} )); do

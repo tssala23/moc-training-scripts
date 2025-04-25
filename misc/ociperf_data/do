@@ -1,12 +1,17 @@
 #!/bin/bash
-dir=${1:-*}
+dir=$1
+
+[[ -z $dir ]] && {
+    echo "USAGE: $0 <datadir>"
+    exit -1
+}
 
 for p in tcp udp; do
     resfile=${dir}_${p}.csv
     echo path,server,client,protocol,mtu,bufsize,par,bw,units > $resfile
     ls $dir/iperf_${p}_srv_*mocr4pcc02u* | while read file; do
 	name=${file%%.log}
-	IFS=_ read pgm prot m mtu bufsize par srv clt <<< $name
+	IFS=_ read pgm prot role mtu bufsize par srv clt <<< $name
 	res=$(tail -1 $file| cut -d' ' -f13,14);
 	res=${res// /,}
 	echo $file,$srv,$clt,$p,$mtu,$bufsize,$par,${res}
