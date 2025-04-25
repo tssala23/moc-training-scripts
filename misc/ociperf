@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-
+set -x
 typeset -r iperfbin=src/iperf-3.18/src/iperf3
 typeset -r iperfport=12345
 typeset -r ocdatadir=/tmp
@@ -24,14 +24,18 @@ function log()
     echo $EPOCHSECONDS ociperf : $@ | tee -a  $log
 }
 
-for wrk in ${wrks[@]}; do
-    log "xfce4-terminal -e \"./occon $wrk\""
-    xfce4-terminal -e "./occon --one-container=true $wrk"
-done 
+if (( $# > 0 )); then
+    pods=( $(oc get pods --no-headers=true | cut -d' ' -f 1) )
+else
+    for wrk in ${wrks[@]}; do
+	log "xfce4-terminal -e \"./occon $wrk\""
+	xfce4-terminal -e "./occon --one-container=true $wrk"
+    done 
 
-while (( ${#wrks[@]} != ${#pods[@]} )); do
-    pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
-done
+    while (( ${#wrks[@]} != ${#pods[@]} )); do
+	pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+    done
+fi
 
 # wait till pods are ready;
 for p in ${pods[@]}; do
@@ -40,6 +44,8 @@ for p in ${pods[@]}; do
 	sleep 0.1;
     done
 done
+
+exit
 
 for srv in ${pods[@]}; do
     log "oc cp $iperfbin $srv:/root/iperf3"
