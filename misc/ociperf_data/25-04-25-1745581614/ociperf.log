@@ -1,0 +1,808 @@
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u15"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u16"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u24"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u25"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u29"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u30"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u31"
+1745581614 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u32"
+1745581618 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u15-debug-v7x6s:/root/iperf3
+1745581619 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u16-debug-jkgbq:/root/iperf3
+1745581621 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u24-debug-wn4r5:/root/iperf3
+1745581623 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u25-debug-zm68l:/root/iperf3
+1745581624 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u29-debug-k4f2n:/root/iperf3
+1745581626 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u30-debug-qqgjq:/root/iperf3
+1745581628 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u31-debug-dvwtd:/root/iperf3
+1745581630 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u32-debug-wslpc:/root/iperf3
+1745581632 ociperf : server: mocr4pcc02u15-debug-v7x6s 192.168.50.119 mocr4pcc02u15
+1745581632 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581632 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u16-debug-jkgbq
+1745581632 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log 2>&1 &"
+1745581632 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log 2>&1"
+1745581643 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u16-debug-jkgbq
+1745581644 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581644 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581645 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581645 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u16-debug-jkgbq
+1745581645 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log 2>&1 &"
+1745581645 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log 2>&1"
+1745581656 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u16-debug-jkgbq
+1745581656 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581657 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u16.log
+1745581657 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581657 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u24-debug-wn4r5
+1745581657 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log 2>&1 &"
+1745581658 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log 2>&1"
+1745581669 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u24-debug-wn4r5
+1745581669 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581670 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581670 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581670 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u24-debug-wn4r5
+1745581670 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log 2>&1 &"
+1745581671 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log 2>&1"
+1745581682 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u24-debug-wn4r5
+1745581682 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581682 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u24.log
+1745581683 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581683 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u25-debug-zm68l
+1745581683 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log 2>&1 &"
+1745581683 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log 2>&1"
+1745581694 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u25-debug-zm68l
+1745581694 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581695 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581696 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581696 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u25-debug-zm68l
+1745581696 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log 2>&1 &"
+1745581696 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log 2>&1"
+1745581707 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u25-debug-zm68l
+1745581707 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581708 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u25.log
+1745581708 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581708 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u29-debug-k4f2n
+1745581708 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log 2>&1 &"
+1745581709 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log 2>&1"
+1745581720 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u29-debug-k4f2n
+1745581720 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581721 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581721 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581721 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u29-debug-k4f2n
+1745581721 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log 2>&1 &"
+1745581722 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log 2>&1"
+1745581733 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u29-debug-k4f2n
+1745581733 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581734 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u29.log
+1745581734 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581734 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u30-debug-qqgjq
+1745581734 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log 2>&1 &"
+1745581735 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log 2>&1"
+1745581746 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u30-debug-qqgjq
+1745581746 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581746 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581747 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581747 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u30-debug-qqgjq
+1745581747 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log 2>&1 &"
+1745581748 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log 2>&1"
+1745581758 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u30-debug-qqgjq
+1745581758 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581759 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u30.log
+1745581760 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581760 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u31-debug-dvwtd
+1745581760 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log 2>&1 &"
+1745581760 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log 2>&1"
+1745581771 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u31-debug-dvwtd
+1745581771 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581772 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581773 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581773 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u31-debug-dvwtd
+1745581773 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log 2>&1 &"
+1745581773 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log 2>&1"
+1745581784 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u31-debug-dvwtd
+1745581784 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581785 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u31.log
+1745581785 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581785 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u32-debug-wslpc
+1745581785 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log 2>&1 &"
+1745581786 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log 2>&1"
+1745581797 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u32-debug-wslpc
+1745581797 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581797 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581798 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581798 ociperf : START: mocr4pcc02u15-debug-v7x6s mocr4pcc02u32-debug-wslpc
+1745581798 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log 2>&1 &"
+1745581798 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.119 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log 2>&1"
+1745581809 ociperf : : END: mocr4pcc02u15-debug-v7x6s mocr4pcc02u32-debug-wslpc
+1745581809 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581813 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u15_mocr4pcc02u32.log
+1745581813 ociperf : server: mocr4pcc02u16-debug-jkgbq 192.168.50.145 mocr4pcc02u16
+1745581813 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581814 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u15-debug-v7x6s
+1745581814 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log 2>&1 &"
+1745581814 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log 2>&1"
+1745581825 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u15-debug-v7x6s
+1745581825 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581826 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581826 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581826 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u15-debug-v7x6s
+1745581826 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log 2>&1 &"
+1745581827 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log 2>&1"
+1745581837 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u15-debug-v7x6s
+1745581838 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581838 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u15.log
+1745581839 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581839 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u24-debug-wn4r5
+1745581839 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log 2>&1 &"
+1745581839 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log 2>&1"
+1745581850 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u24-debug-wn4r5
+1745581850 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581851 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581851 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581851 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u24-debug-wn4r5
+1745581851 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log 2>&1 &"
+1745581852 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log 2>&1"
+1745581863 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u24-debug-wn4r5
+1745581863 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581864 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u24.log
+1745581864 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581864 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u25-debug-zm68l
+1745581864 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log 2>&1 &"
+1745581865 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log 2>&1"
+1745581875 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u25-debug-zm68l
+1745581876 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581876 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581877 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581877 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u25-debug-zm68l
+1745581877 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log 2>&1 &"
+1745581877 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log 2>&1"
+1745581888 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u25-debug-zm68l
+1745581888 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581889 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u25.log
+1745581889 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581889 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u29-debug-k4f2n
+1745581889 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log 2>&1 &"
+1745581890 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log 2>&1"
+1745581901 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u29-debug-k4f2n
+1745581901 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581902 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581902 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581902 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u29-debug-k4f2n
+1745581902 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log 2>&1 &"
+1745581903 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log 2>&1"
+1745581913 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u29-debug-k4f2n
+1745581914 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581914 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u29.log
+1745581915 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581915 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u30-debug-qqgjq
+1745581915 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log 2>&1 &"
+1745581915 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log 2>&1"
+1745581926 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u30-debug-qqgjq
+1745581926 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581927 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581928 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581928 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u30-debug-qqgjq
+1745581928 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log 2>&1 &"
+1745581928 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log 2>&1"
+1745581939 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u30-debug-qqgjq
+1745581939 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581940 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u30.log
+1745581940 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581940 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u31-debug-dvwtd
+1745581940 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log 2>&1 &"
+1745581941 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log 2>&1"
+1745581952 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u31-debug-dvwtd
+1745581952 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581952 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581953 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581953 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u31-debug-dvwtd
+1745581953 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log 2>&1 &"
+1745581953 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log 2>&1"
+1745581964 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u31-debug-dvwtd
+1745581964 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581965 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u31.log
+1745581965 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581965 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u32-debug-wslpc
+1745581965 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log 2>&1 &"
+1745581966 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log 2>&1"
+1745581977 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u32-debug-wslpc
+1745581977 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581977 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581978 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581978 ociperf : START: mocr4pcc02u16-debug-jkgbq mocr4pcc02u32-debug-wslpc
+1745581978 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log 2>&1 &"
+1745581979 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.145 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log 2>&1"
+1745581989 ociperf : : END: mocr4pcc02u16-debug-jkgbq mocr4pcc02u32-debug-wslpc
+1745581989 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581990 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u16_mocr4pcc02u32.log
+1745581991 ociperf : server: mocr4pcc02u24-debug-wn4r5 192.168.50.157 mocr4pcc02u24
+1745581991 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745581991 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u15-debug-v7x6s
+1745581991 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log 2>&1 &"
+1745581991 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log 2>&1"
+1745582002 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u15-debug-v7x6s
+1745582002 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745582003 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745582004 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745582004 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u15-debug-v7x6s
+1745582004 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log 2>&1 &"
+1745582004 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log 2>&1"
+1745582015 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u15-debug-v7x6s
+1745582015 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745582016 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u15.log
+1745582016 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582016 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u16-debug-jkgbq
+1745582016 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log 2>&1 &"
+1745582017 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log 2>&1"
+1745582027 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u16-debug-jkgbq
+1745582028 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582028 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582029 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582029 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u16-debug-jkgbq
+1745582029 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log 2>&1 &"
+1745582029 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log 2>&1"
+1745582040 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u16-debug-jkgbq
+1745582040 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582041 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u16.log
+1745582042 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582042 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u25-debug-zm68l
+1745582042 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log 2>&1 &"
+1745582042 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log 2>&1"
+1745582053 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u25-debug-zm68l
+1745582053 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582054 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582054 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582054 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u25-debug-zm68l
+1745582054 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log 2>&1 &"
+1745582055 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log 2>&1"
+1745582065 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u25-debug-zm68l
+1745582066 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582066 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u25.log
+1745582067 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582067 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u29-debug-k4f2n
+1745582067 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log 2>&1 &"
+1745582067 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log 2>&1"
+1745582078 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u29-debug-k4f2n
+1745582078 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582079 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582080 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582080 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u29-debug-k4f2n
+1745582080 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log 2>&1 &"
+1745582080 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log 2>&1"
+1745582091 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u29-debug-k4f2n
+1745582091 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582092 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u29.log
+1745582092 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582092 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u30-debug-qqgjq
+1745582092 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log 2>&1 &"
+1745582093 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log 2>&1"
+1745582104 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u30-debug-qqgjq
+1745582104 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582104 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582105 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582105 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u30-debug-qqgjq
+1745582105 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log 2>&1 &"
+1745582105 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log 2>&1"
+1745582116 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u30-debug-qqgjq
+1745582116 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582117 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u30.log
+1745582117 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582117 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u31-debug-dvwtd
+1745582117 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log 2>&1 &"
+1745582118 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log 2>&1"
+1745582129 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u31-debug-dvwtd
+1745582129 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582130 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582130 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582130 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u31-debug-dvwtd
+1745582130 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log 2>&1 &"
+1745582131 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log 2>&1"
+1745582141 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u31-debug-dvwtd
+1745582142 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582142 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u31.log
+1745582143 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582143 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u32-debug-wslpc
+1745582143 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log 2>&1 &"
+1745582143 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log 2>&1"
+1745582154 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u32-debug-wslpc
+1745582154 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582155 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582156 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582156 ociperf : START: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u32-debug-wslpc
+1745582156 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log 2>&1 &"
+1745582156 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.157 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log 2>&1"
+1745582167 ociperf : : END: mocr4pcc02u24-debug-wn4r5 mocr4pcc02u32-debug-wslpc
+1745582167 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582168 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u24_mocr4pcc02u32.log
+1745582169 ociperf : server: mocr4pcc02u25-debug-zm68l 192.168.50.18 mocr4pcc02u25
+1745582169 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582169 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u15-debug-v7x6s
+1745582169 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log 2>&1 &"
+1745582169 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log 2>&1"
+1745582180 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u15-debug-v7x6s
+1745582180 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582181 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582182 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582182 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u15-debug-v7x6s
+1745582182 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log 2>&1 &"
+1745582182 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log 2>&1"
+1745582193 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u15-debug-v7x6s
+1745582193 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582194 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u15.log
+1745582194 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582194 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u16-debug-jkgbq
+1745582194 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log 2>&1 &"
+1745582195 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log 2>&1"
+1745582206 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u16-debug-jkgbq
+1745582206 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582206 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582207 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582207 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u16-debug-jkgbq
+1745582207 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log 2>&1 &"
+1745582208 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log 2>&1"
+1745582218 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u16-debug-jkgbq
+1745582218 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582219 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u16.log
+1745582220 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582220 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u24-debug-wn4r5
+1745582220 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log 2>&1 &"
+1745582220 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log 2>&1"
+1745582231 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u24-debug-wn4r5
+1745582231 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582232 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582232 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582232 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u24-debug-wn4r5
+1745582232 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log 2>&1 &"
+1745582233 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log 2>&1"
+1745582244 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u24-debug-wn4r5
+1745582244 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582244 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u24.log
+1745582245 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582245 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u29-debug-k4f2n
+1745582245 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log 2>&1 &"
+1745582245 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log 2>&1"
+1745582256 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u29-debug-k4f2n
+1745582256 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582257 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582258 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582258 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u29-debug-k4f2n
+1745582258 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log 2>&1 &"
+1745582258 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log 2>&1"
+1745582269 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u29-debug-k4f2n
+1745582269 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582270 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u29.log
+1745582270 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582270 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u30-debug-qqgjq
+1745582270 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log 2>&1 &"
+1745582271 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log 2>&1"
+1745582282 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u30-debug-qqgjq
+1745582282 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582282 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582283 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582283 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u30-debug-qqgjq
+1745582283 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log 2>&1 &"
+1745582284 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log 2>&1"
+1745582294 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u30-debug-qqgjq
+1745582295 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582295 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u30.log
+1745582296 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582296 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u31-debug-dvwtd
+1745582296 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log 2>&1 &"
+1745582296 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log 2>&1"
+1745582307 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u31-debug-dvwtd
+1745582307 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582308 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582308 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582308 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u31-debug-dvwtd
+1745582308 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log 2>&1 &"
+1745582309 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log 2>&1"
+1745582320 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u31-debug-dvwtd
+1745582320 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582321 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u31.log
+1745582321 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582321 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u32-debug-wslpc
+1745582321 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log 2>&1 &"
+1745582322 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log 2>&1"
+1745582332 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u32-debug-wslpc
+1745582333 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582333 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582334 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582334 ociperf : START: mocr4pcc02u25-debug-zm68l mocr4pcc02u32-debug-wslpc
+1745582334 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log 2>&1 &"
+1745582335 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.18 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log 2>&1"
+1745582345 ociperf : : END: mocr4pcc02u25-debug-zm68l mocr4pcc02u32-debug-wslpc
+1745582345 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582346 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u25_mocr4pcc02u32.log
+1745582347 ociperf : server: mocr4pcc02u29-debug-k4f2n 192.168.50.171 mocr4pcc02u29
+1745582347 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582347 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u15-debug-v7x6s
+1745582347 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log 2>&1 &"
+1745582347 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log 2>&1"
+1745582358 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u15-debug-v7x6s
+1745582358 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582359 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582359 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582359 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u15-debug-v7x6s
+1745582359 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log 2>&1 &"
+1745582360 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log 2>&1"
+1745582371 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u15-debug-v7x6s
+1745582371 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582371 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u15.log
+1745582372 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582372 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u16-debug-jkgbq
+1745582372 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log 2>&1 &"
+1745582372 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log 2>&1"
+1745582383 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u16-debug-jkgbq
+1745582383 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582384 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582385 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582385 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u16-debug-jkgbq
+1745582385 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log 2>&1 &"
+1745582385 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log 2>&1"
+1745582396 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u16-debug-jkgbq
+1745582396 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582397 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u16.log
+1745582397 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582397 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u24-debug-wn4r5
+1745582397 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log 2>&1 &"
+1745582398 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log 2>&1"
+1745582408 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u24-debug-wn4r5
+1745582409 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582409 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582410 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582410 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u24-debug-wn4r5
+1745582410 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log 2>&1 &"
+1745582410 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log 2>&1"
+1745582421 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u24-debug-wn4r5
+1745582421 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582422 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u24.log
+1745582422 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582422 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u25-debug-zm68l
+1745582422 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log 2>&1 &"
+1745582423 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log 2>&1"
+1745582434 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u25-debug-zm68l
+1745582434 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582434 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582435 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582435 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u25-debug-zm68l
+1745582435 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log 2>&1 &"
+1745582435 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log 2>&1"
+1745582446 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u25-debug-zm68l
+1745582446 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582447 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u25.log
+1745582447 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582447 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u30-debug-qqgjq
+1745582447 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log 2>&1 &"
+1745582448 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log 2>&1"
+1745582459 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u30-debug-qqgjq
+1745582459 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582459 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582460 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582460 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u30-debug-qqgjq
+1745582460 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log 2>&1 &"
+1745582460 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log 2>&1"
+1745582471 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u30-debug-qqgjq
+1745582471 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582472 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u30.log
+1745582472 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582472 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u31-debug-dvwtd
+1745582472 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log 2>&1 &"
+1745582473 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log 2>&1"
+1745582484 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u31-debug-dvwtd
+1745582484 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582485 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582485 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582485 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u31-debug-dvwtd
+1745582485 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log 2>&1 &"
+1745582486 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log 2>&1"
+1745582496 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u31-debug-dvwtd
+1745582496 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582497 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u31.log
+1745582497 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582497 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u32-debug-wslpc
+1745582497 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log 2>&1 &"
+1745582498 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log 2>&1"
+1745582509 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u32-debug-wslpc
+1745582509 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582510 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582510 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582510 ociperf : START: mocr4pcc02u29-debug-k4f2n mocr4pcc02u32-debug-wslpc
+1745582510 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log 2>&1 &"
+1745582511 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.171 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log 2>&1"
+1745582521 ociperf : : END: mocr4pcc02u29-debug-k4f2n mocr4pcc02u32-debug-wslpc
+1745582521 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582522 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u29_mocr4pcc02u32.log
+1745582523 ociperf : server: mocr4pcc02u30-debug-qqgjq 192.168.50.57 mocr4pcc02u30
+1745582523 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582523 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u15-debug-v7x6s
+1745582523 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log 2>&1 &"
+1745582523 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log 2>&1"
+1745582534 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u15-debug-v7x6s
+1745582534 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582535 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582536 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582536 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u15-debug-v7x6s
+1745582536 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log 2>&1 &"
+1745582536 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log 2>&1"
+1745582547 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u15-debug-v7x6s
+1745582547 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582547 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u15.log
+1745582548 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582548 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u16-debug-jkgbq
+1745582548 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log 2>&1 &"
+1745582548 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log 2>&1"
+1745582559 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u16-debug-jkgbq
+1745582559 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582560 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582561 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582561 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u16-debug-jkgbq
+1745582561 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log 2>&1 &"
+1745582561 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log 2>&1"
+1745582572 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u16-debug-jkgbq
+1745582572 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582572 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u16.log
+1745582573 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582573 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u24-debug-wn4r5
+1745582573 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log 2>&1 &"
+1745582573 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log 2>&1"
+1745582584 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u24-debug-wn4r5
+1745582584 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582585 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582585 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582585 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u24-debug-wn4r5
+1745582585 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log 2>&1 &"
+1745582586 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log 2>&1"
+1745582597 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u24-debug-wn4r5
+1745582597 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582597 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u24.log
+1745582598 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582598 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u25-debug-zm68l
+1745582598 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log 2>&1 &"
+1745582598 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log 2>&1"
+1745582609 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u25-debug-zm68l
+1745582609 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582610 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582611 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582611 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u25-debug-zm68l
+1745582611 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log 2>&1 &"
+1745582611 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log 2>&1"
+1745582622 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u25-debug-zm68l
+1745582622 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582622 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u25.log
+1745582623 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582623 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u29-debug-k4f2n
+1745582623 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log 2>&1 &"
+1745582623 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log 2>&1"
+1745582634 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u29-debug-k4f2n
+1745582635 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582635 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582636 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582636 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u29-debug-k4f2n
+1745582636 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log 2>&1 &"
+1745582636 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log 2>&1"
+1745582647 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u29-debug-k4f2n
+1745582647 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582647 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u29.log
+1745582648 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582648 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u31-debug-dvwtd
+1745582648 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log 2>&1 &"
+1745582648 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log 2>&1"
+1745582659 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u31-debug-dvwtd
+1745582660 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582660 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582661 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582661 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u31-debug-dvwtd
+1745582661 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log 2>&1 &"
+1745582661 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log 2>&1"
+1745582672 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u31-debug-dvwtd
+1745582672 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582673 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u31.log
+1745582673 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582673 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u32-debug-wslpc
+1745582673 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log 2>&1 &"
+1745582674 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log 2>&1"
+1745582685 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u32-debug-wslpc
+1745582685 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582685 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582686 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582686 ociperf : START: mocr4pcc02u30-debug-qqgjq mocr4pcc02u32-debug-wslpc
+1745582686 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log 2>&1 &"
+1745582686 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.57 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log 2>&1"
+1745582697 ociperf : : END: mocr4pcc02u30-debug-qqgjq mocr4pcc02u32-debug-wslpc
+1745582697 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582698 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u30_mocr4pcc02u32.log
+1745582699 ociperf : server: mocr4pcc02u31-debug-dvwtd 192.168.50.65 mocr4pcc02u31
+1745582699 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582699 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u15-debug-v7x6s
+1745582699 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log 2>&1 &"
+1745582699 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log 2>&1"
+1745582710 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u15-debug-v7x6s
+1745582710 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582711 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582711 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582711 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u15-debug-v7x6s
+1745582711 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log 2>&1 &"
+1745582712 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log 2>&1"
+1745582723 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u15-debug-v7x6s
+1745582723 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582723 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u15.log
+1745582724 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582724 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u16-debug-jkgbq
+1745582724 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log 2>&1 &"
+1745582724 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log 2>&1"
+1745582735 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u16-debug-jkgbq
+1745582735 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582736 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582737 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582737 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u16-debug-jkgbq
+1745582737 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log 2>&1 &"
+1745582737 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log 2>&1"
+1745582748 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u16-debug-jkgbq
+1745582748 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582748 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u16.log
+1745582749 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582749 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u24-debug-wn4r5
+1745582749 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log 2>&1 &"
+1745582750 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log 2>&1"
+1745582760 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u24-debug-wn4r5
+1745582760 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582761 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582762 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582762 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u24-debug-wn4r5
+1745582762 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log 2>&1 &"
+1745582762 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log 2>&1"
+1745582773 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u24-debug-wn4r5
+1745582773 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582773 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u24.log
+1745582774 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582774 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u25-debug-zm68l
+1745582774 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log 2>&1 &"
+1745582775 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log 2>&1"
+1745582785 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u25-debug-zm68l
+1745582785 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582786 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582787 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582787 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u25-debug-zm68l
+1745582787 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log 2>&1 &"
+1745582787 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log 2>&1"
+1745582798 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u25-debug-zm68l
+1745582798 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582799 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u25.log
+1745582800 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582800 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u29-debug-k4f2n
+1745582800 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log 2>&1 &"
+1745582800 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log 2>&1"
+1745582811 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u29-debug-k4f2n
+1745582811 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582812 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582812 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582812 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u29-debug-k4f2n
+1745582812 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log 2>&1 &"
+1745582813 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log 2>&1"
+1745582824 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u29-debug-k4f2n
+1745582824 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582824 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u29.log
+1745582825 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582825 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u30-debug-qqgjq
+1745582825 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log 2>&1 &"
+1745582825 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log 2>&1"
+1745582836 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u30-debug-qqgjq
+1745582836 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582837 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582837 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582837 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u30-debug-qqgjq
+1745582837 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log 2>&1 &"
+1745582838 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log 2>&1"
+1745582849 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u30-debug-qqgjq
+1745582849 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582849 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u30.log
+1745582850 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582850 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u32-debug-wslpc
+1745582850 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log 2>&1 &"
+1745582851 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log 2>&1"
+1745582861 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u32-debug-wslpc
+1745582862 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582862 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582863 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582863 ociperf : START: mocr4pcc02u31-debug-dvwtd mocr4pcc02u32-debug-wslpc
+1745582863 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log 2>&1 &"
+1745582863 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -c 192.168.50.65 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log 2>&1"
+1745582874 ociperf : : END: mocr4pcc02u31-debug-dvwtd mocr4pcc02u32-debug-wslpc
+1745582874 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582875 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u31_mocr4pcc02u32.log
+1745582876 ociperf : server: mocr4pcc02u32-debug-wslpc 192.168.50.153 mocr4pcc02u32
+1745582876 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582876 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u15-debug-v7x6s
+1745582876 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log 2>&1 &"
+1745582876 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log 2>&1"
+1745582887 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u15-debug-v7x6s
+1745582887 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582888 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582888 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582888 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u15-debug-v7x6s
+1745582888 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log 2>&1 &"
+1745582889 ociperf : oc exec mocr4pcc02u15-debug-v7x6s -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log 2>&1"
+1745582900 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u15-debug-v7x6s
+1745582900 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582901 ociperf : oc cp mocr4pcc02u15-debug-v7x6s:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u15.log
+1745582901 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582901 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u16-debug-jkgbq
+1745582901 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log 2>&1 &"
+1745582902 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log 2>&1"
+1745582912 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u16-debug-jkgbq
+1745582913 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582913 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582914 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582914 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u16-debug-jkgbq
+1745582914 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log 2>&1 &"
+1745582914 ociperf : oc exec mocr4pcc02u16-debug-jkgbq -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log 2>&1"
+1745582925 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u16-debug-jkgbq
+1745582926 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582926 ociperf : oc cp mocr4pcc02u16-debug-jkgbq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u16.log
+1745582927 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582927 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u24-debug-wn4r5
+1745582927 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log 2>&1 &"
+1745582927 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log 2>&1"
+1745582938 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u24-debug-wn4r5
+1745582938 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582939 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582939 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582939 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u24-debug-wn4r5
+1745582939 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log 2>&1 &"
+1745582940 ociperf : oc exec mocr4pcc02u24-debug-wn4r5 -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log 2>&1"
+1745582951 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u24-debug-wn4r5
+1745582951 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582951 ociperf : oc cp mocr4pcc02u24-debug-wn4r5:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u24.log
+1745582952 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582952 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u25-debug-zm68l
+1745582952 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log 2>&1 &"
+1745582952 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log 2>&1"
+1745582963 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u25-debug-zm68l
+1745582963 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582964 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582965 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582965 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u25-debug-zm68l
+1745582965 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log 2>&1 &"
+1745582965 ociperf : oc exec mocr4pcc02u25-debug-zm68l -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log 2>&1"
+1745582976 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u25-debug-zm68l
+1745582976 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582977 ociperf : oc cp mocr4pcc02u25-debug-zm68l:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u25.log
+1745582979 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745582979 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u29-debug-k4f2n
+1745582979 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log 2>&1 &"
+1745582980 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log 2>&1"
+1745582991 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u29-debug-k4f2n
+1745582991 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745582991 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745582992 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745582992 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u29-debug-k4f2n
+1745582992 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log 2>&1 &"
+1745582993 ociperf : oc exec mocr4pcc02u29-debug-k4f2n -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log 2>&1"
+1745583003 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u29-debug-k4f2n
+1745583003 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745583004 ociperf : oc cp mocr4pcc02u29-debug-k4f2n:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u29.log
+1745583004 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583004 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u30-debug-qqgjq
+1745583004 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log 2>&1 &"
+1745583005 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log 2>&1"
+1745583016 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u30-debug-qqgjq
+1745583016 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583017 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583018 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583018 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u30-debug-qqgjq
+1745583018 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log 2>&1 &"
+1745583018 ociperf : oc exec mocr4pcc02u30-debug-qqgjq -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log 2>&1"
+1745583029 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u30-debug-qqgjq
+1745583029 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583030 ociperf : oc cp mocr4pcc02u30-debug-qqgjq:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u30.log
+1745583030 ociperf : prot:tcp mtu:1500 bufsize:128K par:128 srvlog:iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log cltlog:iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log
+1745583030 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u31-debug-dvwtd
+1745583030 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log 2>&1 &"
+1745583031 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 128K -P 128 >/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log 2>&1"
+1745583042 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u31-debug-dvwtd
+1745583042 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_srv_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log
+1745583042 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_tcp_clt_1500_128K_128_mocr4pcc02u32_mocr4pcc02u31.log
+1745583043 ociperf : prot:udp mtu:1500 bufsize:1460 par:128 srvlog:iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log cltlog:iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log
+1745583043 ociperf : START: mocr4pcc02u32-debug-wslpc mocr4pcc02u31-debug-dvwtd
+1745583043 ociperf : oc exec mocr4pcc02u32-debug-wslpc -- bash -c "/root/iperf3 -s -p 12345 -1 >/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log 2>&1 &"
+1745583043 ociperf : oc exec mocr4pcc02u31-debug-dvwtd -- bash -c "/root/iperf3 -c 192.168.50.153 -p 12345 -l 1460 -P 128 -u >/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log 2>&1"
+1745583054 ociperf : : END: mocr4pcc02u32-debug-wslpc mocr4pcc02u31-debug-dvwtd
+1745583054 ociperf : oc cp mocr4pcc02u32-debug-wslpc:/tmp/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_srv_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log
+1745583055 ociperf : oc cp mocr4pcc02u31-debug-dvwtd:/tmp/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log ociperf_data/25-04-25-1745581614/iperf_udp_clt_1500_1460_128_mocr4pcc02u32_mocr4pcc02u31.log
