@@ -1,11 +1,11 @@
 #!/bin/bash
 
 node=$1
-
+shift 
 [[ -z $node ]] && {
     echo $0': <oc node path>'
     exit -1
 }
 
-oc debug $node --as system:admin
+oc debug --as system:admin $node $@
 
