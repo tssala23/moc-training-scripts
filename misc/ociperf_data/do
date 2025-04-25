@@ -1,9 +1,14 @@
 #!/bin/bash
 dir=${1:-*}
 
+
 ls $dir/iperf_tcp_srv_mocr4pcc02u* | while read file; do
     res=$(tail -1 $file);res=${res%% Gbits*};
-    echo $file ${res##* };
+    clt=${file%%.log}
+    clt=${clt##*_}
+    srv=${file##*srv_}
+    srv=${srv%%_*}
+    echo $file,$srv,$clt,tcp,${res##* };
 done
 
 
