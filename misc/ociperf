@@ -1,14 +1,16 @@
 #!/bin/bash
 #set -x
 
-iperfbin=src/iperf-3.18/src/iperf3
-iperfport=12345
-ocdatadir=/tmp
-datadir=ociperf_data
-ts=$(date +%d-%m-%y-%s)
+typeset -r iperfbin=src/iperf-3.18/src/iperf3
+typeset -r iperfport=12345
+typeset -r ocdatadir=/tmp
+typeset  datadir=ociperf_data
+typeset -r ts=$(date +%d-%m-%y-%s)
 datadir=${datadir}/$ts
-protocols=( tcp udp )
-#protocols=( tcp )
+typeset -r -a protocols=( tcp udp )
+typeset -r par=128 mtu=1500
+typeset -r -A bufsize=( ["tcp"]="128K" ["udp"]="1460" )
+
 
 typeset -a  wrks=() pod=()
 #wrks=( $(./ocwrks| grep mocr4pcc02 | head -2) )
@@ -56,14 +58,15 @@ for srv in ${pods[@]}; do
        cltnode=${clt%%-*}
       for prot in ${protocols[@]}; do
 	  if [[ $prot == udp ]]; then pflg='-u'; else pflg=''; fi
-          srvlog="iperf_${prot}_srv_${srvnode}_${cltnode}.log"
-	  cltlog="iperf_${prot}_clt_${srvnode}_${cltnode}.log"
-	  log "prot:$prot srvlog:$srvlog cltlog:$cltlog"
+	  len=${bufsize[$prot]}
+          srvlog="iperf_${prot}_srv_${mtu}_${len}_${par}_${srvnode}_${cltnode}.log"
+	  cltlog="iperf_${prot}_clt_${mtu}_${len}_${par}_${srvnode}_${cltnode}.log"
+	  log "prot:$prot mtu:$mtu bufsize:$len par:$par srvlog:$srvlog cltlog:$cltlog"
       	  log "START: $srv $clt"
 	  log "oc exec $srv -- bash -c \"/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &\""
       	  oc exec $srv -- bash -c "/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &"
-	  log "oc exec $clt -- bash -c \"/root/iperf3 -c $srvip -p $iperfport -P 128 $pflg >$ocdatadir/$cltlog 2>&1\""
-      	  oc exec $clt -- bash -c "/root/iperf3 -c $srvip -p $iperfport -P 128 $pflg >$ocdatadir/$cltlog 2>&1"
+	  log "oc exec $clt -- bash -c \"/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1\""
+      	  oc exec $clt -- bash -c "/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1"
 	  log "$EPOCHSEONDS: END: $srv $clt"
 	  sleep 0.1
       	  log "oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog"
