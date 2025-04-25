@@ -17,3 +17,31 @@ for N in [1000, 10_000, 30_000]:
 ```
 
 Goal: To measure time taken for all-reduce as a function of payload size. These experiments are running on two pods. Each pod is separated on a separate node with 4 GPUs each for a total of 8 workers.
+
+To see the results:
+`python analysis.py`
+
+Results:
+
+`median times for alloc only
+nelems
+1000000       165.190172
+100000000     812.431097
+900000000    7236.001968
+Name: time, dtype: float64
+
+mediantimes for alloc + all-reduce
+nelems
+1000000       450.425231
+100000000     886.241591
+900000000    7998.314428
+Name: time, dtype: float64
+
+difference = all-reduce only
+nelems
+1000000      285.235059
+100000000     73.810494
+900000000    762.312460
+Name: time, dtype: float64
+
+NEED TO ADD MORE CONTROLS AND DEBUGGING
