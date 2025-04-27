@@ -8,6 +8,7 @@ NUM_ITER=10
 RDZV_BACKEND="c10d"
 TRAIN_SCRIPT="train_gpt2.py"
 
+# Loop over grad_accum values by modifying total batch size
 echo "Using TCP"
 for GRAD_ACCUM in {1..10}; do
     WORLD_SIZE=$((NODES * NPROC_PER_NODE))
