@@ -1,0 +1,28 @@
+#!/bin/bash
+set -x
+typeset -a  pods=()
+
+dest=$1
+[[ -z $dest ]] && {
+    echo "USAGE:   cpods <dest> <src> [<src> ...]" > /dev/stderr
+    echo " read a list of pods from stdin and copies srcs to dest on each" > /dev/stderr	
+    exit -1
+}	
+
+shift
+(( $# < 1 )) && {
+    echo "USAGE:   cpods <dest> <src> [<src> ...]" > /dev/stderr
+    echo " read a list of pods from stdin and copies srcs to dest on each" > /dev/stderr	
+    exit -1
+}
+
+srcs=( $@ )
+
+pods=( $(cat) )
+
+
+for p in ${pods[@]}; do
+    tar cf - ${srcs[@]} |  oc exec -i $p  -- tar xf - -C $dest &
+done
+
+wait

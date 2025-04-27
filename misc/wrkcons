@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if (( $# > 0 )); then
+   wrks=( $@ )
+else	  
+    wrks=( $(./ocwrks| grep mocr4pcc02) )
+fi
+
+for wrk in ${wrks[@]}; do
+    xfce4-terminal -e "./occon --one-container=true $wrk"
+done 
+
+while (( ${#wrks[@]} != ${#pods[@]} )); do
+    pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+done
