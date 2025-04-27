@@ -1,0 +1,51 @@
+#!/bin/bash
+#set -x
+netpath=/sys/class/net
+vdevpath=/sys/devices/virtual/net
+typeset -A vdevs=()
+# parse all virtual interfaces so that we can figure out if a mac of physical
+# interface as a ip address via a virtual
+
+while read vd; do
+    [[ -a $vdevpath/$vd/address ]] && {
+	mac=$(<$vdevpath/$vd/address)
+	read a b addrs < <(ip --brief a show dev $vd)
+	if [[ ! -v "vdevs[$mac]" ]]; then
+	    vdevs["$mac"]="$addrs"
+	else
+	    vdevs["$mac"]="${vdevs["$mac"]} $addrs"
+	fi
+	echo vdevs\[$mac\]=${vdevs["$mac"]}
+    }
+done < <(ls $vdevpath)
+
+while read if lstat macaddr linkrest; do
+    if=${if%@*}
+    read tmp ipstat ipaddr rest < <(ip --brief a show dev $if)
+    rpath=$(realpath -L $netpath/$if)
+    type=$(basename $(realpath -L ${rpath}/../..))
+    #ls $rpath
+#    [[ -a $rpath/address ]] && macaddr=$(< $rpath/address)
+    [[ -a $rpath/mtu ]] && mtu=$(< $rpath/mtu)
+    unset pciaddr pciinfo numanode cpulist pcilnkspd pcilnkwdth driver dver
+    if [[ $rpath =~ /sys/devices/pci* ]]; then
+	type=pci
+	pcipath=$(realpath  -L  "$rpath/../..")
+	#ls $pcipath
+	read pciaddr pciinfo < <(lspci -s  $(basename $pcipath))
+	[[ -a $pcipath/numa_node ]] && numanode=$(< $pcipath/numa_node)
+	[[ -a $pcipath/local_cpulist ]] && cpulist=$(< $pcipath/local_cpulist)
+	[[ -a $pcipath/current_link_speed ]] && pcilnkspd=$(< $pcipath/current_link_speed)
+	[[ -a $pcipath/current_link_width ]] && pcilnkwdth=$(< $pcipath/current_link_width)
+	drvpath=$(realpath $pcipath/driver)
+	driver=$(basename $(realpath $pcipath/driver))
+	dver=$(dmesg | grep -i "$driver.*$pciaddr.*firmware version" | tail -1)
+	dver=${dver##*: }
+    fi
+    [[ -z $ipaddr && -v "vdevs[$macaddr]" ]] && ipaddr=${vdevs["$macaddr"]}
+    echo if:$if type:$type mac:$macaddr ipaddr:\"$ipaddr\" pciaddr:$pciaddr \
+	 link:$lstat ip:$ipstat mtu:$mtu \
+	 numanode:$numanode cpulist:$cpulist \
+	 driver:$driver dver:\"$dver\" \
+	 pcilnkspd:\"$pcilnkspd\" pcilnkwdth:$pcilnkwdth pciinfo:\"$pciinfo\"
+done < <(ip --brief link)

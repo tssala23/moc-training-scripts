@@ -12,7 +12,7 @@ typeset -r par=128 mtu=1500
 typeset -r -A bufsize=( ["tcp"]="128K" ["udp"]="1460" )
 
 
-typeset -a  wrks=() pod=()
+typeset -a  wrks=() pods=()
 typeset -i -r  rawpods=$#
 #wrks=( $(./ocwrks| grep mocr4pcc02 | head -2) )
 wrks=( $(./ocwrks| grep mocr4pcc02) )
@@ -77,9 +77,11 @@ for srv in ${pods[@]}; do
 	  log "prot:$prot mtu:$mtu bufsize:$len par:$par srvlog:$srvlog cltlog:$cltlog"
       	  log "START: $srv $clt"
 	  log "oc exec $srv -- bash -c \"/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &\""
-      	  oc exec $srv -- bash -c "/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &"
+      	  oc exec $srv -- bash -c \
+	     "/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &"
 	  log "oc exec $clt -- bash -c \"/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1\""
-      	  oc exec $clt -- bash -c "/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1"
+      	  oc exec $clt -- bash -c \
+	     "/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1"
 	  log "$EPOCHSEONDS: END: $srv $clt"
 	  sleep 0.1
       	  log "oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog"
@@ -91,7 +93,7 @@ for srv in ${pods[@]}; do
 done
 
 for srv in ${pods[@]}; do
-    log "oc pod delete $srv"
+    log "oc delete pod $srv"
     oc delete pod  $srv &
 done
 
