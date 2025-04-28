@@ -199,6 +199,17 @@ for srv in ${hosts[@]}; do
 	    cltnode=$clt
 	fi
 
+	typeset -i num i 
+	   
+	(( num += ${#iprf_protocols[@]} *
+	   $(echo ${iprf_bufsizes[$prot]} | wc -w) *
+	   $(echo ${iprf_winsizes[$prot]} | wc -w) *
+	   $(echo ${iprf_bitrates[$prot]} | wc -w) *
+	   ${#iprf_connections[@]} *
+	   ${#iprf_nicaffinity[@]} ))
+	
+	log "Doing $num experiments"
+	
 	for prot in ${iprf_protocols[@]}; do
 	    for len in ${iprf_bufsizes[$prot]}; do
 		for ws in ${iprf_winsizes[$prot]}; do
@@ -209,8 +220,8 @@ for srv in ${hosts[@]}; do
 				cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
 				sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
 				cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
-				log "prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
-      				log "START: $srv $clt"
+				log "$i: prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
+      				log "$i: START: $srv $clt"
 				if [[ $iprf_type == oc ]]; then
 				    log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
 				    $hexec $srv -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
