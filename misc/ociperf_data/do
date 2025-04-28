@@ -1,23 +1,23 @@
 #!/bin/bash
 dir=$1
+dir=${dir%/}
 
 [[ -z $dir ]] && {
     echo "USAGE: $0 <datadir>"
     exit -1
 }
 
-for p in tcp udp; do
-    resfile=${dir}_${p}.csv
-    echo path,server,client,protocol,mtu,bufsize,par,bw,units > $resfile
-    ls $dir/iperf_${p}_srv_* | while read file; do
-	name=${file%%.log}
-	IFS=_ read pgm prot role mtu bufsize par srv clt <<< $name
-	res=$(tail -1 $file);
-	res=${res##*Bytes}
-	res=${res%%/sec*}
-	read bw units <<< $res
-	units=${units}/sec
-	echo $file,$srv,$clt,$p,$mtu,$bufsize,$par,$bw,$units
-    done >> $resfile
-done
+resfile=${dir}.csv
+echo path,server,client,protocol,role,mtu,bufsize,winsize,bitrate,par,affin,bw,units > $resfile
+ls $dir/iperf_* | while read file; do
+    name=${file%%.log}
+    IFS=_ read pgm prot role mtu bufsize winsize bitrate par affin srv clt <<< $name
+    res=$(grep -m 1 '\[SUM\]' $file);
+    res=${res##*Bytes}
+    res=${res%%/sec*}
+    read bw units <<< $res
+    units=${units}/sec
+    echo $file,$srv,$clt,$prot,$role,$mtu,$bufsize,$winsize,$bitrate,$par,$affin,$bw,$units
+done >> $resfile
+
 

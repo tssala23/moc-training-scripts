@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#oc get nodes
+
+#oc get nodes  \
+#   --selector='node-role.kubernetes.io/worker' \
+#   -o=jsonpath='{.items[*].metadata.name}'  
+
+if [[ -z $1 ]]; then 
+    oc get pods -o name
+else
+    oc get pods -o name | while read n; do
+	echo ${n#*/}
+    done
+fi
