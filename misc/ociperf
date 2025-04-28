@@ -1,100 +1,244 @@
 #!/bin/bash
-#set -x
-#set -x
-typeset -r iperfbin=src/iperf-3.18/src/iperf3
-typeset -r iperfport=12345
-typeset -r ocdatadir=/tmp
-typeset  datadir=ociperf_data
+
+(( IPRF_DEBUG )) && set -x
+
+typeset -r iprf_name=$1
+shift
+
+[[ -z $iprf_name ]] && {
+    echo "USAGE: $0 <expname> [-p] [[wrk|pod] ...]" >/dev/stderr
+    exit -1
+}
+
+### NOTES
+# 1. See if we want to use type of service with respect to switch priorities/queues
+#  --tos <n> --dscp <dscp>
+# 2. Might want to consider using --bind or --bind-dev to be interface specific
+#      -- might be useful when we add more nic's to the tests
+
+#### CONFIG VARIABLES that can be all passed in via IPRF_* env vars
+
+# type of hosts
+typeset -r iprf_type=${IPRF_TYPE:-oc}
+
+typeset -A iprf_cp=( ["oc"]="oc cp"
+		     ["bm"]="scp" )
+
+typeset -A iprf_exec=( ["oc"]="oc exec"
+		       ["bm"]="ssh" )
+
+# path of iperf  binary that will be copied to remotes and used
+typeset -r iprf_bin=${IPRF_LBIN:-src/iperf-3.18/src/iperf3}
+
+# path of where to put iperf binary on remotes
+typeset -r iprf_rbin=${IPRF_RBIN:-/root/iperf3}
+
+# local data diretory 
+typeset  iprf_datadir=${IPRF_DATADIR:-ociperf_data}
+
+# remote data directory
+typeset -r iprf_rdatadir=${IPRF_RDATADIR:-/tmp}
+
+# timestamp
 typeset -r ts=$(date +%d-%m-%y-%s)
-datadir=${datadir}/$ts
-typeset -r -a protocols=( tcp udp )
-typeset -r par=128 mtu=1500
-typeset -r -A bufsize=( ["tcp"]="128K" ["udp"]="1460" )
 
+# finalize the the data directory and log file name
+iprf_datadir=${iprf_datadir}/${iprf_name}-$ts
 
-typeset -a  wrks=() pods=()
-typeset -i -r  rawpods=$#
-#wrks=( $(./ocwrks| grep mocr4pcc02 | head -2) )
-wrks=( $(./ocwrks| grep mocr4pcc02) )
+# log file in the data dir that will contain log of this scripts commands
+iprf_log=$iprf_datadir/${IPRF_LOG:-ociperf.log}
 
-mkdir -p $datadir
-log=$datadir/ociperf.log
+# port to use for iperf server and client communication
+typeset -r iprf_port=${IPRF_PORT:-12345}
+
+# default is to use MTU of host to calculate sizes
+typeset iprf_mtu=${IPRF_MTU:-""}
+
+# core iperf3 argument ranges to test
+#typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
+typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
+typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"1 2 4 8 16 32 64 128"} )
+#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno5np0 eno6np0 eno7np0 eno8np0"} )
+typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno7np0"} )
+typeset -r -A iprf_bufsizes=( ["tcp"]="${IPRF_TCP_BUFSIZES:-128K}"
+			       ["udp"]="${IPRF_UDP_BUFSIZES:-1460}" )
+typeset -r -A iprf_winsizes=( ["tcp"]="${IPRF_TCP_WINSIZES:-128K}"
+			       ["udp"]="${IPRF_UDP_WINSIZES:-1460}" )
+typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0"}
+			       ["tcp"]=${IPRF_TCP_BITRATES:-"0"} )
+# common base flags
+typeset -r iprf_baseflgs=${IPRF_BASEFLGS:-"--interval 0 --timestamps"}
+typeset -r -A iprf_proto_baseflgs=( ["udp"]="${IPRF_UDP_BASEFLGS:---udp --udp-counters-64bit --dont-fragment}"
+				    ["tcp"]="${IPRF_TCP_BASEFLGS:-}" )
+
+# base server flags
+typeset -r iprf_srv_baseflgs=${IPRF_SRV_BASEFLGS:-"--server --one-off"}
+
+# base client flags
+typeset -r iprf_clt_baseflgs=${IPRF_CLT_BASEFLGS:-"--no-delay --version4 --zerocopy --omit 5"}
+
+# working variabls
+typeset -i rawpods
+typeset -a  wrks=() pods=() delpods=() hosts=()
 
 function log()
 {
-    echo $EPOCHSECONDS ociperf : $@ | tee -a  $log
+    echo $EPOCHSECONDS ociperf : $@ | tee -a  $iprf_log
 }
 
-if (( $rawpods )); then
-    pods=( $(oc get pods --no-headers=true | cut -d' ' -f 1) )
-else
-    for wrk in ${wrks[@]}; do
-	log "xfce4-terminal -e \"./occon $wrk\""
-	xfce4-terminal -e "./occon --one-container=true $wrk"
-    done 
+mkdir -p $iprf_datadir
 
-    while (( ${#wrks[@]} != ${#pods[@]} )); do
-	pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+log "config: $(set | grep '^iprf_')"
+
+
+# this part is openshift specific but could be easily skipped if using
+# baremetal hosts
+if [[ $iprf_type == "oc" ]]; then
+    if [[ $1 == '-p' ]]; then
+	rawpods=1
+	shift
+    else
+	rawpods=0
+    fi
+    
+    if (( $rawpods )); then
+	if [[ $# == 0 ]]; then
+	    pods=( $(oc get pods --no-headers=true | cut -d' ' -f 1) )
+	else
+	    pods=( $@ )
+	fi
+    else
+	if (( $# > 0 )); then
+	    wrks=( $@ )
+	else
+	    wrks=( $(./ocwrks| grep mocr4pcc02) )
+	fi
+	
+	for wrk in ${wrks[@]}; do
+	    log "xfce4-terminal -e \"./occon $wrk\""
+	    xfce4-terminal -e "./occon --one-container=true $wrk"
+	done 
+	
+	while (( ${#wrks[@]} != ${#pods[@]} )); do
+	    pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+	done
+	delpods=( ${pods[@]} )
+    fi
+    
+    # wait till pods are ready;
+    for p in ${pods[@]}; do
+	while ! oc describe pods $p > $iprf_datadir/$p.txt; do
+	    log "ERROR: failed to describe $p retry" 
+	    sleep 0.1;
+	done
     done
+    hosts=( ${pods[@]} )
+else
+    log "ERROR: $iprf_type Not Yet Implemented"
+    exit -1
 fi
 
-# wait till pods are ready;
-for p in ${pods[@]}; do
-    while ! oc describe pods $p > $datadir/$p.txt; do
-	log "ERROR: failed to describe $p retry" 
-	sleep 0.1;
-    done
-done
+hcp=${iprf_cp[$iprf_type]}
+hexec=${iprf_exec[$iprf_type]}
 
-for srv in ${pods[@]}; do
-    log "oc cp $iperfbin $srv:/root/iperf3"
-    ! oc cp $iperfbin $srv:/root/iperf3 && {
+## this is the part that matters
+log "hosts to be test:  $hosts[@]"
+
+
+# copy binary to 
+for h in ${hosts[@]}; do
+    log "$hcp $iprf_bin $h:$iprf_rbin"
+    ! $hcp $iprf_bin $h:$iprf_rbin && {
 	log "ERROR: failed"
 	exit -1
     }
 done
 
-for srv in ${pods[@]}; do
-    read foo srvip < <(oc describe pods $srv | grep '^IP:')
-    if (( ! $rawpods )); then
-	srvnode=${srv%%-*}
+# default is to set mtu that was specifed. if unset it will be updated
+mtu=${iprf_mtu}
+
+for srv in ${hosts[@]}; do
+    if [[ $iprf_type == "oc" ]]; then
+	read foo srvip < <(oc describe pods $srv | grep '^IP:')
+	if (( ! $rawpods )); then
+	    srvnode=${srv%%-*}
+	else
+	    srvnode=${srv}
+	fi
     else
-	srvnode=${srv}
+	srvip=$srv
+	srvnode=$srv
     fi
-    log "server: $srv $srvip $srvnode"
-   for clt in ${pods[@]}; do
-       [[ $srv == $clt ]] && continue
-       if (( ! $rawpods )); then
-	   cltnode=${clt%%-*}
-       else
-	   cltnode=${clt}
-       fi
-      for prot in ${protocols[@]}; do
-	  if [[ $prot == udp ]]; then pflg='-u'; else pflg=''; fi
-	  len=${bufsize[$prot]}
-          srvlog="iperf_${prot}_srv_${mtu}_${len}_${par}_${srvnode}_${cltnode}.log"
-	  cltlog="iperf_${prot}_clt_${mtu}_${len}_${par}_${srvnode}_${cltnode}.log"
-	  log "prot:$prot mtu:$mtu bufsize:$len par:$par srvlog:$srvlog cltlog:$cltlog"
-      	  log "START: $srv $clt"
-	  log "oc exec $srv -- bash -c \"/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &\""
-      	  oc exec $srv -- bash -c \
-	     "/root/iperf3 -s -p ${iperfport} -1 >$ocdatadir/$srvlog 2>&1 &"
-	  log "oc exec $clt -- bash -c \"/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1\""
-      	  oc exec $clt -- bash -c \
-	     "/root/iperf3 -c $srvip -p $iperfport -l ${len} -P $par $pflg >$ocdatadir/$cltlog 2>&1"
-	  log "$EPOCHSEONDS: END: $srv $clt"
-	  sleep 0.1
-      	  log "oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog"
-	  oc cp $srv:$ocdatadir/$srvlog $datadir/$srvlog
-	  log "oc cp $clt:$ocdatadir/$cltlog $datadir/$cltlog"
-      	  oc cp $clt:$ocdatadir/$cltlog $datadir/$cltlog
-      done  
-   done 
+    
+    # determine mtu size we make the assumption that mtu on one host
+    # reflects the mtu that will be used for all communications
+    #   -- this may not be true when using multiple nics
+    [[ -z $mtu ]] && {
+    	if [[ $iprf_type == oc ]]; then
+    	    log "$hexec $srv -- bash -c \"ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)\"" 
+    	    mtu=$($hexec $srv -- bash -c "ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)")
+    	    mtu=${mtu##*mtu }
+    	    mtu=${mtu%% *}
+    	else
+    	    log "NYI"
+    	    exit -1
+    	fi
+    }
+    
+    log "server: srv:$srv srvip:$srvip srvnode:$srvnode mtu:$mtu"
+
+    for clt in ${hosts[@]}; do
+	[[ $srv == $clt ]] && continue
+	if [[ $iprf_type == "oc" ]]; then
+	    if (( ! $rawpods )); then
+		cltnode=${clt%%-*}
+	    else
+		cltnode=${clt}
+	    fi
+	else
+	    cltnode=$clt
+	fi
+
+	for prot in ${iprf_protocols[@]}; do
+	    for len in ${iprf_bufsizes[$prot]}; do
+		for ws in ${iprf_winsizes[$prot]}; do
+		    for br in ${iprf_bitrates[$prot]}; do			
+			for par in ${iprf_connections[@]}; do
+			    for affin in ${iprf_nicaffinity[@]}; do
+				srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
+				cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
+				sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
+				cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
+				log "prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
+      				log "START: $srv $clt"
+				if [[ $iprf_type == oc ]]; then
+				    log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
+				    $hexec $srv -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
+				    log "oc exec $clt -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
+				    $hexec $clt -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+				else
+				    log "NYI"
+				    exit -1
+				fi
+				log "$EPOCHSEONDS: END: $srv $clt"
+				sleep 0.1
+      				log "oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
+				oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
+				log "oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
+      				oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+			    done  
+			done 
+		    done
+		done
+	    done
+	done
+    done
 done
 
-for srv in ${pods[@]}; do
-    log "oc delete pod $srv"
-    oc delete pod  $srv &
+# cleanup if we created pods
+for p in ${delpods[@]}; do
+    log "oc delete pod $p"
+    oc delete pod  $p &
 done
 
 wait 

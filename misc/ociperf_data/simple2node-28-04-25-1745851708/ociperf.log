@@ -1,0 +1,47 @@
+1745851708 ociperf : config: iprf_baseflgs='--interval 0 --timestamps' iprf_bin=src/iperf-3.18/src/iperf3 iprf_bitrates=([tcp]="0" [udp]="0" ) iprf_bufsizes=([tcp]="128K" [udp]="1460" ) iprf_clt_baseflgs='--no-delay --version4 --zerocopy --omit 5' iprf_connections=([0]="128") iprf_cp=([oc]="oc cp" [bm]="scp" ) iprf_datadir=ociperf_data/foo-28-04-25-1745851708 iprf_exec=([oc]="oc exec" [bm]="ssh" ) iprf_log=ociperf_data/foo-28-04-25-1745851708/ociperf.log iprf_mtu= iprf_name=foo iprf_nicaffinity=([0]="eno7np0") iprf_port=12345 iprf_proto_baseflgs=([tcp]="" [udp]="--udp --udp-counters-64bit --dont-fragment" ) iprf_protocols=([0]="tcp" [1]="udp") iprf_rbin=/root/iperf3 iprf_rdatadir=/tmp iprf_srv_baseflgs='--server --one-off' iprf_type=oc iprf_winsizes=([tcp]="128K" [udp]="1460" )
+1745851708 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u24"
+1745851708 ociperf : xfce4-terminal -e "./occon node/mocr4pcc02u25"
+1745851710 ociperf : hosts to be test: mocr4pcc02u24-debug-wgjgp[@]
+1745851710 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u24-debug-wgjgp:/root/iperf3
+1745851711 ociperf : oc cp src/iperf-3.18/src/iperf3 mocr4pcc02u25-debug-dtns2:/root/iperf3
+1745851713 ociperf : oc exec mocr4pcc02u24-debug-wgjgp -- bash -c "ip link show dev $(ip --brief a | grep '192.168.50.157'| cut -d' ' -f 1)"
+1745851714 ociperf : server: srv:mocr4pcc02u24-debug-wgjgp srvip:192.168.50.157 srvnode:mocr4pcc02u24 mtu:1500
+1745851714 ociperf : prot:tcp mtu:1500 bufsize:128K ws:128K br:0 par:128 affin::iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log cltlog:iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+1745851714 ociperf : START: mocr4pcc02u24-debug-wgjgp mocr4pcc02u25-debug-dtns2
+1745851714 ociperf : oc exec mocr4pcc02u24-debug-wgjgp -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log 2>&1 &"
+1745851714 ociperf : oc exec mocr4pcc02u25-debug-dtns2 -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --client 192.168.50.157 --port 12345 --length 128K --window 128K --bitrate 0 --parallel 128 >/tmp/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log 2>&1"
+1745851730 ociperf : : END: mocr4pcc02u24-debug-wgjgp mocr4pcc02u25-debug-dtns2
+1745851730 ociperf : oc cp mocr4pcc02u24-debug-wgjgp:/tmp/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/foo-28-04-25-1745851708/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+tar: Removing leading `/' from member names
+1745851731 ociperf : oc cp mocr4pcc02u25-debug-dtns2:/tmp/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/foo-28-04-25-1745851708/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+tar: Removing leading `/' from member names
+1745851731 ociperf : prot:udp mtu:1500 bufsize:1460 ws:1460 br:0 par:128 affin::iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log cltlog:iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+1745851732 ociperf : START: mocr4pcc02u24-debug-wgjgp mocr4pcc02u25-debug-dtns2
+1745851732 ociperf : oc exec mocr4pcc02u24-debug-wgjgp -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log 2>&1 &"
+1745851732 ociperf : oc exec mocr4pcc02u25-debug-dtns2 -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --udp --udp-counters-64bit --dont-fragment --client 192.168.50.157 --port 12345 --length 1460 --window 1460 --bitrate 0 --parallel 128 >/tmp/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log 2>&1"
+1745851748 ociperf : : END: mocr4pcc02u24-debug-wgjgp mocr4pcc02u25-debug-dtns2
+1745851748 ociperf : oc cp mocr4pcc02u24-debug-wgjgp:/tmp/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/foo-28-04-25-1745851708/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+tar: Removing leading `/' from member names
+1745851748 ociperf : oc cp mocr4pcc02u25-debug-dtns2:/tmp/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log ociperf_data/foo-28-04-25-1745851708/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u24_mocr4pcc02u25.log
+tar: Removing leading `/' from member names
+1745851749 ociperf : server: srv:mocr4pcc02u25-debug-dtns2 srvip:192.168.50.18 srvnode:mocr4pcc02u25 mtu:1500
+1745851749 ociperf : prot:tcp mtu:1500 bufsize:128K ws:128K br:0 par:128 affin::iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log cltlog:iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+1745851749 ociperf : START: mocr4pcc02u25-debug-dtns2 mocr4pcc02u24-debug-wgjgp
+1745851749 ociperf : oc exec mocr4pcc02u25-debug-dtns2 -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log 2>&1 &"
+1745851750 ociperf : oc exec mocr4pcc02u24-debug-wgjgp -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --client 192.168.50.18 --port 12345 --length 128K --window 128K --bitrate 0 --parallel 128 >/tmp/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log 2>&1"
+1745851766 ociperf : : END: mocr4pcc02u25-debug-dtns2 mocr4pcc02u24-debug-wgjgp
+1745851766 ociperf : oc cp mocr4pcc02u25-debug-dtns2:/tmp/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/foo-28-04-25-1745851708/iperf_tcp_srv_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+tar: Removing leading `/' from member names
+1745851766 ociperf : oc cp mocr4pcc02u24-debug-wgjgp:/tmp/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/foo-28-04-25-1745851708/iperf_tcp_clt_1500_128K_128K_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+tar: Removing leading `/' from member names
+1745851767 ociperf : prot:udp mtu:1500 bufsize:1460 ws:1460 br:0 par:128 affin::iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log cltlog:iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+1745851767 ociperf : START: mocr4pcc02u25-debug-dtns2 mocr4pcc02u24-debug-wgjgp
+1745851767 ociperf : oc exec mocr4pcc02u25-debug-dtns2 -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log 2>&1 &"
+1745851767 ociperf : oc exec mocr4pcc02u24-debug-wgjgp -- bash -c "taskset -c \$(< /sys/class/net/eno7np0/device/local_cpulist) /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --udp --udp-counters-64bit --dont-fragment --client 192.168.50.18 --port 12345 --length 1460 --window 1460 --bitrate 0 --parallel 128 >/tmp/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log 2>&1"
+1745851783 ociperf : : END: mocr4pcc02u25-debug-dtns2 mocr4pcc02u24-debug-wgjgp
+1745851783 ociperf : oc cp mocr4pcc02u25-debug-dtns2:/tmp/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/foo-28-04-25-1745851708/iperf_udp_srv_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+tar: Removing leading `/' from member names
+1745851784 ociperf : oc cp mocr4pcc02u24-debug-wgjgp:/tmp/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log ociperf_data/foo-28-04-25-1745851708/iperf_udp_clt_1500_1460_1460_0_128_eno7np0_mocr4pcc02u25_mocr4pcc02u24.log
+tar: Removing leading `/' from member names
+1745851784 ociperf : oc delete pod mocr4pcc02u24-debug-wgjgp
+1745851784 ociperf : oc delete pod mocr4pcc02u25-debug-dtns2

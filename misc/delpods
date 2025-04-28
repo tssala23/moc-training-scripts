@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pods=( $@ )
+
+for p in ${pods[@]}; do
+     oc delete pod  $p &
+done
+
+wait 
