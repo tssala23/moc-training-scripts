@@ -1,0 +1,63 @@
+Name:                 mocr4pcc02u30-debug-b4xvd
+Namespace:            default
+Priority:             1000000000
+Priority Class Name:  openshift-user-critical
+Service Account:      default
+Node:                 mocr4pcc02u30/192.168.50.57
+Start Time:           Mon, 28 Apr 2025 13:07:34 -0400
+Labels:               <none>
+Annotations:          debug.openshift.io/source-container: container-00
+                      debug.openshift.io/source-resource: /v1, Resource=nodes/mocr4pcc02u30
+                      openshift.io/required-scc: privileged
+Status:               Running
+IP:                   192.168.50.57
+IPs:
+  IP:  192.168.50.57
+Containers:
+  container-00:
+    Container ID:  cri-o://bcf9ff88ce9506fdf73bc51b65431a4e66e49e31d2c35693a517a74115383bb9
+    Image:         quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:175f099f1b01257dab3c5064050bc2f2673afc47fba21ed2c9164f07e196c228
+    Image ID:      quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:175f099f1b01257dab3c5064050bc2f2673afc47fba21ed2c9164f07e196c228
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+    State:          Running
+      Started:      Mon, 28 Apr 2025 13:07:35 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      TMOUT:  900
+    Mounts:
+      /host from host (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4b5b2 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  host:
+    Type:          HostPath (bare host directory volume)
+    Path:          /
+    HostPathType:  Directory
+  kube-api-access-4b5b2:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason   Age    From     Message
+  ----    ------   ----   ----     -------
+  Normal  Pulled   6m41s  kubelet  Container image "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:175f099f1b01257dab3c5064050bc2f2673afc47fba21ed2c9164f07e196c228" already present on machine
+  Normal  Created  6m40s  kubelet  Created container: container-00
+  Normal  Started  6m40s  kubelet  Started container container-00

@@ -56,8 +56,8 @@ typeset iprf_mtu=${IPRF_MTU:-""}
 
 # core iperf3 argument ranges to test
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"128"} )
+typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
+typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"1 2 4 8 16 32 64 128"} )
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno5np0 eno6np0 eno7np0 eno8np0"} )
 typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno7np0"} )
 typeset -r -A iprf_bufsizes=( ["tcp"]="${IPRF_TCP_BUFSIZES:-128K}"
