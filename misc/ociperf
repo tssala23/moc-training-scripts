@@ -2,8 +2,13 @@
 
 (( IPRF_DEBUG )) && set -x
 
-typeset -r iprf_name=$1
+typeset iprf_name=$1
 shift
+
+# sanitize name
+iprf_name=${iprf_name//_/-}
+iprf_name=${iprf_name//,/:}
+typeset -r iprf_name
 
 [[ -z $iprf_name ]] && {
     echo "USAGE: $0 <expname> [-p] [[wrk|pod] ...]" >/dev/stderr
@@ -56,17 +61,19 @@ typeset iprf_mtu=${IPRF_MTU:-""}
 
 # core iperf3 argument ranges to test
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-udp} )
+typeset -r -i iprf_trials=${IPRF_TRIALS:-3}
+typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
 typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"64"} )
 #typeset -r -a iprf_cpuaffinity=( "128-255,384-511" "0-127,256-383" )
-typeset -r -a iprf_cpuaffinity=()
+#typeset -r -a iprf_cpuaffinity=()
+#typeset -r -a iprf_cpuaffinity=( "128-255,384-511" )
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno5np0 eno6np0 eno7np0 eno8np0"} )
 typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno7np0"} )
 typeset -r -A iprf_bufsizes=( ["tcp"]="${IPRF_TCP_BUFSIZES:-128K}"
 			       ["udp"]="${IPRF_UDP_BUFSIZES:-1460}" )
 typeset -r -A iprf_winsizes=( ["tcp"]="${IPRF_TCP_WINSIZES:-128K}"
 			       ["udp"]="${IPRF_UDP_WINSIZES:-1460}" )
-typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0 100G 200G 300G"}
+typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0"}
 			       ["tcp"]=${IPRF_TCP_BITRATES:-"0"} )
 # common base flags
 typeset -r iprf_baseflgs=${IPRF_BASEFLGS:-"--interval 0 --timestamps"}
@@ -202,17 +209,18 @@ for srv in ${hosts[@]}; do
 	fi
 
 	typeset -i i=0
-	typeset -a num
+	typeset -i num=0
 	for prot in ${iprf_protocols[@]}; do
 	    ((  num += $(echo ${iprf_bufsizes[$prot]} | wc -w) *
 		$(echo ${iprf_winsizes[$prot]} | wc -w) *
 		$(echo ${iprf_bitrates[$prot]} | wc -w) *
 		${#iprf_connections[@]} *
-		${#iprf_nicaffinity[@]} ))
+		${#iprf_nicaffinity[@]} * $iprf_trials))
 	done
+    
 	log "Doing $num experiments"
 	typeset -a affinity=();
-	typeset -i affintype=""
+	typeset  affintype=""
 	if (( ${#iprf_cpuaffinity[@]} > 0 )); then
 	    affintype=cpu
 	    affinity=( ${iprf_cpuaffinity[@]} )
@@ -226,38 +234,40 @@ for srv in ${hosts[@]}; do
 		    for br in ${iprf_bitrates[$prot]}; do			
 			for par in ${iprf_connections[@]}; do
 			    for affin in ${affinity[@]}; do
-				((i++))
-				srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
-				cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
-				sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
-				cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
-				log "$i/$num: prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
-      				log "$i/$num: START: $srv $clt"
-				if [[ $iprf_type == oc ]]; then
-				    if [[ $affintype == nic ]]; then
-					log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
-					$hexec $srv -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
-					log "oc exec $clt -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
-					$hexec $clt -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
-				    elif [[ $affintype == cpu ]]; then
-					log "oc exec $srv -- bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
-					$hexec $srv -- bash -c "taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
-					log "oc exec $clt -- bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
-					$hexec $clt -- bash -c "taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+				for ((t=0;t<iprf_trials;t++)); do
+				    ((i++))
+				    srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
+				    cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
+				    log "$i/$num: trial:$t prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$affin srvlog:$srvlog cltlog:$cltlog"
+      				    log "$i/$num: START: $t $srv $clt"
+				    if [[ $iprf_type == oc ]]; then
+					if [[ $affintype == nic ]]; then
+					    log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
+					    $hexec $srv -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
+					    log "oc exec $clt -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
+					    $hexec $clt -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+					elif [[ $affintype == cpu ]]; then
+					    log "oc exec $srv -- bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
+					    $hexec $srv -- bash -c "taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
+					    log "oc exec $clt -- bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
+					    $hexec $clt -- bash -c "taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+					else
+					    log "ERROR: bad $affintype"
+					    exit -1
+					fi
 				    else
-					log "ERROR: bad $affintype"
+					log "NYI"
 					exit -1
 				    fi
-				else
-				    log "NYI"
-				    exit -1
-				fi
-				log "$i/$num: END: $srv $clt"
-				sleep 0.1
-      				log "oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
-				oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
-				log "oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
-      				oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+				    log "$i/$num: END: $srv $clt"
+				    sleep 0.1
+      				    log "oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
+				    oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
+				    log "oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
+      				    oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+				done
 			    done  
 			done 
 		    done
@@ -266,6 +276,8 @@ for srv in ${hosts[@]}; do
 	done
     done
 done
+
+echo $iprf_datadir
 
 # cleanup if we created pods
 for p in ${delpods[@]}; do
