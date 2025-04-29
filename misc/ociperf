@@ -56,16 +56,17 @@ typeset iprf_mtu=${IPRF_MTU:-""}
 
 # core iperf3 argument ranges to test
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
+typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-udp} )
 typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"64"} )
-typeset -r -a iprf_cpuaffinity=( "128-255,384-511" "0-127,256-383" )
+#typeset -r -a iprf_cpuaffinity=( "128-255,384-511" "0-127,256-383" )
+typeset -r -a iprf_cpuaffinity=()
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno5np0 eno6np0 eno7np0 eno8np0"} )
 typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno7np0"} )
 typeset -r -A iprf_bufsizes=( ["tcp"]="${IPRF_TCP_BUFSIZES:-128K}"
 			       ["udp"]="${IPRF_UDP_BUFSIZES:-1460}" )
 typeset -r -A iprf_winsizes=( ["tcp"]="${IPRF_TCP_WINSIZES:-128K}"
 			       ["udp"]="${IPRF_UDP_WINSIZES:-1460}" )
-typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0"}
+typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0 100G 200G 300G"}
 			       ["tcp"]=${IPRF_TCP_BITRATES:-"0"} )
 # common base flags
 typeset -r iprf_baseflgs=${IPRF_BASEFLGS:-"--interval 0 --timestamps"}
@@ -225,7 +226,7 @@ for srv in ${hosts[@]}; do
 		    for br in ${iprf_bitrates[$prot]}; do			
 			for par in ${iprf_connections[@]}; do
 			    for affin in ${affinity[@]}; do
-				((i++)
+				((i++))
 				srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
 				cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
 				sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
