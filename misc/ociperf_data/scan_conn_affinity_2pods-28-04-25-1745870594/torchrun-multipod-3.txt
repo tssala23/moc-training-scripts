@@ -1,0 +1,82 @@
+Name:             torchrun-multipod-3
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             mocr4pcc02u16/192.168.50.145
+Start Time:       Mon, 28 Apr 2025 15:53:33 -0400
+Labels:           app=torchrun-multipod
+                  apps.kubernetes.io/pod-index=3
+                  controller-revision-hash=torchrun-multipod-7b574c456
+                  statefulset.kubernetes.io/pod-name=torchrun-multipod-3
+Annotations:      k8s.ovn.org/pod-networks:
+                    {"default":{"ip_addresses":["10.131.0.46/23"],"mac_address":"0a:58:0a:83:00:2e","gateway_ips":["10.131.0.1"],"routes":[{"dest":"10.128.0.0...
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "ovn-kubernetes",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.0.46"
+                        ],
+                        "mac": "0a:58:0a:83:00:2e",
+                        "default": true,
+                        "dns": {}
+                    }]
+Status:           Running
+IP:               10.131.0.46
+IPs:
+  IP:           10.131.0.46
+Controlled By:  StatefulSet/torchrun-multipod
+Containers:
+  torchrun-multipod:
+    Container ID:  cri-o://7c1a2195e2ce0da099aab980f75d424e8d17b216ba26d970cf5ae2617ee6a21e
+    Image:         docker.io/saarora/test2-llmc
+    Image ID:      docker.io/saarora/test2-llmc@sha256:a327259b6c4b759191a4f200166fbb5ccfd8a3f5299ba1d457565004076e6b89
+    Port:          29500/TCP
+    Host Port:     0/TCP
+    Args:
+      7
+      4
+      1
+      0
+      d12
+      newoc8nodes
+    State:          Running
+      Started:      Mon, 28 Apr 2025 15:53:35 -0400
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      nvidia.com/gpu:  4
+    Requests:
+      nvidia.com/gpu:  4
+    Environment:       <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qqwfs (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-qqwfs:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason          Age    From               Message
+  ----    ------          ----   ----               -------
+  Normal  Scheduled       9m50s  default-scheduler  Successfully assigned default/torchrun-multipod-3 to mocr4pcc02u16
+  Normal  AddedInterface  9m41s  multus             Add eth0 [10.131.0.46/23] from ovn-kubernetes
+  Normal  Pulling         9m41s  kubelet            Pulling image "docker.io/saarora/test2-llmc"
+  Normal  Pulled          9m41s  kubelet            Successfully pulled image "docker.io/saarora/test2-llmc" in 338ms (338ms including waiting). Image size: 11734562220 bytes.
+  Normal  Created         9m40s  kubelet            Created container: torchrun-multipod
+  Normal  Started         9m40s  kubelet            Started container torchrun-multipod
