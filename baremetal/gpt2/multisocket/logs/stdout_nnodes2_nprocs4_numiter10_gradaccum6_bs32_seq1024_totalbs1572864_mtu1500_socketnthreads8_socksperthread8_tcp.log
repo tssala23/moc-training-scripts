@@ -1,0 +1,225 @@
+Running pytorch 2.7.0+cu126
+using device: cuda:0
+total desired batch size: 1572864
+=> calculated gradient accumulation steps: 6
+using device: cuda:1
+using device: cuda:2
+using device: cuda:3
+compiling the model...
+DataLoader: total number of tokens: 1,661,249,667 across 103 files
+MOC-R4PCC04U05:373522:373522 [0] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:373522:373522 [0] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:373523:373523 [1] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:373524:373524 [2] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:373523:373523 [1] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:373524:373524 [2] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:373525:373525 [3] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:373525:373525 [3] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:373522:373563 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:373522:373563 [0] NCCL INFO NET/Socket : Using [0]eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:373524:373564 [2] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:373524:373564 [2] NCCL INFO NET/Socket : Using [0]eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:373523:373565 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:373523:373565 [1] NCCL INFO NET/Socket : Using [0]eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:373525:373566 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:373525:373566 [3] NCCL INFO NET/Socket : Using [0]eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:373523:373565 [1] NCCL INFO NET/Socket : GPU Direct RDMA Disabled for HCA 0 'eno7np0'
+MOC-R4PCC04U05:373524:373564 [2] NCCL INFO NET/Socket : GPU Direct RDMA Disabled for HCA 0 'eno7np0'
+MOC-R4PCC04U05:373522:373563 [0] NCCL INFO NET/Socket : GPU Direct RDMA Disabled for HCA 0 'eno7np0'
+MOC-R4PCC04U05:373525:373566 [3] NCCL INFO NET/Socket : GPU Direct RDMA Disabled for HCA 0 'eno7np0'
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 0 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0004f30
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 1 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0004fa8
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 0 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc004f30
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 1 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc004fa8
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 0 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58004f30
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 1 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58004fa8
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 0 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790004f30
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 2 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005020
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Channel 00/0 : 3[3] -> 6[2] [send] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 3 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005098
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Channel 02/0 : 3[3] -> 6[2] [send] via NET/Socket/0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 1 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790004fa8
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 2 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005020
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 2 from local rank 2, transport 2
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005020
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Channel 00/0 : 7[3] -> 2[2] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 3 from local rank 2, transport 2
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005098
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Channel 02/0 : 7[3] -> 2[2] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 3 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005098
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 4 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005110
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 5 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005188
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 6 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005200
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 7 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005278
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 4 from local rank 2, transport 2
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005110
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Channel 01/0 : 2[2] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 5 from local rank 2, transport 2
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005188
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Channel 03/0 : 2[2] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 6 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005200
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 7 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005278
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 4 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005110
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Channel 01/0 : 6[2] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 5 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005188
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Channel 03/0 : 6[2] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 6 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005200
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 7 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005278
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 8 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900052f0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 2 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005020
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 3 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005098
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 4 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005110
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 5 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005188
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 6 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005200
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 7 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005278
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 8 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:373584 [3] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580052f0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 9 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005368
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 8 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d00052f0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 8 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0052f0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 9 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:373583 [2] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005368
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 9 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005368
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 10 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900053e0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 10 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:373586 [0] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580053e0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 9 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:373585 [1] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005368
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 10 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d00053e0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 11 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005458
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 12 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d00054d0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy recv connection 13 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005548
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 10 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0053e0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 11 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005458
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 11 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005458
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 12 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580054d0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 13 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005548
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 14 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580055c0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 15 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005638
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 16 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580056b0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 17 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005728
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy send connection 18 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff580057a0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 11 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005458
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 12 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900054d0
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 14 from local rank 2, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d00055c0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 13 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005548
+MOC-R4PCC04U05:373524:373576 [2] NCCL INFO New proxy send connection 15 from local rank 2, transport 0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 14 from local rank 0, transport 0
+MOC-R4PCC04U05:373524:374342 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f77d0005638
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900055c0
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 19 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005818
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 15 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005638
+MOC-R4PCC04U05:373523:373577 [1] NCCL INFO New proxy recv connection 20 from local rank 1, transport 0
+MOC-R4PCC04U05:373523:374344 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7eff58005890
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy send connection 16 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900056b0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 17 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005728
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 12 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0054d0
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 18 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f47900057a0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 00/0 : 7[3] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 13 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005548
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 01/0 : 7[3] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 14 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0055c0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 02/0 : 7[3] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy recv connection 15 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005638
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 03/0 : 7[3] -> 3[3] [receive] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 16 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0056b0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 00/0 : 3[3] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 17 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005728
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 19 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005818
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 01/0 : 3[3] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 18 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0057a0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 02/0 : 3[3] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 19 from local rank 3, transport 2
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005818
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Channel 03/0 : 3[3] -> 7[3] [send] via NET/Socket/0
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 20 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005890
+MOC-R4PCC04U05:373522:373578 [0] NCCL INFO New proxy recv connection 20 from local rank 0, transport 0
+MOC-R4PCC04U05:373522:374345 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f4790005890
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 21 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005908
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 22 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc005980
+MOC-R4PCC04U05:373525:373575 [3] NCCL INFO New proxy send connection 23 from local rank 3, transport 0
+MOC-R4PCC04U05:373525:374343 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f53bc0059f8
+step    1/10 | train loss 11.010139 | norm 15.4234 | lr 1.00e-04 | (14282.76 ms | 110123 tok/s)
+step    2/10 | train loss 10.136950 | norm 5.7588 | lr 1.00e-04 | (511.95 ms | 3072288 tok/s)
+step    3/10 | train loss 9.795483 | norm 2.6123 | lr 1.00e-04 | (503.94 ms | 3121130 tok/s)
+step    4/10 | train loss 9.625648 | norm 2.1154 | lr 1.00e-04 | (508.63 ms | 3092383 tok/s)
+step    5/10 | train loss 9.542592 | norm 2.1031 | lr 1.00e-04 | (511.92 ms | 3072450 tok/s)
+step    6/10 | train loss 9.461357 | norm 1.9978 | lr 1.00e-04 | (507.27 ms | 3100625 tok/s)
+step    7/10 | train loss 9.375708 | norm 1.9473 | lr 1.00e-04 | (507.05 ms | 3101968 tok/s)
+step    8/10 | train loss 9.283991 | norm 1.9145 | lr 1.00e-04 | (506.34 ms | 3106363 tok/s)
+step    9/10 | train loss 9.188602 | norm 1.8601 | lr 1.00e-04 | (508.86 ms | 3090938 tok/s)
+step   10/10 | train loss 9.103175 | norm 1.7948 | lr 1.00e-04 | (503.52 ms | 3123710 tok/s)
+final 9 iters avg: 507.721ms
+peak memory consumption: 16601 MiB

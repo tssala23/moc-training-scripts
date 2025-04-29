@@ -1,0 +1,305 @@
+Running pytorch 2.7.0+cu126
+using device: cuda:0
+total desired batch size: 1835008
+=> calculated gradient accumulation steps: 7
+using device: cuda:1
+using device: cuda:2
+using device: cuda:3
+compiling the model...
+DataLoader: total number of tokens: 1,661,249,667 across 103 files
+MOC-R4PCC04U05:457818:457818 [0] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:457818:457818 [0] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:457819:457819 [1] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:457819:457819 [1] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:457820:457820 [2] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:457820:457820 [2] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NCCL_IB_HCA set to mlx5_5
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : Made virtual device [0] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : Using [0]mlx5_5:1/RoCE [RO]; OOB eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:457821:457821 [3] NCCL INFO NCCL_SOCKET_IFNAME set to eno7np0
+MOC-R4PCC04U05:457821:457821 [3] NCCL INFO NCCL version 2.26.2+cuda12.2
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NCCL_IB_HCA set to mlx5_5
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NCCL_IB_HCA set to mlx5_5
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : Made virtual device [0] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : Using [0]mlx5_5:1/RoCE [RO]; OOB eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : Made virtual device [0] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : Using [0]mlx5_5:1/RoCE [RO]; OOB eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NCCL_IB_HCA set to mlx5_5
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : Made virtual device [0] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : Using [0]mlx5_5:1/RoCE [RO]; OOB eno7np0:192.168.50.193<0>
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : Made virtual device [1] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 1 'mlx5_5'
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : Made virtual device [1] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 1 'mlx5_5'
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : Made virtual device [1] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 1 'mlx5_5'
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : Made virtual device [1] name=mlx5_5 speed=400000 ndevs=1
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 0 'mlx5_5'
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO NET/IB : GPU Direct RDMA Enabled for HCA 1 'mlx5_5'
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457862 [1] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457863 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457861 [0] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 0 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 1 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457865 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 0 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918004f30
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 1 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918004fa8
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 0 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc004f30
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 0 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730004f30
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 2 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005020
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 1 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc004fa8
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 3 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005098
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 1 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730004fa8
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 2 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005020
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 2 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005020
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 3 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005098
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 3 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005098
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 4 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005110
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 5 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005188
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 6 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005200
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 7 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005278
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 0 from local rank 3, transport 2
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 1 from local rank 2, transport 2
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480004f30
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Channel 00/0 : 3[3] -> 6[2] [send] via NET/IB/1(2)/GDRDMA
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 2 from local rank 3, transport 2
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005020
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480004fa8
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Channel 01/0 : 3[3] -> 6[2] [send] via NET/IB/1(2)/GDRDMA
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Channel 00/0 : 7[3] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 3 from local rank 3, transport 2
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005098
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 4 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005110
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Channel 02/0 : 3[3] -> 6[2] [send] via NET/IB/1(2)/GDRDMA
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO GPU Direct RDMA Enabled for GPU 3 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Channel 01/0 : 7[3] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 5 from local rank 3, transport 2
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005188
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 6 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005200
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Channel 03/0 : 3[3] -> 6[2] [send] via NET/IB/1(2)/GDRDMA
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Channel 02/0 : 7[3] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 7 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005278
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Channel 03/0 : 7[3] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 4 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005110
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 8 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800052f0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 9 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005368
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 5 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005188
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 6 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005200
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 7 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005278
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 10 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800053e0
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 8 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f09180052f0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 11 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005458
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 4 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005110
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 9 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005368
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 8 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:457888 [2] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc0052f0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6856 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17cb8a fifoLkey=0x17cb8a
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6857 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x178443 fifoLkey=0x178443
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7097 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7099 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy send connection 9 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:457885 [0] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005368
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6862 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17ecab fifoLkey=0x17ecab
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 12 from local rank 1, transport 0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 13 from local rank 3, transport 0
+MOC-R4PCC04U05:457819:457886 [1] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800054d0
+MOC-R4PCC04U05:457821:457887 [3] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005548
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7101 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6863 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17da99 fifoLkey=0x17da99
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7103 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 14 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800055c0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 15 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005638
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 16 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800056b0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 17 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005728
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 10 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f09180053e0
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 11 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005458
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 12 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f09180054d0
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy send connection 13 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005548
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 5 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005188
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 6 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005200
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 7 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005278
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy recv connection 8 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f67300052f0
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 9 from local rank 3, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005368
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 18 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800057a0
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 10 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f67300053e0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 00/0 : 6[2] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 19 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005818
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 01/0 : 6[2] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 11 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005458
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 20 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005890
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 02/0 : 6[2] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 0 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 21 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005908
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 12 from local rank 3, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 03/0 : 6[2] -> 2[2] [receive] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f67300054d0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 22 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005980
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 00/0 : 2[2] -> 6[2] [send] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 23 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f94800059f8
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 01/0 : 2[2] -> 6[2] [send] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 24 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005a70
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 02/0 : 2[2] -> 6[2] [send] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO GPU Direct RDMA Enabled for GPU 2 / HCA 1 (distance 5 <= 5), read 1 mode Default
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy send connection 25 from local rank 2, transport 2
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005ae8
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Channel 03/0 : 2[2] -> 6[2] [send] via NET/IB/1/GDRDMA
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 10 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:458581 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc0053e0
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 11 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:458581 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005458
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 12 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:458581 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc0054d0
+MOC-R4PCC04U05:457819:457883 [1] NCCL INFO New proxy recv connection 13 from local rank 1, transport 0
+MOC-R4PCC04U05:457819:458581 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f28fc005548
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 14 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f09180055c0
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 15 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005638
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 16 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f09180056b0
+MOC-R4PCC04U05:457818:457877 [0] NCCL INFO New proxy recv connection 17 from local rank 0, transport 0
+MOC-R4PCC04U05:457818:458579 [0] NCCL INFO Connected to proxy localRank 0 -> connection 0x7f0918005728
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 13 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005548
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 14 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f67300055c0
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 15 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005638
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 16 from local rank 3, transport 0
+MOC-R4PCC04U05:457821:458580 [3] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f67300056b0
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 26 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005b60
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 27 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005bd8
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 28 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005c50
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO New proxy recv connection 29 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f9480005cc8
+MOC-R4PCC04U05:457821:457881 [3] NCCL INFO New proxy send connection 17 from local rank 2, transport 0
+MOC-R4PCC04U05:457820:458578 [2] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f6730005728
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6866 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17edac fifoLkey=0x17edac
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7107 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6869 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17f5b4 fifoLkey=0x17f5b4
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6872 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17fdbc fifoLkey=0x17fdbc
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: NCCL Dev 1 IbDev 0 Port 1 qpn 6873 mtu 3 query_ece={supported=1, vendor_id=0x15b3, options=0x30000002, comp_mask=0x0} GID 3 (0/C132A8C0FFFF0000) fifoRkey=0x17e2a1 fifoLkey=0x17e2a1
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7110 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7113 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+MOC-R4PCC04U05:457820:457878 [2] NCCL INFO NET/IB: IbDev 0 Port 1 qpn 7116 set_ece={supported=1, vendor_id=0x15b3, options=0x0, comp_mask=0x0}
+step    1/10 | train loss 11.010164 | norm 15.3785 | lr 1.00e-04 | (14139.98 ms | 129774 tok/s)
+step    2/10 | train loss 10.136255 | norm 5.7532 | lr 1.00e-04 | (632.43 ms | 2901514 tok/s)
+step    3/10 | train loss 9.794406 | norm 2.6140 | lr 1.00e-04 | (701.45 ms | 2616021 tok/s)
+step    4/10 | train loss 9.624500 | norm 2.1149 | lr 1.00e-04 | (653.99 ms | 2805883 tok/s)
+step    5/10 | train loss 9.541204 | norm 2.1072 | lr 1.00e-04 | (707.09 ms | 2595146 tok/s)
+step    6/10 | train loss 9.459826 | norm 2.0014 | lr 1.00e-04 | (675.14 ms | 2717952 tok/s)
+step    7/10 | train loss 9.374057 | norm 1.9510 | lr 1.00e-04 | (711.45 ms | 2579234 tok/s)
+step    8/10 | train loss 9.281912 | norm 1.9181 | lr 1.00e-04 | (639.91 ms | 2867608 tok/s)
+step    9/10 | train loss 9.186088 | norm 1.8610 | lr 1.00e-04 | (568.31 ms | 3228890 tok/s)
+step   10/10 | train loss 9.101141 | norm 1.8022 | lr 1.00e-04 | (583.02 ms | 3147416 tok/s)
+final 9 iters avg: 652.533ms
+peak memory consumption: 16601 MiB
