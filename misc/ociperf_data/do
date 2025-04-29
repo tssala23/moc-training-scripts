@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -x
 dir=$1
 dir=${dir%/}
 
@@ -12,7 +13,11 @@ echo path,server,client,protocol,role,mtu,bufsize,winsize,bitrate,par,affin,bw,u
 ls $dir/iperf_* | while read file; do
     name=${file%%.log}
     IFS=_ read pgm prot role mtu bufsize winsize bitrate par affin srv clt <<< $name
-    res=$(grep -m 1 '\[SUM\]' $file);
+    if [[ $role == srv ]]; then
+	res=$(tail -1 $file)
+    else
+	res=$(grep 'sec.*sender$' $file | tail -1)
+    fi
     res=${res##*Bytes}
     res=${res%%/sec*}
     read bw units <<< $res
