@@ -200,17 +200,16 @@ for srv in ${hosts[@]}; do
 	    cltnode=$clt
 	fi
 
-	
-	# typeset -i num i 
-	   
-	# (( num += ${#iprf_protocols[@]} *
-	#    $(echo ${iprf_bufsizes[$prot]} | wc -w) *
-	#    $(echo ${iprf_winsizes[$prot]} | wc -w) *
-	#    $(echo ${iprf_bitrates[$prot]} | wc -w) *
-	#    ${#iprf_connections[@]} *
-	#    ${#iprf_nicaffinity[@]} ))
-	
-	# log "Doing $num experiments"
+	typeset -i i=0
+	typeset -a num
+	for prot in ${iprf_protocols[@]}; do
+	    ((  num += $(echo ${iprf_bufsizes[$prot]} | wc -w) *
+		$(echo ${iprf_winsizes[$prot]} | wc -w) *
+		$(echo ${iprf_bitrates[$prot]} | wc -w) *
+		${#iprf_connections[@]} *
+		${#iprf_nicaffinity[@]} ))
+	done
+	log "Doing $num experiments"
 	typeset -a affinity=();
 	typeset -i affintype=""
 	if (( ${#iprf_cpuaffinity[@]} > 0 )); then
@@ -226,12 +225,13 @@ for srv in ${hosts[@]}; do
 		    for br in ${iprf_bitrates[$prot]}; do			
 			for par in ${iprf_connections[@]}; do
 			    for affin in ${affinity[@]}; do
+				((i++)
 				srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
 				cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin}_${srvnode}_${cltnode}.log"
 				sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
 				cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
-				log "prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
-      				log "START: $srv $clt"
+				log "$i/$num: prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$nicsrvlog:$srvlog cltlog:$cltlog"
+      				log "$i/$num: START: $srv $clt"
 				if [[ $iprf_type == oc ]]; then
 				    if [[ $affintype == nic ]]; then
 					log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
@@ -251,7 +251,7 @@ for srv in ${hosts[@]}; do
 				    log "NYI"
 				    exit -1
 				fi
-				log "$EPOCHSEONDS: END: $srv $clt"
+				log "$i/$num: END: $srv $clt"
 				sleep 0.1
       				log "oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
 				oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
