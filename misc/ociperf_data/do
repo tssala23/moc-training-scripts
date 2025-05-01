@@ -9,10 +9,10 @@ dir=${dir%/}
 }
 
 resfile=${dir}.csv
-echo path,server,client,protocol,role,mtu,bufsize,winsize,bitrate,par,affin,bw,units,trial > $resfile
+echo path,server,client,protocol,role,srvip,mtu,bufsize,winsize,bitrate,par,affin,bw,units,trial > $resfile
 ls $dir/iperf_* | while read file; do
     name=${file%%.log}
-    IFS=_ read pgm prot role mtu bufsize winsize bitrate par affin srv clt trial <<< $name
+    IFS=_ read pgm prot role srvip mtu bufsize winsize bitrate par affin srv clt trial <<< $name
     if [[ $role == srv ]]; then
 	res=$(tail -1 $file)
     else
@@ -22,7 +22,7 @@ ls $dir/iperf_* | while read file; do
     res=${res%%/sec*}
     read bw units <<< $res
     units=${units}/sec
-    echo $file,$trial,$srv,$clt,$prot,$role,$mtu,$bufsize,$winsize,$bitrate,$par,$affin,$bw,$units
+    echo $file,$trial,$srv,$clt,$prot,$role,$srvip,$mtu,$bufsize,$winsize,$bitrate,$par,$affin,$bw,$units
 done >> $resfile
 
 

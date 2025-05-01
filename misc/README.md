@@ -1059,3 +1059,64 @@ see src/doiperf3
 ### ociperf <name> <wrks|pods> [list]
 
 
+# ESI Networking for H100 testing cluster (Barcelona)
+
+``` shell
+MOC-R4PCC02U15,a0:88:c2:27:c2:d0,swp16s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.208.15,rdma-net,999
+MOC-R4PCC02U15,a0:88:c2:27:c2:d4,swp16s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.119,barcelona-net,581
+MOC-R4PCC02U15,a0:88:c2:27:c2:d8,swp40s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U15,a0:88:c2:27:c2:dc,swp40s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U16,a0:88:c2:27:c0:d0,swp15s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U16,a0:88:c2:27:c0:d4,swp15s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.145,barcelona-net,581
+MOC-R4PCC02U16,a0:88:c2:27:c0:d8,swp39s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U16,a0:88:c2:27:c0:dc,swp39s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U24,a0:88:c2:27:be:20,swp11s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U24,a0:88:c2:27:be:24,swp11s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.157,barcelona-net,581
+MOC-R4PCC02U24,a0:88:c2:27:be:28,swp35s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U24,a0:88:c2:27:be:2c,swp35s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U25,a0:88:c2:27:bb:d0,swp10s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U25,a0:88:c2:27:bb:d4,swp10s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.18,barcelona-net,581
+MOC-R4PCC02U25,a0:88:c2:27:bb:d8,swp34s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U25,a0:88:c2:27:bb:dc,swp34s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U29,a0:88:c2:27:c4:80,swp8s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U29,a0:88:c2:27:c4:84,swp8s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.171,barcelona-net,581
+MOC-R4PCC02U29,a0:88:c2:27:c4:88,swp32s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U29,a0:88:c2:27:c4:8c,swp32s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U30,a0:88:c2:27:c0:80,swp7s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U30,a0:88:c2:27:c0:84,swp7s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.57,barcelona-net,581
+MOC-R4PCC02U30,a0:88:c2:27:c0:88,swp31s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U30,a0:88:c2:27:c0:8c,swp31s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U31,a0:88:c2:27:c4:50,swp6s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U31,a0:88:c2:27:c4:54,swp6s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.65,barcelona-net,581
+MOC-R4PCC02U31,a0:88:c2:27:c4:58,swp30s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U31,a0:88:c2:27:c4:5c,swp30s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U32,a0:88:c2:27:c5:60,swp5s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U32,a0:88:c2:27:c5:64,swp5s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,192.168.50.153,barcelona-net,581
+MOC-R4PCC02U32,a0:88:c2:27:c5:68,swp29s0,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+MOC-R4PCC02U32,a0:88:c2:27:c5:6c,swp29s1,MOC-R4PCC02-SW-TORS,b0:cf:0e:c2:99:ff,,,
+```
+
+## tcp settings
+
+``` shell
+net.core.mem_pcpu_rsv = 256
+net.core.optmem_max = 81920
+net.core.rmem_default = 212992
+net.core.rmem_max = 212992
+net.core.wmem_default = 212992
+net.core.wmem_max = 212992
+net.ipv4.fib_sync_mem = 524288
+net.ipv4.igmp_max_memberships = 20
+net.ipv4.tcp_mem = 18531756	24709011	37063512
+net.ipv4.tcp_rmem = 4096	131072	6291456
+net.ipv4.tcp_wmem = 4096	16384	4194304
+net.ipv4.udp_mem = 37063515	49418023	74127030
+net.ipv4.udp_rmem_min = 4096
+net.ipv4.udp_wmem_min = 4096
+vm.hugetlb_optimize_vmemmap = 0
+vm.lowmem_reserve_ratio = 256	256	32	0	0
+vm.memory_failure_early_kill = 0
+vm.memory_failure_recovery = 1
+vm.nr_hugepages_mempolicy = 0
+vm.overcommit_memory = 1
+```
