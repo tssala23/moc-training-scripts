@@ -59,22 +59,26 @@ typeset -r iprf_port=${IPRF_PORT:-12345}
 # default is to use MTU of host to calculate sizes
 typeset iprf_mtu=${IPRF_MTU:-""}
 
+# if we want to use an explicit nic not the default of the container then
+# set this value to the nic to use
+iprf_nic=eno6np0
+
 # core iperf3 argument ranges to test
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -i iprf_trials=${IPRF_TRIALS:-3}
+typeset -r -i iprf_trials=${IPRF_TRIALS:-1}
 typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
-typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-"64"} )
+typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-1 2 4 8 16 32 64} )
 #typeset -r -a iprf_cpuaffinity=( "128-255,384-511" "0-127,256-383" )
 #typeset -r -a iprf_cpuaffinity=()
 #typeset -r -a iprf_cpuaffinity=( "128-255,384-511" )
-#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno5np0 eno6np0 eno7np0 eno8np0"} )
-typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-"eno7np0"} )
-typeset -r -A iprf_bufsizes=( ["tcp"]="${IPRF_TCP_BUFSIZES:-128K}"
-			       ["udp"]="${IPRF_UDP_BUFSIZES:-1460}" )
-typeset -r -A iprf_winsizes=( ["tcp"]="${IPRF_TCP_WINSIZES:-128K}"
-			       ["udp"]="${IPRF_UDP_WINSIZES:-1460}" )
-typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-"0"}
-			       ["tcp"]=${IPRF_TCP_BITRATES:-"0"} )
+#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno5np0 eno6np0 eno7np0 eno8np0} )
+typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno6np0} )
+typeset -r -A iprf_bufsizes=( ["tcp"]=${IPRF_TCP_BUFSIZES:-128K}
+			       ["udp"]=${IPRF_UDP_BUFSIZES:-1460} )
+typeset -r -A iprf_winsizes=( ["tcp"]=${IPRF_TCP_WINSIZES:-128K}
+			       ["udp"]=${IPRF_UDP_WINSIZES:-1460} )
+typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-0}
+			       ["tcp"]=${IPRF_TCP_BITRATES:-0} )
 # common base flags
 typeset -r iprf_baseflgs=${IPRF_BASEFLGS:-"--interval 0 --timestamps"}
 typeset -r -A iprf_proto_baseflgs=( ["udp"]="${IPRF_UDP_BASEFLGS:---udp --udp-counters-64bit --dont-fragment}"
@@ -165,30 +169,71 @@ done
 
 # default is to set mtu that was specifed. if unset it will be updated
 mtu=${iprf_mtu}
+typeset -A srvips=()
+
+typeset -i num=0
+typeset -a affinity=();
+typeset  affintype=""
+if (( ${#iprf_cpuaffinity[@]} > 0 )); then
+    affintype=cpu
+    affinity=( ${iprf_cpuaffinity[@]} )
+else
+    affintype=nic
+    affinity=( ${iprf_nicaffinity[@]} )
+fi
+echo ${#iprf_connections[@]}
+
+for prot in ${iprf_protocols[@]}; do
+    ((  num += $(echo ${iprf_bufsizes[$prot]} | wc -w) *
+	$(echo ${iprf_winsizes[$prot]} | wc -w) *
+	$(echo ${iprf_bitrates[$prot]} | wc -w) *
+	${#iprf_connections[@]} *
+	${#affinity[@]} * $iprf_trials))
+done
+(( num = num * ${#hosts[@]} * ( ${#hosts[@]} - 1) ))
+
+log "Doing $num experiments"
+typeset -i i=0
 
 for srv in ${hosts[@]}; do
     if [[ $iprf_type == "oc" ]]; then
-	read foo srvip < <(oc describe pods $srv | grep '^IP:')
+	if [[ -z $iprf_nic ]]; then
+	    read foo srvip < <(oc describe pods $srv | grep '^IP:')
+	else
+	    if [[ ! -v srvips[$srv] ]]; then
+		log "$hexec $srv -- bash -c \"ip --brief addr show dev $iprf_nic\""
+		read a b srvip rest< <($hexec $srv -- bash -c "ip --brief addr show dev $iprf_nic")
+		srvip=${srvip%%/*}
+		srvips[$srv]=$srvip
+	    else
+		srvip=${srvips[$srv]}
+	    fi
+	fi
 	if (( ! $rawpods )); then
 	    srvnode=${srv%%-*}
 	else
 	    srvnode=${srv}
-	fi
+	fi								 
     else
 	srvip=$srv
 	srvnode=$srv
     fi
-    
+
     # determine mtu size we make the assumption that mtu on one host
     # reflects the mtu that will be used for all communications
     #   -- this may not be true when using multiple nics
     [[ -z $mtu ]] && {
     	if [[ $iprf_type == oc ]]; then
-    	    log "$hexec $srv -- bash -c \"ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)\"" 
-    	    mtu=$($hexec $srv -- bash -c "ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)")
+	    if [[ -z $iprf_nic ]]; then
+    		log "$hexec $srv -- bash -c \"ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)\"" 
+    		mtu=$($hexec $srv -- bash -c "ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)")
+	    else
+		log "$hexec $srv -- bash -c \"ip link show dev $iprf_nic\"" 
+    		mtu=$($hexec $srv -- bash -c "ip link show dev $iprf_nic")
+	    fi
     	    mtu=${mtu##*mtu }
     	    mtu=${mtu%% *}
-    	else
+    	    else
     	    log "NYI"
     	    exit -1
     	fi
@@ -207,27 +252,7 @@ for srv in ${hosts[@]}; do
 	else
 	    cltnode=$clt
 	fi
-
-	typeset -i i=0
-	typeset -i num=0
-	for prot in ${iprf_protocols[@]}; do
-	    ((  num += $(echo ${iprf_bufsizes[$prot]} | wc -w) *
-		$(echo ${iprf_winsizes[$prot]} | wc -w) *
-		$(echo ${iprf_bitrates[$prot]} | wc -w) *
-		${#iprf_connections[@]} *
-		${#iprf_nicaffinity[@]} * $iprf_trials))
-	done
-    
-	log "Doing $num experiments"
-	typeset -a affinity=();
-	typeset  affintype=""
-	if (( ${#iprf_cpuaffinity[@]} > 0 )); then
-	    affintype=cpu
-	    affinity=( ${iprf_cpuaffinity[@]} )
-	else
-	    affintype=nic
-	    affinity=( ${iprf_nicaffinity[@]} )
-	fi
+ 
 	for prot in ${iprf_protocols[@]}; do
 	    for len in ${iprf_bufsizes[$prot]}; do
 		for ws in ${iprf_winsizes[$prot]}; do
@@ -236,8 +261,8 @@ for srv in ${hosts[@]}; do
 			    for affin in ${affinity[@]}; do
 				for ((t=0;t<iprf_trials;t++)); do
 				    ((i++))
-				    srvlog="iperf_${prot}_srv_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
-				    cltlog="iperf_${prot}_clt_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    srvlog="iperf_${prot}_srv_${srvip}_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    cltlog="iperf_${prot}_clt_${srvip}_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
 				    sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
 				    cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
 				    log "$i/$num: trial:$t prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$affin srvlog:$srvlog cltlog:$cltlog"
