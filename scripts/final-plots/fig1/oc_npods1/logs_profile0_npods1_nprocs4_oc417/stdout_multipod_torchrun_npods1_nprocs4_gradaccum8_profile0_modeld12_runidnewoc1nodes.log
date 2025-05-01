@@ -1,0 +1,45 @@
+Hostname:, torchrun-multipod-0
+NUM PODS : 1
+NUM PROCS: 4
+NUM_ITER  : 10
+MODEL    : d12
+BS        : 32
+SEQ LEN   : 1024
+GRAD ACCUM: 8
+BS TOTAL  : 1048576
+LOG FILE: /tmp/stdout_npods1_nprocs4_numiter10_gradaccum8_bs32_seq1024_totalbs1048576_runidnewoc1nodes.log
+NODE RANK: 0
+PROFILE  : 0
+TAG      : 1_4_8_0_d12_newoc1nodes
+RUNID    : newoc1nodes
+Dumping initial: /proc/net/dev
+W0428 05:14:56.285000 45 torch/distributed/run.py:792] 
+W0428 05:14:56.285000 45 torch/distributed/run.py:792] *****************************************
+W0428 05:14:56.285000 45 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0428 05:14:56.285000 45 torch/distributed/run.py:792] *****************************************
+Running pytorch 2.6.0+cu124
+using device: cuda:0
+total desired batch size: 1048576
+=> calculated gradient accumulation steps: 8
+using device: cuda:1
+using device: cuda:3
+using device: cuda:2
+compiling the model...
+DataLoader: total number of tokens: 100,000,000 across 1 files
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+step    1/10 | train loss 11.010094 | norm 15.4734 | lr 1.00e-04 | (169439.20 ms | 6189 tok/s)
+step    2/10 | train loss 10.132355 | norm 5.7713 | lr 1.00e-04 | (661.55 ms | 1585019 tok/s)
+step    3/10 | train loss 9.790425 | norm 2.6207 | lr 1.00e-04 | (656.13 ms | 1598127 tok/s)
+step    4/10 | train loss 9.620090 | norm 2.1209 | lr 1.00e-04 | (656.50 ms | 1597220 tok/s)
+step    5/10 | train loss 9.536892 | norm 2.1162 | lr 1.00e-04 | (658.17 ms | 1593176 tok/s)
+step    6/10 | train loss 9.455257 | norm 2.0053 | lr 1.00e-04 | (659.63 ms | 1589642 tok/s)
+step    7/10 | train loss 9.369596 | norm 1.9545 | lr 1.00e-04 | (659.23 ms | 1590610 tok/s)
+step    8/10 | train loss 9.277897 | norm 1.9223 | lr 1.00e-04 | (664.20 ms | 1578716 tok/s)
+step    9/10 | train loss 9.182259 | norm 1.8716 | lr 1.00e-04 | (655.25 ms | 1600260 tok/s)
+step   10/10 | train loss 9.094436 | norm 1.7971 | lr 1.00e-04 | (657.76 ms | 1594153 tok/s)
+final 9 iters avg: 658.713ms
+peak memory consumption: 19594 MiB
+Dumping final: /proc/net/dev
