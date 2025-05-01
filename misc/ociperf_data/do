@@ -9,7 +9,7 @@ dir=${dir%/}
 }
 
 resfile=${dir}.csv
-echo path,server,client,protocol,role,srvip,mtu,bufsize,winsize,bitrate,par,affin,bw,units,trial > $resfile
+echo path,trial,server,client,protocol,role,srvip,mtu,bufsize,winsize,bitrate,par,affin,bw,units > $resfile
 ls $dir/iperf_* | while read file; do
     name=${file%%.log}
     IFS=_ read pgm prot role srvip mtu bufsize winsize bitrate par affin srv clt trial <<< $name

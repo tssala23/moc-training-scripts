@@ -1120,3 +1120,154 @@ vm.memory_failure_recovery = 1
 vm.nr_hugepages_mempolicy = 0
 vm.overcommit_memory = 1
 ```
+
+## network container hacking
+
+### SRIO-V
+0. view interface 
+
+``` shell
+ip link show dev eno6np0
+ip addr show dev eno6np0
+realpath -L /sys/class/net/eno6np0/device
+echo $(cat /sys/class/net/eno6np0/address) \
+	$(lspci -s $(basename $(realpath -L /sys/class/net/eno6np0/device)))
+```
+
+1. if it has an address lets bring it down for good measure 
+
+``` shell
+ip addr del <cider> dev enp
+```
+
+2. see if there are already any virtual functions
+
+``` shell
+cat /sys/class/net/eno6np0/device/sriov_numvfs
+lspci | grep "Virtual"
+```
+
+3. create a virtual function
+
+``` shell
+echo 1 > /sys/class/net/eno6np0/device/sriov_numvfs
+cat /sys/class/net/eno6np0/device/sriov_numvfs
+ls -l  /sys/class/net
+```
+
+look for an interface who's path is a prefix of the iterface that you created
+the virtual function on 
+
+4. configure the interface associated with the virtual function with an ip and test
+
+``` shell
+ip addr add 192.168.216.29/24 dev eno6v0
+ip link set dev eno6v0 mtu 9000 
+ip addr show dev eno6v0 
+ping 192.168.216.32
+```
+
+At this point we have an interface that is backed by a virtual function of 
+our nic.
+
+### add a inteface to an existing container's
+
+Our goal now is to hand the virtual function over to a container in a pod
+that already exists on the node
+
+1. First remove the ip from the inteface so that we can hand it over
+
+``` shell
+ip addr del 192.168.216.29/24  dev eno6v0
+```
+
+2. list netns namespaces
+
+If you are using a debug container be sure to `chroot /host` so that you are
+looking at the default namespaces 
+
+``` shell
+ip netns
+```
+
+find a process of the pod who's network namespace you want to modify
+
+My hack is to exec a shell into the pod and then ps looking for a process
+that I can identify in the debug pod
+``` shell
+(.pyenv) $ oc exec torchrun-multipod-1 -it -- /bin/bash
+root@torchrun-multipod-1:/workspace# ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0@if441: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether 0a:58:0a:82:00:68 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+root@torchrun-multipod-1:/workspace# ps auxgww
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   4364     0 ?        Ss   16:12   0:03 /bin/bash /workspace/run.sh 2 4 1 0 d12 newoc2nodes 8 4
+root        3832  0.0  0.0   4628     0 pts/0    Ss   17:16   0:00 /bin/bash
+root        3996  0.0  0.0   2792     0 ?        S    17:18   0:00 sleep 1
+root        3997  0.0  0.0   7064     0 pts/0    R+   17:18   0:00 ps auxgww
+root@torchrun-multipod-1:/workspace# 
+```
+
+Now in the debug pod
+
+``` shell
+
+sh-5.1# ps auxgww | grep workspace
+root     1952156  0.0  0.0   4364     0 ?        Ss   16:12   0:03 /bin/bash /workspace/run.sh 2 4 1 0 d12 newoc2nodes 8 4
+root     2127367  0.0  0.0   3332     0 pts/0    S+   17:24   0:00 grep workspace
+sh-5.1# ip netns identify 1952156
+089031ca-6400-479f-a2b2-1c87b3edad54
+sh-5.1# ip netns pids 089031ca-6400-479f-a2b2-1c87b3edad54
+1952156
+2107080
+2132668
+sh-5.1# ps auxgww | grep -E '1952156|2107080|2132668'
+root     1952156  0.0  0.0   4364     0 ?        Ss   16:12   0:03 /bin/bash /workspace/run.sh 2 4 1 0 d12 newoc2nodes 8 4
+root     2107080  0.0  0.0   4628     0 pts/0    Ss+  17:16   0:00 /bin/bash
+root     2133861  0.0  0.0   3464     0 pts/0    R+   17:27   0:00 grep -E 1952156|2107080|2132668
+```
+
+ok let us now move the nic to the netns of the pod
+
+``` shell
+sh-5.1# ip netns identify 1952156
+089031ca-6400-479f-a2b2-1c87b3edad54
+sh-5.1# ip link set eno6v0 netns 089031ca-6400-479f-a2b2-1c87b3edad54
+sh-5.1# ip link show dev eno6v0
+444: eno6v0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 5a:56:06:e8:d3:38 brd ff:ff:ff:ff:ff:ff
+    altname enp35s0v0
+sh-5.1# ip link set eno6v0 netns 089031ca-6400-479f-a2b2-1c87b3edad54
+sh-5.1# ip link show dev eno6v0
+Device "eno6v0" does not exist.
+sh-5.1# ip netns exec 089031ca-6400-479f-a2b2-1c87b3edad54 ip link show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0@if441: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc noqueue state UP mode DEFAULT group default 
+    link/ether 0a:58:0a:82:00:68 brd ff:ff:ff:ff:ff:ff link-netns fe41c389-230c-4179-a362-9816fbfac544
+444: eno6v0: <BROADCAST,MULTICAST> mtu 9000 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 5a:56:06:e8:d3:38 brd ff:ff:ff:ff:ff:ff
+    altname enp35s0v0
+sh-5.1# ip netns exec 089031ca-6400-479f-a2b2-1c87b3edad54 ip link set mtu 9000 dev eno6v0
+sh-5.1# ip netns exec 089031ca-6400-479f-a2b2-1c87b3edad54 ip addr add 192.168.216.29/24 dev eno6v0
+sh-5.1# ip netns exec 089031ca-6400-479f-a2b2-1c87b3edad54 ip link set eno6v0 up
+```
+
+Now in the pod 
+
+``` shell
+exec 5<>/dev/tcp/192.168.216.32/12345
+echo hello >&5
+```
+
+On the destination host
+
+``` shell
+mocr4pcc02u32# socat - tcp-listen:12345
+hello
+```
+
+
+
