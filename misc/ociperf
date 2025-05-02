@@ -61,23 +61,23 @@ typeset iprf_mtu=${IPRF_MTU:-""}
 
 # if we want to use an explicit nic not the default of the container then
 # set this value to the nic to use
-#iprf_nic=${IPRF_NIC:-eno6np0}
+iprf_nic=${IPRF_NIC:-eno6v0}
 #iprf_nic=${IPRF_NIC:-eno7np0}
 
 # core iperf3 argument ranges to test
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
-typeset -r -i iprf_trials=${IPRF_TRIALS:-3}
+typeset -r -i iprf_trials=${IPRF_TRIALS:-100}
 typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
 #typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32 1 2 4 8 16 64 128} )
-typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-64} )
-#typeset -r -a iprf_cpuaffinity=( "128-255,384-511" "0-127,256-383" )
+typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32} )
+typeset -r -a iprf_cpuaffinity=( "0-127,256-383"  )
 #typeset -r -a iprf_cpuaffinity=()
 #typeset -r -a iprf_cpuaffinity=( "128-255,384-511" )
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno5np0 eno6np0 eno7np0 eno8np0} )
-typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno7np0 eno6np0} )
+#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno7np0 eno6np0} )
 typeset -r -A iprf_bufsizes=( ["tcp"]=${IPRF_TCP_BUFSIZES:-128K}
 			       ["udp"]=${IPRF_UDP_BUFSIZES:-0} )
-typeset -r -A iprf_winsizes=( ["tcp"]=${IPRF_TCP_WINSIZES:-128K 0}
+typeset -r -A iprf_winsizes=( ["tcp"]=${IPRF_TCP_WINSIZES:-0}
 			       ["udp"]=${IPRF_UDP_WINSIZES:-0} )
 typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-0}
 			       ["tcp"]=${IPRF_TCP_BITRATES:-0} )
