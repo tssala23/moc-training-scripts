@@ -4,7 +4,10 @@ dir=$1
 dir=${dir%/}
 
 [[ -z $dir ]] && {
-    echo "USAGE: $0 <datadir>"
+    echo "USAGE: $0 <datadir>" > /dev/stderr
+    echo "  Very crude script to parse iperf3 logs in a data directory and create a csv file." > /dev/stderr
+    echo "  Assumes that the file names of the logs conform with _ seperated fields with no commas" > /dev/stderr
+    echo "  The fields and their order are hardcoded :-(" > /dev/stderr
     exit -1
 }
 
