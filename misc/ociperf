@@ -10,10 +10,6 @@ iprf_name=${iprf_name//_/-}
 iprf_name=${iprf_name//,/:}
 typeset -r iprf_name
 
-[[ -z $iprf_name ]] && {
-    echo "USAGE: $0 <expname> [-p] [[wrk|pod] ...]" >/dev/stderr
-    exit -1
-}
 
 ### NOTES
 # 1. See if we want to use type of service with respect to switch priorities/queues
@@ -65,14 +61,14 @@ iprf_nic=${IPRF_NIC:-eno6v0}
 #iprf_nic=${IPRF_NIC:-eno7np0}
 
 # core iperf3 argument ranges to test
-#typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
 typeset -r -i iprf_trials=${IPRF_TRIALS:-100}
+#typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
 typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
 #typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32 1 2 4 8 16 64 128} )
 typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32} )
-typeset -r -a iprf_cpuaffinity=( "0-127,256-383"  )
+typeset -r -a iprf_cpuaffinity=( ${IPRF_CPUAFFINITY:-"0-127,256-383"}  )
+#typeset -r -a iprf_cpuaffinity=( ${IPRF_CPUAFFINITY:-"0-127,256-383" "128-255,384-511"}  )
 #typeset -r -a iprf_cpuaffinity=()
-#typeset -r -a iprf_cpuaffinity=( "128-255,384-511" )
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno5np0 eno6np0 eno7np0 eno8np0} )
 #typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno7np0 eno6np0} )
 typeset -r -A iprf_bufsizes=( ["tcp"]=${IPRF_TCP_BUFSIZES:-128K}
@@ -100,6 +96,65 @@ function log()
 {
     echo $EPOCHSECONDS ociperf : $@ | tee -a  $iprf_log
 }
+
+# MAIN LOGIC BEGINS HERE
+
+[[ -z $iprf_name ]] && {
+    cat >/dev/stderr <<EOF
+echo "USAGE: $0 <expname> [-p] [[wrk|pod] ...]"
+This is a script that conducts iperf3 experiments on openshift workers,
+openshift pods, and can be extended to baremetal systems. To control its
+behaviour you can set environment variables of the form IPRF_.  See the bottom
+of the usage string for those currently documented.  The results and a log
+of the scripts behaviour will be in subdirectoy of $(dirname $iprf_datadir).
+  expname    : a unique name you can use to identify your experiment
+  -p         : if using openshift this flag specifices that the experiment
+               should be run on existing pods otherwise the experiment
+               should be run on existing openshift worker nodes.
+  wrk|pod... : list of wrk nodes or pods to run the experiment on.  If none
+               are specified then all current wrks or pods in the default
+               openshift namespace will be use.
+
+The experiment itself is a pairwise test of running iperf3 on every combination
+of the specifed worker nodes or pods (one being the server and the other the
+client).  The exact number of trials and the parameters used will be determined
+based on defaults but can be overridden via environment variables.  The most
+parameters can be a list thus enabling a sweep of configurations to be conducted.
+When invoking iperf3 the script will use taskset to control the affinity of
+what cores the threads of iperf can be executed on.   The following is limited
+documentation of the environment variables used to control the script please
+see the code for the truth.
+
+IPRF_DEBUG : set to 1 to turn base debug trace on [default $IPRF_DEBUG]
+IPRF_TYPE : choose between oc (openshift) and bm (baremetal)  [default $iprf_type]
+IPRF_LBIN : local path of iperf3 binary  [default $iprf_bin]
+IPRF_RBIN : remote path of where iperf3 bin will be placed [default $iprf_rbin]
+IPRF_DATADIR : local directory where logs and results will be place [default $(dirname $iprf_datadir)]
+IPRF_RDATADIR: remote path where logs and output will be placed [default $iprf_rdatadir]
+IPRF_LOG: path of main log file of this scripts behaviour [default $iprf_log]
+IPRF_MTU: if unset MTU of network will be automatically determined [default $iprf_mtu]
+IPRF_NIC: what nic/inteface on remote hosts to use for experiment [default $iprf_nic]
+IPRF_TRAILS: number of trials to conduct for each setting [default $iprf_trials]
+IPRF_PROTOCOLS: space seperated list of protocols to use (tcp,udp) [default ${iperf_protocols[@]}]
+IPRF_CONNECTIONS: space seperated list of connections to use [default ${iprf_connections[@]}]
+IPRF_CPUAFFINITY: space seperated list of cpu affinities to use (if set will overided nic affinity settings) [default ${iperfcpuaffinity[@]}]
+IPRF_NICAFFINITY: space seperated list of nic's who's affinity will be used [default ${nicaffinity[@]}
+IPRF_TCP_BUFSIZES: space seperated list of tcp buffer sizes to use [default ${iprf_bufsizes["tcp"]}]
+IPRF_UDP_BUFSIZES: space seperated list of udp buffer sizes to use [default ${iprf_bufsizes["udp"]}]
+IPRF_TCP_WINSIZES: space seperated list of tcp iperf3 window sizes to use [default ${iprf_windizes["tcp"]}]
+IPRF_UDP_WINSIZES: space seperated list of udp iperf3 window sizes to use [default ${iprf_windizes["udp"]}]
+IPRF_TCP_BITRATES: space seperated list of tcp iperf3 bitrate targets to use [default ${iprf_bitrates["tcp"]}]
+IPRF_UDP_BITRATES: space seperated list of ucp iperf3 birate targets to use [default ${iprf_bitrates["udp"]}]
+IPRF_BASEFLGS: common iperf3 flags to pass to all iperf3 invocations [default ${iprf_baseflgs}]
+IPRF_TCP_BASEFLGS: iperf3 flags to pass to all tcp iperf3 client invocations [default ${iprf_proto_baseflgs["tcp"]}]
+IPRF_UDP_BASEFLGS: iperf3 flags to pass to all udp iperf3 client invications [default ${iprf_proto_baseflgs["udp"]}]
+IPRF_SRV_BASEFLGS: iperf3 flags to pass to all server iperf3 invocations [default ${iprf_srv_baseflgs}]
+IPRF_CLT_BASEFLGS: iperf3 flags to pass to all client iperf3 invocations [default ${iprf_clt_baseflgs}]
+EOF
+    exit -1
+}
+
+
 
 mkdir -p $iprf_datadir
 
