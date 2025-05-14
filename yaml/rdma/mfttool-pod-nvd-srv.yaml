@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mfttool-pod-nvd-srv-29
+  namespace: mfttool
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: mocr4pcc02u31 
+  hostNetwork: true
+  serviceAccountName: mfttool
+  containers:
+  - image: quay.io/redhat_emp1/ecosys-nvidia/mfttools:1.0.1
+    name: mfttool-pod-nvd-srv-29
+    securityContext:
+      privileged: true

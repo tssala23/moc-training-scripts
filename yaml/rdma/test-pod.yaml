@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-uno
+  namespace: default
+  annotations:
+    k8s.v1.cni.cncf.io/networks: rdmashared-net
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: mocr4pcc02u15
+  containers:
+    - name: test-container-uno
+      image: quay.io/jschless/gpu-tools:0.0.6 
+      #image: quay.io/redhat_emp1/ecosys-nvidia/gpu-tools:0.0.3 
+      resources:
+        requests:
+          nvidia.com/gpu: 4
+          rdma/rdma_shared_device_eth: 1
+        limits:
+          nvidia.com/gpu: 4
+          rdma/rdma_shared_device_eth: 1
+

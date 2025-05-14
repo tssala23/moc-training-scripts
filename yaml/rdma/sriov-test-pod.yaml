@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sriovlegacy-32-workload
+  namespace: default
+  annotations:
+    k8s.v1.cni.cncf.io/networks: sriov-network
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: mocr4pcc02u15    
+#    kubernetes.io/hostname: nvd-srv-32.nvidia.eng.rdu2.dc.redhat.com
+  serviceAccountName: rdma
+  containers:
+  - image: quay.io/redhat_emp1/ecosys-nvidia/gpu-operator:tools
+    name: sriovlegacy-32-workload
+    command:
+      - sh
+      - -c
+      - sleep inf
+    securityContext:
+      privileged: true
+      capabilities:
+        add: [ "IPC_LOCK" ]
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        openshift.io/sriovlegacy: 1
+      requests:
+        nvidia.com/gpu: 1
+        openshift.io/sriovlegacy: 1
+
