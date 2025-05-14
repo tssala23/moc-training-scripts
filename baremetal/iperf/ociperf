@@ -1,0 +1,393 @@
+#!/bin/bash
+IPRF_TYPE="bm"
+IPRF_LBIN="${BM_USER}@${BM_FLOATING_IP}:~/iperf/install/bin/iperf3"
+IPRF_RBIN="/tmp/iperf3"
+IPRF_DATADIR="bmperf_data"
+IPRF_LOG="bmperf.log"
+IPRF_MTU=9000
+IPRF_NIC=eno6np0
+IPRF_TRIALS=3
+BM_HOSTS="192.168.50.92 192.168.50.96 192.168.50.81 192.168.50.172 192.168.50.134 192.168.50.105 192.168.50.173 192.168.50.166"
+(( IPRF_DEBUG )) && set -x
+
+typeset iprf_name=$1
+shift
+
+# sanitize name
+iprf_name=${iprf_name//_/-}
+iprf_name=${iprf_name//,/:}
+typeset -r iprf_name
+
+
+### NOTES
+# 1. See if we want to use type of service with respect to switch priorities/queues
+#  --tos <n> --dscp <dscp>
+# 2. Might want to consider using --bind or --bind-dev to be interface specific
+#      -- might be useful when we add more nic's to the tests
+
+#### CONFIG VARIABLES that can be all passed in via IPRF_* env vars
+
+# type of hosts
+typeset -r iprf_type=${IPRF_TYPE:-oc}
+
+typeset -A iprf_cp=( ["oc"]="oc cp"
+		     ["bm"]="scp -o ProxyJump=${BM_USER}@${BM_FLOATING_IP}" )
+
+typeset -A iprf_exec=( ["oc"]="oc exec"
+		       ["bm"]="ssh -J ${BM_USER}@${BM_FLOATING_IP}" )
+
+# path of iperf  binary that will be copied to remotes and used
+typeset -r iprf_bin=${IPRF_LBIN:-src/iperf-3.18/src/iperf3}
+
+# path of where to put iperf binary on remotes
+typeset -r iprf_rbin=${IPRF_RBIN:-/root/iperf3}
+
+# local data diretory 
+typeset  iprf_datadir=${IPRF_DATADIR:-ociperf_data}
+
+# remote data directory
+typeset -r iprf_rdatadir=${IPRF_RDATADIR:-/tmp}
+
+# timestamp
+typeset -r ts=$(date +%d-%m-%y-%s)
+
+# finalize the the data directory and log file name
+iprf_datadir=${iprf_datadir}/${iprf_name}-$ts
+
+# log file in the data dir that will contain log of this scripts commands
+iprf_log=$iprf_datadir/${IPRF_LOG:-ociperf.log}
+
+# port to use for iperf server and client communication
+typeset -r iprf_port=${IPRF_PORT:-12345}
+
+# default is to use MTU of host to calculate sizes
+typeset iprf_mtu=${IPRF_MTU:-""}
+
+# if we want to use an explicit nic not the default of the container then
+# set this value to the nic to use
+iprf_nic=${IPRF_NIC:-eno6v0}
+#iprf_nic=${IPRF_NIC:-eno7np0}
+
+# core iperf3 argument ranges to test
+typeset -r -i iprf_trials=${IPRF_TRIALS:-100}
+#typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
+typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
+#typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32 1 2 4 8 16 64 128} )
+typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32} )
+#typeset -r -a iprf_cpuaffinity=( ${IPRF_CPUAFFINITY:-"0-127,256-383"}  )
+typeset -r -a iprf_cpuaffinity=( ${IPRF_CPUAFFINITY:-"0-127,256-383" "128-255,384-511"}  )
+#typeset -r -a iprf_cpuaffinity=()
+#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno5np0 eno6np0 eno7np0 eno8np0} )
+#typeset -r -a iprf_nicaffinity=( ${IPRF_NICAFFINITY:-eno7np0 eno6np0} )
+typeset -r -A iprf_bufsizes=( ["tcp"]=${IPRF_TCP_BUFSIZES:-128K}
+			       ["udp"]=${IPRF_UDP_BUFSIZES:-0} )
+typeset -r -A iprf_winsizes=( ["tcp"]=${IPRF_TCP_WINSIZES:-0}
+			       ["udp"]=${IPRF_UDP_WINSIZES:-0} )
+typeset -r -A iprf_bitrates=( ["udp"]=${IPRF_UDP_BITRATES:-0}
+			       ["tcp"]=${IPRF_TCP_BITRATES:-0} )
+# common base flags
+typeset -r iprf_baseflgs=${IPRF_BASEFLGS:-"--interval 0 --timestamps"}
+typeset -r -A iprf_proto_baseflgs=( ["udp"]="${IPRF_UDP_BASEFLGS:---udp --udp-counters-64bit --dont-fragment}"
+				    ["tcp"]="${IPRF_TCP_BASEFLGS:-}" )
+
+# base server flags
+typeset -r iprf_srv_baseflgs=${IPRF_SRV_BASEFLGS:-"--server --one-off"}
+
+# base client flags
+typeset -r iprf_clt_baseflgs=${IPRF_CLT_BASEFLGS:-"--no-delay --version4 --zerocopy --omit 5"}
+
+# working variabls
+typeset -i rawpods
+typeset -a  wrks=() pods=() delpods=() hosts=()
+
+
+function log()
+{
+    echo $EPOCHSECONDS perf : $@ | tee -a  $iprf_log
+}
+
+# MAIN LOGIC BEGINS HERE
+
+[[ -z $iprf_name ]] && {
+    cat >/dev/stderr <<EOF
+echo "USAGE: $0 <expname> [-p] [[wrk|pod] ...]"
+This is a script that conducts iperf3 experiments on openshift workers,
+openshift pods, and can be extended to baremetal systems. To control its
+behaviour you can set environment variables of the form IPRF_.  See the bottom
+of the usage string for those currently documented.  The results and a log
+of the scripts behaviour will be in subdirectoy of $(dirname $iprf_datadir).
+  expname    : a unique name you can use to identify your experiment
+  -p         : if using openshift this flag specifices that the experiment
+               should be run on existing pods otherwise the experiment
+               should be run on existing openshift worker nodes.
+  wrk|pod... : list of wrk nodes or pods to run the experiment on.  If none
+               are specified then all current wrks or pods in the default
+               openshift namespace will be use.
+
+The experiment itself is a pairwise test of running iperf3 on every combination
+of the specifed worker nodes or pods (one being the server and the other the
+client).  The exact number of trials and the parameters used will be determined
+based on defaults but can be overridden via environment variables.  The most
+parameters can be a list thus enabling a sweep of configurations to be conducted.
+When invoking iperf3 the script will use taskset to control the affinity of
+what cores the threads of iperf can be executed on.   The following is limited
+documentation of the environment variables used to control the script please
+see the code for the truth.
+
+IPRF_DEBUG : set to 1 to turn base debug trace on [default $IPRF_DEBUG]
+IPRF_TYPE : choose between oc (openshift) and bm (baremetal)  [default $iprf_type]
+IPRF_LBIN : local path of iperf3 binary  [default $iprf_bin]
+IPRF_RBIN : remote path of where iperf3 bin will be placed [default $iprf_rbin]
+IPRF_DATADIR : local directory where logs and results will be place [default $(dirname $iprf_datadir)]
+IPRF_RDATADIR: remote path where logs and output will be placed [default $iprf_rdatadir]
+IPRF_LOG: path of main log file of this scripts behaviour [default $iprf_log]
+IPRF_MTU: if unset MTU of network will be automatically determined [default $iprf_mtu]
+IPRF_NIC: what nic/inteface on remote hosts to use for experiment [default $iprf_nic]
+IPRF_TRAILS: number of trials to conduct for each setting [default $iprf_trials]
+IPRF_PROTOCOLS: space seperated list of protocols to use (tcp,udp) [default ${iperf_protocols[@]}]
+IPRF_CONNECTIONS: space seperated list of connections to use [default ${iprf_connections[@]}]
+IPRF_CPUAFFINITY: space seperated list of cpu affinities to use (if set will overided nic affinity settings) [default ${iperfcpuaffinity[@]}]
+IPRF_NICAFFINITY: space seperated list of nic's who's affinity will be used [default ${nicaffinity[@]}
+IPRF_TCP_BUFSIZES: space seperated list of tcp buffer sizes to use [default ${iprf_bufsizes["tcp"]}]
+IPRF_UDP_BUFSIZES: space seperated list of udp buffer sizes to use [default ${iprf_bufsizes["udp"]}]
+IPRF_TCP_WINSIZES: space seperated list of tcp iperf3 window sizes to use [default ${iprf_windizes["tcp"]}]
+IPRF_UDP_WINSIZES: space seperated list of udp iperf3 window sizes to use [default ${iprf_windizes["udp"]}]
+IPRF_TCP_BITRATES: space seperated list of tcp iperf3 bitrate targets to use [default ${iprf_bitrates["tcp"]}]
+IPRF_UDP_BITRATES: space seperated list of ucp iperf3 birate targets to use [default ${iprf_bitrates["udp"]}]
+IPRF_BASEFLGS: common iperf3 flags to pass to all iperf3 invocations [default ${iprf_baseflgs}]
+IPRF_TCP_BASEFLGS: iperf3 flags to pass to all tcp iperf3 client invocations [default ${iprf_proto_baseflgs["tcp"]}]
+IPRF_UDP_BASEFLGS: iperf3 flags to pass to all udp iperf3 client invications [default ${iprf_proto_baseflgs["udp"]}]
+IPRF_SRV_BASEFLGS: iperf3 flags to pass to all server iperf3 invocations [default ${iprf_srv_baseflgs}]
+IPRF_CLT_BASEFLGS: iperf3 flags to pass to all client iperf3 invocations [default ${iprf_clt_baseflgs}]
+EOF
+    exit -1
+}
+
+
+
+mkdir -p $iprf_datadir
+
+log "config: $(set | grep '^iprf_')"
+
+
+# this part is openshift specific but could be easily skipped if using
+# baremetal hosts
+if [[ $iprf_type == "oc" ]]; then
+    if [[ $1 == '-p' ]]; then
+	rawpods=1
+	shift
+    else
+	rawpods=0
+    fi
+    
+    if (( $rawpods )); then
+	if [[ $# == 0 ]]; then
+	    pods=( $(oc get pods --no-headers=true | cut -d' ' -f 1) )
+	else
+	    pods=( $@ )
+	fi
+    else
+	if (( $# > 0 )); then
+	    wrks=( $@ )
+	else
+	    wrks=( $(./ocwrks| grep mocr4pcc02) )
+	fi
+	
+	for wrk in ${wrks[@]}; do
+	    log "xfce4-terminal -e \"./occon $wrk\""
+	    xfce4-terminal -e "./occon --one-container=true $wrk"
+	done 
+	
+	while (( ${#wrks[@]} != ${#pods[@]} )); do
+	    pods=( $(oc get pods | grep mocr4pcc02 | cut -d' ' -f 1) )
+	done
+	delpods=( ${pods[@]} )
+    fi
+    
+    # wait till pods are ready;
+    for p in ${pods[@]}; do
+	while ! oc describe pods $p > $iprf_datadir/$p.txt; do
+	    log "ERROR: failed to describe $p retry" 
+	    sleep 0.1;
+	done
+    done
+    hosts=( ${pods[@]} )
+else
+	hosts=(${BM_HOSTS})
+fi
+
+hcp=${iprf_cp[$iprf_type]}
+hexec=${iprf_exec[$iprf_type]}
+
+## this is the part that matters
+
+log "hosts to be test:  ${hosts[@]}"
+
+
+# copy binary to
+if [[ $iprf_type == "oc" ]]; then
+	for h in ${hosts[@]}; do
+	    log "$hcp $iprf_bin $h:$iprf_rbin"
+	    ! $hcp $iprf_bin $h:$iprf_rbin && {
+		log "ERROR: failed"
+		exit -1
+	    }
+	done
+else
+	log "scp $iprf_bin $iprf_rbin" 
+	! scp $iprf_bin $iprf_rbin && {
+		log "ERROR: failed"
+		exit -1
+	}
+	for h in ${hosts[@]}; do 
+	    log "$hcp $iprf_bin ${BM_USER}@${h}:${iprf_rbin}"
+	    ! $hcp $iprf_rbin ${BM_USER}@${h}:${iprf_rbin} && {
+		log "ERROR: failed"
+		exit -1
+	    }
+	done
+fi
+
+# default is to set mtu that was specifed. if unset it will be updated
+mtu=${iprf_mtu}
+typeset -A srvips=()
+
+typeset -i num=0
+typeset -a affinity=();
+typeset  affintype=""
+if (( ${#iprf_cpuaffinity[@]} > 0 )); then
+    affintype=cpu
+    affinity=( ${iprf_cpuaffinity[@]} )
+else
+    affintype=nic
+    affinity=( ${iprf_nicaffinity[@]} )
+fi
+echo ${#iprf_connections[@]}
+
+for prot in ${iprf_protocols[@]}; do
+    ((  num += $(echo ${iprf_bufsizes[$prot]} | wc -w) *
+	$(echo ${iprf_winsizes[$prot]} | wc -w) *
+	$(echo ${iprf_bitrates[$prot]} | wc -w) *
+	${#iprf_connections[@]} *
+	${#affinity[@]} * $iprf_trials))
+done
+(( num = num * ${#hosts[@]} * ( ${#hosts[@]} - 1) ))
+
+log "Doing $num experiments"
+typeset -i i=0
+
+for srv in ${hosts[@]}; do
+    if [[ $iprf_type == "oc" ]]; then
+		if [[ -z $iprf_nic ]]; then
+		    read foo srvip < <(oc describe pods $srv | grep '^IP:')
+		else
+		    if [[ ! -v srvips[$srv] ]]; then
+			log "$hexec $srv -- bash -c \"ip --brief addr show dev $iprf_nic\""
+			read a b srvip rest< <($hexec $srv -- bash -c "ip --brief addr show dev $iprf_nic")
+			srvip=${srvip%%/*}
+			srvips[$srv]=$srvip
+		    else
+			srvip=${srvips[$srv]}
+		    fi
+		fi
+		if (( ! $rawpods )); then
+		    srvnode=${srv%%-*}
+		else
+		    srvnode=${srv}
+		fi								 
+    else
+		srvip=$($hexec ${BM_USER}@${srv} "ip -4 addr show dev ${iprf_nic} | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
+		srvnode=$($hexec ${BM_USER}@${srv} 'hostname | tr "[:upper:]" "[:lower:]" | tr -d "-"')
+    fi
+    echo "$srvnode : $dedicated_ip"
+    # determine mtu size we make the assumption that mtu on one host
+    # reflects the mtu that will be used for all communications
+    #   -- this may not be true when using multiple nics
+    [[ -z $mtu ]] && {
+    	if [[ $iprf_type == oc ]]; then
+	    if [[ -z $iprf_nic ]]; then
+    		log "$hexec $srv -- bash -c \"ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)\"" 
+    		mtu=$($hexec $srv -- bash -c "ip link show dev \$(ip --brief a | grep '$srvip'| cut -d' ' -f 1)")
+	    else
+		log "$hexec $srv -- bash -c \"ip link show dev $iprf_nic\"" 
+    		mtu=$($hexec $srv -- bash -c "ip link show dev $iprf_nic")
+	    fi
+    	    mtu=${mtu##*mtu }
+    	    mtu=${mtu%% *}
+    	    else
+    	    log "NYI"
+    	    exit -1
+    	fi
+    }
+    
+    log "server: srv:$srv srvip:$srvip srvnode:$srvnode mtu:$mtu"
+
+    for clt in ${hosts[@]}; do
+	[[ $srv == $clt ]] && continue
+	if [[ $iprf_type == "oc" ]]; then
+	    if (( ! $rawpods )); then
+		cltnode=${clt%%-*}
+	    else
+		cltnode=${clt}
+	    fi
+	else
+	    cltnode=$($hexec ${BM_USER}@${clt} 'hostname | tr "[:upper:]" "[:lower:]" | tr -d "-"')
+	fi
+ 
+	for prot in ${iprf_protocols[@]}; do
+	    for len in ${iprf_bufsizes[$prot]}; do
+		for ws in ${iprf_winsizes[$prot]}; do
+		    for br in ${iprf_bitrates[$prot]}; do			
+			for par in ${iprf_connections[@]}; do
+			    for affin in ${affinity[@]}; do
+				for ((t=0;t<iprf_trials;t++)); do
+				    ((i++))
+				    srvlog="iperf_${prot}_srv_${srvip}_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    cltlog="iperf_${prot}_clt_${srvip}_${mtu}_${len}_${ws}_${br}_${par}_${affin//,/-}_${srvnode}_${cltnode}_${t}.log"
+				    sflgs="$iprf_baseflgs $iprf_srv_baseflgs --port $iprf_port" 
+				    cflgs="$iprf_baseflgs $iprf_clt_baseflgs ${iprf_proto_baseflgs[$prot]} --client $srvip --port $iprf_port --length $len --window $ws --bitrate $br --parallel $par"	     
+				    log "$i/$num: trial:$t prot:$prot mtu:$mtu bufsize:$len ws:$ws br:$br par:$par affin:$affin srvlog:$srvlog cltlog:$cltlog"
+      				    log "$i/$num: START: $t $srv $clt"
+				    if [[ $iprf_type == oc ]]; then
+						if [[ $affintype == nic ]]; then
+						    log "oc exec $srv -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
+						    $hexec $srv -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
+						    log "oc exec $clt -- bash -c \"taskset -c \\\$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
+						    $hexec $clt -- bash -c "taskset -c \$(< /sys/class/net/$affin/device/local_cpulist) $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+						elif [[ $affintype == cpu ]]; then
+						    log "oc exec $srv -- bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\""
+						    $hexec $srv -- bash -c "taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &" 2>&1 | tee -a $iprf_log
+						    log "oc exec $clt -- bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\""
+						    $hexec $clt -- bash -c "taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1" 2>&1 | tee -a $iprf_log
+						else
+						    log "ERROR: bad $affintype"
+						    exit -1
+						fi
+					    log "$i/$num: END: $srv $clt"
+					    sleep 0.1
+	      				    log "oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
+					    oc cp $srv:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
+					    log "oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
+	      				    oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+				    else
+						log "$hexec ${BM_USER}@${srv} 'bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\"'"
+						$hexec ${BM_USER}@${srv} "bash -c 'taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &'" 2>&1 | tee -a "$iprf_log"
+						log "$hexec ${BM_USER}@${clt} 'bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\"'"
+						$hexec ${BM_USER}@${clt} "bash -c 'taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1'" 2>&1 | tee -a "$iprf_log"
+						log "$i/$num: END: $srv $clt"
+					    sleep 0.1
+	      				log "$hcp ${BM_USER}@${srv}:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
+					    $hcp ${BM_USER}@${srv}:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
+					    log "$hcp ${BM_USER}@${clt}:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
+	      				$hcp ${BM_USER}@${clt}:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+				    fi
+				done
+			    done  
+			done 
+		    done
+		done
+	    done
+	done
+    done
+done
+
