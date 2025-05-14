@@ -1,0 +1,19 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: ens8f0np0-policy 
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: nvd-srv-32.nvidia.eng.rdu2.dc.redhat.com
+  desiredState:
+    interfaces:
+    - name: ens8f0np0 
+      description: Configuring ens8f0np0 on nvd-srv-32.nvidia.eng.rdu2.dc.redhat.com
+      type: ethernet 
+      state: up 
+      ipv4:
+        dhcp: false 
+        address:
+        - ip: 10.6.145.32
+          prefix-length: 24
+        enabled: true
