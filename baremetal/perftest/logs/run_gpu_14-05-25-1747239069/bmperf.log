@@ -1,0 +1,193 @@
+1747239069 perf : hosts to be test: 192.168.50.173 192.168.50.166
+1747239073 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747239073 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239074 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239151 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747239151 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239153 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239179 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747239179 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239181 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239258 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747239258 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239260 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239286 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747239286 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239288 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239368 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747239368 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239369 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239395 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747239395 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239397 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239477 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [0] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747239477 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239479 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239505 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747239505 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239506 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239584 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747239584 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239585 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239612 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747239612 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239613 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239691 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747239691 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239693 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239719 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747239719 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239720 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239800 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747239800 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239802 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239828 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747239828 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239830 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239911 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [1] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747239911 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239913 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747239939 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747239939 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747239941 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240018 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747240018 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240019 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240046 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747240046 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240048 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240125 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747240125 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240127 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240154 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747240154 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240156 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240235 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747240235 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240237 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240264 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747240264 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240266 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240346 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [2] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747240346 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240347 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240374 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747240374 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240376 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240453 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [0] Node mocr4pcc04u16 (192.168.50.166)
+1747240453 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240455 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240481 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747240481 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240483 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240560 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [1] Node mocr4pcc04u16 (192.168.50.166)
+1747240560 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240562 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240589 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747240589 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240591 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240670 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [2] Node mocr4pcc04u16 (192.168.50.166)
+1747240670 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240672 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240698 perf : ib_write_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747240698 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240700 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240780 perf : ib_read_bw : Node mocr4pcc04u15 (192.168.50.173/ - 192.168.60.174) [3] <-> [3] Node mocr4pcc04u16 (192.168.50.166)
+1747240780 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240782 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.174 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240810 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747240810 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240812 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240889 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747240889 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240891 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240917 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747240917 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240919 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747240997 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747240997 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747240999 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241025 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241025 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241026 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241106 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241106 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241108 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241134 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747241134 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241136 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241216 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [0] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747241216 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241218 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241243 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747241243 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241246 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241323 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747241323 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241324 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241351 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747241351 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241352 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241430 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747241430 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241432 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241458 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241458 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241460 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241540 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241540 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241541 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241568 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747241568 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241570 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241650 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [1] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747241650 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241652 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241679 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747241679 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241680 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241758 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747241758 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241759 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241786 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747241786 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241788 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241865 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747241865 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241867 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241893 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241893 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241895 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747241975 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747241975 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747241977 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242003 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747242003 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242005 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242087 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [2] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747242087 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242089 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242116 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747242116 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242117 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242194 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [0] Node mocr4pcc04u15 (192.168.50.173)
+1747242194 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242196 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=0 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242223 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747242223 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242225 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242303 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [1] Node mocr4pcc04u15 (192.168.50.173)
+1747242303 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242304 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=1 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242331 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747242331 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242333 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242413 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [2] Node mocr4pcc04u15 (192.168.50.173)
+1747242413 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242415 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=2 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242441 perf : ib_write_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747242441 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242443 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_write_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+1747242524 perf : ib_read_bw : Node mocr4pcc04u16 (192.168.50.166/ - 192.168.60.83) [3] <-> [3] Node mocr4pcc04u15 (192.168.50.173)
+1747242524 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.166 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+1747242525 perf : ssh -J cloud-user@128.31.20.171 cloud-user@192.168.50.173 "./perftest/ib_read_bw -a -F --report_gbits -q 16 -d mlx5_2 --use_cuda=3 --use_cuda_dmabuf 192.168.60.83 > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
