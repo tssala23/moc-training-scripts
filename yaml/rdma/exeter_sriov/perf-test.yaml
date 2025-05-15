@@ -1,0 +1,83 @@
+apiVersion: kubeflow.org/v1
+kind: PyTorchJob
+metadata:
+  name: rdma-cuda-perftest
+  labels: &labels
+    rdma-test: "true"
+spec:
+  pytorchReplicaSpecs:
+    Master:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        metadata:
+          labels: *labels
+          annotations: &annotations
+            k8s.v1.cni.cncf.io/networks: network-cx7-eno5np0,network-cx7-eno6np0,network-cx7-eno7np0,network-cx7-eno8np0
+        spec:
+          containers:
+            - name: pytorch   # â† required name
+              image: mellanox/cuda-perftest:ubuntu20.04-cuda-devel-11.2.1-rdma-38-perftest-4.5
+              imagePullPolicy: IfNotPresent
+              command: ["sleep", "infinity"]
+              volumeMounts: &mounts
+                - name: storage-volume
+                  mountPath: /mnt/storage
+                - name: shm-volume
+                  mountPath: /dev/shm
+                - name: shared-volume
+                  mountPath: /mnt/shared
+                - name: infiniband
+                  mountPath: /dev/infiniband
+              securityContext:
+                privileged: true
+              resources: &resource_req
+                requests:
+                  nvidia.com/gpu: "4"
+                  openshift.io/cx7_eno5: "1"
+                  openshift.io/cx7_eno6: "1"
+                  openshift.io/cx7_eno7: "1"
+                  openshift.io/cx7_eno8: "1"
+                  memory: "16Gi"
+                  cpu: "16"
+                limits:
+                  nvidia.com/gpu: "4"
+                  openshift.io/cx7_eno5: "1"
+                  openshift.io/cx7_eno6: "1"
+                  openshift.io/cx7_eno7: "1"
+                  openshift.io/cx7_eno8: "1"
+          volumes: &volumes
+            - name: storage-volume
+              persistentVolumeClaim:
+                claimName: my-name-is-inigo-montoya
+            - name: shm-volume
+              emptyDir:
+                medium: Memory
+                sizeLimit: 10Gi
+            - name: shared-volume
+              emptyDir: {}
+            - name: infiniband
+              hostPath:
+                path: /dev/infiniband
+                type: Directory
+    Worker:
+      replicas: 3
+      restartPolicy: Never
+      template:
+        metadata:
+          labels: *labels
+          annotations: *annotations
+        spec:
+          containers:
+            - name: pytorch   # â† required name
+              image: mellanox/cuda-perftest:ubuntu20.04-cuda-devel-11.2.1-rdma-38-perftest-4.5
+              imagePullPolicy: IfNotPresent
+              command: ["sleep", "infinity"]
+              volumeMounts: *mounts
+              securityContext:
+                privileged: true
+              resources: *resource_req
+          volumes: *volumes
+
+
+
