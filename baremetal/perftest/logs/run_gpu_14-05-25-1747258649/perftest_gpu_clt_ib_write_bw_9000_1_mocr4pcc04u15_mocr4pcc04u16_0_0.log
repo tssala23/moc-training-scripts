@@ -1,0 +1,66 @@
+Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 0
+[pid = 9588, dev = 0] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 16777216 bytes GPU buffer
+allocated GPU buffer address at 00007ff10a800000 pointer=0x7ff10a800000
+using DMA-BUF for GPU buffer address at 0x7ff10a800000 aligned at 0x7ff10a800000 with aligned size 16777216
+Calling ibv_reg_dmabuf_mr(offset=0, size=16777216, addr=0x7ff10a800000, fd=55) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0224 PSN 0x89f38a RKey 0x183100 VAddr 0x007ff10b000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0224 PSN 0x219e2f RKey 0x183100 VAddr 0x007fb687000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          5000           0.080357            0.079605            4.975322
+ 4          5000             0.16               0.16   		     5.049841
+ 8          5000             0.33               0.32   		     5.054181
+ 16         5000             0.64               0.63   		     4.955943
+ 32         5000             1.30               1.28   		     5.013085
+ 64         5000             2.61               2.59   		     5.058017
+ 128        5000             5.19               5.16   		     5.034841
+ 256        5000             10.43              10.33  		     5.043219
+ 512        5000             20.80              20.61  		     5.031497
+ 1024       5000             38.56              38.48  		     4.697174
+ 2048       5000             74.32              73.29  		     4.473152
+ 4096       5000             118.15             117.33 		     3.580765
+ 8192       5000             157.37             157.05 		     2.396392
+ 16384      5000             182.04             181.96 		     1.388214
+ 32768      5000             197.20             197.14 		     0.752047
+ 65536      5000             198.46             198.44 		     0.378502
+ 131072     5000             200.45             200.44 		     0.191158
+ 262144     5000             201.29             201.28 		     0.095979
+ 524288     5000             201.25             201.25 		     0.047981
+ 1048576    5000             201.37             201.37 		     0.024005
+ 2097152    5000             201.38             201.38 		     0.012003
+ 4194304    5000             201.38             201.38 		     0.006002
+ 8388608    5000             201.38             201.38 		     0.003001
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007ff10a800000
+destroying current CUDA Ctx
