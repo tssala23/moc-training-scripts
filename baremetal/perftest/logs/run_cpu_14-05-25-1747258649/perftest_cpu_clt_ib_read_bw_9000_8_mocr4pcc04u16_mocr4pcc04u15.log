@@ -1,0 +1,75 @@
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 8		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 5
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x01ec PSN 0x86ad35 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eaac59000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01ed PSN 0x98c77b OUT 0x10 RKey 0x182f00 VAddr 0x007f0eab459000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01ee PSN 0x1af2a9 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eabc59000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01ef PSN 0x6fc744 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eac459000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01f0 PSN 0xc0a607 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eacc59000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01f1 PSN 0x3d505d OUT 0x10 RKey 0x182f00 VAddr 0x007f0ead459000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01f2 PSN 0xf486f8 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eadc59000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x01f3 PSN 0xc58391 OUT 0x10 RKey 0x182f00 VAddr 0x007f0eae459000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x01ec PSN 0x115867 OUT 0x10 RKey 0x182e00 VAddr 0x007f22b7bc4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01ed PSN 0x10afc OUT 0x10 RKey 0x182e00 VAddr 0x007f22b83c4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01ee PSN 0x9b2360 OUT 0x10 RKey 0x182e00 VAddr 0x007f22b8bc4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01ef PSN 0x67bf8 OUT 0x10 RKey 0x182e00 VAddr 0x007f22b93c4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01f0 PSN 0xabc1e2 OUT 0x10 RKey 0x182e00 VAddr 0x007f22b9bc4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01f1 PSN 0xcc7b66 OUT 0x10 RKey 0x182e00 VAddr 0x007f22ba3c4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01f2 PSN 0x697c97 OUT 0x10 RKey 0x182e00 VAddr 0x007f22babc4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x01f3 PSN 0x5c7f0e OUT 0x10 RKey 0x182e00 VAddr 0x007f22bb3c4000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          8000           0.079646            0.079172            4.948229
+ 4          8000             0.16               0.16   		     4.939125
+ 8          8000             0.32               0.31   		     4.875343
+ 16         8000             0.64               0.62   		     4.872433
+ 32         8000             1.27               1.24   		     4.833486
+ 64         8000             2.57               2.55   		     4.980080
+ 128        8000             5.10               4.96   		     4.842526
+ 256        8000             10.19              10.13  		     4.946210
+ 512        8000             20.30              19.84  		     4.842938
+ 1024       8000             40.42              39.10  		     4.773299
+ 2048       8000             80.84              80.66  		     4.922925
+ 4096       8000             161.33             160.57 		     4.900309
+ 8192       8000             226.86             226.58 		     3.457366
+ 16384      8000             220.74             218.48 		     1.666882
+ 32768      8000             221.57             221.54 		     0.845108
+ 65536      8000             225.38             225.36 		     0.429839
+ 131072     8000             226.29             83.09  		     0.079239
+ 262144     8000             226.52             151.03 		     0.072016
+ 524288     8000             224.84             214.38 		     0.051112
+ 1048576    8000             226.14             222.22 		     0.026491
+ 2097152    8000             227.97             227.97 		     0.013588
+ 4194304    8000             228.16             228.16 		     0.006800
+ 8388608    8000             228.30             228.30 		     0.003402
+---------------------------------------------------------------------------------------

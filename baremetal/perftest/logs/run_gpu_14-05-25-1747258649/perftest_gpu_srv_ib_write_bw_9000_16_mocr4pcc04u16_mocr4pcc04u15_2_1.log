@@ -1,0 +1,107 @@
+Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+
+************************************
+* Waiting for client to connect... *
+************************************
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 2
+[pid = 27601, dev = 2] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 268435456 bytes GPU buffer
+allocated GPU buffer address at 00007f6c80000000 pointer=0x7f6c80000000
+using DMA-BUF for GPU buffer address at 0x7f6c80000000 aligned at 0x7f6c80000000 with aligned size 268435456
+Calling ibv_reg_dmabuf_mr(offset=0, size=268435456, addr=0x7f6c80000000, fd=55) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 16		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0e81 PSN 0xb67cf1 RKey 0x183000 VAddr 0x007f6c88000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e82 PSN 0x5d95be RKey 0x183000 VAddr 0x007f6c88800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e83 PSN 0x8483fa RKey 0x183000 VAddr 0x007f6c89000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e84 PSN 0x26f98a RKey 0x183000 VAddr 0x007f6c89800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e85 PSN 0xea650c RKey 0x183000 VAddr 0x007f6c8a000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e86 PSN 0xc7b048 RKey 0x183000 VAddr 0x007f6c8a800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e87 PSN 0x3a0cd1 RKey 0x183000 VAddr 0x007f6c8b000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e88 PSN 0x3603c0 RKey 0x183000 VAddr 0x007f6c8b800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e89 PSN 0xb67f2e RKey 0x183000 VAddr 0x007f6c8c000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8a PSN 0xaf84e1 RKey 0x183000 VAddr 0x007f6c8c800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8b PSN 0x1162a7 RKey 0x183000 VAddr 0x007f6c8d000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8c PSN 0xae3ee5 RKey 0x183000 VAddr 0x007f6c8d800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8d PSN 0x610037 RKey 0x183000 VAddr 0x007f6c8e000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8e PSN 0x7f7e1 RKey 0x183000 VAddr 0x007f6c8e800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e8f PSN 0x7aa8c1 RKey 0x183000 VAddr 0x007f6c8f000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x0e90 PSN 0x838327 RKey 0x183000 VAddr 0x007f6c8f800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0e81 PSN 0x79334d RKey 0x182f00 VAddr 0x007f631e000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e82 PSN 0xebe2ea RKey 0x182f00 VAddr 0x007f631e800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e83 PSN 0xe7b6 RKey 0x182f00 VAddr 0x007f631f000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e84 PSN 0x85896 RKey 0x182f00 VAddr 0x007f631f800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e85 PSN 0x54a528 RKey 0x182f00 VAddr 0x007f6320000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e86 PSN 0x6e2434 RKey 0x182f00 VAddr 0x007f6320800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e87 PSN 0xcf704d RKey 0x182f00 VAddr 0x007f6321000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e88 PSN 0x82c78c RKey 0x182f00 VAddr 0x007f6321800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e89 PSN 0x5f250a RKey 0x182f00 VAddr 0x007f6322000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8a PSN 0x51cb8d RKey 0x182f00 VAddr 0x007f6322800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8b PSN 0x3801e3 RKey 0x182f00 VAddr 0x007f6323000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8c PSN 0x7ff371 RKey 0x182f00 VAddr 0x007f6323800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8d PSN 0xf0a7d3 RKey 0x182f00 VAddr 0x007f6324000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8e PSN 0x987d4d RKey 0x182f00 VAddr 0x007f6324800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e8f PSN 0x727fbd RKey 0x182f00 VAddr 0x007f6325000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0e90 PSN 0x807473 RKey 0x182f00 VAddr 0x007f6325800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    80000            169.92             169.92 		     0.002532
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f6c80000000
+destroying current CUDA Ctx
