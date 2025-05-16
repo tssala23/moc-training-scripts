@@ -6,7 +6,7 @@ typeset -r ts=$(date +%d-%m-%y-%s)
 
 NIC="eno6np0"
 HCA="mlx5_2"
-FLAGS="-a -R -T 41 -F -x 3 -m 4096 --report_gbits -d ${HCA} -p 10000 "
+FLAGS="-a -R -T 41 -F -x 3 -m 4096 --report_gbits -d ${HCA} -p 10000"
 MTU=9000
 BM_HOSTS="sriovlegacy-workload-uno sriovlegacy-workload-dos"
 
@@ -17,7 +17,7 @@ function log()
 
 typeset -a  hosts=()
 
-dryrun=1
+dryrun=0
 
 hexec="oc exec"
 
@@ -37,15 +37,17 @@ for srv in ${hosts[@]}; do
 			for QP in 1 2 4 8 16 32; do
 				log "$TEST : Node ${srvnode} (Pod ${srv} - Interface IP ${srvip})  <->  Node ${cltnode} (Pod ${clt})"
 				LOGFILE="${LOGDIR}/perftest_cpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
-				log "$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} 2&>1 > ${LOGFILE}"
+				COMMAND="$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} 2>&1 > ${LOGFILE} &" 
+				log "${COMMAND}"
 				if [ "$dryrun" -eq 0 ]; then
-					$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} 2&>1 > ${LOGFILE} &
+					eval "${COMMAND}" 
 					sleep 1
 				fi
 				LOGFILE="${LOGDIR}/perftest_cpu_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
-				log "$hexec ${clt} --  ${TEST} ${FLAGS} -q ${QP} ${srvip} 2&>1 > ${LOGFILE}"
+				COMMAND="$hexec ${clt} -- ${TEST} ${FLAGS} -q ${QP} ${srvip} 2>&1 > ${LOGFILE}"
+				log "${COMMAND}"
 				if [ "$dryrun" -eq 0 ]; then
-					$hexec ${clt} -- ${TEST} ${FLAGS} -q ${QP} ${srvip} 2&>1 > ${LOGFILE}
+					eval "${COMMAND}" 
 					sleep 1
 				fi
 			done
@@ -69,15 +71,17 @@ for srv in ${hosts[@]}; do
 					for QP in 1 2 4 8 16 32; do
 						log "$TEST : Node ${srvnode} (Pod ${srv} - Interface IP ${srvip}) [${GPU_S}] <-> [${GPU_C}] Node ${cltnode} (Pod ${clt})"
 						LOGFILE="${LOGDIR}/perftest_gpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
-						log "$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf 2&>1 > ${LOGFILE}"
+						COMMAND="$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf 2>&1 > ${LOGFILE} &"
+						log "${COMMAND}"
 						if [ "$dryrun" -eq 0 ]; then
-							$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} 2&>1 > ${LOGFILE} &
+							eval "${COMMAND}" 
 							sleep 1
 						fi
 						LOGFILE="${LOGDIR}/perftest_gpu_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
-						log "$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} 2&>1 > ${LOGFILE}"
+						COMMAND="$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} 2>&1 > ${LOGFILE}"
+						log "${COMMAND}"
 						if [ "$dryrun" -eq 0 ]; then
-							$hexec ${clt} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} 2&>1 > ${LOGFILE} 
+							eval "${COMMAND}" 
 							sleep 1
 						fi
 					done
