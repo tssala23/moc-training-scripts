@@ -1,0 +1,58 @@
+
+************************************
+* Waiting for client to connect... *
+************************************
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 1
+[pid = 60559, dev = 1] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 67108864 bytes GPU buffer
+allocated GPU buffer address at 00007fa584000000 pointer=0x7fa584000000
+using DMA-BUF for GPU buffer address at 0x7fa584000000 aligned at 0x7fa584000000 with aligned size 67108864
+Calling ibv_reg_dmabuf_mr(offset=0, size=67108864, addr=0x7fa584000000, fd=55) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 4		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x20ea PSN 0x590d9a OUT 0x10 RKey 0x182f00 VAddr 0x007fa586000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x20eb PSN 0x5903b3 OUT 0x10 RKey 0x182f00 VAddr 0x007fa586800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x20ec PSN 0x38734b OUT 0x10 RKey 0x182f00 VAddr 0x007fa587000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x20ed PSN 0x72a507 OUT 0x10 RKey 0x182f00 VAddr 0x007fa587800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x20ea PSN 0xc59148 OUT 0x10 RKey 0x182f00 VAddr 0x007f7ad4000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x20eb PSN 0x4368c9 OUT 0x10 RKey 0x182f00 VAddr 0x007f7ad4800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x20ec PSN 0x1f41a9 OUT 0x10 RKey 0x182f00 VAddr 0x007f7ad5000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x20ed PSN 0xc8f70d OUT 0x10 RKey 0x182f00 VAddr 0x007f7ad5800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    4000             188.55             188.55 		     0.002810
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007fa584000000
+destroying current CUDA Ctx

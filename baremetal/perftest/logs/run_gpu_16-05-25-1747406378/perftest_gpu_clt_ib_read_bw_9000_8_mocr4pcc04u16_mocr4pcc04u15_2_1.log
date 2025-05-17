@@ -1,0 +1,93 @@
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 1
+[pid = 63439, dev = 1] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 134217728 bytes GPU buffer
+allocated GPU buffer address at 00007f3e4c000000 pointer=0x7f3e4c000000
+using DMA-BUF for GPU buffer address at 0x7f3e4c000000 aligned at 0x7f3e4c000000 with aligned size 134217728
+Calling ibv_reg_dmabuf_mr(offset=0, size=134217728, addr=0x7f3e4c000000, fd=55) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 8		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 5
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x2268 PSN 0xac1f78 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e50000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x2269 PSN 0xf6a002 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e50800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226a PSN 0xd6e24 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e51000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226b PSN 0x2dca3 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e51800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226c PSN 0x28197a OUT 0x10 RKey 0x182f00 VAddr 0x007f3e52000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226d PSN 0x6ca54 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e52800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226e PSN 0x55f23 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e53000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x226f PSN 0xcc2fe0 OUT 0x10 RKey 0x182f00 VAddr 0x007f3e53800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x2268 PSN 0x91cea6 OUT 0x10 RKey 0x182f00 VAddr 0x007f240a000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x2269 PSN 0x8d8a98 OUT 0x10 RKey 0x182f00 VAddr 0x007f240a800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226a PSN 0x5a1402 OUT 0x10 RKey 0x182f00 VAddr 0x007f240b000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226b PSN 0x52f029 OUT 0x10 RKey 0x182f00 VAddr 0x007f240b800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226c PSN 0x52cd88 OUT 0x10 RKey 0x182f00 VAddr 0x007f240c000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226d PSN 0xe2084a OUT 0x10 RKey 0x182f00 VAddr 0x007f240c800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226e PSN 0xd1c4e1 OUT 0x10 RKey 0x182f00 VAddr 0x007f240d000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x226f PSN 0x6435c6 OUT 0x10 RKey 0x182f00 VAddr 0x007f240d800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          8000           0.059701            0.059207            3.700414
+ 4          8000             0.12               0.12   		     3.693649
+ 8          8000             0.24               0.24   		     3.725193
+ 16         8000             0.48               0.48   		     3.747687
+ 32         8000             0.96               0.96   		     3.733084
+ 64         8000             1.92               1.90   		     3.711298
+ 128        8000             3.82               3.80   		     3.706946
+ 256        8000             7.71               7.66   		     3.740590
+ 512        8000             15.54              15.44  		     3.768910
+ 1024       8000             31.29              30.45  		     3.716643
+ 2048       8000             61.34              60.86  		     3.714641
+ 4096       8000             66.90              65.13  		     1.987721
+ 8192       8000             186.89             173.04 		     2.640307
+ 16384      8000             184.09             184.07 		     1.404354
+ 32768      8000             188.86             135.44 		     0.516679
+ 65536      8000             189.84             161.76 		     0.308538
+ 131072     8000             191.25             178.81 		     0.170530
+ 262144     8000             197.65             197.64 		     0.094243
+ 524288     8000             195.16             195.15 		     0.046528
+ 1048576    8000             198.16             198.16 		     0.023622
+ 2097152    8000             198.04             198.04 		     0.011804
+ 4194304    8000             192.43             192.43 		     0.005735
+ 8388608    8000             163.44             163.44 		     0.002435
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f3e4c000000
+destroying current CUDA Ctx

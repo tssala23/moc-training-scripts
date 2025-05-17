@@ -1,0 +1,69 @@
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 0
+[pid = 50784, dev = 0] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 33554432 bytes GPU buffer
+allocated GPU buffer address at 00007f897c000000 pointer=0x7f897c000000
+using DMA-BUF for GPU buffer address at 0x7f897c000000 aligned at 0x7f897c000000 with aligned size 33554432
+Calling ibv_reg_dmabuf_mr(offset=0, size=33554432, addr=0x7f897c000000, fd=55) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 2		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Outstand reads  : 16
+ rdma_cm QPs	 : OFF
+ Data ex. method : Ethernet
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x1a04 PSN 0xbfcb7e OUT 0x10 RKey 0x182e00 VAddr 0x007f897d000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ local address: LID 0000 QPN 0x1a05 PSN 0x6c4290 OUT 0x10 RKey 0x182e00 VAddr 0x007f897d800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x1a04 PSN 0x40f4bc OUT 0x10 RKey 0x182e00 VAddr 0x007f45d3000000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x1a05 PSN 0x16f92d OUT 0x10 RKey 0x182e00 VAddr 0x007f45d3800000
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          2000           0.056338            0.055896            3.493512
+ 4          2000             0.11               0.11   		     3.495463
+ 8          2000             0.23               0.23   		     3.549684
+ 16         2000             0.46               0.45   		     3.552398
+ 32         2000             0.90               0.90   		     3.505757
+ 64         2000             1.80               1.79   		     3.502812
+ 128        2000             3.63               3.62   		     3.539508
+ 256        2000             7.13               7.12   		     3.476670
+ 512        2000             14.40              14.36  		     3.504837
+ 1024       2000             28.94              28.48  		     3.476931
+ 2048       2000             56.71              55.88  		     3.410817
+ 4096       2000             111.71             110.43 		     3.370125
+ 8192       2000             139.24             139.10 		     2.122444
+ 16384      2000             162.13             162.10 		     1.236690
+ 32768      2000             196.74             196.70 		     0.750337
+ 65536      2000             197.60             197.57 		     0.376842
+ 131072     2000             197.88             197.87 		     0.188699
+ 262144     2000             198.04             198.03 		     0.094430
+ 524288     2000             198.02             198.02 		     0.047211
+ 1048576    2000             198.11             198.11 		     0.023617
+ 2097152    2000             198.12             198.12 		     0.011809
+ 4194304    2000             197.97             195.32 		     0.005821
+ 8388608    2000             198.14             198.14 		     0.002953
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f897c000000
+destroying current CUDA Ctx
