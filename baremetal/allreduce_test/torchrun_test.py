@@ -39,24 +39,24 @@ sizes = [2**x for x in range(27, 32 + 1)]
 results = []
 
 if rank == 0:
-    print(f"{'Size (Bytes)':>12}  {'Avg BW (Gbps)':>15} {'Peak BW (Gbps)':>12}")
+    print(f"{'Size (Bytes)':>12}  {'Avg Throughput (Gbps)':>15} {'Peak Throughput (Gbps)':>12}")
 
 for size in sizes:
     result = run_allreduce(size, device)
     size_gbits = int((size*8)/(1024*1024*1024))
-    all_bws = []
+    all_tps = []
     for runtime in result:
-        all_bws.append(size_gbits/runtime)
-    avg_bw = sum(all_bws)/len(all_bws)
-    peak_bw = max(all_bws)    
+        all_tps.append(size_gbits/runtime)
+    avg_tp = sum(all_tps)/len(all_tps)
+    peak_tp = max(all_tps)    
     if rank == 0:
-        print(f"{size:12.2f} {avg_bw:15.2f} {peak_bw:12.2f}")
-        results.append((TYPE,size,avg_bw,peak_bw))
+        print(f"{size:12.2f} {avg_tp:15.2f} {peak_tp:12.2f}")
+        results.append((TYPE,size,avg_tp,peak_tp))
 
 if rank == 0:
     with open("results.csv", mode="w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["Type", "Size (Bytes)", "Avg BW (Gbps)", "Peak BW (Gbps)"])
+        writer.writerow(["Type", "Size (Bytes)", "Avg Throughput (Gbps)", "Peak Throughput (Gbps)"])
         writer.writerows(results)
 
 dist.destroy_process_group()
