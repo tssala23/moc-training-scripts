@@ -1,0 +1,611 @@
+torchrun-multipod-0:124:124 [3] NCCL INFO cudaDriverVersion 12080
+torchrun-multipod-0:124:124 [3] NCCL INFO Bootstrap: Using eth0:10.131.0.21<0>
+torchrun-multipod-0:124:124 [3] NCCL INFO NCCL version 2.26.2+cuda12.2
+torchrun-multipod-0:124:124 [3] NCCL INFO init.cc:1670 Cuda Host Alloc Size 4 pointer 0x7f547d400000
+torchrun-multipod-0:124:124 [3] NCCL INFO Comm config Blocking set to 1
+torchrun-multipod-0:124:153 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. Using internal net plugin.
+torchrun-multipod-0:124:153 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+torchrun-multipod-0:124:153 [3] NCCL INFO NET/IB : No device found.
+torchrun-multipod-0:124:153 [3] NCCL INFO NET/IB : Using [RO]; OOB eth0:10.131.0.21<0>
+torchrun-multipod-0:124:153 [3] NCCL INFO NET/Socket : Using [0]eth0:10.131.0.21<0>
+torchrun-multipod-0:124:153 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+torchrun-multipod-0:124:153 [3] NCCL INFO Using network Socket
+torchrun-multipod-0:124:153 [3] NCCL INFO NCCL_DMABUF_ENABLE set by environment to 1.
+torchrun-multipod-0:124:153 [3] NCCL INFO ncclCommInitRankConfig comm 0x5565ac74f750 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId c6000 commId 0xe8cef49349e81aed - Init START
+torchrun-multipod-0:123:152 [2] NCCL INFO RAS network listening socket at 10.131.0.21<48979>
+torchrun-multipod-0:123:152 [2] NCCL INFO RAS client listening socket at ::1<28028>
+torchrun-multipod-0:123:152 [2] NCCL INFO Mem Realloc old size 0, new size 256 pointer 0x55cf6cbef0f0
+torchrun-multipod-0:123:161 [0] NCCL INFO RAS thread started
+torchrun-multipod-0:123:161 [0] NCCL INFO Mem Realloc old size 0, new size 32 pointer 0x7f8b3c004e10torchrun-multipod-0:121:150 [0] NCCL INFO Bootstrap timings total 0.877914 (create 0.000113, send 0.000451, recv 0.016385, ring 0.859521, delay 0.000001)
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS handling local addRanks request (old nRasPeers 0)
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS finished local processing of addRanks request (new nRasPeers 8, nRankPeers 8)
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS link 1: opening new primary connection with 10.131.0.21<48979>
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS link -1: calculated deferred primary connection with 10.128.2.115<60811>
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS handling connInitAck from 10.131.0.21<48979> (nack 0)
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS established connection with 10.131.0.21<48979> (sendQ empty, experiencingDelays 0, startRetryTime 0.00s)
+torchrun-multipod-0:121:157 [0] NCCL INFO Mem torchrun-multipod-0:122:159 [0] NCCL INFO Mem Realloc oltorchrun-multipod-0:121:157 [0] NCCL INFO RAS torchrun-multipod-0:122:159 [0] NCCL INFO RAS new incomitorchrun-multipod-0:121:157 [0] NCCL INFO RAS torchrun-multipod-0:122:159 [0] NCCL INFO RAS handling connInit from 10.128.2.115<59202> (version 22602, listeningAddr 10.128.2.115<38775>, torchrun-multipod-0:123:152 [2] NCCL INFO TOPO/NET : Importing network plugins to topology
+torchrun-multipod-0:123:152 [2] NCCL INFO Retrieving state for Socket
+torchrun-multipod-0:123:152 [2] NCCL INFO Initialized state 0 for Socket
+torchrun-multipod-0:123:152 [2] NCCL INFO NET/Socket : GPU Direct RDMA Disabled for HCA 0 'eth0'
+torchrun-multipod-0:123:152 [2] NCCL INFO ncclTopoPopulateNics : Filled eth0 in topo with pciPath=(null) keep=1 coll=(null)
+torchrun-multipod-0:123:152 [2] NCCL INFO === System : maxBw 1.2 totalBw 370.8 ===
+torchrun-multipod-0:123:152 [2] NCCL INFO CPU/0-0 (1/2/-1)
+torchrun-multipod-0:123:152 [2] NCCL INFO + PCI[5000.0] - NIC/0-0
+torchrun-multipod-0:123:152 [2] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+torchrun-multipod-0:123:152 [2] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+torchrun-multipod-0:123:152 [2] NCCL INFO + PCI[48.0] - PCI/0-1000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO               + PCI[48.0] - PCI/0-4000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO                             + PCI[48.0] - GPU/0-6000 (0)
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-26000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-a6000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-c6000
+torchrun-multipod-0:123:152 [2] NCCL INFO + PCI[48.0] - PCI/0-21000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO               + PCI[48.0] - PCI/0-24000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO                             + PCI[48.0] - GPU/0-26000 (1)
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-6000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-c6000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-a6000
+torchrun-multipod-0:123:152 [2] NCCL INFO + SYS[16.0] - CPU/0-1
+torchrun-multipod-0:123:152 [2] NCCL INFO CPU/0-1 (1/2/-1)
+torchrun-multipod-0:123:152 [2] NCCL INFO + PCI[48.0] - PCI/0-a1000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO               + PCI[48.0] - PCI/0-a4000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO                             + PCI[48.0] - GPU/0-a6000 (2)
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-26000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-6000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-c6000
+torchrun-multipod-0:123:152 [2] NCCL INFO + PCI[48.0] - PCI/0-c1000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO               + PCI[48.0] - PCI/0-c4000 (15b3197900000000)
+torchrun-multipod-0:123:152 [2] NCCL INFO                             + PCI[48.0] - GPU/0-c6000 (3)
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-6000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-26000
+torchrun-multipod-0:123:152 [2] NCCL INFO                                           + NVL[123.6] - GPU/0-a6000
+torchrun-multipod-0:123:152 [2] NCCL INFO + SYS[16.0] - CPU/0-0
+torchrun-multipod-0:123:152 [2] NCCL INFO ==========================================
+torchrun-multipod-0:123:152 [2] NCCL INFO GPU/0-6000 :GPU/0-6000 (0/5000.0/LOC) GPU/0-26000 (1/123.6/NVL) GPU/0-a6000 (1/123.6/NVL) GPU/0-c6000 (1/123.6/NVL) CPU/0-0 (3/48.0/PHB) CPU/0-1 (4/16.0/SYS) NET/0-0 (5/1.2/PHB) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO GPU/0-26000 :GPU/0-6000 (1/123.6/NVL) GPU/0-26000 (0/5000.0/LOC) GPU/0-a6000 (1/123.6/NVL) GPU/0-c6000 (1/123.6/NVL) CPU/0-0 (3/48.0/PHB) CPU/0-1 (4/16.0/SYS) NET/0-0 (5/1.2/PHB) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO GPU/0-a6000 :GPU/0-6000 (1/123.6/NVL) GPU/0-26000 (1/123.6/NVL) GPU/0-a6000 (0/5000.0/LOC) GPU/0-c6000 (1/123.6/NVL) CPU/0-0 (4/16.0/SYS) CPU/0-1 (3/48.0/PHB) NET/0-0 (6/1.2/SYS) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO GPU/0-c6000 :GPU/0-6000 (1/123.6/NVL) GPU/0-26000 (1/123.6/NVL) GPU/0-a6000 (1/123.6/NVL) GPU/0-c6000 (0/5000.0/LOC) CPU/0-0 (4/16.0/SYS) CPU/0-1 (3/48.0/PHB) NET/0-0 (6/1.2/SYS) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO NET/0-0 :GPU/0-6000 (5/1.2/PHB) GPU/0-26000 (5/1.2/PHB) GPU/0-a6000 (6/1.2/SYS) GPU/0-c6000 (6/1.2/SYS) CPU/0-0 (2/1.2/PHB) CPU/0-1 (3/1.2/SYS) NET/0-0 (0/5000.0/LOC) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO NET/0-0 :GPU/0-6000 (5/1.2/PHB) GPU/0-26000 (5/1.2/PHB) GPU/0-a6000 (6/1.2/SYS) GPU/0-c6000 (6/1.2/SYS) CPU/0-0 (2/1.2/PHB) CPU/0-1 (3/1.2/SYS) NET/0-0 (0/5000.0/LOC) NET/0-0 (0/0.0/DIS) 
+torchrun-multipod-0:123:152 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff,ffffffff,ffffffff,ffffffff,00000000,00000000,00000000,00000000,ffffffff,ffffffff,ffffffff,ffffffff,00000000,00000000,00000000,00000000
+torchrun-multipod-0:123:152 [2] NCCL INFO NVLS multicast support is not available on dev 2
+torchrun-multipod-0:123:152 [2] NCCL INFO Pattern 4, crossNic 0, nChannels 1, bw 1.200000/1.200000, type NVL/PHB, sameChannels 1
+torchrun-multipod-0:123:152 [2] NCCL INFO  0 : NET/0-0 GPU/0 GPU/3 GPU/2 GPU/1 NET/0-0
+torchrun-multipod-0:123:152 [2] NCCL INFO Pattern 1, crossNic 0, nChannels 1, bw 2.400000/1.200000, type NVL/PHB, sameChannels 1
+torchrun-multipod-0:123:152 [2] NCCL INFO  0 : NET/0-0torchrun-multipod-0:121:150 [0] NCCL INFO comm 0x5594135f6830 rank 0 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+torchrun-multipod-0:121:150 [0] NCCL INFO Tree 0 : -1 -> 0 -> 1/4/-1
+torchrun-multipod-0:121:150 [0] NCCL INFO Tree 1 : 4 -> 0 -> 1/-1/-1
+torchrun-multipod-0:121:150 [0] NCCL INFO Channel 00/02 : 0 3 2 1 4 7 6 5
+torchrun-multipod-0:121:150 [0] NCCL INFO Channel 01/02 : 0 3 2 1 4 7 6 5
+torchrun-multipod-0:121:150 [totorchrun-multipod-0:124:153 [3] NCCL INFO UDS: Creating service thread comm 0x5565ac74f750 rank totorchrun-multipod-0:124:153 [3] NCCL INFO misc/utiltorchrun-multipod-0:122:151 [1] NCCL INFOtorchrun-multipod-0:124:163 [3] NCCL INFO [Proxy Service]torchrun-multipod-0:1torchrun-multipod-0:123:164 [2] NCCL INFO [Proxy Service UDS] Device 2 torchrun-multtorchrun-multipod-0:123:152 [2] NCCL INFO channel.cc:42 Cuda Alloc Size 4864 pointer 0x7f8ac3e00000
+torchrun-multipod-0:123:152 [2] NCCL INFO channel.cc:45 Cuda Alloc Size 104 pointer 0x7f8b17e00000
+totorchrun-multipod-0:124:153 [3] NCCL INFO channeltorchrun-multipod-0:122:151 [1] NCCL INFO channeltorchrun-multipod-0:124:153 [3] NCCL INFO channel.torchrun-multipod-0:122:151 [1] NCCL INFO channel.cc:56 Cuda Alloc Size 32 pointer 0x7f2f3b400000
+torchrun-multipod-0:122:151 [1] NCCL INFO channel.cc:42 Cuda Alloc Size 4864 pointer 0x7f2f3b600000
+torchrun-multipod-0:122:151 [1] NCCL INFO channel.cc:45 Cuda Alloc Size 104 pointer 0x7f2f3b800000
+torchrun-multipod-0:122:151 [1] NCCL INFO channel.cc:56 Cuda Alloc Size 32 pointer 0x7f2f3ba00000
+torchrun-multipod-0:122:151 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+torchrun-multipod-0:122:151 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls ctorchrun-multipod-0:124:153 [3] NCCL INFO init.cc:438 Cuda Alloc Size 32 pointer 0x7f5493e00000
+torchrun-multipod-0:124:153 [3] NCCL INFO init.cc:480 Cuda Host Alloc Size 1048576 pointer 0x7f547d400200
+torchrun-multipod-0:124:153 [3] NCCL INFO torchrun-multipod-0:122:151 [1] NCCL INFO init.cc:480 Cuda Host Alloc Size 1048576 pointer 0x7f2f15400200
+torchrun-multipod-0:122:151 [1] NCCL INFO init.cc:485 Cuda Host Alloc Size 256 pointer 0x7f2f15500200
+torchrun-multipod-0:122:151 [1] NCCL INFO init.cc:492 totorchrun-multipod-0:124:153 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugintotorchrun-multipod-0:124:153 [torchrun-multipod-0:122:151 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+torchrun-multipod-0:122:151 [1] NCCL INFO ncclCommInitRankConfig comm 0x557f085a53c0 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 26000 commId 0xe8cef49349e81aed - Init COMPLETE
+torchrun-multipod-0:122:151 [1] NCCL INFO Init timings - ncclCommInitRatotorchrun-multipod-0:124:124 [3] NCCL INFO AllGather: opCount 0 sendbuff 0x7f548b476800 recvbuff 0x7f548b477a00 count 1 datatype 4 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO misc/utils.cc:233 memory stack hunk malloc(65536)
+torchrun-multipod-0:124:163 [3] NCCL INFO Mem Realloc old size 0, new size 8 pointer 0x7f54c0004f20
+torchrun-multipod-0:124:163 [3] NCCL INFO New proxy recv connection 0 from local rank 3, transport 0
+torchrun-multipod-0:124:163 [3] NCCL INFO proxytorchrun-multipod-0:122:167 [1] NCCL INFO Allocated 33030532 bytes of shared memory in /dev/shm/nccl-LhjvoB
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy send connection 0 from local rank 1, transport 2
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=1 op.reqBuff=0x7f2f54004ee0 op.respSize=16 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:175 [1] NCCL INFO [Proxy Progress] Device 1 CPU core 342
+torchrun-multipod-0:122:172 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54004f40
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=3 op.reqBuff=0x7f2f54008e50 op.respSize=0 done
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO Channel 00/0 : 1[1] -> 4[0] [send] via NET/Socket/0
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy send connection 1 from local rank 1, transport 2
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=1 op.reqBuff=0x7f2f540094c0 op.respSize=16 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54004fb8
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=3 op.reqBuff=0x7f2f54009500 op.respSize=0 done
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multitorchrun-multipod-0:124:173 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM
+torchrun-multipod-0:124:163 [3] NCCL INFO New proxy send connection 2 from local rank 3, transport 0
+torchrun-multipod-0:124:163 [3] NCCL INFO proxyProgressAsync opId=0x7f545314c170 op.type=1 op.retorchrun-multipod-0:122:167 [1] NCCL INFO New proxy recv connection 2 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=1 op.reqBuff=0x7f2f54009b70 op.respSize=16 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005030
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2f47400000 size 10485760 ipcDesc 0x7f2f54009be0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=3 op.reqBuff=0x7f2f54009bb0 op.respSize=88 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy recv connection 3 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=1 op.reqBuff=0x7f2f5400b530 op.respSize=16 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f540050a8
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2f49400000 size 10485760 ipcDesc 0x7f2f5400b580
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb14c170 op.type=3 op.reqBuff=0x7f2f5400b550 op.respSize=88 done
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO sendConnect ncclProxyCallAsync opId=0x7f2eeb0b6680
+torchrun-multipod-0:122:172 [1] NCCL INFO sendConnect ncclProxyCallAsync opId=0x7f2eeb3eb5b0
+torchrun-multipod-0:122:172 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO resp.opId=0x7f2eeb14c170 matches expected opId=0x7f2eeb14c170
+torchrun-multipod-0:122:172 [1] NCCL INFO Connected to proxy localRank 2 -> connection 0x7f8b34005198
+torchrun-multipod-0:122:172 [1] NCCL INFO ProxyCall UDS comm 0x557f085a53c0 rank 1 tpRank 2(8cee67a8e1f808db) reqSize 8 respSize 0 respFd 0x7f2f2fefda98 opId 0x94528041f87df50e
+torchrun-multipod-0:122:172 [1] NCCL INFO ProxyCall UDS comm 0x557f085a53c0 rank 1 tpRank 2(8cee67a8e1f808db) reqSize 8 respSize 0 respFd 93 opId 0x94528041f87df50e - DONE
+torchrun-multipod-0:122:172 [1] NCCL INFO UDS: ClientGetFd handle 0x7f8b3400bed0 tpRank 2 returned fd 93 sameProcess 0
+torchrun-multipod-0:122:172 [1] NCCL INFO UDS converted handle 0x7f8b3400bed0 to fd 93 on remote peer 2
+torchrun-multipod-0:122:167 [1] NCCL INFO transport/net.cc:805 Cuda Host Alloc Size 9641984 pointer 0x7f2f23600000
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2eeb0b6680 op.type=4 op.torchrun-multipod-0:123:170 [2] NCCL INFO ncclPollProxyResponse Received new opId=0x7f8ac714c170
+torchrun-multipod-0:123:170 [2] NCCL INFO resp.opId=0x7f8ac714c170 matches expected opId=0x7f8ac714c170
+torchrun-multipod-0:123:170 [2] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005120
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 1(56265753596439e3) reqSize 8 respSize 0 respFd 0x7f8b0f0feaa8 opId 0x53ccde1f82a3099f
+torchrun-multipod-0:123:164 [2] NCCL INFO proxyUDSRecvReq::ncclProxyMsgGetFd rank 1 opId 0xe34753bc265a846d handle=0x7f8b3400d7f0
+torchrun-multipod-0:123:164 [2] NCCL INFO UDS proxyGetFd received handle 0x7f8b3400d7f0 peer 1 opId e34753bc265a846d
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 1(56265753596439e3) reqSize 8 respSize 0 respFd 93 opId 0x53ccde1f82a3099f - DONE
+torchrun-multipod-0:123:170 [2] NCCL INFO UDS: ClientGetFd handle 0x7f2f54009c30 tpRank 1 returned fd 93 sameProcess 0
+torchrun-multipod-0:123:170 [2] NCCL INFO UDS converted handle 0x7f2f54009c30 to fd 93 on remote peer 1
+torchrun-multipod-0:123:170 [2] NCCL INFO Imported shareable buffer device 2 size 10485760 ptr 0x7f8aff600000
+torchrun-multipod-0:123:170 [2] NCCL INFO ncclPollProxyResponse Received new opId=0x7f8ac714c170
+torchrun-multipod-0:123:170 [2] NCCL INFO resp.opId=0x7f8ac714c170 matches expected opId=0x7f8ac714c170
+torchrun-multipod-0:123:170 [2] NCCL INFO Connected to proxy localRank 3 -> connection 0x7f54c0005198
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 3(4e08ad1d5cd7bf5b) reqSize 8 respSize 0 respFd 0x7f8b0f0fea98 opId 0x53bacf9f6cfbca8d
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 3(4e08ad1d5cd7bf5b) reqSize 8 respSize 0 respFd 93 opId 0x53bacf9f6cfbca8d - DONE
+torchrun-multipod-0:123:170 [2] NCCL INFO UDS: ClientGetFd handle 0x7f54c000bed0 tpRank 3 returned fd 93 sameProcess 0
+torchrun-multipod-0:123:170 [2] NCCL INFO UDS converted handle 0x7f54c000bed0 to fd 93 on remote peer 3
+torchrun-multipod-0:123:170 [2] NCCL INFO Imported shareable buffer device 2 size 2097152 ptr 0x7f8b21c00000
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 1(56265753596439e3) reqSize 8 respSize 0 respFd 0x7f8b0f0feaa8 opId 0xa9d7cd25da2f1d
+torchrun-multipod-0:123:170 [2] NCCL INFO ProxyCall UDS comm 0x55cf70ec1c80 rank 2 tpRank 1(56265753596439e3) reqSize 8 respSize 0 respFd 93 opId 0xa9d7cd25da2f1d - DONE
+torchrun-multipod-0:123:170 [2] NCCL INFO UDS: ClientGetFd handle 0x7f2f5400b5d0 tpRank 1 returned fd 93 sameProcetorchrun-multipod-0:122:172 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 1 sendbuff 0x7f2f23477a00 recvbuff 0x7f2f23477a00 count 396 datatype 4 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 2 sendbuff 0x7f2e9c000000 recvbuff 0x7f2e9c000000 count 67734528 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 3 sendbuff 0x7f2eac400000 recvbuff 0x7f2eac400000 count 66142464 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 4 sendbuff 0x7f2e96600000 recvbuff 0x7f2e96600000 count 3145728 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 5 sendbuff 0x7f2eac400000 recvbuff 0x7f2eac400000 count 12582912 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 6 sendbuff 0x7f2ec8000000 recvbuff 0x7f2ec8000000 count 124439808 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy recv connection 5 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=1 op.reqBuff=0x7f2f54014b50 op.respSize=16 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005198
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2b92e00000 size 10485760 ipcDesc 0x7f2f54014b80
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=3 op.reqBuff=0x7f2f54014b30 op.respSize=88 done
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy recv connection 6 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=1 op.reqBuff=0x7f2f54014b30 op.respSize=16 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005210
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2bc7200000 size 10485760 ipcDesc 0x7f2f5401db80
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=3 op.reqBuff=0x7f2f54014b30 op.respSize=88 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy send connection 7 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=1 op.reqBuff=0x7f2f54014b30 op.respSize=16 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005288
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2b93800000 size 2097152 ipcDesc 0x7f2f5401f4a0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=3 op.reqBuff=0x7f2f5401f470 op.respSize=88 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Setup res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM
+torchrun-multipod-0:122:167 [1] NCCL INFO New proxy send connection 8 from local rank 1, transport 0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=1 op.reqBuff=0x7f2f5401f470 op.respSize=16 done
+torchrun-multipod-0:122:14288 [1] NCCL INFO ncclPollProxyResponse Received new opId=0x7f2e60721c20
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Init res=0
+torchrun-multipod-0:122:14288 [1] NCCL INFO resp.opId=0x7f2e60721c20 matches expected opId=0x7f2e60721c20
+torchrun-multipod-0:122:14288 [1] NCCL INFO Connected to proxy localRank 1 -> connection 0x7f2f54005300
+torchrun-multipod-0:122:167 [1] NCCL INFO Allocated shareable buffer 0x7f2b93a00000 size 2097152 ipcDesc 0x7f2f54020bc0
+torchrun-multipod-0:122:167 [1] NCCL INFO proxyProgressAsync opId=0x7f2e60721c20 op.type=3 op.reqBuff=0x7f2f54020b90 op.respSize=88 done
+torchrun-multipod-0:122:14288 [1] NCCL INtorchrun-multipod-0:124:166 [3] NCCL INFO proxyUDSRecvReq::ncclProxyMsgGetFd rank 2 opId 0xdc0373e417b0c810 handle=0x7f54c000ef10
+torchrun-multipod-0:124:166 [3] NCCL INFO UDS proxyGetFd received handle 0x7f54c000ef10 peer 2 opId dc0373e417b0c810
+torchrun-multipod-0:124:166 [3] NCCL INFO proxyUDSRecvReq::ncclProxyMsgGetFd rank 2 opId 0x5904723ef934825a handle=0x7f54c0010810
+torchrun-multipod-0:124:166 [3] NCCL INFO UDS proxyGetFd received handle 0x7f54c0010810 peer 2 opId 5904723ef934825a
+torchrun-multipod-0:124:14286 [3] NCCL INFO Connected all trees
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 7 sendbuff 0x7f548b5fba00 recvbuff 0x7f548b5fba00 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 8 sendbuff 0x7f548b598800 recvbuff 0x7f548b598800 count 149 datatype 2 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 9 sendbuff 0x7f548b547000 recvbuff 0x7f548b547000 count 14 datatype 2 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 10 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 11 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 12 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 13 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 14 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 15 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 16 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 17 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 18 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 19 sendbuff 0x7f548b5fe200 recvbuff 0x7f548b5fe200 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 1a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 1b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 1c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 1d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 1e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 1f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 20 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 21 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 22 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 23 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 24 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 25 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 26 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 27 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 28 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 29 sendbuff 0x7f548b558a00 recvbuff 0x7f548b558a00 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 2a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 2b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 2c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 2d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 2e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 2f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 30 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 31 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 32 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 33 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 34 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 35 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 36 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 37 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 38 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 39 sendbuff 0x7f548b55ae00 recvbuff 0x7f548b55ae00 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 3a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 3b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 3c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 3d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 3e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 3f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 40 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 41 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 42 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 43 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 44 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 45 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 46 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 47 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 48 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 49 sendbuff 0x7f51793ff600 recvbuff 0x7f51793ff600 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 4a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 4b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 4c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 4d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 4e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 4f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 50 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 51 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 52 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 53 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 54 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 55 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 56 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 57 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 58 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 59 sendbuff 0x7f548b55ae00 recvbuff 0x7f548b55ae00 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 5a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 5b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 5c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 5d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 5e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 5f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 60 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 61 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 62 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 63 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 64 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 65 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 66 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 67 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 68 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 69 sendbuff 0x7f51069fd400 recvbuff 0x7f51069fd400 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 6a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 6b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 6c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 6d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 6e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 6f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 70 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 71 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 72 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 73 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 74 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 75 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 76 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 77 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 78 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 79 sendbuff 0x7f51069ffa00 recvbuff 0x7f51069ffa00 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 7a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 7b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 7c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 7d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 7e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 7f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 80 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 81 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 82 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 83 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 84 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 85 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 86 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 87 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 88 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 89 sendbuff 0x7f51793ff200 recvbuff 0x7f51793ff200 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO Broadcast: opCount 8a sendbuff 0x7f511bb09c00 recvbuff 0x7f511bb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 8b sendbuff 0x7f5402600000 recvbuff 0x7f5402600000 count 1769472 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 8c sendbuff 0x7f51b4000000 recvbuff 0x7f51b4000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 8d sendbuff 0x7f517a000000 recvbuff 0x7f517a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 8e sendbuff 0x7f5428200000 recvbuff 0x7f5428200000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 8f sendbuff 0x7f5220000000 recvbuff 0x7f5220000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 90 sendbuff 0x7f510e000000 recvbuff 0x7f510e000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 91 sendbuff 0x7f510fb09c00 recvbuff 0x7f510fb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 92 sendbuff 0x7f5111613800 recvbuff 0x7f5111613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 93 sendbuff 0x7f5114000000 recvbuff 0x7f5114000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 94 sendbuff 0x7f5115b09c00 recvbuff 0x7f5115b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 95 sendbuff 0x7f5117613800 recvbuff 0x7f5117613800 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 96 sendbuff 0x7f511a000000 recvbuff 0x7f511a000000 count 7087872 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 97 sendbuff 0x7f515e000000 recvbuff 0x7f515e000000 count 43915776 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:451 [3] NCCL INFO AllReduce: opCount 98 sendbuff 0x7f54140e0000 recvbuff 0x7f54140e0000 count 787968 datatype 7 op 0 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:124 [3] NCCL INFO AllReduce: opCount 99 sendbuff 0x7f548b55a000 recvbuff 0x7f548b55a000 count 1 datatype 7 op 4 root 0 comm 0x5565ac74f750 [nranks=8] stream 0x5565a95c6ca0
+torchrun-multipod-0:124:163 [3] NCCL INFO Received and initiated operation=Stop res=0
+torchrun-multipod-0:124:163 [3] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:124:163 [3] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:124:163 [3] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:124:166 [3] NCCL INFO [Proxy Service UDS] exit: stop 1 abortFlag 0
+torchrun-multipod-0:124:14293 [3] NCCL INFO comm 0x5565ac74f750 rank 3 nranks 8 cudaDev 3 busId c6000 - Destroy COMPLETE
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS current socket connection with 10.131.0.21<54081> closed by peer on receive; terminating it
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS current socket connection with 10.131.0.21<48979> closed by peer on receive; terminating it
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS handling local termination request
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<54081>
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<48979>
+torchrun-multipod-0:124:160 [0] NCCL INFO RAS thread terminating
+vbuff 0x7f87ed3ff200 count 1 datatype 7 op 4 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:123 [2] NCCL INFO Broadcast: opCount 8a sendbuff 0x7f878fb09c00 recvbuff 0x7f878fb09c00 count 12582912 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 8b sendbuff 0x7f8a76600000 recvbuff 0x7f8a76600000 count 1769472 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 8c sendbuff 0x7f8828000000 recvbuff 0x7f8828000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 8d sendbuff 0x7f87ee000000 recvbuff 0x7f87ee000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 8e sendbuff 0x7f8a9c200000 recvbuff 0x7f8a9c200000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 8f sendbuff 0x7f8894000000 recvbuff 0x7f8894000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 90 sendbuff 0x7f8782000000 recvbuff 0x7f8782000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 91 sendbuff 0x7f8783b09c00 recvbuff 0x7f8783b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 92 sendbuff 0x7f8785613800 recvbuff 0x7f8785613800 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 93 sendbuff 0x7f8788000000 recvbuff 0x7f8788000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 94 sendbuff 0x7f8789b09c00 recvbuff 0x7f8789b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 95 sendbuff 0x7f878b613800 recvbuff 0x7f878b613800 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 96 sendbuff 0x7f878e000000 recvbuff 0x7f878e000000 count 7087872 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 97 sendbuff 0x7f87d2000000 recvbuff 0x7f87d2000000 count 43915776 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:454 [2] NCCL INFO AllReduce: opCount 98 sendbuff 0x7f8a880e0000 recvbuff 0x7f8a880e0000 count 787968 datatype 7 op 0 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:123 [2] NCCL INFO AllReduce: opCount 99 sendbuff 0x7f8aff55a000 recvbuff 0x7f8aff55a000 count 1 datatype 7 op 4 root 0 comm 0x55cf70ec1c80 [nranks=8] stream 0x55cf6dd15260
+torchrun-multipod-0:123:162 [2] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:123:162 [2] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:123:162 [2] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:123:162 [2] NCCL INFO Received and initiated operation=Stop res=0
+torchrun-multipod-0:123:164 [2] NCCL INFO [Proxy Service UDS] exit: stop 1 abortFlag 0
+torchrun-multipod-0:123:14296 [2] NCCL INFO comm 0x55cf70ec1c80 rank 2 nranks 8 cudaDev 2 busId a6000 - Destroy COMPLETE
+torchrun-multipod-0:123:161 [0] NCCL INFO RAS handling local termination request
+torchrun-multipod-0:123:161 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<49847>
+torchrun-multipod-0:123:161 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<45897>
+torchrun-multipod-0:123:161 [0] NCCL INFO RAS thread terminating
+3c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO Broadcast: opCount 8a sendbuff 0x7f2ba7b09c00 recvbuff 0x7f2ba7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 8b sendbuff 0x7f2e96600000 recvbuff 0x7f2e96600000 count 1769472 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 8c sendbuff 0x7f2c40000000 recvbuff 0x7f2c40000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 8d sendbuff 0x7f2c06000000 recvbuff 0x7f2c06000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 8e sendbuff 0x7f2ec0200000 recvbuff 0x7f2ec0200000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 8f sendbuff 0x7f2cac000000 recvbuff 0x7f2cac000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 90 sendbuff 0x7f2b9a000000 recvbuff 0x7f2b9a000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 91 sendbuff 0x7f2b9bb09c00 recvbuff 0x7f2b9bb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 92 sendbuff 0x7f2b9d613800 recvbuff 0x7f2b9d613800 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 93 sendbuff 0x7f2ba0000000 recvbuff 0x7f2ba0000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 94 sendbuff 0x7f2ba1b09c00 recvbuff 0x7f2ba1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 95 sendbuff 0x7f2ba3613800 recvbuff 0x7f2ba3613800 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 96 sendbuff 0x7f2ba6000000 recvbuff 0x7f2ba6000000 count 7087872 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 97 sendbuff 0x7f2bea000000 recvbuff 0x7f2bea000000 count 43915776 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:457 [1] NCCL INFO AllReduce: opCount 98 sendbuff 0x7f2eac0e0000 recvbuff 0x7f2eac0e0000 count 787968 datatype 7 op 0 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:122 [1] NCCL INFO AllReduce: opCount 99 sendbuff 0x7f2f2355a000 recvbuff 0x7f2f2355a000 count 1 datatype 7 op 4 root 0 comm 0x557f085a53c0 [nranks=8] stream 0x557f063779c0
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Stop res=0
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:122:167 [1] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:122:168 [1] NCCL INFO [Proxy Service UDS] exit: stop 1 abortFlag 0
+torchrun-multipod-0:122:14294 [1] NCCL INFO comm 0x557f085a53c0 rank 1 nranks 8 cudaDev 1 busId 26000 - Destroy COMPLETE
+torchrun-multipod-0:122:159 [0] NCCL INFO RAS current socket connection with 10.128.2.115<38775> closed by peer on receive; terminating it
+torchrun-multipod-0:122:159 [0] NCCL INFO RAS handling local termination request
+torchrun-multipod-0:122:159 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<49847>
+torchrun-multipod-0:122:159 [0] NCCL INFO RAS terminating a connection with 10.128.2.115<38775>
+torchrun-multipod-0:122:159 [0] NCCL INFO RAS thread terminating
+ount 4a sendbuff 0x7f46c7b09c00 recvbuff 0x7f46c7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: 50331648 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 4b sendbuff 0x7f49b8600000 recvbuff 0x7f49b8600000 count 1769472 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 7077888 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 4c sendbuff 0x7f4760000000 recvbuff 0x7f4760000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 4d sendbuff 0x7f4726000000 recvbuff 0x7f4726000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 4e sendbuff 0x7f49de200000 recvbuff 0x7f49de200000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 4f sendbuff 0x7f47cc000000 recvbuff 0x7f47cc000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 50 sendbuff 0x7f46ba000000 recvbuff 0x7f46ba000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 51 sendbuff 0x7f46bbb09c00 recvbuff 0x7f46bbb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 52 sendbuff 0x7f46bd613800 recvbuff 0x7f46bd613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 53 sendbuff 0x7f46c0000000 recvbuff 0x7f46c0000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 54 sendbuff 0x7f46c1b09c00 recvbuff 0x7f46c1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 55 sendbuff 0x7f46c3613800 recvbuff 0x7f46c3613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 56 sendbuff 0x7f46c6000000 recvbuff 0x7f46c6000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 57 sendbuff 0x7f470a000000 recvbuff 0x7f470a000000 count 43915776 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 175663104 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 58 sendbuff 0x7f49ca0e0000 recvbuff 0x7f49ca0e0000 count 787968 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 3151872 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: opCount 59 sendbuff 0x7f4a4b55ae00 recvbuff 0x7f4a4b55ae00 count 1 datatype 7 op 4 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: 4 Bytes -> Algo TREE proto LL channel{Lo..Hi}={0..0}
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: opCount 5a sendbuff 0x7f46c7b09c00 recvbuff 0x7f46c7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: 50331648 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 5b sendbuff 0x7f49b8600000 recvbuff 0x7f49b8600000 count 1769472 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 7077888 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 5c sendbuff 0x7f4760000000 recvbuff 0x7f4760000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 5d sendbuff 0x7f4726000000 recvbuff 0x7f4726000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 5e sendbuff 0x7f49de200000 recvbuff 0x7f49de200000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 5f sendbuff 0x7f47cc000000 recvbuff 0x7f47cc000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 60 sendbuff 0x7f46ba000000 recvbuff 0x7f46ba000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 61 sendbuff 0x7f46bbb09c00 recvbuff 0x7f46bbb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 62 sendbuff 0x7f46bd613800 recvbuff 0x7f46bd613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 63 sendbuff 0x7f46c0000000 recvbuff 0x7f46c0000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 64 sendbuff 0x7f46c1b09c00 recvbuff 0x7f46c1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 65 sendbuff 0x7f46c3613800 recvbuff 0x7f46c3613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 66 sendbuff 0x7f46c6000000 recvbuff 0x7f46c6000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 67 sendbuff 0x7f470a000000 recvbuff 0x7f470a000000 count 43915776 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 175663104 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 68 sendbuff 0x7f49ca0e0000 recvbuff 0x7f49ca0e0000 count 787968 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 3151872 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: opCount 69 sendbuff 0x7f46b29fd400 recvbuff 0x7f46b29fd400 count 1 datatype 7 op 4 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: 4 Bytes -> Algo TREE proto LL channel{Lo..Hi}={0..0}
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: opCount 6a sendbuff 0x7f46c7b09c00 recvbuff 0x7f46c7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: 50331648 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 6b sendbuff 0x7f49b8600000 recvbuff 0x7f49b8600000 count 1769472 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 7077888 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 6c sendbuff 0x7f4760000000 recvbuff 0x7f4760000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 6d sendbuff 0x7f4726000000 recvbuff 0x7f4726000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 6e sendbuff 0x7f49de200000 recvbuff 0x7f49de200000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 6f sendbuff 0x7f47cc000000 recvbuff 0x7f47cc000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 70 sendbuff 0x7f46ba000000 recvbuff 0x7f46ba000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 71 sendbuff 0x7f46bbb09c00 recvbuff 0x7f46bbb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 72 sendbuff 0x7f46bd613800 recvbuff 0x7f46bd613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 73 sendbuff 0x7f46c0000000 recvbuff 0x7f46c0000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 74 sendbuff 0x7f46c1b09c00 recvbuff 0x7f46c1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 75 sendbuff 0x7f46c3613800 recvbuff 0x7f46c3613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 76 sendbuff 0x7f46c6000000 recvbuff 0x7f46c6000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 77 sendbuff 0x7f470a000000 recvbuff 0x7f470a000000 count 43915776 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 175663104 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 78 sendbuff 0x7f49ca0e0000 recvbuff 0x7f49ca0e0000 count 787968 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 3151872 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: opCount 79 sendbuff 0x7f46b29ffa00 recvbuff 0x7f46b29ffa00 count 1 datatype 7 op 4 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: 4 Bytes -> Algo TREE proto LL channel{Lo..Hi}={0..0}
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: opCount 7a sendbuff 0x7f46c7b09c00 recvbuff 0x7f46c7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: 50331648 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 7b sendbuff 0x7f49b8600000 recvbuff 0x7f49b8600000 count 1769472 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 7077888 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 7c sendbuff 0x7f4760000000 recvbuff 0x7f4760000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 7d sendbuff 0x7f4726000000 recvbuff 0x7f4726000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 7e sendbuff 0x7f49de200000 recvbuff 0x7f49de200000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 7f sendbuff 0x7f47cc000000 recvbuff 0x7f47cc000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 80 sendbuff 0x7f46ba000000 recvbuff 0x7f46ba000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 81 sendbuff 0x7f46bbb09c00 recvbuff 0x7f46bbb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 82 sendbuff 0x7f46bd613800 recvbuff 0x7f46bd613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 83 sendbuff 0x7f46c0000000 recvbuff 0x7f46c0000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 84 sendbuff 0x7f46c1b09c00 recvbuff 0x7f46c1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 85 sendbuff 0x7f46c3613800 recvbuff 0x7f46c3613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 86 sendbuff 0x7f46c6000000 recvbuff 0x7f46c6000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 87 sendbuff 0x7f470a000000 recvbuff 0x7f470a000000 count 43915776 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 175663104 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 88 sendbuff 0x7f49ca0e0000 recvbuff 0x7f49ca0e0000 count 787968 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 3151872 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: opCount 89 sendbuff 0x7f47253ff200 recvbuff 0x7f47253ff200 count 1 datatype 7 op 4 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: 4 Bytes -> Algo TREE proto LL channel{Lo..Hi}={0..0}
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: opCount 8a sendbuff 0x7f46c7b09c00 recvbuff 0x7f46c7b09c00 count 12582912 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO Broadcast: 50331648 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 8b sendbuff 0x7f49b8600000 recvbuff 0x7f49b8600000 count 1769472 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 7077888 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 8c sendbuff 0x7f4760000000 recvbuff 0x7f4760000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 8d sendbuff 0x7f4726000000 recvbuff 0x7f4726000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 8e sendbuff 0x7f49de200000 recvbuff 0x7f49de200000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 8f sendbuff 0x7f47cc000000 recvbuff 0x7f47cc000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 90 sendbuff 0x7f46ba000000 recvbuff 0x7f46ba000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 91 sendbuff 0x7f46bbb09c00 recvbuff 0x7f46bbb09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 92 sendbuff 0x7f46bd613800 recvbuff 0x7f46bd613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 93 sendbuff 0x7f46c0000000 recvbuff 0x7f46c0000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 94 sendbuff 0x7f46c1b09c00 recvbuff 0x7f46c1b09c00 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 95 sendbuff 0x7f46c3613800 recvbuff 0x7f46c3613800 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 96 sendbuff 0x7f46c6000000 recvbuff 0x7f46c6000000 count 7087872 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 28351488 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 97 sendbuff 0x7f470a000000 recvbuff 0x7f470a000000 count 43915776 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 175663104 Bytes -> Algo TREE proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: opCount 98 sendbuff 0x7f49ca0e0000 recvbuff 0x7f49ca0e0000 count 787968 datatype 7 op 0 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:444 [0] NCCL INFO AllReduce: 3151872 Bytes -> Algo RING proto SIMPLE channel{Lo..Hi}={0..1}
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: opCount 99 sendbuff 0x7f4a4b55a000 recvbuff 0x7f4a4b55a000 count 1 datatype 7 op 4 root 0 comm 0x5594135f6830 [nranks=8] stream 0x559407672310
+torchrun-multipod-0:121:121 [0] NCCL INFO AllReduce: 4 Bytes -> Algo TREE proto LL channel{Lo..Hi}={0..0}
+torchrun-multipod-0:121:165 [0] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:121:165 [0] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:121:165 [0] NCCL INFO Received and initiated operation=Stop res=0
+torchrun-multipod-0:121:165 [0] NCCL INFO Received and initiated operation=Close res=0
+torchrun-multipod-0:121:169 [0] NCCL INFO [Proxy Service UDS] exit: stop 1 abortFlag 0
+torchrun-multipod-0:121:14295 [0] NCCL INFO comm 0x5594135f6830 rank 0 nranks 8 cudaDev 0 busId 6000 - Destroy COMPLETE
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS current socket connection with 10.131.0.21<48979> closed by peer on receive; terminating it
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS handling local termination request
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS terminating a connection with 10.131.0.21<48979>
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS terminating a connection with 10.128.2.115<60811>
+torchrun-multipod-0:121:157 [0] NCCL INFO RAS thread terminating
