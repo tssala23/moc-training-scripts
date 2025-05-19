@@ -370,16 +370,20 @@ for srv in ${hosts[@]}; do
 					    log "oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
 	      				    oc cp $clt:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
 				    else
-						log "$hexec ${BM_USER}@${srv} 'bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\"'"
-						$hexec ${BM_USER}@${srv} "bash -c 'taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &'" 2>&1 | tee -a "$iprf_log"
-						log "$hexec ${BM_USER}@${clt} 'bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\"'"
-						$hexec ${BM_USER}@${clt} "bash -c 'taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1'" 2>&1 | tee -a "$iprf_log"
-						log "$i/$num: END: $srv $clt"
-					    sleep 0.1
-	      				log "$hcp ${BM_USER}@${srv}:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
+					    log "$hexec ${BM_USER}@${srv} 'bash -c \"taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &\"'"
+					    $hexec ${BM_USER}@${srv} "bash -c 'taskset -c $affin $iprf_rbin $sflgs >$iprf_rdatadir/$srvlog 2>&1 &'" 2>&1 | tee -a "$iprf_log"
+					    sleep 1
+					    log "$hexec ${BM_USER}@${clt} 'bash -c \"taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1\"'"
+					    $hexec ${BM_USER}@${clt} "bash -c 'taskset -c $affin $iprf_rbin $cflgs >$iprf_rdatadir/$cltlog 2>&1'" 2>&1 | tee -a "$iprf_log"
+					    sleep 1
+					    log "$i/$num: END: $srv $clt"
+					    sleep 1
+	      				    log "$hcp ${BM_USER}@${srv}:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog"
 					    $hcp ${BM_USER}@${srv}:$iprf_rdatadir/$srvlog $iprf_datadir/$srvlog 2>&1 | tee -a $iprf_log
+					    sleep 1
 					    log "$hcp ${BM_USER}@${clt}:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog"
-	      				$hcp ${BM_USER}@${clt}:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+	      				    $hcp ${BM_USER}@${clt}:$iprf_rdatadir/$cltlog $iprf_datadir/$cltlog 2>&1 | tee -a $iprf_log
+					    sleep 1
 				    fi
 				done
 			    done  
