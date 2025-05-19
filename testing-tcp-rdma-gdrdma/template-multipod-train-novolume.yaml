@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: torchrun-multipod
+spec:
+  serviceName: torchrun-multipod
+  replicas: ARG_NUM_PODS
+  selector:
+    matchLabels:
+      app: torchrun-multipod
+  template:
+    metadata:
+      labels:
+        app: torchrun-multipod
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: torchrun-multipod
+              topologyKey: "kubernetes.io/hostname"          
+      
+      containers:
+        - name: torchrun-multipod
+          image: docker.io/saarora/test10-tcp-rdma-gdrdma
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROC", "ARG_GRAD_ACCUM", "ARG_PROFILE", "ARG_MODEL", "ARG_RUNID", "ARG_TYPE"]
+          ports:
+            - containerPort: 29500
+              name: torch-multipod
+          resources:
+            limits:
+              nvidia.com/gpu: 4
+                
+
