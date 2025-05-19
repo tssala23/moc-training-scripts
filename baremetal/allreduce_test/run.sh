@@ -1,0 +1,14 @@
+# TCP
+# NCCL_IB_DISABLE=1 GLOO_SOCKET_IFNAME=eno6np0 NCCL_SOCKET_IFNAME=eno6np0 NCCL_IB_HCA=mlx5_2 NCCL_IB_GID_INDEX=3 NCCL_SOCKET_NTHREADS=16  NCCL_NSOCKS_PERTHREAD=4   torchrun --nproc-per-node=4 --nnodes=2 --node_rank=0 --master_addr=$R3 --master_port=29500 torchrun_test.py
+#
+#
+# RDMA
+# NCCL_IB_DISABLE=0 GLOO_SOCKET_IFNAME=eno6np0 NCCL_SOCKET_IFNAME=eno6np0 NCCL_IB_HCA=mlx5_2 NCCL_IB_GID_INDEX=3 NCCL_SOCKET_NTHREADS=16  NCCL_NSOCKS_PERTHREAD=4 NCCL_NET_GDR_LEVEL=LOC NCCL_DMABUF_ENABLE=0 NCCL_IB_CUDA_SUPPORT=0  torchrun --nproc-per-node=4 --nnodes=2 --node_rank=0 --master_addr=$R3 --master_port=29500 torchrun_test.py
+#
+#
+#
+# GDRDMA
+# NCCL_IB_DISABLE=0 GLOO_SOCKET_IFNAME=eno6np0 NCCL_SOCKET_IFNAME=eno6np0 NCCL_IB_HCA=mlx5_2 NCCL_IB_GID_INDEX=3 NCCL_SOCKET_NTHREADS=16  NCCL_NSOCKS_PERTHREAD=4 NCCL_NET_GDR_LEVEL=PHB NCCL_DMABUF_ENABLE=1 NCCL_IB_CUDA_SUPPORT=1  torchrun --nproc-per-node=4 --nnodes=2 --node_rank=0 --master_addr=$R3 --master_port=29500 torchrun_test.py
+
+
+
