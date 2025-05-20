@@ -1,0 +1,70 @@
+Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 3
+[pid = 32339, dev = 3] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 33554432 bytes GPU buffer
+allocated GPU buffer address at 00007f1994000000 pointer=0x7f1994000000
+using DMA-BUF for GPU buffer address at 0x7f1994000000 aligned at 0x7f1994000000 with aligned size 33554432
+Calling ibv_reg_dmabuf_mr(offset=0, size=33554432, addr=0x7f1994000000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 2		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0c7d PSN 0x832a39
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x0c7e PSN 0x1b9a2f
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0c7d PSN 0xf07e2a
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0c7e PSN 0x3eddcc
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          10000           0.056338            0.055579            3.473670
+ 4          10000            0.11               0.11   		     3.563246
+ 8          10000            0.23               0.23   		     3.599673
+ 16         10000            0.46               0.46   		     3.581457
+ 32         10000            0.92               0.92   		     3.586556
+ 64         10000            1.84               1.84   		     3.590007
+ 128        10000            3.68               3.65   		     3.565647
+ 256        10000            7.38               7.34   		     3.584679
+ 512        10000            14.65              14.59  		     3.561939
+ 1024       10000            29.12              28.77  		     3.511676
+ 2048       10000            52.74              52.64  		     3.213006
+ 4096       10000            100.72             62.02  		     1.892556
+ 8192       10000            108.11             76.93  		     1.173852
+ 16384      10000            109.67             92.88  		     0.708615
+ 32768      10000            110.29             101.28 		     0.386356
+ 65536      10000            110.37             105.80 		     0.201795
+ 131072     10000            111.07             109.28 		     0.104219
+ 262144     10000            111.05             110.43 		     0.052656
+ 524288     10000            111.14             111.13 		     0.026495
+ 1048576    10000            111.40             111.40 		     0.013280
+ 2097152    10000            111.60             111.60 		     0.006652
+ 4194304    10000            111.70             111.70 		     0.003329
+ 8388608    10000            111.74             111.74 		     0.001665
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f1994000000
+destroying current CUDA Ctx

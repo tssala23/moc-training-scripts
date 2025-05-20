@@ -1,0 +1,77 @@
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 3
+[pid = 36082, dev = 3] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+cuMemAlloc() of a 67108864 bytes GPU buffer
+allocated GPU buffer address at 00007f433c000000 pointer=0x7f433c000000
+using DMA-BUF for GPU buffer address at 0x7f433c000000 aligned at 0x7f433c000000 with aligned size 67108864
+Calling ibv_reg_dmabuf_mr(offset=0, size=67108864, addr=0x7f433c000000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 4		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Outstand reads  : 16
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0edd PSN 0x3b86a7
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x0ede PSN 0xdc905
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x0edf PSN 0x86966b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ local address: LID 0000 QPN 0x0ee0 PSN 0x3cccde
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:174
+ remote address: LID 0000 QPN 0x0edc PSN 0xd2129c
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0edd PSN 0xc17e56
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0ede PSN 0x9d8fe8
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+ remote address: LID 0000 QPN 0x0edf PSN 0x675517
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:60:83
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          4000           0.031250            0.030762            1.922652
+ 4          4000           0.062992            0.062039            1.938727
+ 8          4000             0.13               0.12   		     1.937956
+ 16         4000             0.25               0.25   		     1.942512
+ 32         4000             0.50               0.50   		     1.938163
+ 64         4000             1.00               0.98   		     1.911132
+ 128        4000             2.02               1.99   		     1.943238
+ 256        4000             3.99               3.98   		     1.941691
+ 512        4000             8.05               7.95   		     1.939977
+ 1024       4000             15.81              15.78  		     1.926114
+ 2048       4000             32.03              31.64  		     1.931345
+ 4096       4000             42.18              42.16  		     1.286716
+ 8192       4000             73.03              50.94  		     0.777310
+ 16384      4000             73.40              60.55  		     0.461975
+ 32768      4000             76.85              62.39  		     0.237997
+ 65536      4000             80.78              74.29  		     0.141699
+ 131072     4000             81.32              69.50  		     0.066279
+ 262144     4000             81.89              80.65  		     0.038459
+ 524288     4000             82.54              82.54  		     0.019680
+ 1048576    4000             83.68              83.68  		     0.009975
+ 2097152    4000             83.91              83.77  		     0.004993
+ 4194304    4000             84.37              84.37  		     0.002514
+ 8388608    4000             84.56              84.56  		     0.001260
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f433c000000
+destroying current CUDA Ctx

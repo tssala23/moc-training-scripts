@@ -4,7 +4,7 @@ typeset -r ts=$(date +%d-%m-%y-%s)
 NIC="eno6np0"
 HCA="mlx5_2"
 #SIZE=131072  #128K
-FLAGS=" -a -F  --report_gbits  -d ${HCA} "
+FLAGS=" -a -R -T 41 -F  -x 3 -m 4096 -p 10000 --report_gbits  -d ${HCA} "
 MTU=9000
 
 #BM_HOSTS="192.168.50.92 192.168.50.96 192.168.50.81 192.168.50.172 192.168.50.134 192.168.50.105 192.168.50.173 192.168.50.166"
