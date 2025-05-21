@@ -1,0 +1,109 @@
+Generating SQLite file perftest_gpu0_clt.sqlite from perftest_gpu0_clt.nsys-rep
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/nvtx_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain NV Tools Extension (NVTX) data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/osrt_sum.py]... 
+
+ ** OS Runtime Summary (osrt_sum):
+
+ Time (%)  Total Time (ns)  Num Calls     Avg (ns)         Med (ns)        Min (ns)       Max (ns)      StdDev (ns)            Name         
+ --------  ---------------  ---------  ---------------  ---------------  -------------  -------------  -------------  ----------------------
+     71.2   11,756,861,126        148     79,438,250.9    100,411,205.0          1,090    777,731,043   71,181,969.7  poll                  
+     10.1    1,658,641,702         68     24,391,789.7          6,130.0          1,511  1,632,280,237  197,918,481.9  write                 
+      9.9    1,634,743,793      1,370      1,193,243.6         33,191.5          1,530    555,336,711   16,732,326.4  ioctl                 
+      6.1    1,000,359,954          1  1,000,359,954.0  1,000,359,954.0  1,000,359,954  1,000,359,954            0.0  sleep                 
+      2.4      403,411,629     22,904         17,613.2         29,130.0          1,220        239,238       14,445.5  fgets                 
+      0.1       12,904,827         84        153,628.9         32,150.5         19,410      4,184,560      580,442.4  mmap64                
+      0.1        8,522,799        501         17,011.6         16,461.0          6,150         76,282        4,010.7  open                  
+      0.0        6,630,630        242         27,399.3         14,780.0          5,941        918,253       65,310.1  fopen                 
+      0.0        3,414,275         24        142,261.5        147,290.5         40,041        379,524       72,059.4  sem_timedwait         
+      0.0        2,850,570         29         98,295.5         31,361.0          7,230        691,134      187,281.9  mmap                  
+      0.0        2,773,369          2      1,386,684.5      1,386,684.5      1,325,377      1,447,992       86,701.9  pthread_create        
+      0.0        2,329,086         91         25,594.4         13,491.0          6,320        533,909       58,314.6  open64                
+      0.0        1,570,206        574          2,735.6          2,420.0          1,010         23,650        1,902.8  close                 
+      0.0        1,549,221        520          2,979.3          2,610.0          1,180         16,021        1,487.0  read                  
+      0.0        1,420,635        243          5,846.2          3,100.0          2,420        125,204        9,533.7  fclose                
+      0.0          772,737         13         59,441.3          9,111.0          4,230        649,183      177,266.6  munmap                
+      0.0          614,122          1        614,122.0        614,122.0        614,122        614,122            0.0  pthread_join          
+      0.0          500,768          1        500,768.0        500,768.0        500,768        500,768            0.0  pthread_cond_wait     
+      0.0          469,121         24         19,546.7         18,121.0         14,021         31,741        4,261.0  fflush                
+      0.0          293,879         27         10,884.4          2,910.0          2,430         65,763       13,658.5  recvmsg               
+      0.0          245,745         76          3,233.5          1,260.5          1,000         56,052        8,026.2  fcntl                 
+      0.0          214,108          6         35,684.7         33,066.0         10,120         59,743       17,886.6  socket                
+      0.0          196,837         15         13,122.5          7,750.0          6,050         46,912       11,810.9  sendmsg               
+      0.0          156,526         14         11,180.4          7,985.5          6,340         34,071        7,752.6  stat                  
+      0.0           74,174          3         24,724.7         24,381.0         19,201         30,592        5,703.3  fread                 
+      0.0           62,173          2         31,086.5         31,086.5         22,121         40,052       12,679.1  connect               
+      0.0           46,920          3         15,640.0         14,700.0         12,880         19,340        3,331.0  fopen64               
+      0.0           44,311          3         14,770.3         18,480.0          6,290         19,541        7,363.3  pipe2                 
+      0.0           19,159          4          4,789.8          1,275.0          1,209         15,400        7,073.6  pthread_cond_broadcast
+      0.0           15,519          4          3,879.8          3,869.5          1,450          6,330        1,999.0  bind                  
+      0.0           15,400          5          3,080.0          1,510.0          1,089          9,761        3,749.0  fstat                 
+      0.0           10,461          2          5,230.5          5,230.5          2,550          7,911        3,790.8  fwrite                
+      0.0           10,331          8          1,291.4          1,220.5          1,050          1,690          235.6  dup                   
+      0.0            3,060          1          3,060.0          3,060.0          3,060          3,060            0.0  listen                
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)       Med (ns)      Min (ns)     Max (ns)    StdDev (ns)              Name             
+ --------  ---------------  ---------  -------------  -------------  -----------  -----------  -----------  -----------------------------
+     59.9      257,574,201          1  257,574,201.0  257,574,201.0  257,574,201  257,574,201          0.0  cuCtxCreate_v2               
+     39.9      171,396,816          1  171,396,816.0  171,396,816.0  171,396,816  171,396,816          0.0  cuCtxDestroy_v2              
+      0.1          480,297          1      480,297.0      480,297.0      480,297      480,297          0.0  cuMemFree_v2                 
+      0.0          208,337          1      208,337.0      208,337.0      208,337      208,337          0.0  cuMemAlloc_v2                
+      0.0           80,503          1       80,503.0       80,503.0       80,503       80,503          0.0  cuMemGetHandleForAddressRange
+      0.0           15,261          1       15,261.0       15,261.0       15,261       15,261          0.0  cuCtxSetCurrent              
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain CUDA kernel data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/cuda_gpu_mem_time_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain GPU memory data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/cuda_gpu_mem_size_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain GPU memory data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/openmp_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain OpenMP event data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/opengl_khr_range_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain KHR Extension (KHR_DEBUG) data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/opengl_khr_gpu_range_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain GPU KHR Extension (KHR_DEBUG) data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/vulkan_marker_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain Vulkan Debug Extension (Vulkan Debug Util) data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/vulkan_gpu_marker_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain GPU Vulkan Debug Extension (GPU Vulkan Debug markers) data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/dx11_pix_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain DX11 CPU debug markers.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/dx12_gpu_marker_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain DX12 GPU debug markers.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/dx12_pix_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain DX12 CPU debug markers.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/wddm_queue_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain WDDM context data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/um_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain CUDA memory transfers data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/um_total_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain CUDA memory transfers data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/um_cpu_page_faults_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/openacc_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain OpenACC event data.
+
+Processing [perftest_gpu0_clt.sqlite] with [/home/ahmed/nsight-systems-2025.3.1/host-linux-x64/reports/syscall_sum.py]... 
+SKIPPED: perftest_gpu0_clt.sqlite does not contain syscall data.
+
