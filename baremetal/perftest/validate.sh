@@ -59,8 +59,8 @@ sleep 10
 log "$hexec_clt ${BM_USER}@${clt} \"${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
 $hexec_clt ${BM_USER}@${clt} "${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
 sleep 1
-$hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_cpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
-$hcp ${BM_USER}@${clt}:/tmp/perftest_log "${LOGDIR}/perftest_cpu_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
+$hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_gpu${GPU}_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
+$hcp ${BM_USER}@${clt}:/tmp/perftest_log "${LOGDIR}/perftest_gpu${GPU}_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
 $hcp ${BM_USER}@${srv}:/tmp/report.nsys-rep "${LOGDIR}/perftest_gpu${GPU}_srv.nsys-rep"
 $hcp ${BM_USER}@${clt}:/tmp/report.nsys-rep "${LOGDIR}/perftest_gpu${GPU}_clt.nsys-rep"
 $hcp ${BM_USER}@${srv}:/tmp/nstat_gpu_pre "${LOGDIR}/nstat_gpu_pre"
