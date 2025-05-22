@@ -1,0 +1,173 @@
+Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+
+************************************
+* Waiting for client to connect... *
+************************************
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 1
+[pid = 10759, dev = 1] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+using DMA-BUF for GPU buffer address at 0x7f9a00000000 aligned at 0x7f9a00000000 with aligned size 536870912
+allocated GPU buffer of a 536870912 address at 0x1292a00 for type CUDA_MEM_DEVICE
+Calling ibv_reg_dmabuf_mr(offset=0, size=536870912, addr=0x7f9a00000000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 32		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ Waiting for client rdma_cm QP to connect
+ Please run the same command with the IB/RoCE interface IP
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x18e2 PSN 0xbfece9
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e3 PSN 0x249f1f
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e4 PSN 0x931b7d
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e5 PSN 0xb7a188
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e6 PSN 0x21acfb
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e7 PSN 0xbc7e41
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e8 PSN 0x85e90c
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18e9 PSN 0x3a3e15
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ea PSN 0xbe2695
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18eb PSN 0xc2c8f3
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ec PSN 0x8f171b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ed PSN 0xcdd912
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ee PSN 0x4c8696
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ef PSN 0x13fb8b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f0 PSN 0x2480ed
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f1 PSN 0x25a2ad
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f2 PSN 0xce2cbe
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f3 PSN 0x8758a0
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f4 PSN 0xa3bafb
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f5 PSN 0x5a87cc
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f6 PSN 0x67733d
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f7 PSN 0xb9dac8
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f8 PSN 0xc74e8c
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18f9 PSN 0x59eea4
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18fa PSN 0x8924d5
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18fb PSN 0x97407c
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18fc PSN 0x5d4ed
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18fd PSN 0x526a6b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18fe PSN 0xc2ebae
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x18ff PSN 0xb4b418
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x1900 PSN 0xf54c4e
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ local address: LID 0000 QPN 0x1901 PSN 0x32b825
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c2 PSN 0x8e9e18
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c3 PSN 0xaa4a22
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c4 PSN 0xe59dc4
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c5 PSN 0x58e3c3
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c6 PSN 0xafe21a
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c7 PSN 0x96f674
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c8 PSN 0x8ce8c3
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18c9 PSN 0xa78900
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18ca PSN 0x3a2ea4
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18cb PSN 0xa3b156
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18cc PSN 0x5efb42
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18cd PSN 0x4107ad
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18ce PSN 0x1aa095
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18cf PSN 0x44271e
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d0 PSN 0x512084
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d1 PSN 0xbb3ff8
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d2 PSN 0xf787ad
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d3 PSN 0x29ca63
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d4 PSN 0xc75d02
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d5 PSN 0x8ccec7
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d6 PSN 0xf92e1c
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d7 PSN 0x3ec5bb
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d8 PSN 0x79aa03
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18d9 PSN 0x2bca4f
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18da PSN 0xe34ea4
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18db PSN 0x5f079f
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18dc PSN 0x4310d4
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18dd PSN 0x2a75c6
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18de PSN 0xd7836d
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18df PSN 0xe2ea6b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18e0 PSN 0xf4ffa5
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x18e1 PSN 0x663e30
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    160000           109.27             109.27 		     0.001628
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f9a00000000
+destroying current CUDA Ctx

@@ -1,0 +1,77 @@
+Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+
+************************************
+* Waiting for client to connect... *
+************************************
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 2
+[pid = 7458, dev = 2] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+using DMA-BUF for GPU buffer address at 0x7f3c1c000000 aligned at 0x7f3c1c000000 with aligned size 134217728
+allocated GPU buffer of a 134217728 address at 0x21e1480 for type CUDA_MEM_DEVICE
+Calling ibv_reg_dmabuf_mr(offset=0, size=134217728, addr=0x7f3c1c000000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Write BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 8		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Max inline data : 0[B]
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ Waiting for client rdma_cm QP to connect
+ Please run the same command with the IB/RoCE interface IP
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0ca6 PSN 0x4530d3
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0ca7 PSN 0x9ec5c1
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0ca8 PSN 0xa31a77
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0ca9 PSN 0x13cdfa
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0caa PSN 0x670585
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0cab PSN 0x72d03
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0cac PSN 0x2c9da6
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ local address: LID 0000 QPN 0x0cad PSN 0x6f7fa7
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0c9e PSN 0x32d786
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0c9f PSN 0xe052f
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca0 PSN 0xef7d17
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca1 PSN 0x3f18e3
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca2 PSN 0x65b3f1
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca3 PSN 0x4605c9
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca4 PSN 0xc25abe
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+ remote address: LID 0000 QPN 0x0ca5 PSN 0xbe1fa9
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:226
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 8388608    40000            105.19             105.19 		     0.001567
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007f3c1c000000
+destroying current CUDA Ctx
