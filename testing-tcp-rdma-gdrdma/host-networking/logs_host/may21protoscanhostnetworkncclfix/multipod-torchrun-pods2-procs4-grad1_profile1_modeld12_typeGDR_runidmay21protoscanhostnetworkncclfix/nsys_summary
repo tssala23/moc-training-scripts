@@ -1,0 +1,317 @@
+Generating SQLite file /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite from /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.nsys-rep
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/nvtx_sum.py]... 
+
+ ** NVTX Range Summary (nvtx_sum):
+
+ Time (%)  Total Time (ns)  Instances    Avg (ns)      Med (ns)     Min (ns)    Max (ns)    StdDev (ns)   Style              Range           
+ --------  ---------------  ---------  ------------  ------------  ----------  -----------  -----------  -------  ---------------------------
+     57.0      34164315895        548    62343642.1       72632.5       44492  12404029001  840712283.5  PushPop  NCCL:ncclAllReduce         
+     32.5      19480412032          4  4870103008.0  4872343332.5  4862096888   4873628479    5377101.0  PushPop  NCCL:ncclCommInitRankConfig
+      9.6       5752219121          4  1438054780.3  1437942904.0  1436078240   1440255073    1725294.8  PushPop  NCCL:ncclAllGather         
+      0.9        536119140          4   134029785.0   137483700.5    82138302    179013437   45871990.4  PushPop  NCCL:ncclCommDestroy       
+      0.0         27710141         64      432971.0      157305.0       57172      4912928    1113368.8  PushPop  NCCL:ncclBroadcast         
+      0.0         19748416          4     4937104.0     4955454.5     4375771      5461736     444118.9  PushPop  NCCL:ncclCommFinalize      
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/osrt_sum.py]... 
+
+ ** OS Runtime Summary (osrt_sum):
+
+ Time (%)  Total Time (ns)  Num Calls   Avg (ns)     Med (ns)    Min (ns)    Max (ns)    StdDev (ns)            Name         
+ --------  ---------------  ---------  -----------  -----------  --------  ------------  ------------  ----------------------
+     31.5    4277167046548     163542   26153324.8   10136416.0      1750    2426460486    91390453.6  poll                  
+     28.2    3832513718642      57985   66094916.2     366601.0      1440  184476442170  2964359351.8  pthread_cond_wait     
+     11.4    1545453266934      12805  120691391.4  100258254.0      1630    1000973748   227528175.0  pthread_cond_timedwait
+     11.0    1492661270557     165877    8998603.0       3430.0      1000   49238534760   518659013.1  read                  
+      7.0     955447016883       3020  316373184.4  100364262.5   1074305    1001444062   389041407.5  select                
+      5.5     751911450607        846  888784220.6    8193173.5     29471   49238811729  5103674813.8  sem_wait              
+      1.7     234496918707      13083   17923788.0       2150.0      1000     661123689    58199235.7  waitpid               
+      1.6     211631691893       1498  141276162.8   73063759.5      1420    5676874548   278745765.5  epoll_wait            
+      0.5      65712492677       8026    8187452.4    3478247.0      1040     156219094    12223734.7  pthread_join          
+      0.5      62407960882      72845     856722.6     195876.0      1170    3363323233    26136389.2  ioctl                 
+      0.4      58804803463     891923      65930.4      66512.0      8730       3148431        7593.6  usleep                
+      0.3      41472964637    5066108       8186.4       6190.0      5740    2682566262     1275598.0  accept                
+      0.1      16531391185       9177    1801393.8    1793728.0   1123176       7336586      285987.4  pthread_create        
+      0.0       5528429170       1710    3232999.5    3211309.0   2552642       5619250      272792.7  posix_spawn           
+      0.0       4602362826    3386691       1359.0       1140.0      1000      24916481       22728.5  recv                  
+      0.0       2630485706     208138      12638.2       9400.0      1810       1904981       11849.8  stat64                
+      0.0       2552025451      75983      33586.8      17020.0      5280       1591981       42406.6  open64                
+      0.0       2072620052      23638      87681.7      31191.0      1210     346742910     2294145.6  write                 
+      0.0       1920248171       5202     369136.5      49816.5      1000      72975987     2628319.9  pthread_mutex_lock    
+      0.0       1233348278        128    9635533.4    9484360.0   7757449      14041672      893481.3  fork                  
+      0.0       1065836837        126    8459022.5   10135010.5   2074396      10369334     2566192.5  nanosleep             
+      0.0       1055093413      59153      17836.7      28471.0      1000        343191       15009.4  fgets                 
+      0.0        962301696     108612       8860.0       4320.0      1000      35394389      140756.5  close                 
+      0.0        882054260      85344      10335.3       8200.0      3971        477595       13054.9  open                  
+      0.0        774955689     116304       6663.2       6080.0      2720        247328        2780.1  lstat64               
+      0.0        701642770       8433      83202.0      31311.0      4020        836627       99950.5  fopen                 
+      0.0        628404508       4617     136106.7      84103.0      8100      12968117      490686.4  sleep                 
+      0.0        395769047     131184       3016.9       2740.0      2170        727164        3682.2  fstat64               
+      0.0        252813489       6151      41101.2      18941.0      1660       4555347       90950.8  send                  
+      0.0        246848296       5749      42937.6      15980.0      1000       3296066      156266.0  fwrite                
+      0.0        227236710     162415       1399.1       1170.0      1160      24061703       59834.0  recvmsg               
+      0.0        203790458       5307      38400.3      36201.0      7310        654191       25175.8  mmap                  
+      0.0        175908528      16040      10966.9       6630.5      1060        237178       12612.9  fread                 
+      0.0        175539949      10217      17181.2      10890.0      1891       1827289       54898.0  fclose                
+      0.0        169756849       2309      73519.6      70553.0      3880      10220289      215642.5  munmap                
+      0.0        152679340      19720       7742.4       5900.0      2431        126544        7164.1  stat                  
+      0.0        127866725      34853       3668.7       2660.0      1000        307080        5293.5  pthread_cond_signal   
+      0.0        121123091        814     148799.9      14495.5      4880      32764194     1931836.8  pipe2                 
+      0.0        118509174       1439      82355.2      44942.0      9751       4296158      219208.9  mmap64                
+      0.0        106801132      26899       3970.4       2800.0      1000        336591        4860.4  pthread_cond_broadcast
+      0.0        100976161        113     893594.3     128224.0     21631      43450077     5512307.2  connect               
+      0.0         84159050      29312       2871.1       2670.0      2180        222347        1913.2  fstat                 
+      0.0         79667381         54    1475321.9       1760.0      1000      25018764     5617647.8  dup                   
+      0.0         59328971       5383      11021.5       8310.0      3251        304440       16210.6  fopen64               
+      0.0         39253796        112     350480.3      51926.0      1090      14941401     1799304.8  pthread_rwlock_rdlock 
+      0.0         34229375        308     111134.3      23106.0      8480      24763176     1409408.1  socket                
+      0.0         33695249      14927       2257.3       2050.0      1000        122394        1928.9  sigaction             
+      0.0         26589763        156     170447.2      98628.0      2760        921559      163715.3  pthread_rwlock_wrlock 
+      0.0         17490222          1   17490222.0   17490222.0  17490222      17490222           0.0  fallocate             
+      0.0         13284082        449      29585.9      14491.0      1020       1096945       61528.8  putc                  
+      0.0         13086541        248      52768.3      14540.5      1000       1785047      192851.1  fputs                 
+      0.0          9221899         52     177344.2     162210.0     53101        377142       79140.2  sem_timedwait         
+      0.0          7640189        215      35535.8      21400.0      3600        158805       34308.0  shutdown              
+      0.0          5870460       1761       3333.6       3230.0      1000         25391        1540.1  epoll_ctl             
+      0.0          4944183        184      26870.6      17185.5      4570         80733       21978.1  lstat                 
+      0.0          4563096       3190       1430.4       1160.0      1000         30491         938.0  fcntl                 
+      0.0          3067707        204      15037.8      12900.5      6480         54312        8170.0  sendmsg               
+      0.0          1834063        101      18159.0      18691.0      2520         31571        5739.9  getc                  
+      0.0          1794755        901       1992.0       1320.0      1000         22761        1808.9  signal                
+      0.0          1091880        195       5599.4       3831.0      1921         34871        5810.0  bind                  
+      0.0           752946         18      41830.3      36721.0     11810         81912       26991.2  accept4               
+      0.0           497939        140       3556.7       3611.0      1020         12410        1660.7  fcntl64               
+      0.0           456549        117       3902.1       3830.0      1110         19451        2022.7  dup2                  
+      0.0           173564         42       4132.5       1780.0      1000         38561        7717.3  fflush                
+      0.0           137686         42       3278.2       2360.0      1640          7381        1752.2  listen                
+      0.0            58435         31       1885.0       1090.0      1000          7281        1745.7  fileno_unlocked       
+      0.0            56892          4      14223.0      14731.0     11420         16010        2132.8  pipe                  
+      0.0            51309         28       1832.5       1430.0      1000         13150        2246.3  pthread_mutex_trylock 
+      0.0            34640          4       8660.0       8555.0      7640          9890        1020.9  openat64              
+      0.0            28471          4       7117.8       5070.0      4460         13871        4531.3  fstatat64             
+      0.0            28441          6       4740.2       1010.0      1000         23111        9000.7  fputc                 
+      0.0            15291          1      15291.0      15291.0     15291         15291           0.0  flockfile             
+      0.0             6611          1       6611.0       6611.0      6611          6611           0.0  getentropy            
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls   Avg (ns)    Med (ns)   Min (ns)   Max (ns)   StdDev (ns)                         Name                      
+ --------  ---------------  ---------  -----------  ---------  --------  ----------  ------------  ------------------------------------------------
+     69.1      76363543151      18700    4083611.9    17001.0      6420  1076632450    40543867.3  cudaDeviceSynchronize                           
+     12.5      13777043999         44  313114636.3    52627.0      4870  3621956589  1001117808.9  cudaHostAlloc                                   
+      5.7       6298116023     939810       6701.5     5560.0      4350    27595007      120083.5  cudaLaunchKernel                                
+      2.6       2923453691     892429       3275.8     3250.0       580     1130917        2173.0  cudaEventRecord                                 
+      2.6       2826290002     465406       6072.7     5381.0      4090     1701025        5825.7  cuLaunchKernel                                  
+      1.9       2074124477       1012    2049530.1     8685.5      2910    54061769     9575023.9  cudaStreamSynchronize                           
+      1.3       1441812024       5201     277218.2   120504.0     44931    73151432     2588215.7  cuModuleLoadData                                
+      1.1       1188257820     889889       1335.3     1171.0       360      676692        2253.4  cudaEventCreateWithFlags                        
+      0.6        690029637      40636      16980.7    10100.0      3200    23585148      212174.4  cudaMemcpyAsync                                 
+      0.5        581751242     889520        654.0      580.0       470      785885        1704.3  cudaEventDestroy                                
+      0.5        535918829        220    2435994.7   252113.0    102643    53758099     8477365.3  cuMemSetAccess                                  
+      0.3        372387644         12   31032303.7    90468.0     10540   224614803    71892317.5  cudaStreamCreateWithFlags                       
+      0.3        318102596        324     981798.1   536692.0      7980    26136540     1880529.3  cudaMalloc                                      
+      0.2        249655448         72    3467436.8  1500828.0    921800    36469412     7212935.6  cuMemExportToShareableHandle                    
+      0.2        178697054       6555      27261.2     7570.0      5261    14891908      397638.8  cuLaunchKernelEx                                
+      0.1        142175262         32    4442976.9  2651695.0   2046696    14652531     3279799.4  cudaGetDeviceProperties_v2_v12000               
+      0.1        112683531         76    1482678.0   124449.0     43841     5489646     1620475.4  cuLibraryLoadData                               
+      0.1         85652424         72    1189617.0   324760.5     94893    19335381     3497050.5  cuMemImportFromShareableHandle                  
+      0.1         64994879        512     126943.1     7005.5      4530     1311302      228710.4  cudaStreamCreateWithPriority                    
+      0.1         62313563        140     445096.9    86793.0     41081    18346799     2067810.3  cuMemCreate                                     
+      0.0         51717935        212     243952.5    46566.5      3210    17107841     1635972.7  cuMemMap                                        
+      0.0         37820195       4075       9281.0     7030.0      3660      256588        9689.3  cudaMemsetAsync                                 
+      0.0         37128223        212     175133.1   111323.0     56962     1624472      167818.0  cuMemUnmap                                      
+      0.0         32924066       2550      12911.4      430.0       240    20886562      460455.9  cudaThreadExchangeStreamCaptureMode_v10010      
+      0.0         29923722        103     290521.6     2690.0       540     5533308     1070963.5  cuKernelGetFunction                             
+      0.0         21032279        424      49604.4    17061.0       129      755135       88465.7  cuMemRelease                                    
+      0.0         15629803         12    1302483.6    57526.5      3340     5061563     1918488.0  cudaFree                                        
+      0.0         11022392         40     275559.8    52962.0     45502     1795308      472201.3  cuMemGetHandleForAddressRange                   
+      0.0          9404558       2500       3761.8     2011.0       840      736474       29093.8  cudaStreamWaitEvent                             
+      0.0          9283876       3654       2540.7     1190.0       700      149135        4738.2  cudaEventQuery                                  
+      0.0          7950381        212      37501.8     9705.5      3080     1210959       98187.0  cuMemAddressReserve                             
+      0.0          3960032       1311       3020.6     1611.0       409       38571        3351.4  cudaStreamIsCapturing_v10000                    
+      0.0          3896735          4     974183.8   332905.5    180165     3050759     1391273.3  cudaMemPoolDestroy_v11020                       
+      0.0          3364165      11878        283.2      200.0       109       16710         451.3  cuKernelGetAttribute                            
+      0.0          2895753         32      90492.3    40861.5     10840     1178528      203254.6  cudaFreeHost                                    
+      0.0          2436853       4800        507.7      390.0       120       15910         591.2  cuGetProcAddress_v2                             
+      0.0          1951980        212       9207.5     3925.5      1190      209887       18421.3  cuMemAddressFree                                
+      0.0          1073611        212       5064.2     1720.0       560      159805       13560.4  cuMemRetainAllocationHandle                     
+      0.0          1072063        616       1740.4     1180.0       760       23241        1702.9  cudaStreamGetCaptureInfo_v2_v11030              
+      0.0           923488        288       3206.6     3030.0      1040       27711        2748.0  cudaEventSynchronize                            
+      0.0           808826          4     202206.5   173925.5    147225      313750       76384.6  cudaMemPoolCreate_v11020                        
+      0.0           539171        616        875.3      530.0       411       11290        1155.5  cudaGetFuncBySymbol_v11000                      
+      0.0           353968        212       1669.7      400.0       180       65832        6409.9  cuMemGetAllocationGranularity                   
+      0.0           333880         12      27823.3    22251.0     13681       48862       12481.6  cudaStreamDestroy                               
+      0.0           235002         89       2640.5     1340.0       380       18761        2884.9  cuLibraryGetKernel                              
+      0.0           124669         72       1731.5     1470.0       480        9521        1404.3  cuKernelSetAttribute                            
+      0.0            97810         16       6113.1     5890.0      2160       16921        3665.6  cuInit                                          
+      0.0            95969        136        705.7      585.0       280        3230         472.3  cudaGetDriverEntryPoint_v11030                  
+      0.0            61599         72        855.5      555.0       510        6560        1102.2  cudaOccupancyMaxActiveClusters_v11070           
+      0.0            20610         20       1030.5      475.0       160        2890         970.8  cuModuleGetLoadingMode                          
+      0.0            19272          4       4818.0     5010.5      3760        5491         740.9  cudaOccupancyAvailableDynamicSMemPerBlock_v10200
+      0.0            10910          4       2727.5     2955.0      1920        3080         541.9  cudaMemPoolSetAttribute_v11020                  
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+
+ ** CUDA GPU Kernel Summary (cuda_gpu_kern_sum):
+
+ Time (%)  Total Time (ns)  Instances   Avg (ns)    Med (ns)   Min (ns)  Max (ns)  StdDev (ns)                                                  Name                                                
+ --------  ---------------  ---------  ----------  ----------  --------  --------  -----------  ----------------------------------------------------------------------------------------------------
+     32.6      15159894990     884325     17142.9     17248.0     15168     20608        611.4  void at::native::vectorized_elementwise_kernel<(int)4, at::native::FillFunctor<int>, std::array<cha…
+     12.0       5580726630      36096    154607.9    144863.0    132223    220766      26034.4  triton_poi_fused__to_copy_add_mul_pow_tanh_7                                                        
+      4.5       2080022137      14644    142039.2    136927.0    130271    156991       8622.5  triton_per_fused_add_native_layer_norm_8                                                            
+      4.4       2059873189      38150     53994.1     53183.0     46976     63296       2895.2  triton_poi_fused__to_copy_0                                                                         
+      4.4       2055926011        898   2289449.9   2077374.0   1962096   3980285     549863.2  triton_red_fused__log_softmax_3                                                                     
+      4.4       2044428349      18500    110509.6    103359.0     99808    133695      12047.1  triton_per_fused__to_copy_add_native_layer_norm_native_layer_norm_backward_4                        
+      4.0       1884705692        512   3681065.8   2843964.0     14688  41197626    4480435.6  ncclDevKernel_AllReduce_Sum_f32_TREE_LL(ncclDevKernelArgsStorage<(unsigned long)4096>)              
+      2.2       1033870633        222   4657074.9   3055395.5   2828739   7721231    2137162.3  triton_red_fused__log_softmax__log_softmax_backward_data__to_copy_nll_loss_backward_nll_loss_forwar…
+      1.8        843700546       9132     92389.5     91135.0     73888    147742      14726.4  triton_red_fused_native_layer_norm_native_layer_norm_backward_1                                     
+      1.7        814245001      17202     47334.3     16768.0      1952    147198      45812.8  triton_red_fused_native_layer_norm_native_layer_norm_backward_2                                     
+      1.6        748150906         28  26719675.2  26714690.0  26410399  26911555     151405.9  void cutlass::Kernel2<cutlass_75_tensorop_bf16_s1688gemm_bf16_128x128_tn_align1>(T1::Params)        
+      1.1        525722959       6416     81939.4     78943.0     70591    106943       8156.4  triton_red_fused_sum_6                                                                              
+      1.1        500459929       2421    206716.2    200510.0    194815    247709      16034.1  triton_poi_fused__to_copy_add_mul_pow_tanh_tanh_backward_5                                          
+      1.0        481492622      43344     11108.6      6048.0      2848     94847      18973.2  triton_poi_fused__to_copy_1                                                                         
+      0.9        441983920       6098     72480.1     48623.5     36672    474972      81741.1  triton_per_fused_embedding_dense_backward_sum_5                                                     
+      0.9        427287315       5446     78458.9     75103.0     71103    111584       8908.6  triton_red_fused_native_layer_norm_backward_0                                                       
+      0.9        424201441       1507    281487.4    159230.0     56895   3374052     599645.9  nvjet_tst_256x128_64x4_1x2_h_bz_coopA_NNT                                                           
+      0.9        410287086       6612     62051.9     59296.0     44607     76192       6111.1  triton_red_fused_sum_11                                                                             
+      0.9        402907998       6588     61157.9     59231.0     44640     76288       6910.5  triton_red_fused_sum_12                                                                             
+      0.8        379988537         64   5937320.9   3097063.5      4704  23666314    6720744.8  ncclDevKernel_Broadcast_RING_LL(ncclDevKernelArgsStorage<(unsigned long)4096>)                      
+      0.8        376614995        160   2353843.7   3136741.0    315869   3235909    1270630.2  void at::native::elementwise_kernel<(int)128, (int)4, void at::native::gpu_kernel_impl_nocast<at::n…
+      0.8        371297425       6058     61290.4     59072.0     53152     78847       5416.0  triton_red_fused__to_copy_native_layer_norm_backward_9                                              
+      0.8        355470818         21  16927181.8  16719404.0  16676780  18829663     501589.2  void cutlass::Kernel2<cutlass_75_tensorop_bf16_s1688gemm_bf16_256x128_nt_align1>(T1::Params)        
+      0.8        352533129       5764     61161.2     59167.0     47072     79008       4969.6  triton_red_fused__to_copy_native_layer_norm_backward_8                                              
+      0.7        346542778       3196    108430.2    102527.0     98911    144607      13719.5  triton_poi_fused_cat_11                                                                             
+      0.7        341124010       6016     56702.8     54336.0     47744     72160       6110.5  triton_poi_fused_mm_2                                                                               
+      0.7        327752052       2136    153442.0    150366.0    144286    167999       6892.7  triton_per_fused__to_copy_add_native_layer_norm_native_layer_norm_backward_view_0                   
+      0.7        326219552      44632      7309.1      7264.0      3264      9632        441.7  triton_poi_fused__to_copy_5                                                                         
+      0.7        305242022        480    635920.9    631914.5    597531    692860      22722.9  void pytorch_flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<(int)64, (…
+      0.6        295867354       2690    109987.9    103231.0     99391    145151      14501.7  triton_poi_fused_cat_10                                                                             
+      0.5        250636075         14  17902576.8  17909065.0  17821582  17983175      67127.8  void cutlass::Kernel2<cutlass_75_tensorop_bf16_s1688gemm_bf16_256x128_nn_align1>(T1::Params)        
+      0.5        250183577       1818    137614.7    133919.0    131935    151967       7245.4  triton_per_fused__to_copy_add_native_layer_norm_backward_view_8                                     
+      0.5        237011163       7254     32673.2      6816.0      4032     86015      35743.3  triton_poi_fused__to_copy_4                                                                         
+      0.5        224472065       1630    137712.9    133567.0    127935    151967       7796.2  triton_per_fused__to_copy_add_native_layer_norm_backward_view_9                                     
+      0.4        204929806        508    403405.1    249230.5    220959   3113667     645950.8  nvjet_tst_192x192_64x3_2x1_v_bz_coopB_NNN                                                           
+      0.4        200277755       1165    171912.2    171903.0    165918    179710       2338.5  triton_per_fused_add_embedding_dense_backward_native_layer_norm_native_layer_norm_backward_1        
+      0.4        198747460       1630    121931.0    117919.5    113855    134847       6932.4  triton_per_fused__to_copy_native_layer_norm_backward_view_2                                         
+      0.4        194779697        960    202895.5    203918.5    173119    238654      25965.3  nvjet_tst_192x192_64x4_2x1_v_bz_coopB_bias_TNN                                                      
+      0.4        190742575         40   4768564.4   4773598.5   4722315   4823124      29126.1  void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_256x128_32x6_nt_align8>(T1::Par…
+      0.4        190626677        960    198569.5    198303.0    187935    213502       4820.9  nvjet_tst_192x192_64x3_2x1_v_bz_coopB_splitK_NTN                                                    
+      0.4        186180983       1842    101075.5     88607.0     85472    138143      19263.4  triton_per_fused_add_embedding_native_layer_norm_1                                                  
+      0.4        186032040       1312    141792.7    136479.0    130111    156383       8824.6  triton_per_fused_add_native_layer_norm_native_layer_norm_backward_8                                 
+      0.4        177948394       6840     26015.8      5824.0      3456     56960      23492.2  triton_poi_fused__to_copy_14                                                                        
+      0.4        176974513         44   4022148.0   4024369.5   3947327   4162147      55138.6  nvjet_tst_160x256_64x3_1x2_h_bz_coopA_NNN                                                           
+      0.3        159831795       6628     24114.6      5728.0      3488     57088      23434.8  triton_poi_fused__to_copy_15                                                                        
+      0.3        154593976       2902     53271.5     53183.0     47903     57119       1462.7  triton_poi_fused__to_copy_3                                                                         
+      0.3        151299507       2796     54112.8     48319.0     46879     92160      13907.8  triton_poi_fused_embedding_dense_backward_0                                                         
+      0.3        143716946         40   3592923.6   3591910.0   3504870   3655999      35780.1  nvjet_tst_208x192_64x4_2x1_v_bz_coopB_TNN                                                           
+      0.3        129436695      36520      3544.3      3520.0      1984      5536        244.7  triton_poi_fused__to_copy_t_3                                                                       
+      0.3        123923656       5518     22458.1     21952.0     16127     29568       2274.1  triton_red_fused_sum_3                                                                              
+      0.3        120954405        960    125994.2    124751.5     54912    206206      69555.8  nvjet_tst_256x128_64x4_1x2_h_bz_coopA_TNT                                                           
+      0.3        117809803        480    245437.1    245326.0    235838    258910       3298.2  void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<(int)64, (int)128, (int)128, (int)4, (…
+      0.2         96069237        480    200144.2    168446.5    159615    336445      59932.2  nvjet_tst_128x128_64x6_2x4_v_bz_NTT                                                                 
+      0.2         82508988       4280     19277.8     13632.0     10080     65920      15277.0  triton_red_fused_nll_loss_forward_4                                                                 
+      0.1         65017669      13880      4684.3      2112.0      1407    106911       9885.1  void at::native::vectorized_elementwise_kernel<(int)4, at::native::AUnaryFunctor<float, float, floa…
+      0.1         58153519      32492      1789.8      1760.0      1408      3008        102.2  triton_poi_fused__to_copy_6                                                                         
+      0.1         52449658      29418      1782.9      1760.0      1376      2784        108.8  triton_poi_fused__to_copy_2                                                                         
+      0.1         47174075        480     98279.3    108495.0     55199    116799      21913.2  nvjet_tst_192x128_64x5_4x2_h_bz_coopB_splitK_NTT                                                    
+      0.1         35655495        480     74282.3     74191.5     71807     78687       1087.9  void pytorch_flash::flash_bwd_dot_do_o_kernel<(bool)1, Flash_bwd_kernel_traits<(int)64, (int)128, (…
+      0.1         33814275       6812      4963.9      4096.0      1824     18048       3409.3  triton_red_fused_native_layer_norm_backward_1                                                       
+      0.1         32600581       5920      5506.9      2240.0      1664    202143      16547.2  void at::native::vectorized_elementwise_kernel<(int)4, at::native::addcdiv_cuda_kernel(at::TensorIt…
+      0.1         32008240       5920      5406.8      2048.0      1536    153951      12753.9  void at::native::vectorized_elementwise_kernel<(int)4, at::native::<unnamed>::lerp_scalar_kernel(at…
+      0.1         31332310       6122      5118.0      4128.0      1856     17984       3534.6  triton_red_fused_native_layer_norm_native_layer_norm_backward_3                                     
+      0.1         31162106        133    234301.5     25504.0      1280    502779     241487.4  void at::native::vectorized_elementwise_kernel<(int)8, at::native::FillFunctor<c10::BFloat16>, std:…
+      0.1         27395771        480     57074.5     57023.5     55743     62496        746.9  void pytorch_flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<(int)64, (int)128, (int)128…
+      0.1         24792880         26    953572.3     94095.0     61568   2320172     974119.8  void at::native::<unnamed>::distribution_elementwise_grid_stride_kernel<float, (int)4, void at::nat…
+      0.1         24240309          4   6060077.3   6508140.5   4306582   6917446    1193825.9  ncclDevKernel_AllGather_RING_LL(ncclDevKernelArgsStorage<(unsigned long)4096>)                      
+      0.0         22447030       5920      3791.7      1728.0      1248    153727      12409.1  void at::native::vectorized_elementwise_kernel<(int)4, at::native::addcmul_cuda_kernel(at::TensorIt…
+      0.0         21289054         36    591362.6    558027.5    466013    865113     102881.5  ncclDevKernel_AllReduce_Sum_f32_RING_LL(ncclDevKernelArgsStorage<(unsigned long)4096>)              
+      0.0         19364236       5920      3271.0      1920.0      1471    104223       8385.7  void at::native::vectorized_elementwise_kernel<(int)4, at::native::sqrt_kernel_cuda(at::TensorItera…
+      0.0         18268337       6000      3044.7      1632.0      1248    105151       8359.4  void at::native::vectorized_elementwise_kernel<(int)4, at::native::BUnaryFunctor<float, float, floa…
+      0.0         18233734       6000      3039.0      1664.0      1248    104511       8371.6  void at::native::vectorized_elementwise_kernel<(int)4, at::native::CUDAFunctorOnSelf_add<float>, st…
+      0.0         14958863        280     53424.5     57887.5     23648     64191      12084.9  void at::native::<unnamed>::multi_tensor_apply_kernel<at::native::<unnamed>::TensorListMetadata<(in…
+      0.0         14475751       1440     10052.6     11823.5      5184     17471       3006.6  void cublasLt::splitKreduce_kernel<(int)32, (int)16, int, float, __nv_bfloat16, float, (bool)0, flo…
+      0.0         12327399       4150      2970.5      2976.0      2048      5600        365.1  triton_poi_fused__to_copy_10                                                                        
+      0.0         10112779       3978      2542.2      2559.0      1792      4768        248.9  triton_per_fused_sum_7                                                                              
+      0.0         10070703       3938      2557.3      2560.0      1792      3680        273.3  triton_per_fused_sum_13                                                                             
+      0.0          9968238       3750      2658.2      2592.0      1792      3775        252.2  triton_per_fused_sum_12                                                                             
+      0.0          9796019       3220      3042.2      2976.0      2016      4352        297.4  triton_poi_fused__to_copy_13                                                                        
+      0.0          8241693        280     29434.6     29583.5     17280     40608       5883.9  void at::native::<unnamed>::multi_tensor_apply_kernel<at::native::<unnamed>::TensorListMetadata<(in…
+      0.0          5876788         40    146919.7    146319.0    144383    151135       1929.1  void at::native::vectorized_elementwise_kernel<(int)4, at::native::CUDAFunctor_add<float>, std::arr…
+      0.0          5677832       2690      2110.7      2048.0      1920      4800        133.1  triton_poi_fused_embedding_dense_backward_4                                                         
+      0.0          3890496        132     29473.5      2752.0      2400    316446      65759.3  void at::native::<unnamed>::CatArrayBatchedCopy_aligned16_contig<at::native::<unnamed>::OpaqueType<…
+      0.0          3301546       2478      1332.3      1312.0      1184      1696         86.1  triton_poi_fused_arange_0                                                                           
+      0.0          2793005       1292      2161.8      1376.0       992     48992       3790.6  void at::native::vectorized_elementwise_kernel<(int)4, at::native::FillFunctor<float>, std::array<c…
+      0.0          2783409       1630      1707.6      1728.0      1407      2336        126.0  triton_per_fused_nll_loss_forward_5                                                                 
+      0.0           583196        229      2546.7      2560.0      2016      3712        237.7  triton_poi_fused_mm_1                                                                               
+      0.0           139678         40      3491.9      3488.0      3071      3904        240.3  void at::native::reduce_kernel<(int)512, (int)1, at::native::ReduceOp<float, at::native::NormTwoOps…
+      0.0           123903         40      3097.6      3104.0      2848      3328         94.8  void at::native::lpnorm_cleanup<float, (at::native::NormType)1, float, float>(const T4 *, at::nativ…
+      0.0           119903         54      2220.4      2208.0      2016      2592        112.5  void at::native::elementwise_kernel<(int)128, (int)4, void at::native::gpu_kernel_impl_nocast<at::n…
+      0.0            73406         40      1835.2      1824.0      1664      2048        112.8  void at::native::vectorized_elementwise_kernel<(int)4, at::native::reciprocal_kernel_cuda(at::Tenso…
+      0.0            63360         40      1584.0      1616.0      1440      1696         93.4  void at::native::vectorized_elementwise_kernel<(int)4, at::native::<unnamed>::launch_clamp_scalar(a…
+      0.0             9824          8      1228.0      1216.0      1120      1344         92.0  void at::native::vectorized_elementwise_kernel<(int)2, at::native::FillFunctor<long>, std::array<ch…
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/cuda_gpu_mem_time_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Time) (cuda_gpu_mem_time_sum):
+
+ Time (%)  Total Time (ns)  Count   Avg (ns)   Med (ns)  Min (ns)  Max (ns)   StdDev (ns)            Operation           
+ --------  ---------------  -----  ----------  --------  --------  ---------  -----------  ------------------------------
+     81.9      50569655219   1435  35240177.9    1312.0       704  288163203   62067714.3  [CUDA memcpy Host-to-Device]  
+     16.9      10419899124    213  48919714.2    2559.0      2144  362277648   93201622.7  [CUDA memcpy Device-to-Host]  
+      1.2        767325568  38988     19681.1    2112.0      1216     136159      37106.1  [CUDA memcpy Device-to-Device]
+      0.0          4860500   4075      1192.8    1120.0       704      36576        983.0  [CUDA memset]                 
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/cuda_gpu_mem_size_sum.py]... 
+
+ ** CUDA GPU MemOps Summary (by Size) (cuda_gpu_mem_size_sum):
+
+ Total (MB)   Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)            Operation           
+ -----------  -----  --------  --------  --------  --------  -----------  ------------------------------
+ 1225297.636   1435   853.866     0.012     0.000  3296.723     1443.022  [CUDA memcpy Host-to-Device]  
+ 1036813.096  38988    26.593     0.131     0.000   201.327       55.971  [CUDA memcpy Device-to-Device]
+  174726.327    213   820.311     0.000     0.000  3296.723     1428.639  [CUDA memcpy Device-to-Host]  
+       0.191   4075     0.000     0.000     0.000     0.024        0.001  [CUDA memset]                 
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/openmp_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain OpenMP event data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/opengl_khr_range_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain KHR Extension (KHR_DEBUG) data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/opengl_khr_gpu_range_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain GPU KHR Extension (KHR_DEBUG) data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/vulkan_marker_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain Vulkan Debug Extension (Vulkan Debug Util) data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/vulkan_gpu_marker_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain GPU Vulkan Debug Extension (GPU Vulkan Debug markers) data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/dx11_pix_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain DX11 CPU debug markers.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/dx12_gpu_marker_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain DX12 GPU debug markers.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/dx12_pix_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain DX12 CPU debug markers.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/wddm_queue_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain WDDM context data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/um_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/um_total_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/um_cpu_page_faults_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/openacc_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain OpenACC event data.
+
+Processing [/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite] with [/opt/nvidia/nsight-systems-cli/2025.3.1/target-linux-x64/reports/syscall_sum.py]... 
+SKIPPED: /tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeGDR_runidmay21protoscanhostnetworkncclfix.sqlite does not contain syscall data.
+

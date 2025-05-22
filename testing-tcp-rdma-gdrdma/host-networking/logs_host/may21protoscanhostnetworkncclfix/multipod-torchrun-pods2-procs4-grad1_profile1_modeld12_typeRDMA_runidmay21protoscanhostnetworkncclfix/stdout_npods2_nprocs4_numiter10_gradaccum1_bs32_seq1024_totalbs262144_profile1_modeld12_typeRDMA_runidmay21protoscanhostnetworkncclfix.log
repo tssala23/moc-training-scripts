@@ -1,0 +1,181 @@
+MODEL    : d12
+BS        : 32
+SEQ LEN   : 1024
+GRAD ACCUM: 1
+BS TOTAL  : 262144
+LOG FILE: /tmp/logs/stdout_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.log
+NODE RANK: 0
+PROFILE  : 1
+TAG      : npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix
+RUNID    : may21protoscanhostnetworkncclfix
+--------------------------
+NV_LIBCUBLAS_VERSION=12.0.2.224-1
+KUBERNETES_SERVICE_PORT_HTTPS=443
+NVIDIA_VISIBLE_DEVICES=GPU-c13f96a2-0f4d-3698-9778-54a40f8d4408,GPU-d8a90186-ff8c-4bdd-aeab-cec8b704a12c,GPU-8f2b3b86-a0b5-f50d-317f-ce29d893368c,GPU-8882da6b-e623-38ab-d9f7-0f5ae95d8b5a
+KUBERNETES_SERVICE_PORT=443
+HOSTNAME=mocr4pcc02u30
+NSS_SDB_USE_CACHE=no
+NVIDIA_REQUIRE_CUDA=cuda>=12.0 brand=tesla,driver>=470,driver<471 brand=unknown,driver>=470,driver<471 brand=nvidia,driver>=470,driver<471 brand=nvidiartx,driver>=470,driver<471 brand=geforce,driver>=470,driver<471 brand=geforcertx,driver>=470,driver<471 brand=quadro,driver>=470,driver<471 brand=quadrortx,driver>=470,driver<471 brand=titan,driver>=470,driver<471 brand=titanrtx,driver>=470,driver<471
+NCCL_IB_CUDA_SUPPORT=0
+NV_NVTX_VERSION=12.0.140-1
+POD_NAME=torchrun-multipod-0
+NV_LIBCUSPARSE_VERSION=12.0.1.140-1
+NV_LIBNPP_VERSION=12.0.1.104-1
+NCCL_VERSION=2.16.5-1
+NCCL_SOCKET_IFNAME=eno6np0
+NCCL_DEBUG_SUBSYS=ALL
+PWD=/workspace
+NVIDIA_DRIVER_CAPABILITIES=compute,utility
+NV_LIBNPP_PACKAGE=libnpp-12-0=12.0.1.104-1
+NCCL_DEBUG=INFO
+NCCL_IB_OOB_IPV6_DISABLE=1
+NCCL_IB_HCA=mlx5_2
+NVIDIA_PRODUCT_NAME=CUDA
+NV_CUDA_CUDART_VERSION=12.0.146-1
+HOME=/root
+KUBERNETES_PORT_443_TCP=tcp://172.30.0.1:443
+NCCL_IB_GID_INDEX=3
+CUDA_VERSION=12.0.1
+NV_LIBCUBLAS_PACKAGE=libcublas-12-0=12.0.2.224-1
+NV_LIBCUBLAS_PACKAGE_NAME=libcublas-12-0
+NCCL_DEBUG_FILE=/tmp/logs/nccl_debug
+NCCL_DMABUF_ENABLE=0
+TERM=xterm
+TORCH_NCCL_ASYNC_ERROR_HANDLING=1
+SHLVL=0
+NV_CUDA_LIB_VERSION=12.0.1-1
+NVARCH=x86_64
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_ADDR=172.30.0.1
+NV_CUDA_COMPAT_PACKAGE=cuda-compat-12-0
+POD_IP=192.168.50.57
+NV_LIBNCCL_PACKAGE=libnccl2=2.16.5-1+cuda12.0
+LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
+NCCL_IB_DISABLE=0
+KUBERNETES_SERVICE_HOST=172.30.0.1
+KUBERNETES_PORT=tcp://172.30.0.1:443
+KUBERNETES_PORT_443_TCP_PORT=443
+PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NV_LIBNCCL_PACKAGE_NAME=libnccl2
+NV_LIBNCCL_PACKAGE_VERSION=2.16.5-1
+NCCL_GDR_LEVEL=LOC
+_=/usr/bin/env
+--------------------------
+Dumping initial: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+d57c4fc88d509e2: 1316351500 3072082    0    0    0     0          0         0 3217596393 3908964    0    0    0     0       0          0
+    lo: 11402083324 17912827    0    0    0     0          0         0 11402083324 17912827    0    0    0     0       0          0
+enp8s0f4u1u6: 62321896  563089    0    0    0     0          0         0 38990346  304232    0    0    0     0       0          0
+  eno4:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ovs-system:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+genev_sys_6081: 510137972018 27213988    0    0    0     0          0         0 513138996497 25463813    0  183    0     0       0          0
+ovn-k8s-mp0: 859167083 5995629    0    0    0     0          0         0 5072855039 6729330    0    0    0     0       0          0
+br-int:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ br-ex: 555731464043 60402772    0    0    0     0          0         0 551463570676 58944985    0    0    0     0       0          0
+984396c77bdf624: 147599818  438665    0    0    0     0          0         0 89461213  388008    0    0    0     0       0          0
+5e3861461acfcec: 370806446 1892455    0    0    0     0          0         0 229273813 2095169    0    0    0     0       0          0
+6ed6b8b187d0945: 37322865  357253    0    0    0     0          0         0 37913687  434646    0    0    0     0       0          0
+3cb908a3fe30bb6: 155552333  504131    0    0    0     0          0         0 888324092  565091    0    0    0     0       0          0
+a54fff92df38531:  131394     773    0    0    0     0          0         0  1105966     703    0    0    0     0       0          0
+81df2f086da9e4a: 22002138  271621    0    0    0     0          0         0 36313850  517945    0    0    0     0       0          0
+f117da94e8e01f1:   10210     180    0    0    0     0          0         0    12576     178    0    0    0     0       0          0
+9972d3f80483e43:   15705     209    0    0    0     0          0         0    29483     194    0    0    0     0       0          0
+66e1c826b5d5b28: 1558183404  399829    0    0    0     0          0         0 1451997380  773164    0    0    0     0       0          0
+0490484faf28957:   27724     268    0    0    0     0          0         0   105277     253    0    0    0     0       0          0
+7f06fc0a9747708: 2641180955  999813    0    0    0     0          0         0 1608532122  975820    0    0    0     0       0          0
+b34b2f3be7d9088:   10356     182    0    0    0     0          0         0    12576     178    0    0    0     0       0          0
+0619dc465dacabf: 7196613   90646    0    0    0     0          0         0 111127473   76654    0    0    0     0       0          0
+7a2f6e5b231d616: 33765453  286836    0    0    0     0          0         0 185524242  274499    0    0    0     0       0          0
+d9a685f88f57ca6: 85953170  690872    0    0    0     0          0         0 67121691  729105    0    0    0     0       0          0
+b6dae94a46e090c: 222110018  956061    0    0    0     0          0         0 103903618 1344141    0    0    0     0       0          0
+eno2np0:      86       1    0    0    0     0          0         1  8797104   52224    0    0    0     0       0          0
+eno3np1:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6np0: 40498245905 5667082    0    0    0     0          0     62810 41015262667 5683855    0    0    0     0       0          0
+eno5np0:       0       0    0    0    0     0          0         0 11344431   67326    0    0    0     0       0          0
+eno8np0:       0       0    0    0    0     0          0         0 11344431   67326    0    0    0     0       0          0
+eno7np0: 599986496440 444100408    0 9970    0     0          0    575276 595146961755 444709635    0    0    0     0       0          0
+eno6v0:   12587      77    0    0    0     0          0        28     4548      63    0    0    0     0       0          0
+eno6v1:    7223      61    0    0    0     0          0        12     4478      62    0    0    0     0       0          0
+eno6v2:   15355      86    0    0    0     0          0        38     5430      74    0    0    0     0       0          0
+eno6v3:   29618     348    0    0    0     0          0        16    88150     391    0    0    0     0       0          0
+eno6v4:   29291     126    0    0    0     0          0        78     4628      64    0    0    0     0       0          0
+eno6v5:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6v6:  550716    1668    0    0    0     0          0       251    85938    1207    0    0    0     0       0          0
+eno6v7:    5697      17    0    0    0     0          0        17     1012      13    0    0    0     0       0          0
+W0521 19:24:47.107000 83 torch/distributed/run.py:766] 
+W0521 19:24:47.107000 83 torch/distributed/run.py:766] *****************************************
+W0521 19:24:47.107000 83 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0521 19:24:47.107000 83 torch/distributed/run.py:766] *****************************************
+Running pytorch 2.7.0+cu126
+using device: cuda:0
+total desired batch size: 262144
+=> calculated gradient accumulation steps: 1
+using device: cuda:3
+using device: cuda:1
+using device: cuda:2
+compiling the model...
+DataLoader: total number of tokens: 100,000,000 across 1 files
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+step    1/10 | train loss 11.008533 | norm 15.8513 | lr 1.00e-04 | (181240.88 ms | 1446 tok/s)
+step    2/10 | train loss 10.116480 | norm 5.8735 | lr 1.00e-04 | (171.35 ms | 1529870 tok/s)
+step    3/10 | train loss 9.766003 | norm 2.6306 | lr 1.00e-04 | (116.78 ms | 2244685 tok/s)
+step    4/10 | train loss 9.596246 | norm 2.1068 | lr 1.00e-04 | (117.93 ms | 2222951 tok/s)
+step    5/10 | train loss 9.513403 | norm 2.1000 | lr 1.00e-04 | (117.36 ms | 2233672 tok/s)
+step    6/10 | train loss 9.431206 | norm 1.9935 | lr 1.00e-04 | (118.30 ms | 2215917 tok/s)
+step    7/10 | train loss 9.345898 | norm 1.9369 | lr 1.00e-04 | (117.89 ms | 2223589 tok/s)
+step    8/10 | train loss 9.256418 | norm 1.9010 | lr 1.00e-04 | (116.07 ms | 2258503 tok/s)
+step    9/10 | train loss 9.164144 | norm 1.8592 | lr 1.00e-04 | (116.47 ms | 2250732 tok/s)
+step   10/10 | train loss 9.071947 | norm 1.7839 | lr 1.00e-04 | (117.59 ms | 2229247 tok/s)
+final 9 iters avg: 123.305ms
+peak memory consumption: 16118 MiB
+Collecting data...
+Generating '/tmp/nsys-report-5598.qdstrm'
+[1/1] [0%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [0%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [5%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [5%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [5%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [5%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [6%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [5%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [6%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [7%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [8%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [9%                          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [10%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [11%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [10%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [11%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [12%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [11%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [12%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [13%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [12%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [13%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [14%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [13%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [14%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=15%                        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [14%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=15%                        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [14%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [13%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [12%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [11%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [10%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [11%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [12%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [13%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [14%                         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=15%                        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=16%                        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=17%                        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==18%                       ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==19%                       ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==20%                       ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==21%                       ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===22%                      ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===23%                      ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===24%                      ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [====25%                     ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [====26%                     ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [====27%                     ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [====28%                     ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=====29%                    ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=====30%                    ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=====31%                    ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=====32%                    ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [======33%                   ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [======34%                   ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [======35%                   ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=======36%                  ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=======37%                  ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=======38%                  ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=======39%                  ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [========40%                 ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [========41%                 ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [========42%                 ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=========43%                ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=========44%                ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=========45%                ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=========46%                ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==========47%               ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==========48%               ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==========49%               ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===========50%              ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===========51%              ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===========52%              ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===========53%              ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [============54%             ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [============55%             ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [============56%             ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [============57%             ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=============58%            ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=============59%            ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=============60%            ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==============61%           ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==============62%           ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==============63%           ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [==============64%           ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===============65%          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===============66%          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [===============67%          ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [================68%         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [================69%         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [================70%         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [================71%         ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=================72%        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=================73%        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [=================74%        ] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [========================100%] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep[1/1] [========================100%] profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep
+Generated:
+	/tmp/logs/profile_npods2_nprocs4_numiter10_gradaccum1_bs32_seq1024_totalbs262144_profile1_modeld12_typeRDMA_runidmay21protoscanhostnetworkncclfix.nsys-rep
+Dumping final: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+d57c4fc88d509e2: 1318179183 3076426    0    0    0     0          0         0 3222252513 3914505    0    0    0     0       0          0
+    lo: 11471118801 17997671    0    0    0     0          0         0 11471118801 17997671    0    0    0     0       0          0
+enp8s0f4u1u6: 62379884  563607    0    0    0     0          0         0 39033112  304567    0    0    0     0       0          0
+  eno4:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ovs-system:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+genev_sys_6081: 510138541734 27218177    0    0    0     0          0         0 513141938138 25467272    0  183    0     0       0          0
+ovn-k8s-mp0: 860137067 6002254    0    0    0     0          0         0 5078621102 6736799    0    0    0     0       0          0
+br-int:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ br-ex: 555769689396 60436876    0    0    0     0          0         0 551499466605 58977101    0    0    0     0       0          0
+984396c77bdf624: 147735793  439064    0    0    0     0          0         0 89538422  388361    0    0    0     0       0          0
+5e3861461acfcec: 371157874 1894227    0    0    0     0          0         0 229495386 2097120    0    0    0     0       0          0
+6ed6b8b187d0945: 37356218  357571    0    0    0     0          0         0 37947606  435037    0    0    0     0       0          0
+3cb908a3fe30bb6: 155697891  504654    0    0    0     0          0         0 889150745  565643    0    0    0     0       0          0
+a54fff92df38531:  131394     773    0    0    0     0          0         0  1105966     703    0    0    0     0       0          0
+81df2f086da9e4a: 22022395  271868    0    0    0     0          0         0 36346560  518412    0    0    0     0       0          0
+f117da94e8e01f1:   10266     181    0    0    0     0          0         0    12576     178    0    0    0     0       0          0
+9972d3f80483e43:   15705     209    0    0    0     0          0         0    29483     194    0    0    0     0       0          0
+66e1c826b5d5b28: 1559586320  400179    0    0    0     0          0         0 1453303526  773837    0    0    0     0       0          0
+0490484faf28957:   27724     268    0    0    0     0          0         0   105277     253    0    0    0     0       0          0
+7f06fc0a9747708: 2643700281 1000706    0    0    0     0          0         0 1609977554  976646    0    0    0     0       0          0
+b34b2f3be7d9088:   10356     182    0    0    0     0          0         0    12576     178    0    0    0     0       0          0
+0619dc465dacabf: 7203590   90738    0    0    0     0          0         0 111250712   76732    0    0    0     0       0          0
+7a2f6e5b231d616: 33811936  287228    0    0    0     0          0         0 185795228  274895    0    0    0     0       0          0
+d9a685f88f57ca6: 86032508  691502    0    0    0     0          0         0 67183362  729775    0    0    0     0       0          0
+b6dae94a46e090c: 222308408  956910    0    0    0     0          0         0 103997156 1345353    0    0    0     0       0          0
+eno2np0:      86       1    0    0    0     0          0         1  8806540   52280    0    0    0     0       0          0
+eno3np1:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6np0: 40498604531 5670320    0    0    0     0          0     62871 41015537095 5686356    0    0    0     0       0          0
+eno5np0:       0       0    0    0    0     0          0         0 11358190   67408    0    0    0     0       0          0
+eno8np0:       0       0    0    0    0     0          0         0 11358190   67408    0    0    0     0       0          0
+eno7np0: 600025460289 444152171    0 9970    0     0          0    575816 595183397406 444762448    0    0    0     0       0          0
+eno6v0:   12587      77    0    0    0     0          0        28     4548      63    0    0    0     0       0          0
+eno6v1:    7223      61    0    0    0     0          0        12     4478      62    0    0    0     0       0          0
+eno6v2:   15355      86    0    0    0     0          0        38     5430      74    0    0    0     0       0          0
+eno6v3:   29618     348    0    0    0     0          0        16    88150     391    0    0    0     0       0          0
+eno6v4:   29291     126    0    0    0     0          0        78     4628      64    0    0    0     0       0          0
+eno6v5:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6v6:  550716    1668    0    0    0     0          0       251    85938    1207    0    0    0     0       0          0
+eno6v7:    5697      17    0    0    0     0          0        17     1012      13    0    0    0     0       0          0
