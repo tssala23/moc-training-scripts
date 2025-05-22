@@ -57,11 +57,11 @@ typeset iprf_mtu=${IPRF_MTU:-""}
 
 # if we want to use an explicit nic not the default of the container then
 # set this value to the nic to use
-iprf_nic=${IPRF_NIC:-eno6v0}
+iprf_nic=${IPRF_NIC:-net1}
 #iprf_nic=${IPRF_NIC:-eno7np0}
 
 # core iperf3 argument ranges to test
-typeset -r -i iprf_trials=${IPRF_TRIALS:-100}
+typeset -r -i iprf_trials=${IPRF_TRIALS:-4}
 #typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp udp} )
 typeset -r -a iprf_protocols=( ${IPRF_PROTOCOLS:-tcp} )
 #typeset -r -a iprf_connections=( ${IPRF_CONNECTIONS:-32 1 2 4 8 16 64 128} )
