@@ -1,0 +1,28 @@
+1747940792 ociperf : config: iprf_baseflgs='--interval 0 --timestamps' iprf_bin=src/iperf-3.18/src/iperf3 iprf_bitrates=([tcp]="0" [udp]="0" ) iprf_bufsizes=([tcp]="128K" [udp]="0" ) iprf_clt_baseflgs='--no-delay --version4 --zerocopy --omit 5' iprf_connections=([0]="32") iprf_cp=([oc]="oc cp" [bm]="scp" ) iprf_cpuaffinity=([0]="0-127,256-383") iprf_datadir=ociperf_data/sriov-jason-22-05-25-1747940792 iprf_exec=([oc]="oc exec" [bm]="ssh" ) iprf_log=ociperf_data/sriov-jason-22-05-25-1747940792/ociperf.log iprf_mtu= iprf_name=sriov-jason iprf_nic=net1 iprf_port=12345 iprf_proto_baseflgs=([tcp]="" [udp]="--udp --udp-counters-64bit --dont-fragment" ) iprf_protocols=([0]="tcp") iprf_rbin=/root/iperf3 iprf_rdatadir=/tmp iprf_srv_baseflgs='--server --one-off' iprf_trials=1 iprf_type=oc iprf_winsizes=([tcp]="0" [udp]="0" )
+1747940792 ociperf : hosts to be test: sriovlegacy-workload-dos[@]
+1747940792 ociperf : oc cp src/iperf-3.18/src/iperf3 sriovlegacy-workload-dos:/root/iperf3
+1747940793 ociperf : oc cp src/iperf-3.18/src/iperf3 sriovlegacy-workload-uno:/root/iperf3
+1747940794 ociperf : Doing 2 experiments
+1747940794 ociperf : oc exec sriovlegacy-workload-dos -- bash -c "ip --brief addr show dev net1"
+1747940794 ociperf : oc exec sriovlegacy-workload-dos -- bash -c "ip link show dev net1"
+1747940794 ociperf : server: srv:sriovlegacy-workload-dos srvip:192.168.3.226 srvnode:sriovlegacy-workload-dos mtu:9000
+1747940794 ociperf : 1/2: trial:0 prot:tcp mtu:9000 bufsize:128K ws:0 br:0 par:32 affin:0-127,256-383 srvlog:iperf_tcp_srv_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log cltlog:iperf_tcp_clt_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log
+1747940794 ociperf : 1/2: START: 0 sriovlegacy-workload-dos sriovlegacy-workload-uno
+1747940794 ociperf : oc exec sriovlegacy-workload-dos -- bash -c "taskset -c 0-127,256-383 /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_tcp_srv_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log 2>&1 &"
+1747940795 ociperf : oc exec sriovlegacy-workload-uno -- bash -c "taskset -c 0-127,256-383 /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --client 192.168.3.226 --port 12345 --length 128K --window 0 --bitrate 0 --parallel 32 >/tmp/iperf_tcp_clt_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log 2>&1"
+1747940810 ociperf : 1/2: END: sriovlegacy-workload-dos sriovlegacy-workload-uno
+1747940810 ociperf : oc cp sriovlegacy-workload-dos:/tmp/iperf_tcp_srv_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log ociperf_data/sriov-jason-22-05-25-1747940792/iperf_tcp_srv_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log
+tar: Removing leading `/' from member names
+1747940811 ociperf : oc cp sriovlegacy-workload-uno:/tmp/iperf_tcp_clt_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log ociperf_data/sriov-jason-22-05-25-1747940792/iperf_tcp_clt_192.168.3.226_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-dos_sriovlegacy-workload-uno_0.log
+tar: Removing leading `/' from member names
+1747940811 ociperf : oc exec sriovlegacy-workload-uno -- bash -c "ip --brief addr show dev net1"
+1747940811 ociperf : server: srv:sriovlegacy-workload-uno srvip:192.168.3.225 srvnode:sriovlegacy-workload-uno mtu:9000
+1747940811 ociperf : 2/2: trial:0 prot:tcp mtu:9000 bufsize:128K ws:0 br:0 par:32 affin:0-127,256-383 srvlog:iperf_tcp_srv_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log cltlog:iperf_tcp_clt_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log
+1747940811 ociperf : 2/2: START: 0 sriovlegacy-workload-uno sriovlegacy-workload-dos
+1747940811 ociperf : oc exec sriovlegacy-workload-uno -- bash -c "taskset -c 0-127,256-383 /root/iperf3 --interval 0 --timestamps --server --one-off --port 12345 >/tmp/iperf_tcp_srv_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log 2>&1 &"
+1747940812 ociperf : oc exec sriovlegacy-workload-dos -- bash -c "taskset -c 0-127,256-383 /root/iperf3 --interval 0 --timestamps --no-delay --version4 --zerocopy --omit 5 --client 192.168.3.225 --port 12345 --length 128K --window 0 --bitrate 0 --parallel 32 >/tmp/iperf_tcp_clt_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log 2>&1"
+1747940827 ociperf : 2/2: END: sriovlegacy-workload-uno sriovlegacy-workload-dos
+1747940827 ociperf : oc cp sriovlegacy-workload-uno:/tmp/iperf_tcp_srv_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log ociperf_data/sriov-jason-22-05-25-1747940792/iperf_tcp_srv_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log
+tar: Removing leading `/' from member names
+1747940828 ociperf : oc cp sriovlegacy-workload-dos:/tmp/iperf_tcp_clt_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log ociperf_data/sriov-jason-22-05-25-1747940792/iperf_tcp_clt_192.168.3.225_9000_128K_0_0_32_0-127-256-383_sriovlegacy-workload-uno_sriovlegacy-workload-dos_0.log
+tar: Removing leading `/' from member names

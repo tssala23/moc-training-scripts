@@ -1,0 +1,88 @@
+Name:             sriovlegacy-workload-uno
+Namespace:        default
+Priority:         0
+Service Account:  rdma
+Node:             mocr4pcc02u31/192.168.50.65
+Start Time:       Wed, 21 May 2025 16:40:57 -0400
+Labels:           <none>
+Annotations:      k8s.ovn.org/pod-networks:
+                    {"default":{"ip_addresses":["10.129.2.28/23"],"mac_address":"0a:58:0a:81:02:1c","gateway_ips":["10.129.2.1"],"routes":[{"dest":"10.128.0.0...
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "ovn-kubernetes",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.129.2.28"
+                        ],
+                        "mac": "0a:58:0a:81:02:1c",
+                        "default": true,
+                        "dns": {}
+                    },{
+                        "name": "default/sriov-network",
+                        "interface": "net1",
+                        "ips": [
+                            "192.168.3.225"
+                        ],
+                        "mac": "82:52:87:9d:1a:d1",
+                        "mtu": 9000,
+                        "dns": {},
+                        "device-info": {
+                            "type": "pci",
+                            "version": "1.1.0",
+                            "pci": {
+                                "pci-address": "0000:23:00.4",
+                                "rdma-device": "mlx5_9"
+                            }
+                        }
+                    }]
+                  k8s.v1.cni.cncf.io/networks: sriov-network
+Status:           Running
+IP:               10.129.2.28
+IPs:
+  IP:  10.129.2.28
+Containers:
+  sriovlegacy-workload-uno:
+    Container ID:   cri-o://e69435fd85492c3e9c5168413ed7ad06c1e72cf5059609d78352a2217b2a1110
+    Image:          quay.io/jschless/gpu-tools:0.0.6
+    Image ID:       quay.io/jschless/gpu-tools@sha256:95898edc719286194375fc01506d15e9b226e263ba37d4bd5cadd0a9860e1206
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 21 May 2025 16:40:59 -0400
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      nvidia.com/gpu:            4
+      openshift.io/sriovlegacy:  1
+    Requests:
+      nvidia.com/gpu:            4
+      openshift.io/sriovlegacy:  1
+    Environment:                 <none>
+    Mounts:
+      /etc/podnetinfo from podnetinfo (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-khdf8 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-khdf8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+  podnetinfo:
+    Type:  DownwardAPI (a volume populated by information about the pod)
+    Items:
+      metadata.annotations -> annotations
+QoS Class:       BestEffort
+Node-Selectors:  kubernetes.io/hostname=mocr4pcc02u31
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
