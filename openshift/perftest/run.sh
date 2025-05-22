@@ -9,7 +9,7 @@ HCA="mlx5_2"
 FLAGS="-a -R -T 41 -F -x 3 -m 4096 --report_gbits -d ${HCA} -p 10000"
 MTU=9000
 BM_HOSTS="sriovlegacy-workload-uno sriovlegacy-workload-dos"
-NUM_GPU=0
+NUM_GPU=3
 DRYRUN=0
 
 function log()

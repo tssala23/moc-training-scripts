@@ -1,0 +1,64 @@
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 2
+[pid = 13596, dev = 2] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+using DMA-BUF for GPU buffer address at 0x7fb316800000 aligned at 0x7fb316800000 with aligned size 16777216
+allocated GPU buffer of a 16777216 address at 0x1a48170 for type CUDA_MEM_DEVICE
+Calling ibv_reg_dmabuf_mr(offset=0, size=16777216, addr=0x7fb316800000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read BW Test
+ Dual-port       : OFF		Device         : mlx5_2
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 128
+ CQ Moderation   : 100
+ CQE Poll Batch  : 16
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Outstand reads  : 16
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x22b8 PSN 0xa9e8f2
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+ remote address: LID 0000 QPN 0x22b9 PSN 0x7fedde
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:03:225
+---------------------------------------------------------------------------------------
+ #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+ 2          1000           0.034188            0.033679            2.104954
+ 4          1000           0.067669            0.065038            2.032438
+ 8          1000             0.14               0.13   		     2.105706
+ 16         1000             0.31               0.30   		     2.368376
+ 32         1000             0.55               0.54   		     2.117972
+ 64         1000             1.09               1.08   		     2.110837
+ 128        1000             2.16               2.11   		     2.056301
+ 256        1000             4.38               4.34   		     2.119093
+ 512        1000             8.42               8.39   		     2.047375
+ 1024       1000             17.13              16.97  		     2.071693
+ 2048       1000             28.38              28.33  		     1.728967
+ 4096       1000             34.39              33.28  		     1.015517
+ 8192       1000             38.50              38.49  		     0.587327
+ 16384      1000             35.03              33.09  		     0.252465
+ 32768      1000             63.00              44.24  		     0.168755
+ 65536      1000             66.14              54.18  		     0.103343
+ 131072     1000             65.93              59.41  		     0.056662
+ 262144     1000             67.98              65.76  		     0.031355
+ 524288     1000             68.43              68.14  		     0.016245
+ 1048576    1000             68.83              68.83  		     0.008205
+ 2097152    1000             70.51              70.06  		     0.004176
+ 4194304    1000             69.59              69.59  		     0.002074
+ 8388608    1000             69.57              69.57  		     0.001037
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007fb316800000
+destroying current CUDA Ctx
