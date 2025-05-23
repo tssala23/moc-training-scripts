@@ -6,9 +6,9 @@ CREATE_SOFTLINKS=${1:-0}
 OUT_LOC=csvs
 if [ $CREATE_SOFTLINKS -eq 1 ]
 then
-	ln -s ../../baremetal/gpt2/validation_noprofile/ logs_bm_noprofile
-	ln -s ../../baremetal/gpt2/validation/ logs_bm_profile
-	ln -s ../host-networking/logs_host/ logs_oc
+	ln -s ../../../baremetal/gpt2/validation_noprofile/ logs_bm_noprofile
+	ln -s ../../../baremetal/gpt2/validation/ logs_bm_profile
+	ln -s ../../host-networking/logs_host/ logs_oc
 fi
 
 if [ ! -d $OUT_LOC ]
