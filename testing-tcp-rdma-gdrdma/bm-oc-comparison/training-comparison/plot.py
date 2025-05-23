@@ -42,7 +42,13 @@ fig = px.bar(df_agg[df_agg.profile==0],
         barmode="group", 
         text="time_mean_label",
         error_y="time_std",
+        title="Training time per Iteration/Batch in Bare-metal vs OpenShift",
         log_y=False)
 fig.update_traces(textfont_size=24)
 fig.update_layout(xaxis={'categoryorder': 'array', 
-                         'categoryarray': ["tcp", "rdma", "gdr"]})
+                         'categoryarray': ["tcp", "rdma", "gdr"]},
+                  xaxis_title="Protocol Type",
+                  yaxis_title="Time per Iteration/Batch (ms)"
+                         )
+fig.write_image("plots/comparison_training_time.png", height="800", width=1200)
+
