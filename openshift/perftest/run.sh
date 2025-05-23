@@ -79,7 +79,7 @@ for srv in ${hosts[@]}; do
 							sleep 1
 						fi
 						LOGFILE="${LOGDIR}/perftest_gpu_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
-						COMMAND="$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} 2>&1 > ${LOGFILE}"
+						COMMAND="$hexec ${clt} -- ${TEST} ${FLAGS} -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} 2>&1 > ${LOGFILE}"
 						log "${COMMAND}"
 						if [ "$DRYRUN" -eq 0 ]; then
 							eval "${COMMAND}" 
