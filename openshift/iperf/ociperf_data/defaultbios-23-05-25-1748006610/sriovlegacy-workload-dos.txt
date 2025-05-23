@@ -1,0 +1,97 @@
+Name:             sriovlegacy-workload-dos
+Namespace:        default
+Priority:         0
+Service Account:  rdma
+Node:             mocr4pcc02u25/192.168.50.18
+Start Time:       Fri, 23 May 2025 09:13:49 -0400
+Labels:           <none>
+Annotations:      k8s.ovn.org/pod-networks:
+                    {"default":{"ip_addresses":["10.131.2.7/23"],"mac_address":"0a:58:0a:83:02:07","gateway_ips":["10.131.2.1"],"routes":[{"dest":"10.128.0.0/...
+                  k8s.v1.cni.cncf.io/network-status:
+                    [{
+                        "name": "ovn-kubernetes",
+                        "interface": "eth0",
+                        "ips": [
+                            "10.131.2.7"
+                        ],
+                        "mac": "0a:58:0a:83:02:07",
+                        "default": true,
+                        "dns": {}
+                    },{
+                        "name": "default/sriov-network",
+                        "interface": "net1",
+                        "ips": [
+                            "192.168.3.226"
+                        ],
+                        "mac": "fa:a1:15:c4:b5:7e",
+                        "mtu": 9000,
+                        "dns": {},
+                        "device-info": {
+                            "type": "pci",
+                            "version": "1.1.0",
+                            "pci": {
+                                "pci-address": "0000:23:00.2",
+                                "rdma-device": "mlx5_7"
+                            }
+                        }
+                    }]
+                  k8s.v1.cni.cncf.io/networks: sriov-network
+Status:           Running
+IP:               10.131.2.7
+IPs:
+  IP:  10.131.2.7
+Containers:
+  sriovlegacy-workload-dos:
+    Container ID:   cri-o://6440649a4ce2a998b81ed1308e300b0f5ae4696599215c8ddf29ad93986bedeb
+    Image:          quay.io/jschless/gpu-tools:0.0.6
+    Image ID:       quay.io/jschless/gpu-tools@sha256:95898edc719286194375fc01506d15e9b226e263ba37d4bd5cadd0a9860e1206
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 23 May 2025 09:13:58 -0400
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      nvidia.com/gpu:            4
+      openshift.io/sriovlegacy:  1
+    Requests:
+      nvidia.com/gpu:            4
+      openshift.io/sriovlegacy:  1
+    Environment:                 <none>
+    Mounts:
+      /etc/podnetinfo from podnetinfo (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cd5nq (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-cd5nq:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       <nil>
+  podnetinfo:
+    Type:  DownwardAPI (a volume populated by information about the pod)
+    Items:
+      metadata.annotations -> annotations
+QoS Class:       BestEffort
+Node-Selectors:  kubernetes.io/hostname=mocr4pcc02u25
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason          Age    From               Message
+  ----    ------          ----   ----               -------
+  Normal  Scheduled       9m51s  default-scheduler  Successfully assigned default/sriovlegacy-workload-dos to mocr4pcc02u25
+  Normal  AddedInterface  9m40s  multus             Add eth0 [10.131.2.7/23] from ovn-kubernetes
+  Normal  AddedInterface  9m39s  multus             Add net1 [192.168.3.226/28] from default/sriov-network
+  Normal  Pulling         9m39s  kubelet            Pulling image "quay.io/jschless/gpu-tools:0.0.6"
+  Normal  Pulled          9m33s  kubelet            Successfully pulled image "quay.io/jschless/gpu-tools:0.0.6" in 5.983s (5.983s including waiting). Image size: 521170487 bytes.
+  Normal  Created         9m32s  kubelet            Created container: sriovlegacy-workload-dos
+  Normal  Started         9m32s  kubelet            Started container sriovlegacy-workload-dos
