@@ -22,11 +22,35 @@ df_oc_gpu["env"] = "oc"
 df_cpu = pd.concat([df_bm_cpu, df_oc_cpu], axis=0)
 df_gpu = pd.concat([df_bm_gpu, df_oc_gpu], axis=0)
 
+value_vars = [ '2',
+ '4',
+ '8',
+ '16',
+ '32',
+ '64',
+ '128',
+ '256',
+ '512',
+ '1024',
+ '2048',
+ '4096',
+ '8192',
+ '16384',
+ '32768',
+ '65536',
+ '131072',
+ '262144',
+ '524288',
+ '1048576',
+ '2097152',
+ '4194304',
+ '8388608']
+
 #flatten data
 def flatten(df_cpu, qp=2, test="ib_read_bw"): #using this var name so don't have to change func def
     id_vars = ["test", "qp", "metric", "type", "env"]
     df_cpu_flat = pd.melt(df_cpu, 
-                      value_vars=df_cpu.columns[6:29],
+                      value_vars=value_vars, #df_cpu.columns[6:29],
                       var_name="size", 
                       value_name="bw", 
                       id_vars=id_vars)
@@ -47,7 +71,7 @@ def plot(df_cpu_grouped, title=None, subtitle=None):
     return fig
 
 #CPU plot
-def plot_full(df_cpu, qp=2, test="ib_read_bw", outfile="plots/cpu_rdma_qp2_write.png"):
+def plot_full(df_cpu, qp=2, test="ib_read_bw", test_type="Host-to-Host", outfile="plots/cpu_rdma_qp2_write.png"):
     df_cpu_flat, df_cpu_grouped, maxbw, df_cpu_filtered = flatten(df_cpu, qp=qp, test=test)
 
     fig = px.bar(df_cpu_grouped, x="size", 
@@ -55,7 +79,7 @@ def plot_full(df_cpu, qp=2, test="ib_read_bw", outfile="plots/cpu_rdma_qp2_write
                  error_y="bw_std", 
                  color="env", 
                  barmode="group", 
-                 title=f"RDMA {test} (#queue-pairs={qp}) Perftest Host-to-Host Bandwidth Measurements",
+                 title=f"RDMA {test} (#queue-pairs={qp}) Perftest {test_type} Bandwidth Measurements",
                  subtitle=f"Max Bare-metal BW = {maxbw['bm']}Gbps - Max OpenShift BW = {maxbw['oc']}Gbps")
 
     fig.update_layout(xaxis={'categoryorder': 'array',
@@ -73,5 +97,5 @@ def plot_full(df_cpu, qp=2, test="ib_read_bw", outfile="plots/cpu_rdma_qp2_write
 
 for qp in [2, 4, 8, 16, 32]:
     for test in ["ib_read_bw", "ib_write_bw"]:
-        fig = plot_full(df_cpu, qp=qp, test=test, outfile=f"plots/cpu_rdma_qp{qp}_{test}.png")
-
+        fig = plot_full(df_cpu, qp=qp, test=test, test_type="Host-to-Host", outfile=f"plots/cpu_rdma_qp{qp}_{test}.png")
+        fig = plot_full(df_gpu, qp=qp, test=test, test_type="GPU-to-GPU", outfile=f"plots/gpu_rdma_qp{qp}_{test}.png")
