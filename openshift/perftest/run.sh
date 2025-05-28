@@ -6,7 +6,7 @@ typeset -r ts=$(date +%d-%m-%y-%s)
 
 NIC="eno6np0"
 HCA="mlx5_2"
-FLAGS="-a -R -T 41 -F -x 3 -m 4096 --report_gbits -d ${HCA} -p 10000"
+FLAGS="-a -R -T 41 -F -x 3 -m 4096 -p 10000 --report_gbits -d ${HCA} "
 MTU=9000
 BM_HOSTS="sriovlegacy-workload-uno sriovlegacy-workload-dos"
 NUM_GPU=3

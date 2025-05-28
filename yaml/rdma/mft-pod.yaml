@@ -4,7 +4,8 @@ metadata:
   name: mft-pod-uno
   namespace: default
   annotations:
-    k8s.v1.cni.cncf.io/networks: rdmashared-net
+    k8s.v1.cni.cncf.io/networks: sriov-network
+   # k8s.v1.cni.cncf.io/networks: rdmashared-net
 spec:
   hostNetwork: true
   serviceAccount: mfttool
@@ -18,8 +19,10 @@ spec:
       resources:
         requests:
           nvidia.com/gpu: 4
-          rdma/rdma_shared_device_eth: 1
+          openshift.io/sriovlegacy: 1
+          #rdma/rdma_shared_device_eth: 1
         limits:
           nvidia.com/gpu: 4
-          rdma/rdma_shared_device_eth: 1
+          openshift.io/sriovlegacy: 1
+          #rdma/rdma_shared_device_eth: 1
 
