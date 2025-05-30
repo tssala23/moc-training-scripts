@@ -60,4 +60,4 @@ Check if `libibverbs-utils` has been correctly installed by running `ibv_devices
 
 
 ## To-do
-- Add build recipe for iperf3, perftest (w/ cuda) and llm.c (application + virtual env)  to the Containerfile
+- Add build recipe for llm.c (application + virtual env) to the Containerfile

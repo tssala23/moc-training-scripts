@@ -51,3 +51,13 @@ RUN wget https://www.mellanox.com/downloads/DOCA/DOCA_v2.10.0/host/doca-host-2.1
 RUN rpm -i doca-host-2.10.0-093000_25.01_rhel94.x86_64.rpm
 RUN dnf -y install doca-networking
 RUN rm doca-host-2.10.0-093000_25.01_rhel94.x86_64.rpm
+
+# iperf3 test
+RUN git clone https://github.com/esnet/iperf.git /opt/iperf
+RUN cd /opt/iperf && ./configure --prefix=/opt/iperf/install && make && make install
+RUN cp /opt/iperf/install/bin/iperf3 /opt/
+
+# IB read/write test with GPU Direct support
+RUN dnf install -y autoconf automake libtool pciutils-devel
+RUN git clone https://github.com/linux-rdma/perftest.git /opt/perftest
+RUN OVERLAY_ID=$(find /usr/lib/containers/storage/overlay -name cuda.h | head -n 1 | awk -F'/' '{print $7}') &&  CUDA_HOME=/usr/lib/containers/storage/overlay/$OVERLAY_ID/diff/usr/local/cuda-12.4 && cd /opt/perftest && ./autogen.sh && ./configure CUDA_H_PATH=$CUDA_HOME/include/cuda.h && make -j
