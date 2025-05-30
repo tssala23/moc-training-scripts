@@ -34,11 +34,11 @@ IPRF_LOG="${LOGDIR}/bmperf.log"
 mkdir -p $LOGDIR
 
 log "$TEST : Node ${srvnode} (${srv} - ${srvip})  <->  Node ${cltnode} (${clt})"
-log "$hexec_srv ${BM_USER}@${srv} \"nstat --reset > /dev/null; nstat > /tmp/nstat_cpu_pre; ${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log ; nstat > /tmp/nstat_cpu_post\""
-$hexec_srv ${BM_USER}@${srv} "nstat --reset > /dev/null; nstat > /tmp/nstat_cpu_pre; ${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log ; nstat > /tmp/nstat_cpu_post"
+log "$hexec_srv ${BM_USER}@${srv} \"nstat --reset > /dev/null; nstat > /tmp/nstat_cpu_pre; ${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log ; nstat > /tmp/nstat_cpu_post\""
+$hexec_srv ${BM_USER}@${srv} "nstat --reset > /dev/null; nstat > /tmp/nstat_cpu_pre; ${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log ; nstat > /tmp/nstat_cpu_post"
 sleep 10
-log "$hexec_clt ${BM_USER}@${clt} \"${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
-$hexec_clt ${BM_USER}@${clt} "${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+log "$hexec_clt ${BM_USER}@${clt} \"${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
+$hexec_clt ${BM_USER}@${clt} "${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
 sleep 1
 $hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_cpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
 $hcp ${BM_USER}@${clt}:/tmp/perftest_log "${LOGDIR}/perftest_cpu_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
@@ -53,11 +53,11 @@ mkdir -p $LOGDIR
 
 
 log "$TEST : Node ${srvnode} (${srv} - ${srvip})  <->  Node ${cltnode} (${clt})"
-log "$hexec_srv ${BM_USER}@${srv} \"nstat --reset > /dev/null; nstat > /tmp/nstat_gpu_pre; ${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  > /tmp/perftest_log ; nstat > /tmp/nstat_gpu_post\""
-$hexec_srv ${BM_USER}@${srv} "nstat --reset > /dev/null; nstat > /tmp/nstat_gpu_pre;  ${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  > /tmp/perftest_log  ; nstat > /tmp/nstat_gpu_post "
+log "$hexec_srv ${BM_USER}@${srv} \"nstat --reset > /dev/null; nstat > /tmp/nstat_gpu_pre; ${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  > /tmp/perftest_log ; nstat > /tmp/nstat_gpu_post\""
+$hexec_srv ${BM_USER}@${srv} "nstat --reset > /dev/null; nstat > /tmp/nstat_gpu_pre;  ${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  > /tmp/perftest_log  ; nstat > /tmp/nstat_gpu_post "
 sleep 10
-log "$hexec_clt ${BM_USER}@${clt} \"${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
-$hexec_clt ${BM_USER}@${clt} "${NSYS_CMD} ./perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+log "$hexec_clt ${BM_USER}@${clt} \"${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
+$hexec_clt ${BM_USER}@${clt} "${NSYS_CMD} /opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=${GPU} --use_cuda_dmabuf  ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
 sleep 1
 $hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_gpu${GPU}_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
 $hcp ${BM_USER}@${clt}:/tmp/perftest_log "${LOGDIR}/perftest_gpu${GPU}_clt_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"

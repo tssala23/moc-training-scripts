@@ -35,11 +35,11 @@ for srv in ${hosts[@]}; do
 		for TEST in 'ib_write_bw' 'ib_read_bw'; do
 			for QP in 1 2 4 8 16 32; do
 				log "$TEST : Node ${srvnode} (${srv} - ${srvip})  <->  Node ${cltnode} (${clt})"
-				log "$hexec ${BM_USER}@${srv} \"./perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log 2>&1 &\" 2>&1 | tee -a /tmp/perftest_log"
-				$hexec ${BM_USER}@${srv} "./perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+				log "$hexec ${BM_USER}@${srv} \"/opt/perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log 2>&1 &\" 2>&1 | tee -a /tmp/perftest_log"
+				$hexec ${BM_USER}@${srv} "/opt/perftest/$TEST $FLAGS -q ${QP}  > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
 				sleep 1
-				log "$hexec ${BM_USER}@${clt} \"./perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
-				$hexec ${BM_USER}@${clt} "./perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+				log "$hexec ${BM_USER}@${clt} \"/opt/perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
+				$hexec ${BM_USER}@${clt} "/opt/perftest/$TEST $FLAGS -q ${QP} ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
 				sleep 1
 				$hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_cpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
 				sleep 1
@@ -66,11 +66,11 @@ for srv in ${hosts[@]}; do
 				for TEST in 'ib_write_bw' 'ib_read_bw'; do
 					for QP in 1 2 4 8 16 32; do
 						log "$TEST : Node ${srvnode} (${srv} - ${srvip}) [${GPU_S}] <-> [${GPU_C}] Node ${cltnode} (${clt})"
-						log "$hexec ${BM_USER}@${srv} \"./perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &\" 2>&1 | tee -a /tmp/perftest_log"
-						$hexec ${BM_USER}@${srv} "./perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
+						log "$hexec ${BM_USER}@${srv} \"/opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &\" 2>&1 | tee -a /tmp/perftest_log"
+						$hexec ${BM_USER}@${srv} "/opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_S --use_cuda_dmabuf > /tmp/perftest_log 2>&1 &" 2>&1 | tee -a /tmp/perftest_log
 						sleep 1
-						log "$hexec ${BM_USER}@${clt} \"./perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
-						$hexec ${BM_USER}@${clt} "./perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
+						log "$hexec ${BM_USER}@${clt} \"/opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} > /tmp/perftest_log 2>&1\" 2>&1 | tee -a /tmp/perftest_log"
+						$hexec ${BM_USER}@${clt} "/opt/perftest/$TEST $FLAGS -q ${QP} --use_cuda=$GPU_C --use_cuda_dmabuf ${srvip} > /tmp/perftest_log 2>&1" 2>&1 | tee -a /tmp/perftest_log
 						sleep 1
 						$hcp ${BM_USER}@${srv}:/tmp/perftest_log "${LOGDIR}/perftest_gpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
 						sleep 1
