@@ -4,11 +4,11 @@
 
 typeset -r ts=$(date +%d-%m-%y-%s)
 
-NIC="eno6np0"
-HCA="mlx5_2"
+NICS=("cx7_eno5","cx7_eno6","cx7_eno7","cx7_eno8") #FIXME: Check within node
+HCAS=("mlx5_2") #FIXME: This needs to be an array matching within node
 FLAGS="-a -R -T 41 -F -x 3 -m 4096 -p 10000 --report_gbits -d ${HCA} "
 MTU=9000
-BM_HOSTS="sriovlegacy-workload-uno sriovlegacy-workload-dos"
+BM_HOSTS="sr4n1 sr4n2 sr4n3 sr4n4"
 NUM_GPU=3
 DRYRUN=0
 
@@ -28,13 +28,17 @@ IPRF_LOG="${LOGDIR}/bmperf.log"
 mkdir -p $LOGDIR
 log "hosts to be tested for cpu rdma:  ${hosts[@]}"
 for srv in ${hosts[@]}; do
-	srvip=`oc get pod ${srv} -o yaml | grep -E 'default/sriov-network' -A3 | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"`
+	srvipbase=`oc get pod ${srv} -o yaml | grep -E 'default/network-cx7-eno5np' -A3 | grep -oE "\b([0-9]{1,3}\.){3}\b"`
+	srvips = ("${srvipbase}.5" "${srvipbase}.6" "${srvipbase}.7" "${srvipbase}.8")
 	srvnode=`oc get pod ${srv} -o wide | tail -n1 | tr -s ' ' | cut -d' ' -f7`
 	for clt in ${hosts[@]}; do
         [[ $srv == $clt ]] && continue
 		cltnode=`oc get pod ${clt} -o wide | tail -n1 | tr -s ' ' | cut -d' ' -f7`
 		for TEST in 'ib_write_bw' 'ib_read_bw'; do
-			for QP in 1 2 4 8 16 32; do
+			for QP in 1 2; do
+			#for QP in 1 2 4 8 16 32; do
+			#for cltdev in; do
+			#for srvip in; do
 				log "$TEST : Node ${srvnode} (Pod ${srv} - Interface IP ${srvip})  <->  Node ${cltnode} (Pod ${clt})"
 				LOGFILE="${LOGDIR}/perftest_cpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}.log"
 				COMMAND="$hexec ${srv} -- ${TEST} ${FLAGS} -q ${QP} 2>&1 > ${LOGFILE} &" 
