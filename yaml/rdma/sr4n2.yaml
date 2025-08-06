@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sr4n2
+  namespace: default
+  annotations:
+    k8s.v1.cni.cncf.io/networks: default/network-cx7-eno5np0,default/network-cx7-eno6np0,default/network-cx7-eno7np0,default/network-cx7-eno8np0
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: moc-r4pcc04u23
+    #kubernetes.io/hostname: mocr4pcc02u25
+# moc-r4pcc02u25 
+#  serviceAccountName: rdma
+  containers:
+  - image: quay.io/jschless/gpu-tools:0.0.6 
+    name: sr4n2
+    securityContext:
+      privileged: true
+      capabilities:
+        add: [ "IPC_LOCK" ]
+    resources:
+      limits:
+        nvidia.com/gpu:         4
+        openshift.io/cx7_eno5:  1
+        openshift.io/cx7_eno6:  1
+        openshift.io/cx7_eno7:  1
+        openshift.io/cx7_eno8:  1
+
+      requests:
+        nvidia.com/gpu:         4
+        openshift.io/cx7_eno5:  1
+        openshift.io/cx7_eno6:  1
+        openshift.io/cx7_eno7:  1
+        openshift.io/cx7_eno8:  1
+
