@@ -101,8 +101,6 @@ if __name__ == "__main__":
         # Prepare data for multiple_bar: a list of lists
         bar_data = [dis_df[key].tolist(), chu_df[key].tolist()]
         
-        #
-        # --- THIS IS THE CORRECTED LINE ---
         # Use the multiple_bar function with the 'labels' (plural) keyword
         plt_term.multiple_bar(
             x_labels, bar_data, labels=["disagg_prefill", "chunked_prefill"]
