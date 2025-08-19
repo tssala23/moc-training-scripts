@@ -28,8 +28,8 @@ benchmark() {
   sleep 2
 }
 main() {
-  rm -rf disagg_results
-  mkdir disagg_results
+  rm -rf disagg_multinode_results
+  mkdir disagg_multinode_results
   default_output_len=6
   export VLLM_HOST_IP=192.168.50.182 #$(hostname -I | awk '{print $1}')
   for qps in 2 4 6 8; do
