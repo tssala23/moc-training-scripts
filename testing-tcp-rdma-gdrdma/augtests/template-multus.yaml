@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: torchrun-multipod
+spec:
+  serviceName: torchrun-multipod
+  replicas: ARG_NUM_PODS
+  selector:
+    matchLabels:
+      app: torchrun-multipod
+  template:
+    metadata:
+      labels:
+        app: torchrun-multipod
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          default/network-cx7-eno5np0,
+          default/network-cx7-eno6np0,
+          default/network-cx7-eno7np0,
+          default/network-cx7-eno8np0
+    spec:
+      dnsPolicy: ClusterFirst
+      hostIPC: true
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: torchrun-multipod
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: torchrun-multipod
+          image: docker.io/saarora/test14-scan-bucketsize
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROCS", "ARG_PROFILE", "ARG_TYPE", "ARG_NUM_NICS", "ARG_RUNID", "ARG_NCCL_SOCKET_NTHREADS", "ARG_NCCL_NSOCKS_PERTHREAD"]
+          ports:
+            - containerPort: 29500
+              name: torch-multipod
+          resources:
+            limits:
+              nvidia.com/gpu: 4
+              openshift.io/cx7_eno5: 1
+              openshift.io/cx7_eno6: 1
+              openshift.io/cx7_eno7: 1
+              openshift.io/cx7_eno8: 1
+            requests:
+              nvidia.com/gpu: 4
+              openshift.io/cx7_eno5: 1
+              openshift.io/cx7_eno6: 1
+              openshift.io/cx7_eno7: 1
+              openshift.io/cx7_eno8: 1
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["IPC_LOCK", "SYS_ADMIN"]
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          volumeMounts:
+            - mountPath: /mnt/debugfs
+              name: debugfs
+            - mountPath: /workspace/data
+              name: torchrun-sync
+      volumes:
+        - name: debugfs
+          hostPath:
+            path: /sys/kernel/debug
+            type: Directory
+        - name: torchrun-sync
+          persistentVolumeClaim:
+            claimName: torchrun-sync
+

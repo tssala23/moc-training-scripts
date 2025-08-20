@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: torchrun-multipod
+spec:
+  serviceName: torchrun-multipod
+  replicas: ARG_NUM_PODS
+  selector:
+    matchLabels:
+      app: torchrun-multipod
+  template:
+    metadata:
+      labels:
+        app: torchrun-multipod
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet #DNS not resolving MASTER_ADDR
+      hostNetwork: true
+      hostIPC: true
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: torchrun-multipod
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: torchrun-multipod
+          image: docker.io/saarora/test16-gdr-valid
+          args: ["ARG_NUM_PODS", "ARG_NUM_PROCS", "ARG_PROFILE", "ARG_TYPE", "ARG_NUM_NICS", "ARG_RUNID", "ARG_NCCL_SOCKET_NTHREADS", "ARG_NCCL_NSOCKS_PERTHREAD", "ARG_BUCKET_CAP"]
+          ports:
+            - containerPort: 29500
+              name: torch-multipod
+          resources:
+            limits:
+              nvidia.com/gpu: 4
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["IPC_LOCK", "SYS_ADMIN"]
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          volumeMounts:
+            - mountPath: /mnt/debugfs
+              name: debugfs
+            - mountPath: /workspace/data
+              name: torchrun-sync
+      volumes:
+      - name: debugfs
+        hostPath:
+          path: /sys/kernel/debug
+          type: Directory
+      - name: torchrun-sync
+        persistentVolumeClaim:
+          claimName: torchrun-sync
