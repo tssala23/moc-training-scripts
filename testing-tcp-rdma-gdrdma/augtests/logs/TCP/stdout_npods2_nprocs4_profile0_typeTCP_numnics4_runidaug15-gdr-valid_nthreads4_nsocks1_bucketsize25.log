@@ -1,0 +1,209 @@
+TYPE=TCP
+Hostname:, moc-r4pcc04u25
+Pod Name:, torchrun-multipod-0
+NUM PODS : 2
+NUM PROCS: 4
+NUM NICS: 4
+NUM_ITER  : 10
+MODEL    : d12
+BS        : 32
+SEQ LEN   : 1024
+GRAD ACCUM: 1
+BS TOTAL  : 262144
+LOG FILE: /tmp/logs/stdout_npods2_nprocs4_profile0_typeTCP_numnics4_runidaug15-gdr-valid_nthreads4_nsocks1_bucketsize25.log
+NODE RANK: 0
+PROFILE  : 0
+TAG      : npods2_nprocs4_profile0_typeTCP_numnics4_runidaug15-gdr-valid_nthreads4_nsocks1_bucketsize25
+RUNID    : aug15-gdr-valid
+MASTER ADDR: 192.168.100.97
+MASTER PORT: 29500
+NCCL_SOCKET_NTHREADS : 4
+NCCL_NSOCKS_PERTHREAD: 1
+BUCKET CAP: 25
+------START: ENV VARS------------------
+NV_LIBCUBLAS_VERSION=12.0.2.224-1
+NVIDIA_VISIBLE_DEVICES=GPU-f1c9d139-1187-88ec-6a45-b45a96313a8e,GPU-1b56c4de-9484-72b6-161f-6afc12479185,GPU-3d4af18d-57f0-0f32-e2f6-1c818df5690d,GPU-53ff16ff-4990-e670-9d29-3d1a9da3ae6e
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_SERVICE_PORT=443
+HOSTNAME=moc-r4pcc04u25
+NSS_SDB_USE_CACHE=no
+MASTER_PORT=29500
+NVIDIA_REQUIRE_CUDA=cuda>=12.0 brand=tesla,driver>=470,driver<471 brand=unknown,driver>=470,driver<471 brand=nvidia,driver>=470,driver<471 brand=nvidiartx,driver>=470,driver<471 brand=geforce,driver>=470,driver<471 brand=geforcertx,driver>=470,driver<471 brand=quadro,driver>=470,driver<471 brand=quadrortx,driver>=470,driver<471 brand=titan,driver>=470,driver<471 brand=titanrtx,driver>=470,driver<471
+NV_NVTX_VERSION=12.0.140-1
+NCCL_NET_PLUGIN=ib
+POD_NAME=torchrun-multipod-0
+NV_LIBCUSPARSE_VERSION=12.0.1.140-1
+NV_LIBNPP_VERSION=12.0.1.104-1
+NCCL_VERSION=2.16.5-1
+NCCL_SOCKET_IFNAME=eno8np0
+NCCL_DEBUG_SUBSYS=INIT,NET,GRAPH,GDR
+PWD=/workspace
+NVIDIA_DRIVER_CAPABILITIES=compute,utility
+NV_LIBNPP_PACKAGE=libnpp-12-0=12.0.1.104-1
+NCCL_DEBUG=INFO
+NVIDIA_PRODUCT_NAME=CUDA
+NV_CUDA_CUDART_VERSION=12.0.146-1
+HOME=/root
+NCCL_NSOCKS_PERTHREAD=1
+KUBERNETES_PORT_443_TCP=tcp://172.30.0.1:443
+CUDA_VERSION=12.0.1
+NV_LIBCUBLAS_PACKAGE=libcublas-12-0=12.0.2.224-1
+NV_LIBCUBLAS_PACKAGE_NAME=libcublas-12-0
+NCCL_DEBUG_FILE=/tmp/logs/nccl_debug_npods2_nprocs4_profile0_typeTCP_numnics4_runidaug15-gdr-valid_nthreads4_nsocks1_bucketsize25
+MASTER_ADDR=192.168.100.97
+TERM=xterm
+NCCL_TOPO_DUMP_FILE=/tmp/logs/topo.xml
+NCCL_IB_TIMEOUT=22
+SHLVL=0
+NV_CUDA_LIB_VERSION=12.0.1-1
+NVARCH=x86_64
+NCCL_SOCKET_NTHREADS=4
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_ADDR=172.30.0.1
+NV_CUDA_COMPAT_PACKAGE=cuda-compat-12-0
+POD_IP=192.168.50.198
+NV_LIBNCCL_PACKAGE=libnccl2=2.16.5-1+cuda12.0
+LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
+NCCL_IB_DISABLE=1
+KUBERNETES_SERVICE_HOST=172.30.0.1
+KUBERNETES_PORT=tcp://172.30.0.1:443
+KUBERNETES_PORT_443_TCP_PORT=443
+PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NV_LIBNCCL_PACKAGE_NAME=libnccl2
+NV_LIBNCCL_PACKAGE_VERSION=2.16.5-1
+_=/usr/bin/env
+------STOP : ENV VARS--------------------
+Dumping initial: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo: 47909665134 52572495    0    0    0     0          0         0 47909665134 52572495    0    0    0     0       0          0
+  eno4:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ovs-system:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+genev_sys_6081: 162808460415 203570514    0    0    0     0          0         0 188534521328 203309053    0   17    0     0       0          0
+ovn-k8s-mp0: 21342369743 108190122    0    0    0     0          0         0 114025855457 109202676    0    0    0     0       0          0
+br-int:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ br-ex: 376706810060 391337906    0    1    0     0          0         0 405334766195 385907047    0    0    0     0       0          0
+9f82ecfc54b7a6b: 12078042   64156    0    0    0     0          0         0  6755493   63815    0    0    0     0       0          0
+c0ee42201ace5da: 1818045675 8969594    0    0    0     0          0         0 1074569981 9425737    0    0    0     0       0          0
+2a06044537f8371: 462219238 1545947    0    0    0     0          0         0 3014804319 1604039    0    0    0     0       0          0
+5d14cd7d5e18d08: 110916832 1064316    0    0    0     0          0         0 112188542 1287505    0    0    0     0       0          0
+59317e53a0a2000: 667356588 1403665    0    0    0     0          0         0 397634318 1215121    0    0    0     0       0          0
+a234c8147bc3b38: 73668569085 71399157    0    0    0     0          0         0 85115447148 74350402    0    0    0     0       0          0
+bdbe7dea58bd1a1: 67845967  807708    0    0    0     0          0         0 107986650 1532511    0    0    0     0       0          0
+8eab3f750ab5d6a: 1936131880 9363817    0    0    0     0          0         0 11281271885 9746831    0    0    0     0       0          0
+eno2np0: 394247428899 571070270    0 3668    0     0          0   2461794 419436164393 602959717    0    0    0     0       0          0
+vlan2076: 1788457000 3731829    0    0    0     0          0   1775380 311865956 2572916    0    0    0     0       0          0
+eno3np1:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6np0: 92300108  445889    0    0    0     0          0    445885  4662746   27887    0    0    0     0       0          0
+eno5np0: 103043351  592244    0    0    0     0          0    445605 19131246  211183    0    0    0     0       0          0
+eno8np0: 216805240162 26731084    0    0    0     0          0    445749 216723908806 26305040    0    0    0     0       0          0
+eno7np0: 92215868  445649    0    0    0     0          0    445645  4711266   28273    0    0    0     0       0          0
+d58a727a3d323f4:  117705     553    0    0    0     0          0         0  1124890     491    0    0    0     0       0          0
+7b202fde899e6e6: 27119240    7001    0    0    0     0          0         0 25185734   11919    0    0    0     0       0          0
+f32a3ed3b5be78a: 43868707   15865    0    0    0     0          0         0 27998966   17094    0    0    0     0       0          0
+0b4c90e80fb897e:    1228      19    0    0    0     0          0         0     1056      10    0    0    0     0       0          0
+eno5v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+a8c6b30867dccd7:   18598     104    0    0    0     0          0         0   114567      91    0    0    0     0       0          0
+855ccee0540d1e6:    1332      20    0    0    0     0          0         0      966       9    0    0    0     0       0          0
+eno6v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+24f71fdda7eac4a:    6170      43    0    0    0     0          0         0    21167      31    0    0    0     0       0          0
+eno7v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+5c68db3a8a20cbd: 7045365   21377    0    0    0     0          0         0  3160897   22155    0    0    0     0       0          0
+78bbbf2b246042a: 36353344   79995    0    0    0     0          0         0 98978307  101452    0    0    0     0       0          0
+eno8v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+55a38dab432be21:  730289    7357    0    0    0     0          0         0  1108930    7008    0    0    0     0       0          0
+1768c90c56fb8c1: 1360794   10372    0    0    0     0          0         0 22237098   11403    0    0    0     0       0          0
+e73e75ee7e66d16: 68492227846 64265864    0    0    0     0          0         0 60309067802 66779947    0    0    0     0       0          0
+fb008d6ae440180:  593632    7003    0    0    0     0          0         0  1541401    4880    0    0    0     0       0          0
+6173b8c0c1ddb00: 2316465   22218    0    0    0     0          0         0 45972260   23747    0    0    0     0       0          0
+916c1c8ec2a80b1: 10671036230 13280452    0    0    0     0          0         0 3874177222 14131078    0    0    0     0       0          0
+4616b34c57f0f49: 25889669   51534    0    0    0     0          0         0 25331174   60334    0    0    0     0       0          0
+8548e0939b9d3b8:   85434    1028    0    0    0     0          0         0   101798     732    0    0    0     0       0          0
+d91752436795bc3:   31040     534    0    0    0     0          0         0     3871      47    0    0    0     0       0          0
+4703e14cd4f20de: 1380502187 1840322    0    0    0     0          0         0 255871106 1880781    0    0    0     0       0          0
+875a0d9daf04a91: 2982133116 7651301    0    0    0     0          0         0 2930954233 6822647    0    0    0     0       0          0
+7303d74f66add16: 3103396457  437017    0    0    0     0          0         0 37569729  434622    0    0    0     0       0          0
+0c570a014c75d16:   29083     354    0    0    0     0          0         0    27706      57    0    0    0     0       0          0
+549358a47de0041: 48489864  585891    0    0    0     0          0         0 1757634275  682396    0    0    0     0       0          0
+W0819 17:39:00.127000 131 torch/distributed/run.py:766] 
+W0819 17:39:00.127000 131 torch/distributed/run.py:766] *****************************************
+W0819 17:39:00.127000 131 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0819 17:39:00.127000 131 torch/distributed/run.py:766] *****************************************
+Running pytorch 2.7.0+cu126
+using device: cuda:0
+total desired batch size: 262144
+=> calculated gradient accumulation steps: 1
+using device: cuda:3
+using device: cuda:1
+using device: cuda:2
+compiling the model...
+DataLoader: total number of tokens: 100,000,000 across 1 files
+num decayed parameter tensors: 50, with 124,318,464 parameters
+num non-decayed parameter tensors: 98, with 121,344 parameters
+using fused AdamW: False
+using regular AdamW
+step    1/10 | train loss 11.008534 | norm 15.8512 | lr 1.00e-04 | (136521.26 ms | 1920 tok/s)
+step    2/10 | train loss 10.116457 | norm 5.8735 | lr 1.00e-04 | (136.32 ms | 1922996 tok/s)
+step    3/10 | train loss 9.765998 | norm 2.6306 | lr 1.00e-04 | (129.23 ms | 2028443 tok/s)
+step    4/10 | train loss 9.596239 | norm 2.1069 | lr 1.00e-04 | (129.09 ms | 2030781 tok/s)
+step    5/10 | train loss 9.513403 | norm 2.1000 | lr 1.00e-04 | (128.30 ms | 2043147 tok/s)
+step    6/10 | train loss 9.431196 | norm 1.9935 | lr 1.00e-04 | (125.39 ms | 2090700 tok/s)
+step    7/10 | train loss 9.345901 | norm 1.9369 | lr 1.00e-04 | (122.77 ms | 2135248 tok/s)
+step    8/10 | train loss 9.256422 | norm 1.9010 | lr 1.00e-04 | (122.54 ms | 2139327 tok/s)
+step    9/10 | train loss 9.164140 | norm 1.8592 | lr 1.00e-04 | (122.88 ms | 2133404 tok/s)
+step   10/10 | train loss 9.071943 | norm 1.7839 | lr 1.00e-04 | (125.63 ms | 2086617 tok/s)
+final 9 iters avg: 126.905ms
+peak memory consumption: 16117 MiB
+Dumping final: /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo: 47975162644 52593561    0    0    0     0          0         0 47975162644 52593561    0    0    0     0       0          0
+  eno4:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ovs-system:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+genev_sys_6081: 162818456583 203585573    0    0    0     0          0         0 188546263034 203323381    0   17    0     0       0          0
+ovn-k8s-mp0: 21343147826 108194893    0    0    0     0          0         0 114030196172 109207860    0    0    0     0       0          0
+br-int:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+ br-ex: 376735545026 391367576    0    1    0     0          0         0 405365278317 385935011    0    0    0     0       0          0
+9f82ecfc54b7a6b: 12078042   64156    0    0    0     0          0         0  6755493   63815    0    0    0     0       0          0
+c0ee42201ace5da: 1818173842 8970214    0    0    0     0          0         0 1074644356 9426411    0    0    0     0       0          0
+2a06044537f8371: 462265181 1546103    0    0    0     0          0         0 3015105320 1604197    0    0    0     0       0          0
+5d14cd7d5e18d08: 110927701 1064420    0    0    0     0          0         0 112199621 1287633    0    0    0     0       0          0
+59317e53a0a2000: 667440584 1403825    0    0    0     0          0         0 397671821 1215257    0    0    0     0       0          0
+a234c8147bc3b38: 73672045266 71403797    0    0    0     0          0         0 85119729147 74355064    0    0    0     0       0          0
+bdbe7dea58bd1a1: 67851611  807786    0    0    0     0          0         0 107997178 1532663    0    0    0     0       0          0
+8eab3f750ab5d6a: 1936328219 9364837    0    0    0     0          0         0 11282726206 9747875    0    0    0     0       0          0
+eno2np0: 394276881954 571112497    0 3668    0     0          0   2462050 419467503794 603003947    0    0    0     0       0          0
+vlan2076: 1788468002 3732033    0    0    0     0          0   1775561 311874733 2573059    0    0    0     0       0          0
+eno3np1:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+eno6np0: 92300108  445889    0    0    0     0          0    445885  4662746   27887    0    0    0     0       0          0
+eno5np0: 103145269  593491    0    0    0     0          0    445605 19174476  211819    0    0    0     0       0          0
+eno8np0: 222885389914 27504601    0    0    0     0          0    445749 222806451188 27082410    0    0    0     0       0          0
+eno7np0: 92215868  445649    0    0    0     0          0    445645  4711266   28273    0    0    0     0       0          0
+d58a727a3d323f4:  117705     553    0    0    0     0          0         0  1124890     491    0    0    0     0       0          0
+7b202fde899e6e6: 27613222    7140    0    0    0     0          0         0 25644716   12154    0    0    0     0       0          0
+f32a3ed3b5be78a: 44757278   16169    0    0    0     0          0         0 28509203   17420    0    0    0     0       0          0
+0b4c90e80fb897e:    1228      19    0    0    0     0          0         0     1056      10    0    0    0     0       0          0
+eno5v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+a8c6b30867dccd7:   18598     104    0    0    0     0          0         0   114567      91    0    0    0     0       0          0
+855ccee0540d1e6:    1332      20    0    0    0     0          0         0      966       9    0    0    0     0       0          0
+eno6v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+24f71fdda7eac4a:    6170      43    0    0    0     0          0         0    21167      31    0    0    0     0       0          0
+eno7v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+5c68db3a8a20cbd: 7164447   21749    0    0    0     0          0         0  3211004   22531    0    0    0     0       0          0
+78bbbf2b246042a: 37001590   81356    0    0    0     0          0         0 100527406  103201    0    0    0     0       0          0
+eno8v0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+55a38dab432be21:  742827    7488    0    0    0     0          0         0  1121189    7132    0    0    0     0       0          0
+1768c90c56fb8c1: 1378873   10513    0    0    0     0          0         0 22529246   11557    0    0    0     0       0          0
+e73e75ee7e66d16: 68497946045 64272890    0    0    0     0          0         0 60314633546 66787330    0    0    0     0       0          0
+fb008d6ae440180:  603260    7122    0    0    0     0          0         0  1567817    4964    0    0    0     0       0          0
+6173b8c0c1ddb00: 2335593   22403    0    0    0     0          0         0 45996009   23961    0    0    0     0       0          0
+916c1c8ec2a80b1: 10671256356 13281477    0    0    0     0          0         0 3874677440 14132475    0    0    0     0       0          0
+4616b34c57f0f49: 26338240   52411    0    0    0     0          0         0 25564164   61343    0    0    0     0       0          0
+8548e0939b9d3b8:   87361    1052    0    0    0     0          0         0   104033     749    0    0    0     0       0          0
+d91752436795bc3:   31040     534    0    0    0     0          0         0     3871      47    0    0    0     0       0          0
+4703e14cd4f20de: 1380637510 1840505    0    0    0     0          0         0 255895871 1880967    0    0    0     0       0          0
+875a0d9daf04a91: 2982403075 7652023    0    0    0     0          0         0 2931204816 6823282    0    0    0     0       0          0
+7303d74f66add16: 3104812463  437210    0    0    0     0          0         0 37586050  434810    0    0    0     0       0          0
+0c570a014c75d16:   29083     354    0    0    0     0          0         0    27706      57    0    0    0     0       0          0
+549358a47de0041: 48498959  585989    0    0    0     0          0         0 1757908989  682523    0    0    0     0       0          0
+Tue Aug 19 17:42:02 UTC 2025
