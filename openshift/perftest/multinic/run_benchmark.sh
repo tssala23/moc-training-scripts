@@ -6,12 +6,116 @@ MTU=9000
 PORTS=("18515" "18516" "18517" "18518")
 QPAIRS=6
 GPUS=4
-IFS=("eno5np0" "eno6np0" "eno7np0" "eno8np0")
+INTERFACES=("eno5np0" "eno6np0" "eno7np0" "eno8np0")
 NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")
 HOST_IPS=("" "" "" "")
 PODS=("sr4n1" "sr4n2")   
-BMS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
+BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
+
+# IFS=','; files=($1); unset IFS;
+
+function usage() 
+{
+ echo "Usage: $0 [OPTIONS]"
+ echo "Options:"
+ echo " -h, --help      	Display this help message"
+ echo " -p, --ports		Comma separated port list"
+ echo " -n, --pods      	Comma separated pod list"
+ echo " -i, --interfaces      	Comma separated interface (e.g. eno*)  list"
+ echo " -m, --nics      	Comma separated mellanox device (e.g. mlxn*) list"
+ echo " -b, --benchmarks     	Comma separated benchmark list"
+ echo " -f, --flags      	Flags string base"
+}
+
+function hasarg() 
+{
+    [[ ("$1" == *=* && -n ${1#*=}) || ( ! -z "$2" && "$2" != -*)  ]];
+}
+
+function extractarg() 
+{
+  echo "${2:-${1#*=}}"
+}
+
+function handleopts() 
+{
+  while [ $# -gt 0 ]; do
+    case $1 in
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      -n | --pods*)
+        if ! hasarg $@; then
+          echo "Pods not specified." >&2
+          usage
+          exit 1
+        fi
+        tmp=$(extractarg $@)
+        IFS=','; PODS=($tmp); unset IFS;
+        shift
+        ;;
+      -i | --interfaces*)
+        if ! hasarg $@; then
+          echo "Interfaces not specified." >&2
+          usage
+          exit 1
+        fi
+        tmp=$(extractarg $@)
+        IFS=','; INTERFACES=($tmp); unset IFS;
+        shift
+        ;;
+      -m | --nics*)
+        if ! hasarg $@; then
+          echo "NICS not specified." >&2
+          usage
+          exit 1
+        fi
+        tmp=$(extractarg $@)
+        IFS=','; NICS=($tmp); unset IFS;
+        shift
+        ;;
+      -p | --ports*)
+        if ! hasarg $@; then
+          echo "Ports not specified." >&2
+          usage
+          exit 1
+        fi
+	tmp=$(extractarg $@)
+	IFS=',';PORTS=($tmp); unset IFS;
+	shift 
+        ;;
+      -b | --benchmarks*)
+        if ! hasarg $@; then
+          echo "Benchmarks not specified." >&2
+          usage
+          exit 1
+        fi
+	tmp=$(extractarg $@)
+        IFS=',';BENCHMARKS=($tmp);unset IFS
+        shift
+        ;;
+      -f | --flags*)
+        if ! hasarg $@; then
+          echo "Flags not specified." >&2
+          usage
+          exit 1
+        fi
+	tmp=$(extractarg $@)
+	IFS=','; FLAGS_BASE=($tmp); unset IFS; 
+
+        shift
+        ;;
+      *)
+        echo "Invalid option: $1" >&2
+        usage
+        exit 1
+        ;;
+    esac
+    shift
+  done
+}
 
 function log()
 {
@@ -31,7 +135,7 @@ function getips()
     h=$1
     c=$2
     for ((p=0; p<${#NICS[@]}; p++)); do
-        HOST_IPS[$p]=`oc exec ${h} -- ifconfig | grep -A 1 ${IFS[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
+        HOST_IPS[$p]=`oc exec ${h} -- ifconfig | grep -A 1 ${INTERFACES[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
     done
 }
 
@@ -103,18 +207,20 @@ function runbm()
     fi
 }
 
+handleopts "$@"
+
 HOST=${PODS[0]}
 CLIENT=${PODS[1]}
 
 IPRF_LOG="${LOGDIR}/cpu/bmperf.log"
 log "Pods to be tested for cpu rdma:  ${PODS[@]}"
-for i in ${BMS[@]}; do
+for i in ${BENCHMARKS[@]}; do
     runbm $i 0 $HOST $CLIENT
 done
 
 IPRF_LOG="${LOGDIR}/gpu/bmperf.log"
 log "Pods to be tested for gpu rdma:  ${PODS[@]}"
-for i in ${BMS[@]}; do
+for i in ${BENCHMARKSS[@]}; do
     runbm $i 1 $HOST $CLIENT
 done
 
