@@ -1,0 +1,80 @@
+ip:
+  defaults:
+    ifname: "eno"
+    hca: "mlx"
+  control:
+    ssh:
+      inet: "192.168.50.151" 
+      name: "eno2np0"
+      hca: "mlx5_0"
+  data:
+    gpu_0:
+      id: 0 
+      inet: "192.168.60.184"
+      name: "eno5np0"
+      hca: "mlx5_3"    
+    gpu_1: 
+      id: 1
+      inet: "192.168.60.193"
+      name: "eno6np0"
+      hca: "mlx5_2"    
+    gpu_2:
+      id: 2 
+      inet: "192.168.60.173"
+      name: "eno7np0"
+      hca: "mlx5_5"
+    gpu_3:
+      id: 3
+      inet: "192.168.60.198"
+      name: "eno8np0"
+      hca: "mlx5_4"
+
+nccl:
+  NCCL_IB_OOB_IPV6_DISABLE: 1
+  NCCL_SOCKET_NTHREADS: 16 
+  NCCL_NSOCKS_PERTHREAD: 4 
+  NCCL_DMABUF_ENABLE: 1
+  NCCL_GDR_LEVEL: "PXB"
+  NCCL_NET_GDR_READ: 1
+  NCCL_IB_DISABLE: 0
+  NCCL_IB_GID_INDEX: 3
+
+vllm:
+  model: "ibm-granite/granite-3.3-8b-instruct"
+  port: 8200
+  max_model_len: 10000
+  gpu_mem_util: 0.6
+  use_v1: 0
+  kv_rank: 1
+  kv_ip: "192.168.50.182"
+  kv_port: 14579
+  kv_connector: "PyNcclConnector"
+  kv_buffer_size: 5000000000.0
+  kv_role: "kv_consumer"
+  
+hardware:  
+  gpu: 0
+  nics: 
+    control:
+      - "ssh"
+    data: 
+      - "gpu_0"
+
+log:
+  nccl:
+    topo: "" 
+    debug: "INFO"
+    subsys:
+      - "INIT"
+      - "NET"
+      - "GRAPH"
+      - "GDR"
+  output:
+    cmd: ""
+    logdir: ""
+    filename: ""
+
+profile:
+  prerun: ""
+  postrun: ""
+  inline: ""
