@@ -89,18 +89,18 @@ GLOO_SOCKET_IFNAME=$NCCL_SOCKET_IFNAME
 
 if [[ "$NCCL_IB_DISABLE" -eq 0 ]]; then
 	NCCL_IB_HCA=""
-	for IFACE_KEY in $(jq -r '.hardware.nics.data[] // ""' <<< "$DATA"); do
-   		IFACE_NAME=$(jq -r --arg key "$IFACE_KEY" '.ip.control[$key].name // ""' <<< "$DATA")
-   		if [ -n "$IFACE_NAME" ]; then
-        		NCCL_IB_HCA="${NCCL_IB_HCA},${IFACE_NAME}"
+	for HCA_KEY in $(jq -r '.hardware.nics.data[] // ""' <<< "$DATA"); do
+   		HCA_NAME=$(jq -r --arg key "$HCA_KEY" '.ip.control[$key].hca // ""' <<< "$DATA")
+   		if [ -n "$HCA_NAME" ]; then
+        		NCCL_IB_HCA="${NCCL_IB_HCA},${HCA_NAME}"
    		fi
-    		IFACE_NAME=$(jq -r --arg key "$IFACE_KEY" '.ip.data[$key].name // ""' <<< "$DATA")
-    		if [ -n "$IFACE_NAME" ]; then
-        		NCCL_IB_HCA="${NCCL_IB_HCA},${IFACE_NAME}"
+    		HCA_NAME=$(jq -r --arg key "$HCA_KEY" '.ip.data[$key].hca // ""' <<< "$DATA")
+    		if [ -n "$HCA_NAME" ]; then
+        		NCCL_IB_HCA="${NCCL_IB_HCA},${HCA_NAME}"
     		fi
 	done
 	if [ -z "$NCCL_IB_HCA" ]; then
-    		NCCL_IB_HCA=$GPU_IFNAME  # defaulting to the selected gpu hca name
+    		NCCL_IB_HCA=$GPU_HCA_NAME  # defaulting to the selected gpu hca name
 	else
     		NCCL_IB_HCA="${NCCL_IB_HCA:1}"
 	fi
@@ -174,4 +174,3 @@ CMD+='sed -i "\$ s/$/\"$END_TIME\"/" "'${GPU_LABEL}'_usage.csv"'
 
 echo  -e $CMD  > run_server.sh
 chmod +x run_server.sh
-
