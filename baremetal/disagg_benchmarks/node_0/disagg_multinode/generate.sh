@@ -143,20 +143,20 @@ if [ -n "$PROFILE_INLINE" ]; then
     CMD+="${PROFILE_INLINE} "
 fi
 
-CMD+='python3 \ ''\n'
-CMD+=' -m vllm.entrypoints.openai.api_server \ ''\n'
-CMD+=' --model '$MODEL' \ ''\n'
-CMD+=$([ -n "$VLLM_PORT" ] && echo ' --port '$VLLM_PORT' \ ''\n')
-CMD+=$([ -n "$VLLM_MAX_MODEL_LEN" ] && echo ' --max-model-len '$VLLM_MAX_MODEL_LEN' \ ''\n')
-CMD+=$([ -n "$VLLM_GPU_MEM_UTIL" ] && echo ' --gpu-memory-utilization '$VLLM_GPU_MEM_UTIL' \ ''\n')
-CMD+=' --kv-transfer-config \ ''\n'
-CMD+=' {"kv_role":"'$KV_ROLE'"'
+CMD+='python3 \\''\n'
+CMD+=' -m vllm.entrypoints.openai.api_server \\''\n'
+CMD+=' --model '$MODEL' \\''\n'
+CMD+=$([ -n "$VLLM_PORT" ] && echo ' --port '$VLLM_PORT' \\''\n')
+CMD+=$([ -n "$VLLM_MAX_MODEL_LEN" ] && echo ' --max-model-len '$VLLM_MAX_MODEL_LEN' \\''\n')
+CMD+=$([ -n "$VLLM_GPU_MEM_UTIL" ] && echo ' --gpu-memory-utilization '$VLLM_GPU_MEM_UTIL' \\''\n')
+CMD+=' --kv-transfer-config \\''\n'
+CMD+="'"'{"kv_role":"'$KV_ROLE'"'
 CMD+=$([ -n "$KV_CONNECTOR" ] && echo ', "kv_connector":"'$KV_CONNECTOR'"')
 CMD+=$([ -n "$KV_RANK" ] && echo ', "kv_rank":'$KV_RANK)
 CMD+=$([ -n "$KV_IP" ] && echo ', "kv_ip":"'$KV_IP'"')
 CMD+=$([ -n "$KV_PORT" ] && echo ', "kv_port":'$KV_PORT)
 CMD+=$([ -n "$KV_BUFFER_SIZE" ] && echo ', "kv_buffer_size":'$KV_BUFFER_SIZE)
-CMD+='} '
+CMD+="}' "
 
 if [ -n "$LOGCMD" ]; then
     CMD+="  ${LOGCMD}  ${LOGDIR}/${LOGFILE}"'\n'
@@ -171,4 +171,4 @@ fi
 CMD+='END_TIME=$(date +"%Y-%m-%d %H:%M:%S")''\n'
 CMD+='sed -i "\$ s/$/\"$END_TIME\"/" "'${GPU_LABEL}'_usage.csv"'
 
-echo  -e $CMD  > run.sh 
+echo  -e $CMD  > run.sh
