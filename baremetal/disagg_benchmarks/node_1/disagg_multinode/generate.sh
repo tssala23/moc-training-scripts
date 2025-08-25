@@ -14,7 +14,7 @@ if [ -z "$MODEL" ]; then
         exit 1
 fi
 
-
+KV_PARALLEL_SIZE=2 # Hardcoded
 KV_IP=$(jq -r '.vllm.kv_ip // ""' <<< "$DATA")
 KV_PORT=$(jq -r '.vllm.kv_port // "" '  <<< "$DATA")
 KV_CONNECTOR=$(jq -r '.vllm.kv_connector // ""' <<< "$DATA")
@@ -156,6 +156,7 @@ CMD+=$([ -n "$KV_RANK" ] && echo ', "kv_rank":'$KV_RANK)
 CMD+=$([ -n "$KV_IP" ] && echo ', "kv_ip":"'$KV_IP'"')
 CMD+=$([ -n "$KV_PORT" ] && echo ', "kv_port":'$KV_PORT)
 CMD+=$([ -n "$KV_BUFFER_SIZE" ] && echo ', "kv_buffer_size":'$KV_BUFFER_SIZE)
+CMD+=', "kv_parallel_size":'$KV_PARALLEL_SIZE
 CMD+="}' "
 
 if [ -n "$LOGCMD" ]; then
@@ -171,4 +172,6 @@ fi
 CMD+='END_TIME=$(date +"%Y-%m-%d %H:%M:%S")''\n'
 CMD+='sed -i "\$ s/$/\"$END_TIME\"/" "'${GPU_LABEL}'_usage.csv"'
 
-echo  -e $CMD  > run.sh
+echo  -e $CMD  > run_server.sh
+chmod +x run_server.sh
+
