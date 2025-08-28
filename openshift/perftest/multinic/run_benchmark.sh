@@ -13,8 +13,6 @@ PODS=("sr4n1" "sr4n2")
 BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
 
-# IFS=','; files=($1); unset IFS;
-
 function usage() 
 {
  echo "Usage: $0 [OPTIONS]"
