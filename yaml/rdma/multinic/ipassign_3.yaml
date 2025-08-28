@@ -1,0 +1,46 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: nncp-moc-r4pcc02u25
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: moc-r4pcc02u25
+  desiredState:
+    interfaces:
+    - name: eno5np0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.100.93
+          prefix-length: 24
+        dhcp: false
+    - name: eno6np0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.101.93
+          prefix-length: 24
+        dhcp: false
+    - name: eno7np0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.102.93
+          prefix-length: 24
+        dhcp: false
+    - name: eno8np0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.103.93
+          prefix-length: 24
+        dhcp: false
+          
