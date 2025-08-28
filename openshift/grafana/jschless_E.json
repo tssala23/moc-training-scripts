@@ -1,0 +1,231 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 22,
+  "links": [],
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Albany Cluster – GPU Switch Monitoring\n\nThis dashboard tracks **average inbound traffic (bits/sec)** on all GPU switches in the Albany cluster, calculated over the **last 10 minutes**.  \n\nThe metric is derived from:  \n\n```promql\n(rate(network_switch_ifHCInOctets{ifAlias=\"<switch>\"}[10m])) * 8\n```\n\n---\n\n## Node → GPU Switch Mapping  \n\n| **Node**           | **-1**              | **-2**              | **-3**              | **-4**              |\n|---------------------|---------------------|---------------------|---------------------|---------------------|\n| `MOC-R4PCC02U15`   | `MOC-R4PCC02U15-1` | `MOC-R4PCC02U15-2` | `MOC-R4PCC02U15-3` | `MOC-R4PCC02U15-4` |\n| `MOC-R4PCC02U16`   | `MOC-R4PCC02U16-1` | `MOC-R4PCC02U16-2` | `MOC-R4PCC02U16-3` | `MOC-R4PCC02U16-4` |\n| `MOC-R4PCC02U24`   | `MOC-R4PCC02U24-1` | `MOC-R4PCC02U24-2` | `MOC-R4PCC02U24-3` | `MOC-R4PCC02U24-4` |\n| `MOC-R4PCC02U25`   | `MOC-R4PCC02U25-1` | `MOC-R4PCC02U25-2` | `MOC-R4PCC02U25-3` | `MOC-R4PCC02U25-4` |\n| `MOC-R4PCC04U17`   | `MOC-R4PCC04U17-1` | `MOC-R4PCC04U17-2` | `MOC-R4PCC04U17-3` | `MOC-R4PCC04U17-4` |\n| `MOC-R4PCC04U18`   | `MOC-R4PCC04U18-1` | `MOC-R4PCC04U18-2` | `MOC-R4PCC04U18-3` | `MOC-R4PCC04U18-4` |\n| `MOC-R4PCC04U23`   | `MOC-R4PCC04U23-1` | `MOC-R4PCC04U23-2` | `MOC-R4PCC04U23-3` | `MOC-R4PCC04U23-4` |\n| `MOC-R4PCC04U25`   | `MOC-R4PCC04U25-1` | `MOC-R4PCC04U25-2` | `MOC-R4PCC04U25-3` | `MOC-R4PCC04U25-4` |\n\n---\n\n📊 **Dashboard Focus**  \n- Each cell = **one GPU switch**  \n- Values: **Average inbound traffic (bits/sec) over 10 minutes**  \n- Grouped by **node** for quick navigation  \n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.3.0",
+      "title": "Albany Cluster – GPU Switch Monitoring (10m avg)",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "a0fa9d88-8932-41f7-af80-6f678d4fb1e7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100000000
+              },
+              {
+                "color": "red",
+                "value": 1000000000
+              }
+            ]
+          },
+          "unit": "binbps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 50,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "a0fa9d88-8932-41f7-af80-6f678d4fb1e7"
+          },
+          "editorMode": "code",
+          "expr": "(rate(network_switch_ifHCInOctets{ifAlias=~\"MOC-R4PCC0(2U15|2U16|2U24|2U25|4U17|4U18|4U23|4U25)-[1-4]\"}[10m])) * 8",
+          "legendFormat": "{{ifAlias}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Albany GPU Switch Traffic – State Timeline (10m avg)",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "a0fa9d88-8932-41f7-af80-6f678d4fb1e7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 51,
+      "options": {
+        "calculate": false,
+        "cellGap": 1,
+        "color": {
+          "exponent": 0.5,
+          "fill": "dark-orange",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "Oranges",
+          "steps": 64
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "heatmap": {},
+        "legend": {
+          "show": false
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "xAxis": {
+          "show": true
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false,
+          "show": true
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "a0fa9d88-8932-41f7-af80-6f678d4fb1e7"
+          },
+          "editorMode": "code",
+          "expr": "(rate(network_switch_ifHCInOctets{ifAlias=~\"MOC-R4PCC0(2U15|2U16|2U24|2U25|4U17|4U18|4U23|4U25)-[1-4]\"}[10m])) * 8",
+          "legendFormat": "{{ifAlias}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Albany GPU Switch Traffic – Heatmap (10m avg)",
+      "type": "heatmap"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "E",
+  "uid": "eew2vpvrhq6f4de",
+  "version": 2,
+  "weekStart": ""
+}
