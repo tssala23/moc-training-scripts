@@ -156,6 +156,7 @@ function execcmds()
         client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
         echo "Client is $client_cmd"
     done
+	wait
 }
 
 function runbm()
