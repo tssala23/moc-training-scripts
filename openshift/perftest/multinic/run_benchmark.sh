@@ -185,9 +185,9 @@ function execcmds()
       echo "Host command is $host_cmd"
     else
       eval "${host_cmd}"
-      sleep 1
     fi
   done # Get all the hosts running first
+  sleep 1
   for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
 	  d=${CLIENT_NICS[$i]}
 	  p=${PORTS[$i]}
@@ -198,8 +198,7 @@ function execcmds()
       echo "Client command is $client_cmd"
     else
       eval "${client_cmd}"
-      sleep 1
-      fi
+    fi
   done
 	wait
 }
