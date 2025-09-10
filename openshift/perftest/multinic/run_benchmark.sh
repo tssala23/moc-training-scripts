@@ -180,7 +180,7 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
-    host_cmd="oc exec ${PODS[0]} -- ${1} -d $d -p $p & 2&> ${logfile}"
+    host_cmd="oc exec ${PODS[0]} -- ${1} -d $d -p $p > ${logfile} 2>&1 &"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Host command is $host_cmd"
     else
@@ -193,7 +193,7 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
-    client_cmd="oc exec ${PODS[1]} -- ${1} -d $d -p $p $h & 2&> ${logfile}"
+    client_cmd="oc exec ${PODS[1]} -- ${1} -d $d -p $p $h > ${logfile} 2>&1 &"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Client command is $client_cmd"
     else
