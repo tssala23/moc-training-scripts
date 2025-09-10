@@ -180,11 +180,12 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
-    host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
+    host_cmd="oc exec ${PODS[0]} -- ${1} -d $d -p $p & 2&> ${logfile}"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Host command is $host_cmd"
     else
       eval "${host_cmd}"
+      sleep 1
     fi
   done # Get all the hosts running first
   for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
@@ -192,11 +193,12 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
-    client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
+    client_cmd="oc exec ${PODS[1]} -- ${1} -d $d -p $p $h & 2&> ${logfile}"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Client command is $client_cmd"
     else
       eval "${client_cmd}"
+      sleep 1
       fi
   done
 	wait
@@ -232,7 +234,7 @@ function runbm()
       		  done
 	        else
 	          logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	          execcmds "${cmd_base}" "${logfilebase}"
+	          execcmds "${ex_cmd_base}" "${logfilebase}"
 	        fi 
 	      done
     else
@@ -244,7 +246,7 @@ function runbm()
 		    done
 	    else
 	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	      execcmds "${cmd_base}" "${logfilebase}" 
+	      execcmds "${ex_cmd_base}" "${logfilebase}" 
       fi
     fi
 }
