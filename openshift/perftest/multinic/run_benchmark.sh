@@ -7,9 +7,10 @@ PORTS=("18515" "18516" "18517" "18518")
 QPAIRS=6
 GPUS=4
 INTERFACES=("eno5np0" "eno6np0" "eno7np0" "eno8np0")
-NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")
+HOST_NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")
+CLIENT_NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")  # Default: same as host NICs
 HOST_IPS=("" "" "" "")
-PODS=("sr4n1" "sr4n2")   
+PODS=("sr4n1" "sr4n2")
 BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
 
@@ -21,7 +22,8 @@ function usage()
  echo " -p, --ports		Comma separated port list"
  echo " -n, --pods      	Comma separated pod list"
  echo " -i, --interfaces      	Comma separated interface (e.g. eno*)  list"
- echo " -m, --nics      	Comma separated mellanox device (e.g. mlxn*) list"
+ echo " -m, --host-nics      	Comma separated host mellanox device (e.g. mlxn*) list"
+ echo " -c, --client-nics     	Comma separated client mellanox device (e.g. mlxn*) list"
  echo " -b, --benchmarks     	Comma separated benchmark list"
  echo " -f, --flags      	Flags string base"
 }
@@ -64,14 +66,24 @@ function handleopts()
         IFS=','; INTERFACES=($tmp); unset IFS;
         shift
         ;;
-      -m | --nics*)
+      -m | --host-nics*)
         if ! hasarg $@; then
-          echo "NICS not specified." >&2
+          echo "Host NICS not specified." >&2
           usage
           exit 1
         fi
         tmp=$(extractarg $@)
-        IFS=','; NICS=($tmp); unset IFS;
+        IFS=','; HOST_NICS=($tmp); unset IFS;
+        shift
+        ;;
+      -c | --client-nics*)
+        if ! hasarg $@; then
+          echo "Client NICS not specified." >&2
+          usage
+          exit 1
+        fi
+        tmp=$(extractarg $@)
+        IFS=','; CLIENT_NICS=($tmp); unset IFS;
         shift
         ;;
       -p | --ports*)
@@ -132,27 +144,44 @@ function getips()
 {
     h=$1
     c=$2
-    for ((p=0; p<${#NICS[@]}; p++)); do
+    for ((p=0; p<${#HOST_NICS[@]}; p++)); do
         HOST_IPS[$p]=`oc exec ${h} -- ifconfig | grep -A 1 ${INTERFACES[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
     done
+}
+
+function generate_nic_pattern()
+{
+    local pattern=""
+    for ((i=0; i<${#HOST_NICS[@]}; i++)); do
+        # Extract NIC numbers from device names (e.g., mlx5_2 -> 2)
+        host_nic_num=$(echo ${HOST_NICS[$i]} | grep -o '[0-9]\+$')
+        client_nic_num=$(echo ${CLIENT_NICS[$i]} | grep -o '[0-9]\+$')
+        if [ -z "$pattern" ]; then
+            pattern="H${host_nic_num}C${client_nic_num}"
+        else
+            pattern="${pattern}_H${host_nic_num}C${client_nic_num}"
+        fi
+    done
+    echo $pattern
 }
 
 function execcmds()
 {
     exlogbase=$2
+    nic_pattern=$(generate_nic_pattern)
 
-    for ((i=0; i<${#NICS[@]}; i++)); do
-	d=${NICS[$i]}
+    for ((i=0; i<${#HOST_NICS[@]}; i++)); do
+	d=${HOST_NICS[$i]}
 	p=${PORTS[$i]}
-	logfile="${exlogbase}_${d}_${p}_host.log"
+	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_host.log"
         host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
         echo "Host is $host_cmd"
     done # Get all the hosts running first
-    for ((i=0; i<${#NICS[@]}; i++)); do
-	d=${NICS[$i]}
+    for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
+	d=${CLIENT_NICS[$i]}
 	p=${PORTS[$i]}
 	h=${HOST_IPS[$i]}
-	logfile="${exlogbase}_${d}_${p}_${h}_client.log"
+	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
         client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
         echo "Client is $client_cmd"
     done
