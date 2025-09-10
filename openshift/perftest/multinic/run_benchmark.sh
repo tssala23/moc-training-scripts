@@ -4,14 +4,14 @@ typeset -r ts=$(date +%d-%m-%y-%s)
 
 MTU=9000
 PORTS=("18515" "18516" "18517" "18518")
-QPAIRS=6
+QPAIRS=5
 GPUS=4
 INTERFACES=("eno5np0" "eno6np0" "eno7np0" "eno8np0")
 HOST_NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")
 CLIENT_NICS=("mlx5_2" "mlx5_3" "mlx5_4" "mlx5_5")  # Default: same as host NICs
 HOST_IPS=("" "" "" "")
 PODS=("sr4n1" "sr4n2")
-BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
+BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
 DRY_RUN=0
 
@@ -32,7 +32,7 @@ function usage()
 
 function hasarg() 
 {
-    [[ ("$1" == *=* && -n ${1#*=}) || ( ! -z "$2" && "$2" != -*)  ]];
+  [[ ("$1" == *=* && -n ${1#*=}) || ( ! -z "$2" && "$2" != -*)  ]];
 }
 
 function extractarg() 
