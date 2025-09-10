@@ -183,7 +183,7 @@ function execcmds()
         if [ $DRY_RUN -eq 1 ]; then
           echo "Host command is $host_cmd"
         else
-          echo "Stubby"
+          eval "${host_cmd}
         fi
     done # Get all the hosts running first
     for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
@@ -195,7 +195,7 @@ function execcmds()
         if [ $DRY_RUN -eq 1 ]; then
           echo "Client command is $client_cmd"
         else
-          echo "Stubby"
+          eval "${client_cmd}
         fi
     done
 	wait
