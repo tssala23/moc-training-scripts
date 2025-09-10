@@ -178,7 +178,8 @@ function execcmds()
   for ((i=0; i<${#HOST_NICS[@]}; i++)); do
 	  d=${HOST_NICS[$i]}
 	  p=${PORTS[$i]}
-	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_host.log"
+	  h=${HOST_IPS[$i]}
+	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
     host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Host command is $host_cmd"
