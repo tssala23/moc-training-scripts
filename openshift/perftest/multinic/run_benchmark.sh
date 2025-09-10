@@ -13,6 +13,7 @@ HOST_IPS=("" "" "" "")
 PODS=("sr4n1" "sr4n2")
 BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat" "ib_write_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
+DRY_RUN=0
 
 function usage() 
 {
@@ -26,6 +27,7 @@ function usage()
  echo " -c, --client-nics     	Comma separated client mellanox device (e.g. mlxn*) list"
  echo " -b, --benchmarks     	Comma separated benchmark list"
  echo " -f, --flags      	Flags string base"
+ echo " -d, --dryrun      Print commands but don't run them"
 }
 
 function hasarg() 
@@ -92,9 +94,9 @@ function handleopts()
           usage
           exit 1
         fi
-	tmp=$(extractarg $@)
-	IFS=',';PORTS=($tmp); unset IFS;
-	shift 
+        tmp=$(extractarg $@)
+        IFS=',';PORTS=($tmp); unset IFS;
+        shift 
         ;;
       -b | --benchmarks*)
         if ! hasarg $@; then
@@ -102,7 +104,7 @@ function handleopts()
           usage
           exit 1
         fi
-	tmp=$(extractarg $@)
+        tmp=$(extractarg $@)
         IFS=',';BENCHMARKS=($tmp);unset IFS
         shift
         ;;
@@ -112,9 +114,12 @@ function handleopts()
           usage
           exit 1
         fi
-	tmp=$(extractarg $@)
-	IFS=','; FLAGS_BASE=($tmp); unset IFS; 
-
+        tmp=$(extractarg $@)
+        IFS=','; FLAGS_BASE=($tmp); unset IFS; 
+        shift
+        ;;
+      -d | --dryrun)
+        DRY_RUN=1
         shift
         ;;
       *)
@@ -144,8 +149,10 @@ function getips()
 {
     h=$1
     c=$2
+    echo "h is ${h}"
+    echo "c is ${c}"
     for ((p=0; p<${#HOST_NICS[@]}; p++)); do
-        HOST_IPS[$p]=`oc exec ${h} -- ifconfig | grep -A 1 ${INTERFACES[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
+        HOST_IPS[$p]=`oc exec ${h} -- ifconfig 2> /dev/null | grep -A 1 ${INTERFACES[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
     done
 }
 
@@ -175,7 +182,11 @@ function execcmds()
 	p=${PORTS[$i]}
 	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_host.log"
         host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
-        echo "Host is $host_cmd"
+        if [ $DRY_RUN -eq 1 ]; then
+          echo "Host command is $host_cmd"
+        else
+          echo "Stubby"
+        fi
     done # Get all the hosts running first
     for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
 	d=${CLIENT_NICS[$i]}
@@ -183,7 +194,11 @@ function execcmds()
 	h=${HOST_IPS[$i]}
 	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
         client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
-        echo "Client is $client_cmd"
+        if [ $DRY_RUN -eq 1 ]; then
+          echo "Client command is $client_cmd"
+        else
+          echo "Stubby"
+        fi
     done
 	wait
 }
@@ -207,31 +222,30 @@ function runbm()
     
     if [ $INCLUDE_QPS == 1 ]; then
         for ((qp=0; qp<$QPAIRS; qp++)); do
-	    qpair=$((2**qp))
-	    ex_cmd_base="${cmd_base} -q ${qpair}"
-	    if [ $USE_GPU == 1 ]; then
-	        for ((g=0; g<$GPUS; g++)); do
-	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
-                    ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
+	        qpair=$((2**qp))
+	        ex_cmd_base="${cmd_base} -q ${qpair}"
+	        if [ $USE_GPU == 1 ]; then
+	          for ((g=0; g<$GPUS; g++)); do
+	    	      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
+              ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
 	      	    execcmds $ex_cmd_base $logfile base 
-      		done
+      		  done
+	        else
+	          logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${QP}"
+	          execcmds $ex_cmd_base $logfilebase
+	        fi 
+	      done
+    else
+	    if [ $USE_GPU == 1 ]; then
+	      for ((g=0; g<$GPUS; g++)); do
+		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
+          ex_cmd_base="${cmd_base} --use_cuda=${g} --use_cuda_dmabuf"
+	      	execcmds $ex_cmd_base $logfilebase 
+		    done
 	    else
 	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${QP}"
-	      execcmds $ex_cmd_base $logfilebase
-	    fi
-	    
-	done
-    else
-	if [ $USE_GPU == 1 ]; then
-	        for ((g=0; g<$GPUS; g++)); do
-		    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
-                    ex_cmd_base="${cmd_base} --use_cuda=${g} --use_cuda_dmabuf"
-	      	    execcmds $ex_cmd_base $logfilebase 
-		done
-	else
-	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${QP}"
 	      execcmds $cmd_base $logfilebase 
-        fi
+      fi
     fi
 }
 
