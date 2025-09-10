@@ -224,25 +224,25 @@ function runbm()
 	        ex_cmd_base="${cmd_base} -q ${qpair}"
 	        if [ $USE_GPU == 1 ]; then
 	          for ((g=0; g<$GPUS; g++)); do
-	    	      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
+	    	      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
               ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
-	      	    execcmds $ex_cmd_base $logfile base 
+	      	    execcmds "${ex_cmd_base}" "${logfilebase}" 
       		  done
 	        else
-	          logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${QP}"
-	          execcmds $ex_cmd_base $logfilebase
+	          logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
+	          execcmds "${cmd_base}" "${logfilebase}"
 	        fi 
 	      done
     else
 	    if [ $USE_GPU == 1 ]; then
 	      for ((g=0; g<$GPUS; g++)); do
-		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${QP}"
+		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
           ex_cmd_base="${cmd_base} --use_cuda=${g} --use_cuda_dmabuf"
-	      	execcmds $ex_cmd_base $logfilebase 
+	      	execcmds "${ex_cmd_base}" "${logfilebase}" 
 		    done
 	    else
-	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${QP}"
-	      execcmds $cmd_base $logfilebase 
+	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
+	      execcmds "${cmd_base}" "${logfilebase}" 
       fi
     fi
 }
