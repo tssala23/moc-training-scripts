@@ -175,29 +175,29 @@ function execcmds()
     exlogbase=$2
     nic_pattern=$(generate_nic_pattern)
 
-    for ((i=0; i<${#HOST_NICS[@]}; i++)); do
-	d=${HOST_NICS[$i]}
-	p=${PORTS[$i]}
-	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_host.log"
-        host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
-        if [ $DRY_RUN -eq 1 ]; then
-          echo "Host command is $host_cmd"
-        else
-          eval "${host_cmd}
-        fi
-    done # Get all the hosts running first
-    for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
-	d=${CLIENT_NICS[$i]}
-	p=${PORTS[$i]}
-	h=${HOST_IPS[$i]}
-	logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
-        client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
-        if [ $DRY_RUN -eq 1 ]; then
-          echo "Client command is $client_cmd"
-        else
-          eval "${client_cmd}
-        fi
-    done
+  for ((i=0; i<${#HOST_NICS[@]}; i++)); do
+	  d=${HOST_NICS[$i]}
+	  p=${PORTS[$i]}
+	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_host.log"
+    host_cmd="${1} -d $d -p $p & 2&> ${logfile}"
+    if [ $DRY_RUN -eq 1 ]; then
+      echo "Host command is $host_cmd"
+    else
+      eval "${host_cmd}"
+    fi
+  done # Get all the hosts running first
+  for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
+	  d=${CLIENT_NICS[$i]}
+	  p=${PORTS[$i]}
+	  h=${HOST_IPS[$i]}
+	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
+    client_cmd="${1} -d $d -p $p $h & 2&> ${logfile}"
+    if [ $DRY_RUN -eq 1 ]; then
+      echo "Client command is $client_cmd"
+    else
+      eval "${client_cmd}"
+      fi
+  done
 	wait
 }
 
@@ -207,6 +207,7 @@ function runbm()
     INCLUDE_QPS=0
 
     USE_GPU=$2
+
     getips $3 $4
 
     if  [ "$BM_OP" == "ib_read_bw" ] || [ "$BM_OP" == "ib_write_bw" ]; then 
@@ -255,12 +256,12 @@ CLIENT=${PODS[1]}
 IPRF_LOG="${LOGDIR}/cpu/bmperf.log"
 log "Pods to be tested for cpu rdma:  ${PODS[@]}"
 for i in ${BENCHMARKS[@]}; do
-    runbm $i 0 $HOST $CLIENT
+  runbm $i 0 $HOST $CLIENT
 done
 
 IPRF_LOG="${LOGDIR}/gpu/bmperf.log"
 log "Pods to be tested for gpu rdma:  ${PODS[@]}"
-for i in ${BENCHMARKSS[@]}; do
-    runbm $i 1 $HOST $CLIENT
+for j in ${BENCHMARKS[@]}; do
+  runbm $j 1 $HOST $CLIENT
 done
 
