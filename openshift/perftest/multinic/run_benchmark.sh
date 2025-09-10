@@ -149,8 +149,6 @@ function getips()
 {
     h=$1
     c=$2
-    echo "h is ${h}"
-    echo "c is ${c}"
     for ((p=0; p<${#HOST_NICS[@]}; p++)); do
         HOST_IPS[$p]=`oc exec ${h} -- ifconfig 2> /dev/null | grep -A 1 ${INTERFACES[$p]} | grep -oE "inet \b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sed -e "s/inet //"`
     done
