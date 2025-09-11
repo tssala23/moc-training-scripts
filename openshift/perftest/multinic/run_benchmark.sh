@@ -222,20 +222,20 @@ function runbm()
     LOGFILE="${LOGDIR}/perftest_gpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
     
     if [ $INCLUDE_QPS == 1 ]; then
-        for ((qp=0; qp<$QPAIRS; qp++)); do
-	        qpair=$((2**qp))
-	        ex_cmd_base="${cmd_base} -q ${qpair}"
-	        if [ $USE_GPU == 1 ]; then
-	          for ((g=0; g<$GPUS; g++)); do
-	    	      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
-              ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
-	      	    execcmds "${ex_cmd_base}" "${logfilebase}" 
-      		  done
-	        else
-	          logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	          execcmds "${ex_cmd_base}" "${logfilebase}"
-	        fi 
-	      done
+      for ((qp=0; qp<$QPAIRS; qp++)); do
+	      qpair=$((2**qp))
+	      ex_cmd_base="${cmd_base} -q ${qpair}"
+	      if [ $USE_GPU == 1 ]; then
+	        for ((g=0; g<$GPUS; g++)); do
+	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
+            ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
+	      	  execcmds "${ex_cmd_base}" "${logfilebase}" 
+      		done
+	      else
+	        logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
+	        execcmds "${ex_cmd_base}" "${logfilebase}"
+	      fi 
+	    done
     else
 	    if [ $USE_GPU == 1 ]; then
 	      for ((g=0; g<$GPUS; g++)); do
@@ -245,7 +245,7 @@ function runbm()
 		    done
 	    else
 	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	      execcmds "${ex_cmd_base}" "${logfilebase}" 
+	      execcmds "${cmd_base}" "${logfilebase}" 
       fi
     fi
 }
@@ -260,6 +260,8 @@ log "Pods to be tested for cpu rdma:  ${PODS[@]}"
 for i in ${BENCHMARKS[@]}; do
   runbm $i 0 $HOST $CLIENT
 done
+
+exit
 
 IPRF_LOG="${LOGDIR}/gpu/bmperf.log"
 log "Pods to be tested for gpu rdma:  ${PODS[@]}"
