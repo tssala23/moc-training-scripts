@@ -180,7 +180,7 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
-    host_cmd="oc exec ${PODS[0]} -- ${1} -d $d -p $p > ${logfile} 2>&1 &"
+    host_cmd="oc exec ${3} -- ${1} -d $d -p $p > ${logfile} 2>&1 &"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Host command is $host_cmd"
     else
@@ -193,7 +193,7 @@ function execcmds()
 	  p=${PORTS[$i]}
 	  h=${HOST_IPS[$i]}
 	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
-    client_cmd="oc exec ${PODS[1]} -- ${1} -d $d -p $p $h > ${logfile} 2>&1 &"
+    client_cmd="oc exec ${4} -- ${1} -d $d -p $p $h > ${logfile} 2>&1 &"
     if [ $DRY_RUN -eq 1 ]; then
       echo "Client command is $client_cmd"
     else
@@ -229,11 +229,11 @@ function runbm()
 	        for ((g=0; g<$GPUS; g++)); do
 	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
             ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
-	      	  execcmds "${ex_cmd_base}" "${logfilebase}" 
+	      	  execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}" 
       		done
 	      else
 	        logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	        execcmds "${ex_cmd_base}" "${logfilebase}"
+	        execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}"
 	      fi 
 	    done
     else
@@ -241,31 +241,40 @@ function runbm()
 	      for ((g=0; g<$GPUS; g++)); do
 		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
           ex_cmd_base="${cmd_base} --use_cuda=${g} --use_cuda_dmabuf"
-	      	execcmds "${ex_cmd_base}" "${logfilebase}" 
+	      	execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}" 
 		    done
 	    else
 	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	      execcmds "${cmd_base}" "${logfilebase}" 
+	      execcmds "${cmd_base}" "${logfilebase}" "${3}" "${4}"
       fi
     fi
 }
 
 handleopts "$@"
 
-HOST=${PODS[0]}
-CLIENT=${PODS[1]}
-
 IPRF_LOG="${LOGDIR}/cpu/bmperf.log"
 log "Pods to be tested for cpu rdma:  ${PODS[@]}"
-for i in ${BENCHMARKS[@]}; do
-  runbm $i 0 $HOST $CLIENT
-done
 
-exit
+for HOST in ${PODS[@]}; do
+  for CLIENT in ${PODS[@]}; do
+    if [ $HOST = $CLIENT ]; then
+      continue
+    fi
+    for i in ${BENCHMARKS[@]}; do
+      runbm $i 0 $HOST $CLIENT
+    done
+  done
+done
 
 IPRF_LOG="${LOGDIR}/gpu/bmperf.log"
 log "Pods to be tested for gpu rdma:  ${PODS[@]}"
-for j in ${BENCHMARKS[@]}; do
-  runbm $j 1 $HOST $CLIENT
+for HOST in ${PODS[@]}; do
+  for CLIENT in ${PODS[@]}; do
+    if [ $HOST = $CLIENT ]; then
+      continue
+    fi
+    for j in ${BENCHMARKS[@]}; do
+      runbm $j 1 $HOST $CLIENT
+    done
+  done
 done
-
