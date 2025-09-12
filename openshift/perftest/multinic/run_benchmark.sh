@@ -14,6 +14,9 @@ PODS=("sr4n1" "sr4n2")
 BENCHMARKS=("ib_read_bw" "ib_write_bw" "ib_read_lat")
 FLAGS_BASE="-a -R -T 41 -F -x 3 -m 4096 --report_gbits "
 DRY_RUN=0
+AFFINITY_ONLY=0
+AFFINITIES=(1 0 3 2)
+
 
 function usage() 
 {
@@ -28,6 +31,7 @@ function usage()
  echo " -b, --benchmarks     	Comma separated benchmark list"
  echo " -f, --flags      	Flags string base"
  echo " -d, --dryrun      Print commands but don't run them"
+ echo " -a, --affinity-only Only use optimal GPU-NIC affinity cases"
 }
 
 function hasarg() 
@@ -120,7 +124,9 @@ function handleopts()
         ;;
       -d | --dryrun)
         DRY_RUN=1
-        shift
+        ;;
+      -a | --affinity-only)
+        AFFINITY_ONLY=1
         ;;
       *)
         echo "Invalid option: $1" >&2
@@ -172,85 +178,129 @@ function generate_nic_pattern()
 
 function execcmds()
 {
-    exlogbase=$2
-    nic_pattern=$(generate_nic_pattern)
+  exlogbase=$2
+  nic_pattern=$(generate_nic_pattern)
+  podh=$3
+  podc=$4
+  runcmd=$1
 
-  for ((i=0; i<${#HOST_NICS[@]}; i++)); do
-	  d=${HOST_NICS[$i]}
-	  p=${PORTS[$i]}
-	  h=${HOST_IPS[$i]}
-	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
-    host_cmd="oc exec ${3} -- ${1} -d $d -p $p > ${logfile} 2>&1 &"
-    if [ $DRY_RUN -eq 1 ]; then
-      echo "Host command is $host_cmd"
-    else
-      eval "${host_cmd}"
-    fi
-  done # Get all the hosts running first
-  sleep 1
-  for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
-	  d=${CLIENT_NICS[$i]}
-	  p=${PORTS[$i]}
-	  h=${HOST_IPS[$i]}
-	  logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
-    client_cmd="oc exec ${4} -- ${1} -d $d -p $p $h > ${logfile} 2>&1 &"
-    if [ $DRY_RUN -eq 1 ]; then
-      echo "Client command is $client_cmd"
-    else
-      eval "${client_cmd}"
-    fi
-  done
+  if [ $AFFINITY_ONLY == 1 ]; then
+    for ((i=0; i<${#HOST_NICS[@]}; i++)); do
+	    d=${HOST_NICS[$i]}
+	    p=${PORTS[$i]}
+	    logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
+      host_cmd="oc exec ${runcmd} -- ${podh} -d $d -p $p --use_cuda=${AFFINITIES[$i]} --use_cuda_dmabuf > ${logfile} 2>&1 &"
+      if [ $DRY_RUN -eq 1 ]; then
+        echo "Host command is $host_cmd"
+      else
+        eval "${host_cmd}"
+      fi
+    done # Get all hosts in place first
+    for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
+	    d=${CLIENT_NICS[$i]}
+	    p=${PORTS[$i]}
+	    logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
+      client_cmd="oc exec ${runcmd} -- ${podc} -d $d -p $p $h > ${logfile} 2>&1 &"
+      if [ $DRY_RUN -eq 1 ]; then
+        echo "Client command is $client_cmd"
+      else
+        eval "${host_cmd}"
+      fi
+    done
+  else
+    for ((i=0; i<${#HOST_NICS[@]}; i++)); do
+	    d=${HOST_NICS[$i]}
+	    p=${PORTS[$i]}
+	    h=${HOST_IPS[$i]}
+	    logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_host.log"
+      host_cmd="oc exec ${podh} -- ${runcmd} -d $d -p $p > ${logfile} 2>&1 &"
+      if [ $DRY_RUN -eq 1 ]; then
+        echo "Host command is $host_cmd"
+      else
+        eval "${host_cmd}"
+      fi
+    done # Get all the hosts running first
+    for ((i=0; i<${#CLIENT_NICS[@]}; i++)); do
+	    d=${CLIENT_NICS[$i]}
+	    p=${PORTS[$i]}
+	    h=${HOST_IPS[$i]}
+	    logfile="${exlogbase}_${nic_pattern}_${d}_${p}_${h}_client.log"
+      client_cmd="oc exec ${podc} -- ${runcmd} -d $d -p $p $h > ${logfile} 2>&1 &"
+      if [ $DRY_RUN -eq 1 ]; then
+        echo "Client command is $client_cmd"
+      else
+        eval "${client_cmd}"
+      fi
+    done
+  fi
 	wait
 }
 
 function runbm()
 {
-    BM_OP=$1
-    INCLUDE_QPS=0
+  BM_OP=$1
+  INCLUDE_QPS=0
 
-    USE_GPU=$2
+  USE_GPU=$2
+  ITER_HOST=$3
+  ITER_CLI=$4
 
-    getips $3 $4
+  getips $ITER_HOST $ITER_CLI
 
-    if  [ "$BM_OP" == "ib_read_bw" ] || [ "$BM_OP" == "ib_write_bw" ]; then 
-        INCLUDE_QPS=1
-    fi
+  if  [ "$BM_OP" == "ib_read_bw" ] || [ "$BM_OP" == "ib_write_bw" ]; then 
+      INCLUDE_QPS=1
+  fi
 
-    cmd_base="${BM_OP} ${FLAGS_BASE}"
+  cmd_base="${BM_OP} ${FLAGS_BASE}"
 
-    log_base="${LOGDIR}/"
-    LOGFILE="${LOGDIR}/perftest_gpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
-    
+  log_base="${LOGDIR}/perftest"
+# ADDBACK    LOGFILE="${LOGDIR}/perftest_gpu_srv_${TEST}_${MTU}_${QP}_${srvnode}_${cltnode}_${GPU_S}_${GPU_C}.log"
+# perftest_[gpu|cpu]_[srv|clt]_<TEST>_<MTU>_<QP>_<srvNode>_<clientNode>_<GPU_S>_<GPU_C>.log
+  logfile_qps=
+
     if [ $INCLUDE_QPS == 1 ]; then
       for ((qp=0; qp<$QPAIRS; qp++)); do
-	      qpair=$((2**qp))
-	      ex_cmd_base="${cmd_base} -q ${qpair}"
-	      if [ $USE_GPU == 1 ]; then
+        if [ $INCLUDE_QPS != 1 ]; then
+          qp=$QPAIRS
+#	        logfilebase="${log_base}perftest_${BM_OP}_${MTU}"
+          ex_cmd_base="${cmd_base}"
+        else
+	        qpair=$((2**qp))
+	        ex_cmd_base="${cmd_base} -q ${qpair}"
+          logfile_qps="_${qpair}"
+	    	  #logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
+        fi
+        if [ $AFFINITY_ONLY == 1 ]; then
+	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}${qpair}"
+	          execcmds "${ex_cmd_base}" "${logfilebase}" "${ITER_HOST}" "${ITER_CLI}"  
+	      elif [ $USE_GPU == 1 ]; then
 	        for ((g=0; g<$GPUS; g++)); do
-	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
+	    	    logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}${qpair}"
             ex_cmd_base="${cmd_base} -q ${qpair} --use_cuda=${g} --use_cuda_dmabuf"
-	      	  execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}" 
-      		done
+	          execcmds "${ex_cmd_base}" "${logfilebase}" "${ITER_HOST}" "${ITER_CLI}" 
+      	  done
 	      else
-	        logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	        execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}"
+	          logfilebase="${log_base}perftest_cpu_${BM_OP}_${MTU}${qpair}"
+	          execcmds "${ex_cmd_base}" "${logfilebase}" "${ITER_HOST}" "${ITER_CLI}"
 	      fi 
 	    done
     else
 	    if [ $USE_GPU == 1 ]; then
 	      for ((g=0; g<$GPUS; g++)); do
-		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}_${qpair}"
+		      logfilebase="${log_base}perftest_gpu_${BM_OP}_${MTU}${qpair}"
           ex_cmd_base="${cmd_base} --use_cuda=${g} --use_cuda_dmabuf"
-	      	execcmds "${ex_cmd_base}" "${logfilebase}" "${3}" "${4}" 
+	      	execcmds "${ex_cmd_base}" "${logfilebase}" "${ITER_HOST}" "${ITER_CLI}" 
 		    done
 	    else
-	      logfilebase="${log_base}perftest_${BM_OP}_${MTU}_${qpair}"
-	      execcmds "${cmd_base}" "${logfilebase}" "${3}" "${4}"
+	      logfilebase="${log_base}perftest_cpu_${BM_OP}_${MTU}${qpair}"
+	      execcmds "${cmd_base}" "${logfilebase}" "${ITER_HOST}" "${ITER_CLI}"
       fi
     fi
 }
 
 handleopts "$@"
+BM_USE_CPU=0
+BM_USE_GPU=1
 
 IPRF_LOG="${LOGDIR}/cpu/bmperf.log"
 log "Pods to be tested for cpu rdma:  ${PODS[@]}"
@@ -260,8 +310,8 @@ for HOST in ${PODS[@]}; do
     if [ $HOST = $CLIENT ]; then
       continue
     fi
-    for i in ${BENCHMARKS[@]}; do
-      runbm $i 0 $HOST $CLIENT
+    for BENCH in ${BENCHMARKS[@]}; do
+      runbm $BENCH $BM_USE_CPU $HOST $CLIENT
     done
   done
 done
@@ -273,8 +323,8 @@ for HOST in ${PODS[@]}; do
     if [ $HOST = $CLIENT ]; then
       continue
     fi
-    for j in ${BENCHMARKS[@]}; do
-      runbm $j 1 $HOST $CLIENT
+    for BENCH in ${BENCHMARKS[@]}; do
+      runbm $BENCH $BM_USE_GPU $HOST $CLIENT
     done
   done
 done
