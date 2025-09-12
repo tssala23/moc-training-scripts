@@ -4,12 +4,14 @@ import re
 import time
 from copy import deepcopy
 
+# Creates combinations of lists
 def generate_combinations(*lists):
   if not lists:
     return []
   return list(itertools.product(*lists))
 
-def run_processes(host_command, host_logfilename, client_command, client_logfilename):
+# Runs host and client tests
+def run_processes(host_command, host_logfilename, client_command, client_logfilename, waitForClient=True):
   with open(host_logfilename, "w") as host_log, open(client_logfilename, "w") as client_log:
     host_process = subprocess.Popen(
       host_command,
@@ -18,20 +20,26 @@ def run_processes(host_command, host_logfilename, client_command, client_logfile
     client_process = subprocess.Popen(
       client_command,
       stdout=client_log,
-    ) 
-    client_process.wait() 
+    )
+    if waitForClient is True: 
+      client_process.wait() 
 
 if __name__ == "__main__":
-  tests = ['ib_write_bw', 'ib_read_bw']
+  # Parameters that should be possible to pass through
+  bw_tests = ['ib_write_bw', 'ib_read_bw']
   pods = ['sr4n1', 'sr4n2']
   gpus = [0, 1, 2, 3]
   queue_pairs = [1, 2, 4, 8, 16]
   devices = ['mlx5_2', 'mlx5_3', 'mlx5_4', 'mlx5_5']
-  affinity = [1, 0, 3, 2]
+
   interfaces=("eno5np0", "eno6np0", "eno7np0", "eno8np0")
   ports=["18515", "18516", "18517", "18518"]
+  flags_base = "-a -F -m 4096 --report_gbits"
+  
   iface_ipaddr=[]
 
+  affinity = [1, 0, 3, 2]
+  
   for pod in pods:
     pod_ifaces=[]
     pod_iface=["",""]
@@ -59,22 +67,21 @@ if __name__ == "__main__":
     iface_ipaddr.append(deepcopy(pod_ifaces))
 
   def get_ipaddr(pod, device):
-    podindex=pods.index(pod)
-    deviceindex=devices.index(device)
-    iface=interfaces[deviceindex]
-    iflist=[row[0] for row in iface_ipaddr[podindex]]
-    ifindex=iflist.index(iface)
+    podindex=pods.index(pod) # Find the pod index
+    deviceindex=devices.index(device) # Find the device index
+    iface=interfaces[deviceindex] # Get the interface name
+    iflist=[row[0] for row in iface_ipaddr[podindex]] # Grab the first column
+    ifindex=iflist.index(iface) # Find the interface index
     return iface_ipaddr[podindex][ifindex][1], deviceindex
 
+  # Permute the pods since commutativity does not necessarily apply
   host_client_pod_combinations = list(itertools.permutations(pods, 2))
-  all_gpu_bw_combinations = generate_combinations(tests, host_client_pod_combinations, devices, devices, queue_pairs, gpus, gpus)
-  all_cpu_bw_combinations = generate_combinations(tests, host_client_pod_combinations, devices, devices, queue_pairs)
+  all_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs, gpus, gpus)
+  all_cpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
 
   all_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices, gpus, gpus)
   all_cpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
   
-  flags_base = "-a -R -T 41 -F -x 3 -m 4096 --report_gbits"
-
   print("CPU Bandwidth combinations")
   for i, c in enumerate(all_cpu_bw_combinations):
     test = c[0]
@@ -95,7 +102,7 @@ if __name__ == "__main__":
   for i, c in enumerate(all_cpu_lat_combinations):
      test = "ib_read_lat"
      host_pod = c[0][0]
-     client_pod = c[0][0]
+     client_pod = c[0][1]
      host_device = c[1]
      client_device = c[2]
      flags = flags_base
