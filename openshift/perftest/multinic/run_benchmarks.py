@@ -12,17 +12,34 @@ def generate_combinations(*lists):
 
 # Runs host and client tests
 def run_processes(host_command, host_logfilename, client_command, client_logfilename, waitForClient=True):
-  with open(host_logfilename, "w") as host_log, open(client_logfilename, "w") as client_log:
-    host_process = subprocess.Popen(
-      host_command,
-      stdout=host_log,
-    )   
-    client_process = subprocess.Popen(
-      client_command,
-      stdout=client_log,
-    )
+  if len(host_command) & len(host_logfilename) & len(client_command) & len(client_logfilename):
+    filehandles=[]
+    host_pids=[]
+    client_pids=[]
+    
+    for hcmd, host_log, ccmd, client_log in zip(host_command, host_logfilename, client_command, client_logfilename):
+      hfh = open(host_log, "w")
+      cfh = open(client_log, "w")
+      filehandles.append(hfh)
+      filehandles.append(cfh)
+    
+      host_process = subprocess.Popen(
+        hcmd,
+        stdout=hfh,
+      )
+      host_pids.append(host_process)
+
+      client_process = subprocess.Popen(
+        ccmd,
+        stdout=cfh,
+      )
+      client_pids.append(client_process)
+
     if waitForClient is True: 
-      client_process.wait() 
+      for cpid in client_pids:
+          cpid.wait()
+    for fh in filehandles:
+      fh.close() 
 
 if __name__ == "__main__":
   # Parameters that should be possible to pass through
@@ -39,7 +56,10 @@ if __name__ == "__main__":
   iface_ipaddr=[]
 
   affinity = [1, 0, 3, 2]
-  
+
+  if len(gpus) & len(devices) & len(ports) & len(interfaces) is not True:
+     print("Number of GPUs, NICs, and ports must be equal") 
+
   for pod in pods:
     pod_ifaces=[]
     pod_iface=["",""]
@@ -74,6 +94,10 @@ if __name__ == "__main__":
     ifindex=iflist.index(iface) # Find the interface index
     return iface_ipaddr[podindex][ifindex][1], deviceindex
 
+  def get_affinity(device):
+     devindex=devices.index(device)
+     return affinity[devindex]
+
   # Permute the pods since commutativity does not necessarily apply
   host_client_pod_combinations = list(itertools.permutations(pods, 2))
   all_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs, gpus, gpus)
@@ -82,7 +106,11 @@ if __name__ == "__main__":
   all_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices, gpus, gpus)
   all_cpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
   
-  print("CPU Bandwidth combinations")
+  # For affinity cases we will assign the GPUs to the commands based on the selected NICs
+  affinity_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
+  affinity_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
+  
+  print("All CPU Bandwidth combinations")
   for i, c in enumerate(all_cpu_bw_combinations):
     test = c[0]
     host_pod = c[1][0]
@@ -98,7 +126,7 @@ if __name__ == "__main__":
     client_logfilename =  f"logs/perftest_cpu_client_{test}_{queue_pair}_{host_pod}_{client_pod}_{client_device}.log"
     run_processes(host_command, host_logfilename, client_command, client_logfilename)
 
-  print("CPU Latency combinations")
+  print("All CPU Latency combinations")
   for i, c in enumerate(all_cpu_lat_combinations):
      test = "ib_read_lat"
      host_pod = c[0][0]
@@ -113,7 +141,7 @@ if __name__ == "__main__":
      client_logfilename =  f"perftest_cpu_client_{test}_{host_pod}_{client_pod}_{client_device}.log"
      run_processes(host_command, host_logfilename, client_command, client_logfilename)
      
-  print("GPU Bandwidth combinations")
+  print("All GPU Bandwidth combinations")
   for i, c in enumerate(all_gpu_bw_combinations):
     test = c[0]
     host_node = c[1][0]
@@ -131,7 +159,7 @@ if __name__ == "__main__":
     client_logfilename =  f"perftest_gpu_client_{test}_{queue_pair}_{host_node}_{client_node}_{client_device}_{host_gpu}_{client_gpu}.log".split(' ')
     run_processes(host_command, host_logfilename, client_command, client_logfilename)
 
-  print("GPU Latency combinations")
+  print("All GPU Latency combinations")
   for i, c in enumerate(all_gpu_lat_combinations):
     test = "ib_read_lat"
     host_node = c[0][0]
@@ -140,6 +168,41 @@ if __name__ == "__main__":
     client_device = c[2]
     host_gpu = c[3]
     client_gpu = c[4]
+    flags = flags_base
+    host_command = f"oc exec {host_node} -- {test} {flags} -q {queue_pair} -d {host_device} --use_cuda={host_gpu} --use_cuda_dmabuf".split(' ') 
+    host_logfilename =  f"perftest_gpu_host_{test}_{queue_pair}_{host_node}_{client_node}_{host_device}_{host_gpu}_{client_gpu}.log".split(' ')
+    host_ip = get_ipaddr(host_pod,host_device)
+    client_command = f"oc exec {client_node} -- {test} {flags} -q {queue_pair} -d {client_device} --use_cuda={client_gpu} --use_cuda_dmabuf {host_ip}".split(' ') 
+    client_logfilename =  f"perftest_gpu_client_{test}_{queue_pair}_{host_node}_{client_node}_{client_device}_{host_gpu}_{client_gpu}.log".split(' ')
+    run_processes(host_command, host_logfilename, client_command, client_logfilename)
+
+  print("Affinity GPU Bandwidth combinations")
+  for i, c in enumerate(affinity_gpu_bw_combinations):
+    test = c[0]
+    host_node = c[1][0]
+    client_node = c[1][1]
+    host_device = c[2]
+    client_device = c[3]
+    queue_pair = c[4]
+    host_gpu = get_affinity(host_device)
+    client_gpu = get_affinity(client_device)
+    flags = flags_base
+    host_command = f"oc exec {host_node} -- {test} {flags} -q {queue_pair} -d {host_device} --use_cuda={host_gpu} --use_cuda_dmabuf".split(' ') 
+    host_logfilename =  f"perftest_gpu_host_{test}_{queue_pair}_{host_node}_{client_node}_{host_device}_{host_gpu}_{client_gpu}.log".split(' ')
+    host_ip = get_ipaddr(host_pod,host_device)
+    client_command = f"oc exec {client_node} -- {test} {flags} -q {queue_pair} -d {client_device} --use_cuda={client_gpu} --use_cuda_dmabuf {host_ip}".split(' ') 
+    client_logfilename =  f"perftest_gpu_client_{test}_{queue_pair}_{host_node}_{client_node}_{client_device}_{host_gpu}_{client_gpu}.log".split(' ')
+    run_processes(host_command, host_logfilename, client_command, client_logfilename)
+
+  print("Affinity GPU Latency combinations")
+  for i, c in enumerate(affinity_gpu_lat_combinations):
+    test = "ib_read_lat"
+    host_node = c[0][0]
+    client_node = c[0][1]
+    host_device = c[1]
+    client_device = c[2]
+    host_gpu = get_affinity(host_device)
+    client_gpu = get_affinity(client_device)
     flags = flags_base
     host_command = f"oc exec {host_node} -- {test} {flags} -q {queue_pair} -d {host_device} --use_cuda={host_gpu} --use_cuda_dmabuf".split(' ') 
     host_logfilename =  f"perftest_gpu_host_{test}_{queue_pair}_{host_node}_{client_node}_{host_device}_{host_gpu}_{client_gpu}.log".split(' ')
