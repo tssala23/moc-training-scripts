@@ -1,7 +1,6 @@
 import itertools
 import subprocess
 import re
-import time
 from copy import deepcopy
 
 # Creates combinations of lists
