@@ -1,6 +1,9 @@
 import itertools
 import subprocess
 import re
+import argparse
+import json
+import yaml
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict, Any
@@ -42,6 +45,58 @@ class CommandResult:
     host_ip: str
     device_index: int
 
+@dataclass
+class BenchmarkConfig:
+    """Configuration for benchmark parameters"""
+    bw_tests: List[str]
+    pods: List[str]
+    gpus: List[int]
+    queue_pairs: List[int]
+    devices: List[str]
+    interfaces: List[str]
+    ports: List[str]
+    flags_base: str
+    affinity: List[int]
+
+    @classmethod
+    def from_dict(cls, config_dict: Dict[str, Any]) -> 'BenchmarkConfig':
+        """Create BenchmarkConfig from dictionary"""
+        return cls(
+            bw_tests=config_dict.get('bw_tests', ['ib_write_bw', 'ib_read_bw']),
+            pods=config_dict.get('pods', ['sr4n1', 'sr4n2']),
+            gpus=config_dict.get('gpus', [0, 1, 2, 3]),
+            queue_pairs=config_dict.get('queue_pairs', [1, 2, 4, 8, 16]),
+            devices=config_dict.get('devices', ['mlx5_2', 'mlx5_3', 'mlx5_4', 'mlx5_5']),
+            interfaces=config_dict.get('interfaces', ['eno5np0', 'eno6np0', 'eno7np0', 'eno8np0']),
+            ports=config_dict.get('ports', ['18515', '18516', '18517', '18518']),
+            flags_base=config_dict.get('flags_base', DEFAULT_FLAGS_BASE),
+            affinity=config_dict.get('affinity', [1, 0, 3, 2])
+        )
+
+    @classmethod
+    def load_from_file(cls, config_file: str) -> 'BenchmarkConfig':
+        """Load configuration from JSON or YAML file"""
+        try:
+            with open(config_file, 'r') as f:
+                if config_file.endswith('.yaml') or config_file.endswith('.yml'):
+                    config_dict = yaml.safe_load(f)
+                else:  # Assume JSON
+                    config_dict = json.load(f)
+            return cls.from_dict(config_dict)
+        except Exception as e:
+            raise ValueError(f"Error loading config file {config_file}: {e}")
+
+    def validate(self) -> None:
+        """Validate configuration parameters"""
+        if len(self.gpus) != len(self.devices) or len(self.devices) != len(self.ports) or len(self.ports) != len(self.interfaces):
+            raise ValueError("Number of GPUs, devices, ports, and interfaces must be equal")
+        
+        if not self.bw_tests:
+            raise ValueError("At least one bandwidth test must be specified")
+        
+        if len(self.pods) < 2:
+            raise ValueError("At least 2 pods must be specified")
+
 # Creates combinations of lists
 def generate_combinations(*lists):
   if not lists:
@@ -79,75 +134,244 @@ def run_processes(host_command, host_logfilename, client_command, client_logfile
     for fh in filehandles:
       fh.close() 
 
+def parse_arguments() -> argparse.Namespace:
+    """Parse command line arguments"""
+    parser = argparse.ArgumentParser(
+        description="Run RDMA benchmark tests with configurable parameters",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Use default configuration
+  python run_benchmarks.py
+
+  # Use config file
+  python run_benchmarks.py --config config.yaml
+
+  # Override specific parameters
+  python run_benchmarks.py --pods sr4n1,sr4n2 --devices mlx5_2,mlx5_3
+
+  # Use config file with overrides
+  python run_benchmarks.py --config config.yaml --queue-pairs 1,2,4
+        """
+    )
+
+    # Config file option
+    parser.add_argument(
+        '--config', '-c',
+        type=str,
+        help='Path to configuration file (JSON or YAML)'
+    )
+
+    # Individual parameter options
+    parser.add_argument(
+        '--bw-tests',
+        type=str,
+        help='Comma-separated bandwidth tests (e.g., ib_read_bw,ib_write_bw)'
+    )
+
+    parser.add_argument(
+        '--pods',
+        type=str,
+        help='Comma-separated pod names (e.g., sr4n1,sr4n2)'
+    )
+
+    parser.add_argument(
+        '--gpus',
+        type=str,
+        help='Comma-separated GPU IDs (e.g., 0,1,2,3)'
+    )
+
+    parser.add_argument(
+        '--queue-pairs',
+        type=str,
+        help='Comma-separated queue pair values (e.g., 1,2,4,8,16)'
+    )
+
+    parser.add_argument(
+        '--devices',
+        type=str,
+        help='Comma-separated device names (e.g., mlx5_2,mlx5_3,mlx5_4,mlx5_5)'
+    )
+
+    parser.add_argument(
+        '--interfaces',
+        type=str,
+        help='Comma-separated interface names (e.g., eno5np0,eno6np0,eno7np0,eno8np0)'
+    )
+
+    parser.add_argument(
+        '--ports',
+        type=str,
+        help='Comma-separated port numbers (e.g., 18515,18516,18517,18518)'
+    )
+
+    parser.add_argument(
+        '--flags-base',
+        type=str,
+        help='Base flags for benchmark commands'
+    )
+
+    parser.add_argument(
+        '--affinity',
+        type=str,
+        help='Comma-separated affinity values (e.g., 1,0,3,2)'
+    )
+
+    return parser.parse_args()
+
+def parse_comma_separated_list(value: str, type_func=int) -> List[Any]:
+    """Parse comma-separated string into list of specified type"""
+    if not value:
+        return []
+    return [type_func(item.strip()) for item in value.split(',')]
+
+def create_config_from_args(args: argparse.Namespace) -> BenchmarkConfig:
+    """Create BenchmarkConfig from command line arguments"""
+    # Start with default config
+    config_dict = {
+        'bw_tests': ['ib_write_bw', 'ib_read_bw'],
+        'pods': ['sr4n1', 'sr4n2'],
+        'gpus': [0, 1, 2, 3],
+        'queue_pairs': [1, 2, 4, 8, 16],
+        'devices': ['mlx5_2', 'mlx5_3', 'mlx5_4', 'mlx5_5'],
+        'interfaces': ['eno5np0', 'eno6np0', 'eno7np0', 'eno8np0'],
+        'ports': ['18515', '18516', '18517', '18518'],
+        'flags_base': DEFAULT_FLAGS_BASE,
+        'affinity': [1, 0, 3, 2]
+    }
+
+    # Load from config file if specified
+    if args.config:
+        file_config = BenchmarkConfig.load_from_file(args.config)
+        config_dict = {
+            'bw_tests': file_config.bw_tests,
+            'pods': file_config.pods,
+            'gpus': file_config.gpus,
+            'queue_pairs': file_config.queue_pairs,
+            'devices': file_config.devices,
+            'interfaces': file_config.interfaces,
+            'ports': file_config.ports,
+            'flags_base': file_config.flags_base,
+            'affinity': file_config.affinity
+        }
+
+    # Override with command line arguments
+    if args.bw_tests:
+        config_dict['bw_tests'] = parse_comma_separated_list(args.bw_tests, str)
+    
+    if args.pods:
+        config_dict['pods'] = parse_comma_separated_list(args.pods, str)
+    
+    if args.gpus:
+        config_dict['gpus'] = parse_comma_separated_list(args.gpus, int)
+    
+    if args.queue_pairs:
+        config_dict['queue_pairs'] = parse_comma_separated_list(args.queue_pairs, int)
+    
+    if args.devices:
+        config_dict['devices'] = parse_comma_separated_list(args.devices, str)
+    
+    if args.interfaces:
+        config_dict['interfaces'] = parse_comma_separated_list(args.interfaces, str)
+    
+    if args.ports:
+        config_dict['ports'] = parse_comma_separated_list(args.ports, str)
+    
+    if args.flags_base:
+        config_dict['flags_base'] = args.flags_base
+    
+    if args.affinity:
+        config_dict['affinity'] = parse_comma_separated_list(args.affinity, int)
+
+    return BenchmarkConfig.from_dict(config_dict)
+
 if __name__ == "__main__":
-  # Parameters that should be possible to pass through
-  bw_tests = ['ib_write_bw', 'ib_read_bw']
-  pods = ['sr4n1', 'sr4n2']
-  gpus = [0, 1, 2, 3]
-  queue_pairs = [1, 2, 4, 8, 16]
-  devices = ['mlx5_2', 'mlx5_3', 'mlx5_4', 'mlx5_5']
+    # Parse command line arguments
+    args = parse_arguments()
+    
+    # Create configuration
+    try:
+        config = create_config_from_args(args)
+        config.validate()
+    except Exception as e:
+        print(f"Configuration error: {e}")
+        exit(1)
 
-  interfaces=("eno5np0", "eno6np0", "eno7np0", "eno8np0")
-  ports=["18515", "18516", "18517", "18518"]
-  flags_base = "-a -F -m 4096 --report_gbits"
-  
-  iface_ipaddr=[]
+    # Extract parameters from config
+    bw_tests = config.bw_tests
+    pods = config.pods
+    gpus = config.gpus
+    queue_pairs = config.queue_pairs
+    devices = config.devices
+    interfaces = config.interfaces
+    ports = config.ports
+    flags_base = config.flags_base
+    affinity = config.affinity
 
-  affinity = [1, 0, 3, 2]
+    print(f"Using configuration:")
+    print(f"  Bandwidth tests: {bw_tests}")
+    print(f"  Pods: {pods}")
+    print(f"  GPUs: {gpus}")
+    print(f"  Queue pairs: {queue_pairs}")
+    print(f"  Devices: {devices}")
+    print(f"  Interfaces: {interfaces}")
+    print(f"  Ports: {ports}")
+    print(f"  Flags base: {flags_base}")
+    print(f"  Affinity: {affinity}")
+    print()
 
-  if len(gpus) & len(devices) & len(ports) & len(interfaces) is not True:
-     print("Number of GPUs, NICs, and ports must be equal") 
+    iface_ipaddr = []
 
-  for pod in pods:
-    pod_ifaces=[]
-    pod_iface=["",""]
-    get_ips_command = f"oc exec {pod} -- ifconfig".split(' ')
-    result = subprocess.run(
-            get_ips_command,
-            capture_output=True,
-            text=True,
-            check=False
-    )    
-    pattern = r'eno[5-8]np0'
-    lines = result.stdout.splitlines()
-    found_match_on_previous_line = False
+    for pod in pods:
+        pod_ifaces=[]
+        pod_iface=["",""]
+        get_ips_command = f"oc exec {pod} -- ifconfig".split(' ')
+        result = subprocess.run(
+                get_ips_command,
+                capture_output=True,
+                text=True,
+                check=False
+        )    
+        pattern = r'eno[5-8]np0'
+        lines = result.stdout.splitlines()
+        found_match_on_previous_line = False
 
-    for i, line in enumerate(lines):
-        if found_match_on_previous_line:
-            pod_iface[1]=line.strip().split(' ')[1]
-            pod_ifaces.append(deepcopy(pod_iface)) 
-            found_match_on_previous_line = False # Reset the flag
-        
-        if re.search(pattern, line):
-            if i + 1 < len(lines): # Check if there's a next line
-                pod_iface[0]=line.strip().split(':')[0]
-                found_match_on_previous_line = True
-    iface_ipaddr.append(deepcopy(pod_ifaces))
+        for i, line in enumerate(lines):
+            if found_match_on_previous_line:
+                pod_iface[1]=line.strip().split(' ')[1]
+                pod_ifaces.append(deepcopy(pod_iface)) 
+                found_match_on_previous_line = False # Reset the flag
+            
+            if re.search(pattern, line):
+                if i + 1 < len(lines): # Check if there's a next line
+                    pod_iface[0]=line.strip().split(':')[0]
+                    found_match_on_previous_line = True
+        iface_ipaddr.append(deepcopy(pod_ifaces))
 
-  def get_ipaddr(pod, device):
-    podindex=pods.index(pod) # Find the pod index
-    deviceindex=devices.index(device) # Find the device index
-    iface=interfaces[deviceindex] # Get the interface name
-    iflist=[row[0] for row in iface_ipaddr[podindex]] # Grab the first column
-    ifindex=iflist.index(iface) # Find the interface index
-    return iface_ipaddr[podindex][ifindex][1], deviceindex
+    def get_ipaddr(pod, device):
+        podindex=pods.index(pod) # Find the pod index
+        deviceindex=devices.index(device) # Find the device index
+        iface=interfaces[deviceindex] # Get the interface name
+        iflist=[row[0] for row in iface_ipaddr[podindex]] # Grab the first column
+        ifindex=iflist.index(iface) # Find the interface index
+        return iface_ipaddr[podindex][ifindex][1], deviceindex
 
-  def get_affinity(device):
-     devindex=devices.index(device)
-     return affinity[devindex]
+    def get_affinity(device):
+        devindex=devices.index(device)
+        return affinity[devindex]
 
-  # Permute the pods since commutativity does not necessarily apply
-  host_client_pod_combinations = list(itertools.permutations(pods, 2))
-  all_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs, gpus, gpus)
-  all_cpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
+    # Permute the pods since commutativity does not necessarily apply
+    host_client_pod_combinations = list(itertools.permutations(pods, 2))
+    all_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs, gpus, gpus)
+    all_cpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
 
-  all_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices, gpus, gpus)
-  all_cpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
-  
-  # For affinity cases we will assign the GPUs to the commands based on the selected NICs
-  affinity_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
-  affinity_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
-  
+    all_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices, gpus, gpus)
+    all_cpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
+    
+    # For affinity cases we will assign the GPUs to the commands based on the selected NICs
+    affinity_gpu_bw_combinations = generate_combinations(bw_tests, host_client_pod_combinations, devices, devices, queue_pairs)
+    affinity_gpu_lat_combinations = generate_combinations(host_client_pod_combinations, devices, devices)
+
 class BenchmarkTestRunner:
     """Unified test runner to eliminate code duplication in the 6 for loops"""
 

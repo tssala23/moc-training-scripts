@@ -1,0 +1,11 @@
+{
+  "bw_tests": ["ib_read_bw", "ib_write_bw"],
+  "pods": ["sr4n1", "sr4n2"],
+  "gpus": [0, 1, 2, 3],
+  "queue_pairs": [1, 2, 4, 8, 16],
+  "devices": ["mlx5_2", "mlx5_3", "mlx5_4", "mlx5_5"],
+  "interfaces": ["eno5np0", "eno6np0", "eno7np0", "eno8np0"],
+  "ports": ["18515", "18516", "18517", "18518"],
+  "flags_base": "-a -R -T 41 -F -x 3 -m 4096 --report_gbits",
+  "affinity": [1, 0, 3, 2]
+}
