@@ -360,13 +360,15 @@ class BenchmarkTestRunner:
         except Exception as e:
             print(f"Error running test {config.test_type.value}: {e}")
 
-# Create unified test runner instance
-test_runner = BenchmarkTestRunner(flags_base, ports, devices, queue_pairs)
+# Main execution block
+if __name__ == "__main__":
+    # Create unified test runner instance
+    test_runner = BenchmarkTestRunner(flags_base, ports, devices, queue_pairs)
 
-# Execute all test categories using the unified runner
-test_runner.execute_test_batch(all_cpu_bw_combinations, "CPU Bandwidth", use_gpu=False)
-test_runner.execute_test_batch(all_cpu_lat_combinations, "CPU Latency", use_gpu=False)
-test_runner.execute_test_batch(all_gpu_bw_combinations, "GPU Bandwidth", use_gpu=True)
-test_runner.execute_test_batch(all_gpu_lat_combinations, "GPU Latency", use_gpu=True)
-test_runner.execute_test_batch(affinity_gpu_bw_combinations, "Affinity GPU Bandwidth", use_gpu=True, use_affinity=True)
-test_runner.execute_test_batch(affinity_gpu_lat_combinations, "Affinity GPU Latency", use_gpu=True, use_affinity=True)
+    # Execute all test categories using the unified runner
+    test_runner.execute_test_batch(all_cpu_bw_combinations, "CPU Bandwidth", use_gpu=False)
+    test_runner.execute_test_batch(all_cpu_lat_combinations, "CPU Latency", use_gpu=False)
+    test_runner.execute_test_batch(all_gpu_bw_combinations, "GPU Bandwidth", use_gpu=True)
+    test_runner.execute_test_batch(all_gpu_lat_combinations, "GPU Latency", use_gpu=True)
+    test_runner.execute_test_batch(affinity_gpu_bw_combinations, "Affinity GPU Bandwidth", use_gpu=True, use_affinity=True)
+    test_runner.execute_test_batch(affinity_gpu_lat_combinations, "Affinity GPU Latency", use_gpu=True, use_affinity=True)
