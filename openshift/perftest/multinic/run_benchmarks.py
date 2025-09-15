@@ -4,6 +4,7 @@ import re
 import argparse
 import json
 import yaml
+import multiprocessing
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict, Any
@@ -103,36 +104,82 @@ def generate_combinations(*lists):
     return []
   return list(itertools.product(*lists))
 
-# Runs host and client tests
+def execute_on_pod(command, output_file):
+    """
+    Execute a command and write output to a file.
+    This function is designed to be used with multiprocessing.Process.
+    
+    Args:
+        command: Command to execute (list of strings)
+        output_file: Path to output file
+    """
+    try:
+        with open(output_file, "w") as f:
+            process = subprocess.Popen(
+                command,
+                stdout=f,
+                stderr=subprocess.STDOUT,
+                text=True
+            )
+            process.wait()
+            return process.returncode
+    except Exception as e:
+        with open(output_file, "w") as f:
+            f.write(f"Error executing command: {e}\n")
+        return 1
+
+# Runs host and client tests using multiprocessing
 def run_processes(host_command, host_logfilename, client_command, client_logfilename, waitForClient=True):
-  if len(host_command) & len(host_logfilename) & len(client_command) & len(client_logfilename):
-    filehandles=[]
-    host_pids=[]
-    client_pids=[]
+    """
+    Execute host and client commands in parallel using multiprocessing.
     
-    for hcmd, host_log, ccmd, client_log in zip(host_command, host_logfilename, client_command, client_logfilename):
-      hfh = open(host_log, "w")
-      cfh = open(client_log, "w")
-      filehandles.append(hfh)
-      filehandles.append(cfh)
+    Args:
+        host_command: List of host commands to execute
+        host_logfilename: List of host log filenames
+        client_command: List of client commands to execute
+        client_logfilename: List of client log filenames
+        waitForClient: Whether to wait for client processes to complete
+    """
+    if not (len(host_command) and len(host_logfilename) and len(client_command) and len(client_logfilename)):
+        return
     
-      host_process = subprocess.Popen(
-        hcmd,
-        stdout=hfh,
-      )
-      host_pids.append(host_process)
-
-      client_process = subprocess.Popen(
-        ccmd,
-        stdout=cfh,
-      )
-      client_pids.append(client_process)
-
-    if waitForClient is True: 
-      for cpid in client_pids:
-          cpid.wait()
-    for fh in filehandles:
-      fh.close() 
+    processes = []
+    
+    # Create tasks for multiprocessing
+    tasks = []
+    
+    # Add host tasks
+    for hcmd, host_log in zip(host_command, host_logfilename):
+        tasks.append({
+            "command": hcmd,
+            "output_file": host_log,
+            "type": "host"
+        })
+    
+    # Add client tasks
+    for ccmd, client_log in zip(client_command, client_logfilename):
+        tasks.append({
+            "command": ccmd,
+            "output_file": client_log,
+            "type": "client"
+        })
+    
+    # Start all processes
+    for task in tasks:
+        process = multiprocessing.Process(
+            target=execute_on_pod,
+            args=(task["command"], task["output_file"])
+        )
+        processes.append(process)
+        process.start()
+    
+    print(f"\n🚀 Started {len(processes)} processes. Waiting for them to complete...\n")
+    
+    # Wait for all processes to finish
+    for process in processes:
+        process.join()
+    
+    print("✅ All processes completed.") 
 
 def parse_arguments() -> argparse.Namespace:
     """Parse command line arguments"""
