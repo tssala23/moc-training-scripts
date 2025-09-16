@@ -4,6 +4,12 @@ import re
 import argparse
 import json
 import yaml
+import os
+import time
+import sys
+import concurrent.futures
+import multiprocessing
+from datetime import datetime
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict, Any
@@ -103,36 +109,104 @@ def generate_combinations(*lists):
     return []
   return list(itertools.product(*lists))
 
-# Runs host and client tests
+def run_command(command: str, timeout: int):
+    """
+    A worker function that runs a single shell command and waits for it.
+    This function is designed to be run in a separate thread.
+    """
+    try:
+        # subprocess.run is a blocking call with its own timeout
+        result = subprocess.run(
+            command,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=timeout
+        )
+        return {
+            'stdout': result.stdout,
+            'stderr': result.stderr,
+            'returncode': result.returncode
+        }
+    except subprocess.TimeoutExpired as e:
+        print(f"❌ Command timed out after {timeout} seconds: {command}")
+        return {
+            'stdout': e.stdout or '', # Output captured before timeout
+            'stderr': e.stderr or '',
+            'returncode': -1, # Custom code for timeout
+            'error': 'TimeoutExpired'
+        }
+
+def run_commands_threaded(host_cmd: str, client_cmd: str, timeout: int):
+    """
+    Runs two shell commands in parallel using a thread pool.
+    Each command is subject to the same individual timeout.
+    """
+    results = {}
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        # Submit each command to the thread pool
+        future1 = executor.submit(run_command, host_cmd, timeout)
+        future2 = executor.submit(run_command, client_cmd, timeout)
+
+        # .result() waits for each future to complete and gets its return value
+        results['host_result'] = future1.result()
+        results['client_result'] = future2.result()
+    
+    return results
+
+'''
 def run_processes(host_command, host_logfilename, client_command, client_logfilename, waitForClient=True):
   if len(host_command) & len(host_logfilename) & len(client_command) & len(client_logfilename):
     filehandles=[]
     host_pids=[]
     client_pids=[]
     
-    for hcmd, host_log, ccmd, client_log in zip(host_command, host_logfilename, client_command, client_logfilename):
-      hfh = open(host_log, "w")
-      cfh = open(client_log, "w")
-      filehandles.append(hfh)
-      filehandles.append(cfh)
-    
+    #for hcmd, host_log, ccmd, client_log in zip(host_command, host_logfilename, client_command, client_logfilename):
+#    hfh = open(host_logfilename, "w")
+#    cfh = open(client_logfilename, "w")
+#    filehandles.append(hfh)
+#    filehandles.append(cfh)
+
+    final_results = run_commands_threaded(host_command, client_command, 60)
+    with open(host_logfilename, "w") as hfh, open(client_logfilename, "w") as cfh:    
+        hfh.write(final_results['host_result'].stdout)
+        cfh.write(final_results['client_result'].stdout)
+    return
+    try:
       host_process = subprocess.Popen(
-        hcmd,
-        stdout=hfh,
+          host_command.split(' '),
+          stdout=hfh,
       )
-      host_pids.append(host_process)
-
+    except Exception as e:
+      print(f"Host process Popen error: {e}")
+      exit(1)
+      
+    host_pids.append(host_process)
+    time.sleep(1)
+    try:
       client_process = subprocess.Popen(
-        ccmd,
-        stdout=cfh,
+          client_command.split(' '),
+          stdout=cfh
       )
-      client_pids.append(client_process)
+    except Exception as e:
+      print(f"Host process Popen error: {e}")
+      exit(1)
+      
+    client_pids.append(client_process)
 
-    if waitForClient is True: 
-      for cpid in client_pids:
-          cpid.wait()
-    for fh in filehandles:
-      fh.close() 
+    client_process.wait()
+    host_process.wait()
+    cfh.close()
+    hfh.close()
+
+    #if waitForClient is True: 
+    #for cpid in client_pids:
+    #    cpid.wait()
+    #for hpid in host_pids:
+    #    hpid.wait()
+    #for fh in filehandles:
+    #  fh.close() 
+'''
 
 def parse_arguments() -> argparse.Namespace:
     """Parse command line arguments"""
@@ -392,10 +466,13 @@ class BenchmarkTestRunner:
                           use_affinity: bool = False) -> None:
         """Execute a batch of tests with unified logic"""
         print(f"All {test_category} combinations")
+        timestamp_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        dir_str = f"logs/{timestamp_str}/{test_category}"
+        os.makedirs(dir_str, exist_ok=True)
 
         for i, combination in enumerate(combinations):
             try:
-                self._execute_single_test(combination, test_category, use_gpu, use_affinity)
+                self._execute_single_test(combination, test_category, use_gpu, use_affinity, dir_str)
             except Exception as e:
                 print(f"Error in {test_category} test {i}: {e}")
                 continue
@@ -404,7 +481,8 @@ class BenchmarkTestRunner:
                            combination: Tuple,
                            test_category: str,
                            use_gpu: bool,
-                           use_affinity: bool) -> None:
+                           use_affinity: bool,
+                           dir_str: str) -> None:
         """Execute a single test combination"""
         # Extract common parameters
         if test_category in ["CPU Bandwidth", "GPU Bandwidth", "Affinity GPU Bandwidth"]:
@@ -428,14 +506,17 @@ class BenchmarkTestRunner:
         # Build commands and execute
         result = self._build_test_commands(
             test_name, host_pod, client_pod, host_device, client_device,
-            queue_pair, host_gpu, client_gpu, use_gpu
+            queue_pair, host_gpu, client_gpu, use_gpu, dir_str
         )
-
-        run_processes(
-            result['host_command'], result['host_logfile'],
-            result['client_command'], result['client_logfile']
+        final_results = run_commands_threaded(
+            result['host_command'][0], 
+            result['client_command'][0], 
+            60
         )
-
+        with open(result['host_logfile'][0], "w") as hfh, open(result['client_logfile'][0], "w") as cfh:    
+            hfh.write(final_results['host_result']['stdout'])
+            cfh.write(final_results['client_result']['stdout'])
+    
     def _get_gpu_assignments(self,
                            combination: Tuple,
                            test_category: str,
@@ -470,7 +551,8 @@ class BenchmarkTestRunner:
                            queue_pair: Optional[int],
                            host_gpu: Optional[int],
                            client_gpu: Optional[int],
-                           use_gpu: bool) -> Dict[str, Any]:
+                           use_gpu: bool,
+                           dir_str: str) -> Dict[str, Any]:
         """Build host and client commands with proper configuration"""
 
         # Get IP address and device index
@@ -505,8 +587,8 @@ class BenchmarkTestRunner:
         if use_gpu and host_gpu is not None and client_gpu is not None:
             gpu_suffix = f"_{host_gpu}_{client_gpu}"
 
-        host_logfile = f"logs/perftest_{mode}_host_{test_name}{qp_str}_{host_pod}_{client_pod}_{host_device}{gpu_suffix}.log"
-        client_logfile = f"logs/perftest_{mode}_client_{test_name}{qp_str}_{host_pod}_{client_pod}_{client_device}{gpu_suffix}.log"
+        host_logfile = f"{dir_str}/perftest_{mode}_host_{test_name}{qp_str}_{host_pod}_{client_pod}_{host_device}{gpu_suffix}.log"
+        client_logfile = f"{dir_str}/perftest_{mode}_client_{test_name}{qp_str}_{host_pod}_{client_pod}_{client_device}{gpu_suffix}.log"
 
         return {
             'host_command': [" ".join(host_cmd_parts)],
@@ -577,10 +659,14 @@ class BenchmarkTestRunner:
             )
 
             print(f"Running {config.test_type.value}: {config.host_device} -> {config.client_device}")
-            run_processes(
-                result['host_command'], result['host_logfile'],
-                result['client_command'], result['client_logfile']
+            final_results = run_commands_threaded(
+                result['host_command'][0], 
+                result['client_command'][0], 
+                60
             )
+            with open(result['host_logfile'][0], "w") as hfh, open(result['client_logfile'][0], "w") as cfh:    
+                hfh.write(final_results['host_result']['stdout'])
+                cfh.write(final_results['client_result']['stdout']) 
         except Exception as e:
             print(f"Error running test {config.test_type.value}: {e}")
 
