@@ -4,6 +4,8 @@ if [ "$#" -ne 1 ]; then
   echo "Usage: ${1} <enable|disable>"
 fi
 
+OPERATION=$1
+
 if [[ "$OPERATION" == "enable" ]]; then
 
   for BDF in `lspci -d "*:*:*" | awk '{print $1}'`; do
