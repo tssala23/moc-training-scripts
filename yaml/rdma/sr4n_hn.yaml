@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${POD_NAME}
+  namespace: default
+spec:
+  dnsPolicy: ClusterFirstWithHostNet #DNS not resolving MASTER_ADDR
+  hostNetwork: true
+  hostIPC: true
+  nodeSelector: 
+    kubernetes.io/hostname: ${NODE_NAME}
+  serviceAccountName: rdma
+  containers:
+  - image: quay.io/edge-infrastructure/nvidia-tools:0.1.5
+    name: ${CONTAINER_NAME}
+    securityContext:
+      privileged: true
+      capabilities:
+        add: [ "IPC_LOCK", "SYS_ADMIN" ]
+    resources:
+      limits:
+        nvidia.com/gpu:         4
+
+      requests:
+        nvidia.com/gpu:         4
+
