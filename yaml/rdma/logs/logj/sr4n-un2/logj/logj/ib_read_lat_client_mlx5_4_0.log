@@ -1,0 +1,63 @@
+Disabling dynamic polling
+initializing CUDA
+Listing all CUDA devices in system:
+CUDA device 0: PCIe address is 06:00
+CUDA device 1: PCIe address is 26:00
+CUDA device 2: PCIe address is A6:00
+CUDA device 3: PCIe address is C6:00
+
+Picking device No. 0
+[pid = 9059, dev = 0] device name = [NVIDIA H100 80GB HBM3]
+creating CUDA Ctx
+making it the current CUDA Ctx
+CUDA device integrated: 0
+using DMA-BUF for GPU buffer address at 0x7fd282800000 aligned at 0x7fd282800000 with aligned size 16777216
+allocated GPU buffer of a 16777216 address at 0x97af50 for type CUDA_MEM_DEVICE
+Calling ibv_reg_dmabuf_mr(offset=0, size=16777216, addr=0x7fd282800000, fd=58) for QP #0
+---------------------------------------------------------------------------------------
+                    RDMA_Read Latency Test
+ Dual-port       : OFF		Device         : mlx5_4
+ Number of qps   : 1		Transport type : IB
+ Connection type : RC		Using SRQ      : OFF
+ PCIe relax order: ON		Lock-free      : OFF
+ ibv_wr* API     : ON		Using DDP      : OFF
+ TX depth        : 1
+ Mtu             : 4096[B]
+ Link type       : Ethernet
+ GID index       : 3
+ Outstand reads  : 16
+ rdma_cm QPs	 : ON
+ Data ex. method : rdma_cm 	TOS    : 41
+---------------------------------------------------------------------------------------
+ local address: LID 0000 QPN 0x0171 PSN 0x734d2b
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:103:96
+ remote address: LID 0000 QPN 0x0171 PSN 0x250cf5
+ GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:103:91
+---------------------------------------------------------------------------------------
+ #bytes #iterations    t_min[usec]    t_max[usec]  t_typical[usec]    t_avg[usec]    t_stdev[usec]   99% percentile[usec]   99.9% percentile[usec] 
+ 2       1000          6.08           17.76        6.17     	       6.21        	0.45   		6.56    		17.76  
+ 4       1000          6.09           17.17        6.17     	       6.21        	0.32   		6.67    		17.17  
+ 8       1000          6.07           14.74        6.17     	       6.22        	0.39   		6.75    		14.74  
+ 16      1000          6.07           14.31        6.17     	       6.20        	0.38   		6.28    		14.31  
+ 32      1000          6.08           14.07        6.17     	       6.20        	0.34   		6.30    		14.07  
+ 64      1000          6.10           12.57        6.20     	       6.22        	0.19   		6.39    		12.57  
+ 128     1000          6.14           13.33        6.25     	       6.28        	0.34   		6.42    		13.33  
+ 256     1000          6.26           12.44        6.35     	       6.37        	0.25   		6.52    		12.44  
+ 512     1000          6.33           15.78        6.42     	       6.46        	0.53   		6.60    		15.78  
+ 1024    1000          6.50           11.88        6.59     	       6.61        	0.23   		6.82    		11.88  
+ 2048    1000          6.82           12.79        6.91     	       6.93        	0.27   		7.10    		12.79  
+ 4096    1000          7.51           18.12        7.61     	       7.67        	0.50   		7.93    		18.12  
+ 8192    1000          8.45           18.82        8.57     	       8.60        	0.27   		8.96    		18.82  
+ 16384   1000          11.05          21.68        11.16    	       11.22       	0.39   		12.64   		21.68  
+ 32768   1000          13.66          18.86        13.82    	       13.91       	0.25   		15.53   		18.86  
+ 65536   1000          18.35          26.97        18.58    	       18.60       	0.21   		18.99   		26.97  
+ 131072  1000          19.25          298.97       19.49    	       22.23       	4.16   		32.83   		298.97 
+ 262144  1000          32.34          336.61       32.75    	       36.24       	8.34   		63.13   		336.61 
+ 524288  1000          51.91          93.99        53.66    	       55.50       	6.97   		89.25   		93.99  
+ 1048576 1000          87.87          183.45       91.45    	       93.82       	13.18  		181.02  		183.45 
+ 2097152 1000          160.05         339.92       163.17   	       165.25      	17.37  		328.00  		339.92 
+ 4194304 1000          308.41         626.61       308.76   	       311.17      	19.75  		322.50  		626.61 
+ 8388608 1000          608.53         1220.05      612.15   	       620.46      	42.99  		696.19  		1220.05
+---------------------------------------------------------------------------------------
+deallocating GPU buffer 00007fd282800000
+destroying current CUDA Ctx
